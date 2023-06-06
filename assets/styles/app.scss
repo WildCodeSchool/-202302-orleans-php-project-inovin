@@ -2,6 +2,7 @@
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
 
+@import "svg.scss";
 h1,
 h2,
 h3,
@@ -10,4 +11,12 @@ h5,
 h6 {
     font-family: $font-title;
     color: $primary-light;
+}
+
+body {
+    padding-block-start: $navbar-heigh;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0;
 }
