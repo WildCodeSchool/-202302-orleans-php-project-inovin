@@ -1,5 +1,6 @@
 //start coding by removing this file and adding yours ;)
 @import "variables";
+@import "_footer";
 @import "~bootstrap/scss/bootstrap";
 
 h1,
@@ -10,4 +11,9 @@ h5,
 h6 {
     font-family: $font-title;
     color: $primary-light;
+}
+
+p {
+    font-family: $font-base;
+    letter-spacing: 3px;
 }
