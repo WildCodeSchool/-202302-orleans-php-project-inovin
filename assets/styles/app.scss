@@ -10,4 +10,53 @@ h5,
 h6 {
     font-family: $font-title;
     color: $primary-light;
+    letter-spacing: 2px;
+}
+
+.btn {
+    outline: 1px solid $primary-light;
+    outline-offset: 4px;
+    border: 1px dotted $secondary;
+    letter-spacing: 2px;
+    background-color: $dark-light;
+    color: $primary-light;
+    padding-inline: 2em;
+    border-radius: 50px;
+    transition-duration: 0.2s;
+    box-shadow: 0 1px 1px 2 $primary-light;
+}
+.btn:hover {
+    background-color: $secondary;
+    border-color: $light;
+    opacity: 70%;
+}
+
+.btn:focus {
+    color: white;
+}
+
+.btn:after {
+    opacity: 1;
+    transition: 0s;
+}
+
+.tbodyDiv {
+    max-height: clamp(250px, 60vh, 850px);
+    overflow: auto;
+    border-radius: 6px;
+}
+
+.container-admin {
+    border: 1px solid $secondary-light;
+    padding: 2rem;
+    margin: 4rem;
+    background: $card-gradient-color;
+    border-radius: var(--bs-border-radius);
+    box-shadow: 0.5rem 0.5rem 2rem rgba(189, 173, 53, 0.175);
+}
+
+table.table-bordered > tbody > tr > td,
+table.table-bordered > thead > tr > th,
+table.table-bordered {
+    border: 1px solid $secondary-light;
 }
