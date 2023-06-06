@@ -6,7 +6,6 @@ use App\Entity\GrapeVariety;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Faker\Factory;
 
 class GrapeVarietyFixtures extends Fixture
 {
@@ -32,7 +31,6 @@ class GrapeVarietyFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create('fr_FR');
         foreach (self::GRAPE_VARIETIES as $key => $grapeVarietyName) {
             $grapeVariety = new GrapeVariety();
             $grapeVariety->setName($grapeVarietyName);

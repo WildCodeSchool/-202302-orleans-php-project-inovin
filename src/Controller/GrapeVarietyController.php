@@ -14,22 +14,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class GrapeVarietyController extends AbstractController
 {
     #[Route('/', name: 'app_grape_variety_index', methods: ['GET'])]
-    public function index(GrapeVarietyRepository $grapeVarietyRepository): Response
+    public function index(GrapeVarietyRepository $grapeRepository): Response
     {
         return $this->render('grape_variety/index.html.twig', [
-            'grape_varieties' => $grapeVarietyRepository->findAll(),
+            'grape_varieties' => $grapeRepository->findAll(),
         ]);
     }
 
     #[Route('/new', name: 'app_grape_variety_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, GrapeVarietyRepository $grapeVarietyRepository): Response
+    public function new(Request $request, GrapeVarietyRepository $grapeRepository): Response
     {
         $grapeVariety = new GrapeVariety();
         $form = $this->createForm(GrapeVarietyType::class, $grapeVariety);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $grapeVarietyRepository->save($grapeVariety, true);
+            $grapeRepository->save($grapeVariety, true);
 
             return $this->redirectToRoute('app_grape_variety_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -49,13 +49,16 @@ class GrapeVarietyController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_grape_variety_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, GrapeVariety $grapeVariety, GrapeVarietyRepository $grapeVarietyRepository): Response
-    {
+    public function edit(
+        Request $request,
+        GrapeVariety $grapeVariety,
+        GrapeVarietyRepository $grapeRepository
+    ): Response {
         $form = $this->createForm(GrapeVarietyType::class, $grapeVariety);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $grapeVarietyRepository->save($grapeVariety, true);
+            $grapeRepository->save($grapeVariety, true);
 
             return $this->redirectToRoute('app_grape_variety_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -67,12 +70,14 @@ class GrapeVarietyController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_grape_variety_delete', methods: ['POST'])]
-    public function delete(Request $request, GrapeVariety $grapeVariety, GrapeVarietyRepository $grapeVarietyRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$grapeVariety->getId(), $request->request->get('_token'))) {
-            $grapeVarietyRepository->remove($grapeVariety, true);
+    public function delete(
+        Request $request,
+        GrapeVariety $grapeVariety,
+        GrapeVarietyRepository $grapeRepository
+    ): Response {
+        if ($this->isCsrfTokenValid('delete' . $grapeVariety->getId(), $request->request->get('_token'))) {
+            $grapeRepository->remove($grapeVariety, true);
         }
-
         return $this->redirectToRoute('app_grape_variety_index', [], Response::HTTP_SEE_OTHER);
     }
 }
