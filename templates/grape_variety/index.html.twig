@@ -1,47 +1,33 @@
-{% extends 'admin.html.twig' %}
+{% extends './components/admin/container_admin_layout.html.twig' %}
 
 {% block title %}
 	{{ parent() }}
 	| Cépages - Index
 {% endblock %}
-
-{% block body %}
-	<div class="container-fluid">
-		<div class="container-admin">
-			<section>
-				<div class="d-flex flex-column justify-content-center align-items-center row">
-					<h1 class="text-center">NOS CÉPAGES</h1>
-					{% include "components/frames/_frame-separator.html.twig" %}
-					<div class="tbodyDiv mt-4">
-						<table class="table table-striped table-hover table-bordered">
-							<thead class="sticky-top table-light">
-								<tr class="py-4">
-									<th class="col-9 py-3 px-4" scope="col">NOM</th>
-									<th class="col-3 py-3 text-center px-2" scope="col">ACTIONS</th>
-								</tr>
-							</thead>
-							<tbody>
-								{% for grape_variety in grape_varieties %}
-									<tr>
-										<td class="col-9 px-4">{{ grape_variety.name }}</td>
-										<td class="col-3 text-center p-2">
-											<a class="link-offset-2 px-1 mx-1" href="{{ path('app_grape_variety_show', {'id': grape_variety.id}) }}">show</a>
-											<a class="link-offset-2 px-1 mx-1" href="{{ path('app_grape_variety_edit', {'id': grape_variety.id}) }}">edit</a>
-										</td>
-									</tr>
-								{% else %}
-									<tr>
-										<td colspan="2">no records found</td>
-									</tr>
-								{% endfor %}
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<div class="d-flex justify-content-end align-self-end">
-					<a role="button" class="btn mt-4" href="{{ path('app_grape_variety_new') }}">AJOUTER</a>
-				</div>
-			</section>
-		</div>
-	</div>
+{% block admin_content_title %}NOS CÉPAGES
+{% endblock %}
+{% block admin_content %}
+	<table class="table table-striped table-hover table-bordered">
+		<thead class="sticky-top">
+			<tr class="py-4">
+				<th class="col-9 py-3 px-4 bg-secondary" scope="col">NOM</th>
+				<th class="col-3 py-3 text-center px-2 bg-secondary" scope="col">ACTIONS</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for grape_variety in grape_varieties %}
+				<tr>
+					<td class="col-9 px-4">{{ grape_variety.name }}</td>
+					<td class="col-3 text-center p-2">
+						<a class="link-offset-2 px-1 mx-1" href="{{ path('app_grape_variety_show', {'id': grape_variety.id}) }}">Visualiser</a>
+						<a class="link-offset-2 px-1 mx-1" href="{{ path('app_grape_variety_edit', {'id': grape_variety.id}) }}">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="2">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

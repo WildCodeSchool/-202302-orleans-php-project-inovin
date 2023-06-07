@@ -1,6 +1,5 @@
 //start coding by removing this file and adding yours ;)
-@import "variables";
-@import "~bootstrap/scss/bootstrap";
+@import "_theme.scss";
 
 h1,
 h2,
@@ -16,14 +15,14 @@ h6 {
 .btn {
     outline: 1px solid $primary-light;
     outline-offset: 4px;
-    border: 1px dotted $secondary;
+    border: 2px dotted $secondary;
     letter-spacing: 2px;
     background-color: $dark-light;
     color: $primary-light;
     padding-inline: 2em;
     border-radius: 50px;
     transition-duration: 0.2s;
-    box-shadow: 0 1px 1px 2 $primary-light;
+    box-shadow: $shadow-primary;
 }
 .btn:hover {
     background-color: $secondary;
@@ -52,11 +51,11 @@ h6 {
     margin: 4rem;
     background: $card-gradient-color;
     border-radius: var(--bs-border-radius);
-    box-shadow: 0.5rem 0.5rem 2rem rgba(189, 173, 53, 0.175);
+    box-shadow: $shadow-primary;
 }
 
 table.table-bordered > tbody > tr > td,
 table.table-bordered > thead > tr > th,
 table.table-bordered {
-    border: 1px solid $secondary-light;
+    border: 2px solid $secondary;
 }
