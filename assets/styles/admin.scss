@@ -1,11 +1,5 @@
 @import "_variables.scss";
 
-.tbodyDiv {
-    max-height: clamp(250px, 60vh, 850px);
-    overflow: auto;
-    border-radius: 6px;
-}
-
 .container-admin {
     border: 1px solid $secondary-light;
     padding: 2rem;
