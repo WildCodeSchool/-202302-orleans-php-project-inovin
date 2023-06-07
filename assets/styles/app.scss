@@ -2,7 +2,9 @@
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
 
+@import "_footer";
 @import "svg.scss";
+
 h1,
 h2,
 h3,
@@ -11,6 +13,11 @@ h5,
 h6 {
     font-family: $font-title;
     color: $primary-light;
+}
+
+p {
+    font-family: $font-base;
+    letter-spacing: 3px;
 }
 
 body {
