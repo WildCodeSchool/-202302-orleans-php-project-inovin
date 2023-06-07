@@ -1,0 +1,10 @@
+{% extends 'emailLayout.html.twig' %}
+
+
+{% block body %}
+	<body>
+			<h1>{{ contact.subjet }}</h1>
+			<p>{{ contact.content }}</p>
+			<h2>{{ contact.lastname ~ ' ' ~ contact.firstname }}</h2>
+	</body>
+</html>{% endblock %}

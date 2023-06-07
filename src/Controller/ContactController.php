@@ -9,24 +9,26 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Contact;
 
 class ContactController extends AbstractController
 {
     #[Route('/contact', name: 'app_contact')]
-    public function index(Request $request, MailerInterface $mailer): Response
+    public function index(Request $request, MailerInterface $mailer, Contact $contact): Response
     {
-        $form = $this->createForm(ContactFormType::class);
+        $contact = new contact();
+        $form = $this->createForm(ContactFormType::class, $contact);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()/*  && $form->isValid() */) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $email = (new Email())
-                ->from($this->getParameter('mailer_from'))
-                ->to($_POST['contact_form']['email'])
-                ->subject('INOVIN - Nous avons bien reçu votre Email')
-                ->html('<p>Nos conseillés font leur possible pour vous 
-                répondre le plus vite possible, merci de votre patience</p>');
+                ->from($contact->getEmail())
+                ->to($this->getParameter('mailer_from'))
+                ->subject('vous avez un message à propos de ' . $contact->getSubjet())
+                ->html($this->renderView('contact/emailContact.html.twig', ['contact' => $contact]));
 
             $mailer->send($email);
+            $this->addFlash('success', 'Votre email a bien etait envoyé');
             return $this->redirectToRoute('app_home');
         }
         return $this->render('contact/contact.html.twig', [

@@ -14,8 +14,8 @@ label {
     margin-bottom: 1.5rem;
 }
 
-.fs-1 {
-    font-size: calc(1.375rem + 1vw)!important;
+h1, .h1 {
+    font-size: calc(1rem + 1vw);
 }
 
 .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
@@ -23,7 +23,7 @@ label {
 }
 
 textarea.form-control {
-    min-height: 150px!important;
+    min-height: 150px;
     resize : none;
 }
 
