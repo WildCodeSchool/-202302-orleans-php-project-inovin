@@ -20,16 +20,13 @@ footer {
     padding-block-end: 0.8rem;
 }
 
-.title>h3 {
-    font-size: $font-size-mid;
+.title>h2 {
     padding-block-start: 0.8rem;
 }
 
 .details a>p{
-    display: flex;
     width: 240px;
     margin-bottom: 0;
-    align-items: center;
 }
 
 .details a {
