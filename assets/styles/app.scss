@@ -31,31 +31,10 @@ h6 {
 }
 
 .btn:focus {
-    color: white;
+    color: $light;
 }
 
 .btn:after {
     opacity: 1;
     transition: 0s;
-}
-
-.tbodyDiv {
-    max-height: clamp(250px, 60vh, 850px);
-    overflow: auto;
-    border-radius: 6px;
-}
-
-.container-admin {
-    border: 1px solid $secondary-light;
-    padding: 2rem;
-    margin: 4rem;
-    background: $card-gradient-color;
-    border-radius: var(--bs-border-radius);
-    box-shadow: $shadow-primary;
-}
-
-table.table-bordered > tbody > tr > td,
-table.table-bordered > thead > tr > th,
-table.table-bordered {
-    border: 2px solid $secondary;
 }

@@ -1,5 +1,4 @@
-{% extends './components/admin/container_admin_layout.html.twig' %}
-
+{% extends 'admin_container.html.twig' %}
 {% block title %}
 	{{ parent() }}
 	| Cépages - Index
@@ -7,27 +6,29 @@
 {% block admin_content_title %}NOS CÉPAGES
 {% endblock %}
 {% block admin_content %}
-	<table class="table table-striped table-hover table-bordered">
-		<thead class="sticky-top">
-			<tr class="py-4">
-				<th class="col-9 py-3 px-4 bg-secondary" scope="col">NOM</th>
-				<th class="col-3 py-3 text-center px-2 bg-secondary" scope="col">ACTIONS</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for grape_variety in grape_varieties %}
-				<tr>
-					<td class="col-9 px-4">{{ grape_variety.name }}</td>
-					<td class="col-3 text-center p-2">
-						<a class="link-offset-2 px-1 mx-1" href="{{ path('app_grape_variety_show', {'id': grape_variety.id}) }}">Visualiser</a>
-						<a class="link-offset-2 px-1 mx-1" href="{{ path('app_grape_variety_edit', {'id': grape_variety.id}) }}">Modifier</a>
-					</td>
+	<div class="table-responsive">
+		<table class="table table-striped table-hover table-bordered border-secondary">
+			<thead class="sticky-top">
+				<tr class="py-4">
+					<th class="th-lg py-3 px-4 bg-secondary" scope="col">NOM</th>
+					<th class="w-25 py-3 text-center px-2 bg-secondary" scope="col">ACTIONS</th>
 				</tr>
-			{% else %}
-				<tr>
-					<td colspan="2">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+			<tbody class="table-group-divider">
+				{% for grape_variety in grape_varieties %}
+					<tr>
+						<td class="px-4">{{ grape_variety.name }}</td>
+						<td class="w-25 text-center p-2">
+							<a class="link-offset-2 px-1 mx-1" href="{{ path('app_grape_variety_show', {'id': grape_variety.id}) }}">Visualiser</a>
+							<a class="link-offset-2 px-1 mx-1" href="{{ path('app_grape_variety_edit', {'id': grape_variety.id}) }}">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="2">aucuns enregistrements trouvés</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 {% endblock %}

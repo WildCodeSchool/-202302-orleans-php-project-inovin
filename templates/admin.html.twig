@@ -3,8 +3,9 @@
 	{{ parent() }}
 	| Administration
 {% endblock %}
-{% block stylesheet %}
+{% block stylesheets %}
 	{{ parent() }}
+	{{ encore_entry_link_tags('admin') }}
 {% endblock %}
 {% block navbar %}{% endblock %}
 {% block body %}{% endblock %}
