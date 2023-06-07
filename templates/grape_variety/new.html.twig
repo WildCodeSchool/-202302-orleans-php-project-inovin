@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New GrapeVariety{% endblock %}
+{% block title %}New GrapeVariety
+{% endblock %}
 
 {% block body %}
-    <h1>Create new GrapeVariety</h1>
+	<h1>Create new GrapeVariety</h1>
 
-    {{ include('grape_variety/_form.html.twig') }}
+	{{ include('grape_variety/_form.html.twig') }}
 
-    <a href="{{ path('app_grape_variety_index') }}">back to list</a>
+	<a href="{{ path('app_cepage_index') }}">back to list</a>
 {% endblock %}

@@ -10,10 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/grape/variety')]
+#[Route('/cepage', name: 'app_cepage_')]
 class GrapeVarietyController extends AbstractController
 {
-    #[Route('/', name: 'app_grape_variety_index', methods: ['GET'])]
+    #[Route('/', name: 'index', methods: ['GET'])]
     public function index(GrapeVarietyRepository $grapeRepository): Response
     {
         return $this->render('grape_variety/index.html.twig', [
@@ -21,7 +21,7 @@ class GrapeVarietyController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_grape_variety_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, GrapeVarietyRepository $grapeRepository): Response
     {
         $grapeVariety = new GrapeVariety();
@@ -31,7 +31,7 @@ class GrapeVarietyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $grapeRepository->save($grapeVariety, true);
 
-            return $this->redirectToRoute('app_grape_variety_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_cepage_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('grape_variety/new.html.twig', [
@@ -40,7 +40,7 @@ class GrapeVarietyController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_grape_variety_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(GrapeVariety $grapeVariety): Response
     {
         return $this->render('grape_variety/show.html.twig', [
@@ -48,7 +48,7 @@ class GrapeVarietyController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_grape_variety_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(
         Request $request,
         GrapeVariety $grapeVariety,
@@ -60,7 +60,7 @@ class GrapeVarietyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $grapeRepository->save($grapeVariety, true);
 
-            return $this->redirectToRoute('app_grape_variety_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_cepage_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('grape_variety/edit.html.twig', [
@@ -69,7 +69,7 @@ class GrapeVarietyController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_grape_variety_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(
         Request $request,
         GrapeVariety $grapeVariety,
@@ -78,6 +78,6 @@ class GrapeVarietyController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $grapeVariety->getId(), $request->request->get('_token'))) {
             $grapeRepository->remove($grapeVariety, true);
         }
-        return $this->redirectToRoute('app_grape_variety_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_cepage_index', [], Response::HTTP_SEE_OTHER);
     }
 }
