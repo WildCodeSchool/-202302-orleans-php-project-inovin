@@ -1,0 +1,32 @@
+header{
+    background-image: url(../images/background-header.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height:100vh;
+    & p.font-sizepara{
+        font-size: clamp(1rem,1vw,2.5rem);
+    }
+}
+
+.pine-circle{
+    width: 39px;
+    height: 39px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    background-image: url(../images/pine-circle.png);
+}
+.pin span {
+    transform: rotate(45deg);
+}
+
+.size-inovin{
+    font-size: 6rem;
+    letter-spacing: 15px;
+}
+
+// img{
+//     height: 700px;
+//     width:300px
+// }
