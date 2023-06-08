@@ -1,8 +1,9 @@
 header{
-    background-image: url(../images/background-header.jpg);
+    background-image: url(../images/background-header.webp);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     height:100vh;
     & p.font-sizepara{
         font-size: clamp(1rem,1vw,2.5rem);
@@ -25,4 +26,3 @@ header{
     font-size: 6rem;
     letter-spacing: 15px;
 }
-
