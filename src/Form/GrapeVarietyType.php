@@ -18,9 +18,8 @@ class GrapeVarietyType extends AbstractType
                 TextType::class,
                 [
                     'label' => 'Nom du cépage',
-                    'required' => true,
                     'attr' => [
-                        'placeholder' => 'Nom du cépage...',
+                        'placeholder' => 'Cabernet franc...',
                     ],
                 ]
             );
