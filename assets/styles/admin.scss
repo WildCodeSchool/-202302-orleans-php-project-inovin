@@ -1,0 +1,10 @@
+@import "_variables.scss";
+
+.container-admin {
+    border: 1px solid $secondary-light;
+    padding: 2rem;
+    margin: 4rem;
+    background: $card-gradient-color;
+    border-radius: var(--bs-border-radius);
+    box-shadow: $shadow-primary;
+}

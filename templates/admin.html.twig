@@ -3,9 +3,26 @@
 	{{ parent() }}
 	| Administration
 {% endblock %}
-{% block stylesheet %}
+{% block stylesheets %}
 	{{ parent() }}
+	{{ encore_entry_link_tags('admin') }}
 {% endblock %}
 {% block navbar %}{% endblock %}
-{% block body %}{% endblock %}
+{% block body %}
+	<main class="container-fluid">
+		<div class="container-admin">
+			<section>
+				<div class="d-flex flex-column justify-content-center align-items-center row">
+					<h1 class="text-center text-uppercase">
+						{% block admin_content_title %}{% endblock %}
+					</h1>
+					{% include "components/svg_img/_frame_separator_svg" %}
+					<div class="mt-4">
+						{% block admin_content %}{% endblock %}
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+{% endblock %}
 {% block footer %}{% endblock %}
