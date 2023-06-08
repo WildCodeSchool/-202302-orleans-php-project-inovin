@@ -1,12 +1,29 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}New GrapeVariety
+{% extends 'admin.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Cépages - New
 {% endblock %}
-
-{% block body %}
-	<h1>Create new GrapeVariety</h1>
-
-	{{ include('grape_variety/_form.html.twig') }}
-
-	<a href="{{ path('app_cepage_index') }}">back to list</a>
+{% block admin_content_title %}NOUVEAU CÉPAGE
+{% endblock %}
+{% block admin_content %}
+	{{ form_start(form) }}
+	<div class="d-flex flex-column justify-content-center align-items-center m-4 p-4 m-auto w-75">
+		<div class="row mb-3">
+			<div class="col">
+				{{ form_errors(form) }}
+			</div>
+		</div>
+		<div class="row mb-3 d-flex w-100">
+			<div class="col">
+				{{ form_row(form.name) }}
+			</div>
+		</div>
+		<div class="row mb-3">
+			<div class="mb-4 d-flex g-4 gap-4">
+				<a role="button " class="btn btn-sm text-nowrap mb-3" href="{{ path('app_cepage_index') }}">Retour</a>
+				<button class="btn btn-sm text-nowrap bg-primary-light mb-3 text-dark fw-bolder">{{ button_label|default('Valider') }}</button>
+			</div>
+		</div>
+	</div>
+	{{ form_end(form) }}
 {% endblock %}
