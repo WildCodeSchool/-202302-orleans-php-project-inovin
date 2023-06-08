@@ -7,7 +7,9 @@
 	{{ parent() }}
 	{{ encore_entry_link_tags('admin') }}
 {% endblock %}
-{% block navbar %}{% endblock %}
+{% block navbar %}
+	{% include './admin/components/_admin-navbar.html.twig' %}
+{% endblock %}
 {% block body %}
 	<main class="container-fluid">
 		<div class="container-admin">
@@ -25,4 +27,6 @@
 		</div>
 	</main>
 {% endblock %}
-{% block footer %}{% endblock %}
+{% block footer %}
+	{% include 'components/_footer.html.twig' %}
+{% endblock %}
