@@ -24,7 +24,7 @@ class ContactController extends AbstractController
             $email = (new Email())
                 ->from($contact->getEmail())
                 ->to($this->getParameter('mailer_from'))
-                ->subject('vous avez un message à propos de ' . $contact->getSubjet())
+                ->subject($contact->getSubject())
                 ->html($this->renderView('contact/emailContact.html.twig', ['contact' => $contact]));
 
             $mailer->send($email);

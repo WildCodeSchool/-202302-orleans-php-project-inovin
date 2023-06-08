@@ -20,7 +20,7 @@ class Contact
     private string $phone;
 
     #[Assert\NotBlank]
-    private string $subjet;
+    private string $subject;
 
     #[Assert\NotBlank]
     private string $content;
@@ -55,13 +55,13 @@ class Contact
 
         return $this;
     }
-    public function getSubjet(): string
+    public function getSubject(): string
     {
-        return $this->subjet;
+        return $this->subject;
     }
-    public function setSubjet(string $subjet): self
+    public function setSubject(string $subject): self
     {
-        $this->subjet = $subjet;
+        $this->subject = $subject;
 
         return $this;
     }

@@ -32,11 +32,11 @@ class ContactFormType extends AbstractType
             ->add('phone', TelType::class, [
                 'required' => false,
                 'label' => 'Téléphone',
-                'attr' => ['placeholder' => 'Veuillez écrire votre téléphone'],
+                'attr' => ['placeholder' => 'Veuillez écrire votre numéro'],
             ])
-            ->add('subjet', TextType::class, [
+            ->add('subject', TextType::class, [
                 'label' => 'Sujet',
-                'attr' => ['placeholder' => 'Veuillez écrire votre sujet'],
+                'attr' => ['placeholder' => 'Veuillez renseigner un sujet'],
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Message',
