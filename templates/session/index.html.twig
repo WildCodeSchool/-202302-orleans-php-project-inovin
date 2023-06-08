@@ -9,7 +9,7 @@
 	<div>
 		<div class="row">
 			<div class="d-flex justify-content-end align-self-end mb-4 px-4">
-				<a role="button" class="btn mt-4" href="{{ path('app_cepage_new') }}">AJOUTER</a>
+				<a role="button" class="btn mt-4" href="{{ path('app_session_new') }}">AJOUTER</a>
 			</div>
 		</div>
 		<table class="table table-striped table-hover table-bordered border-secondary">
@@ -21,10 +21,10 @@
 				</tr>
 			</thead>
 			<tbody class="table-group-divider">
-				{% for session in sessions %}
+				{% for session in sessions|sort((a, b) => b.openingDate <=> a.openingDate) %}
 					<tr>
 						<td class="px-4 align-middle align-center text-center">{{ session.openingDate ? session.openingDate|date('d/m/Y H:i') : '' }}
-							{% if session.closed is same as(true) %}
+							{% if session.closed is same as(false) %}
 								<span class="badge p-2 m-2 rounded-pill text-bg-success">Ouverte</span>
 							{% else %}
 								<span class="badge p-2 m-2 rounded-pill text-bg-danger">Terminée</span>

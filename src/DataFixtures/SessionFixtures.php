@@ -11,7 +11,6 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class SessionFixtures extends Fixture
 {
-
     public const SESSIONS = [
         'Découverte des cépages : Explorez les variétés de vins du monde',
         'Vins et fromages : Une harmonie parfaite',
@@ -36,7 +35,7 @@ class SessionFixtures extends Fixture
             $session->setName($sessionName);
             $session->setOpeningDate($faker->dateTimeThisYear($openingDate));
             $session->setDescription($faker->sentence(3));
-            $session->setClosed($faker->numberBetween(0, 1));
+            $session->setClosed($faker->boolean());
             $manager->persist($session);
             $this->addReference('session_' . $key, $session);
         }
