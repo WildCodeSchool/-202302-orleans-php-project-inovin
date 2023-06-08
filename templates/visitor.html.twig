@@ -1,4 +1,7 @@
 {% extends 'base.html.twig' %}
-{% block stylesheet %}
+{% block stylesheets %}
 	{{ parent() }}
+{% endblock %}
+{% block navbar %}
+	{% include './components/_navbar.html.twig' %}
 {% endblock %}

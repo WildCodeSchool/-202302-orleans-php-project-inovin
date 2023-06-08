@@ -1,6 +1,8 @@
 //start coding by removing this file and adding yours ;)
-@import "variables";
-@import "~bootstrap/scss/bootstrap";
+@import "_theme.scss";
+
+@import "_footer";
+@import "svg.scss";
 
 h1,
 h2,
@@ -10,6 +12,47 @@ h5,
 h6 {
     font-family: $font-title;
     color: $primary-light;
+    letter-spacing: 2px;
+}
+
+.btn {
+    outline: 1px solid $primary-light;
+    outline-offset: 4px;
+    border: 2px dotted $secondary;
+    letter-spacing: 2px;
+    background-color: $dark-light;
+    color: $primary-light;
+    padding-inline: 2em;
+    border-radius: 50px;
+    transition-duration: 0.2s;
+    box-shadow: $shadow-primary;
+}
+.btn:hover {
+    background-color: $secondary;
+    border-color: $light;
+    opacity: 70%;
+}
+
+.btn:focus {
+    color: $light;
+}
+
+.btn:after {
+    opacity: 1;
+    transition: 0s;
+}
+
+p {
+    font-family: $font-base;
+    letter-spacing: 3px;
+}
+
+body {
+    padding-block-start: $navbar-height;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0;
 }
 
 .letter-spacing-title{
