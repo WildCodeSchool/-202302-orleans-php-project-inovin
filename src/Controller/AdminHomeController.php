@@ -12,6 +12,6 @@ class AdminHomeController extends AbstractController
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(): Response
     {
-        return $this->render('admin/index.html.twig', []);
+        return $this->render('admin/index.html.twig');
     }
 }
