@@ -1,0 +1,47 @@
+{% extends 'visitor.html.twig' %}
+
+{% block title %}
+	Contactez-nous -
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('contactForm') }}
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid d-flex justify-content-center">
+		<div class="myContainer">
+			<div class="border border-secondary rounded p-3 p-sm-5 m-4 bg-card-gradient-color">
+				<div class="d-flex flex-column">
+					<h1 class="mb-4 align-self-center letter-spacing-title">CONTACTEZ NOUS</h1>
+					{% include 'contact/_svg.html.twig'%}
+				</div>
+				{{ form_start(form) }}
+				<div class="row">
+					<div class="col-md-6">
+						{{ form_row(form.lastname) }}
+					</div>
+					<div class="col-md-6">
+						{{ form_row(form.firstname) }}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						{{ form_row(form.email) }}
+					</div>
+					<div class="col-md-6">
+						{{ form_row(form.phone) }}
+					</div>
+				</div>
+				{{ form_row(form.subject) }}
+				{{ form_row(form.content) }}
+				<div class="d-flex justify-content-sm-end justify-content-center">
+					<button type="submit" class="btn">ENVOYER</button>
+				</div>
+				{{ form_end(form) }}
+			</div>
+		</div>
+	</div>
+{% endblock %}
