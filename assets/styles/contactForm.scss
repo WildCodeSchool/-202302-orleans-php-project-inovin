@@ -14,15 +14,16 @@ label {
     margin-bottom: 1.5rem;
 }
 
-h1, .h1 {
+h1,
+.h1 {
     font-size: calc(1rem + 1vw);
 }
 
-.container-fluid{
-    max-width: 1200px;
+.myContainer {
+   width: 1200px;
 }
 
 textarea.form-control {
     min-height: 150px;
-    resize : none;
+    resize: none;
 }
