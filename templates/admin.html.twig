@@ -7,7 +7,9 @@
 	{{ parent() }}
 	{{ encore_entry_link_tags('admin') }}
 {% endblock %}
-{% block navbar %}{% endblock %}
+{% block navbar %}
+	{% include 'admin/components/_admin-navbar.html.twig' %}
+{% endblock %}
 {% block body %}
 	<main class="container-fluid">
 		<div class="container-admin py-sm-5 mx-sm-5 px-sm-5 mx-1 px-2 py-5 ">
