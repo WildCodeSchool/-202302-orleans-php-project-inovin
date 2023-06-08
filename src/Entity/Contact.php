@@ -8,14 +8,20 @@ class Contact
 {
     #[Assert\NotBlank]
     private string $lastname;
+
     #[Assert\NotBlank]
     private string $firstname;
+
     #[Assert\NotBlank]
+    #[Assert\Email]
     private string $email;
+
     #[Assert\NotBlank]
     private string $phone;
+
     #[Assert\NotBlank]
     private string $subjet;
+
     #[Assert\NotBlank]
     private string $content;
 
