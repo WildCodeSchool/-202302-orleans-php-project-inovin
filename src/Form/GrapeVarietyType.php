@@ -21,6 +21,9 @@ class GrapeVarietyType extends AbstractType
                     'attr' => [
                         'placeholder' => 'Cabernet franc...',
                     ],
+                    'row_attr' => [
+                        'class' => 'row mb-3 w-100 p-0 m-0', /* 'input-group' 'form-row-split' 'form-floating' */
+                    ],
                 ]
             );
     }

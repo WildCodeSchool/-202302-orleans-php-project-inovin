@@ -3,8 +3,11 @@
 .container-admin {
     border: 1px solid $secondary-light;
     padding: 2rem;
-    margin: 4rem;
     background: $card-gradient-color;
     border-radius: var(--bs-border-radius);
     box-shadow: $shadow-primary;
+}
+
+.frame_separator {
+    width: clamp(250px, 50vw, 380px);
 }
