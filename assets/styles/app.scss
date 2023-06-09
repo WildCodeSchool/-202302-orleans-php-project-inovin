@@ -4,6 +4,10 @@
 @import "_footer";
 @import "svg.scss";
 
+body {
+    background-color: $dark-light;
+}
+
 h1,
 h2,
 h3,
@@ -70,3 +74,11 @@ body {
 .letter-spacing-title {
     letter-spacing: 5px;
 }
+
+.bg-navbar {
+    background-image: url("../images/line.svg");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% 3px;
+}
+

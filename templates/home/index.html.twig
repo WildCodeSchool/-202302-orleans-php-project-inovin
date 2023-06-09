@@ -1,144 +1,149 @@
 {% extends 'visitor.html.twig' %}
 
 {% block title %}
-{{ parent() }}
-- Home
+	{{ parent() }}
+	- Home
 {% endblock %}
 
 {% block stylesheets %}
-{{ parent() }}
-{{ encore_entry_link_tags('home') }}
+	{{ parent() }}
+	{{ encore_entry_link_tags('home') }}
 {% endblock %}
 
 {% block body %}
-<div class="container-fluid">
-	<header class="row align-items-center">
-		<div class="col-lg-6">
-			<img class="object-fit-cover img-fluid w-100" src="{{ asset('build/images/vine.webp') }}" alt="vin">
-		</div>
-		
-		<div class="d-flex flex-column justify-content-center align-items-center text-center col-lg-6">
+	<div class="container-fluid">
+		<header class="row d-flex justify-content-around">
+			<div class="col-lg-6 d-flex justify-content-center align-items-center">
+				<img class="object-fit-cover img-fluid size-vine" src="{{ asset('build/images/vine.webp') }}" alt="vin">
+			</div>
 
-			<h1 class="size-inovin text-center">INO VIN</h1>
-			{% include "icones/surlignage.svg" %}
-			<p class="mt-4 w-75 letter-spacing font-sizepara">
-				Découvrez l'application Inovin, une plateforme innovante qui vous invite à rejoindre des ateliers de
-				dégustation de vins variés lors de différents événements en France.
-			</p>
+			<div class="d-flex flex-column justify-content-lg-center align-items-center text-center col-lg-6 justify-content-sm-start">
 
-			<p class="mt-3 w-75 letter-spacing font-sizepara">
-				Avec Inovin, vous pouvez également laisser libre cours à votre créativité en créant votre propre
-				recette de vin, que nous nous ferons un plaisir d'élaborer pour vous.
-			</p>
-			<button class="btn  btn-outline-primary mt-2">S'ENREGISTRER</button>
-		</div>
-	</header>
-</div>
-<main class="container pt-5 ">
-	<h2 class="text-primary-light fw-light mt-5"> {% include 'icones/decoration.svg' %}DÉCOUVREZ TOUTES LES ÉTAPES
-	</h2>
+				<h1 class="size-inovin text-center">INO VIN</h1>
+				{% include "icones/surlignage.svg" %}
+				<p class="mt-4 w-75 font-sizepara">
+					Découvrez l'application Inovin, une plateforme innovante qui vous invite à rejoindre des ateliers de
+																																																																																																																																																																																																																																																																																																																																																																																																																									dégustation de vins variés lors de différents événements en France.
+				</p>
 
-	<div class="mx-auto">
-		{% include "icones/surlignage_main.svg" %}
+				<p class="mt-3 w-75 font-sizepara">
+					Avec Inovin, vous pouvez également laisser libre cours à votre créativité en créant votre propre
+																																																																																																																																																																																																																																																																																																																																																																																																																									recette de vin, que nous nous ferons un plaisir d'élaborer pour vous.
+				</p>
+				<button class="btn btn-outline-primary mt-4 letter-spacing">S'ENREGISTRER</button>
+			</div>
+		</header>
 	</div>
-	<ul class="d-flex flex-column align-self-center">
-		<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-			{% include 'components/_pine-circle.html.twig' with {'pine_number':'1'} %}
-			<div class="ms-2 me-auto">
-				<div class="fw-normal text-primary-light p-2">S’INSCRIRE</div>
-				<p class="mx-2 fw-light">
-					Avant de commencer l’aventure, rejoignez la communauté des
-					amateurs de vins en créant un compte sur notre site officiel <a class="text-primary-light text-decoration-none" href="#">INOVIN.</a>
-				</p>
-			</div>
-		</li>
-		<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-			{% include 'components/_pine-circle.html.twig' with {'pine_number':'2'} %}
-			<div class="ms-2 me-auto ">
-				<div class="fw-normal text-primary-light p-2">VALIDER VOTRE COMPTE</div>
-				<p class="mx-2 fw-light">
-					Un e-mail de confirmation vous sera envoyé dans votre boîte de réception. 
-					Veuillez vérifier votre messagerie et cliquer sur le lien pour confirmer votre inscription.
-				</p>
-			</div>
-		</li>
-		<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-			{% include 'components/_pine-circle.html.twig' with {'pine_number':'3'} %}
-			<div class="ms-2 me-auto ">
-				<div class="fw-normal text-primary-light p-2">CHOISIR UNE SÉANCE</div>
-				<p class="mx-2 fw-light">
-					Consultez les séances disponibles dans votre espace personnel ou via
-					la barre de navigation. Retrouvez le lieu et les horaires ainsi que les vins
-					que nous allons vous proposer lors de la séance de dégustation.
-					Pour participez à une séance, cliquez simplement sur <a class="text-primary-light text-decoration-none"
-					href="#">PARTICIPER.</a>
-				</p>
-			</div>
-		</li>
-		<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-			{% include 'components/_pine-circle.html.twig' with {'pine_number':'4'} %}
-			<div class="ms-2 me-auto">
-				<div class="fw-normal text-primary-light p-2">LE JOUR J</div>
-				<p class="mx-2 fw-light">
-					Vous allez rencontrer les organisateurs de la séance qui vous
-					expliqueront le déroulement des différents ateliers : la 
-					<a class="text-primary-light text-decoration-none" href="#">DÉGUSTATION</a>
-					et la <a class="text-primary-light text-decoration-none" href="#">FABRICATION</a> de votre vin
-					personnalisé.
-				</p>
-			</div>
-		</li>
-		<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-			{% include 'components/_pine-circle.html.twig' with {'pine_number':'5'} %}
-			<div class="ms-2 me-auto">
-				<div class="fw-normal text-primary-light p-2">REMPLIR LES FICHES DE DÉGUSTATION</div>
-				<p class="mx-2 fw-light">
-					L’équipe fournira des tablettes aux participants afin de remplir des
-					fiches de dégustation via l’application <a class="text-primary-light text-decoration-none" href="#">INOVIN.</a> 
+	<main class="container pt-5 ">
+		<h2 class="text-primary-light fw-light mt-5 letter-spacing">
+			{% include 'icones/decoration.svg' %}DÉCOUVREZ TOUTES LES ÉTAPES
+		</h2>
 
-					Connectez vous avec votre compte utilisateur et choisissez la séance
-					en cours. Vous allez vous retrouver avec 4 fiches de vins à remplir.
-					Pas de panique, les fiches ont été conçues pour être faciles à
-					prendre en main, vous permettant de savourer tranquillement
-					votre vin tout en vous amusant !
-				</p> 
-			</div>
-		</li>
-		<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-			{% include 'components/_pine-circle.html.twig' with {'pine_number':'6'} %}
-			<div class="ms-2 me-auto">
-				<div class="fw-normal text-primary-light p-2">VOTRE RECETTE</div>
-				<p class="mx-2 fw-light">
-					Lorsque vous aurez rempli les 4 fiches, vous obtiendrez votre propre
-					recette de vin selon vos résultats !
-				</p>
-			</div>
-		</li>
-		<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-			{% include 'components/_pine-circle.html.twig' with {'pine_number':'7'} %}
-			<div class="ms-2 me-auto">
-				<div class="fw-normal text-primary-light p-2">FABRICATION DE VOTRE RECETTE</div>
-				<p class="mx-2 fw-light">
-					Les organisateurs fabriqueront sur place votre vin. Vous aurez
-				l’occasion de voir nos professionnels à l’oeuvre !
+		<div class="mx-auto">
+			{% include "icones/surlignage_main.svg" %}
+		</div>
+		<ul class="d-flex flex-column align-self-center">
+			<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
+				{% include 'components/_pine-circle.html.twig' with {'pine_number':'1'} %}
+				<div class="ms-2 me-auto">
+					<div class="fw-normal text-primary-light p-2 letter-spacing">S’INSCRIRE</div>
+					<p class="mx-2 fw-light">
+						Avant de commencer l’aventure, rejoignez la communauté des
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											amateurs de vins en créant un compte sur notre site officiel
+						<a class="text-primary-light text-decoration-none fw-bolder" href="#">INOVIN.</a>
+					</p>
+				</div>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
+				{% include 'components/_pine-circle.html.twig' with {'pine_number':'2'} %}
+				<div class="ms-2 me-auto ">
+					<div class="fw-normal text-primary-light p-2 letter-spacing">VALIDER VOTRE COMPTE</div>
+					<p class="mx-2 fw-light">
+						Un e-mail de confirmation vous sera envoyé dans votre boîte de réception. 
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											Veuillez vérifier votre messagerie et cliquer sur le lien pour confirmer votre inscription.
+					</p>
+				</div>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
+				{% include 'components/_pine-circle.html.twig' with {'pine_number':'3'} %}
+				<div class="ms-2 me-auto ">
+					<div class="fw-normal text-primary-light p-2 letter-spacing">CHOISIR UNE SÉANCE</div>
+					<p class="mx-2 fw-light">
+						Consultez les séances disponibles dans votre espace personnel ou via
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											la barre de navigation. Retrouvez le lieu et les horaires ainsi que les vins
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											que nous allons vous proposer lors de la séance de dégustation.
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								Pour participez à une séance, cliquez simplement sur
+						<a class="text-primary-light text-decoration-none fw-bolder" href="#">PARTICIPER.</a>
+					</p>
+				</div>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
+				{% include 'components/_pine-circle.html.twig' with {'pine_number':'4'} %}
+				<div class="ms-2 me-auto">
+					<div class="fw-normal text-primary-light p-2 letter-spacing">LE JOUR J</div>
+					<p class="mx-2 fw-light">
+						Vous allez rencontrer les organisateurs de la séance qui vous
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											expliqueront le déroulement des différents ateliers : la
+						<a class="text-primary-light text-decoration-none fw-bolder" href="#">DÉGUSTATION</a>
+						et la
+						<a class="text-primary-light text-decoration-none fw-bolder" href="#">FABRICATION</a>
+						de votre vin
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											personnalisé.
+					</p>
+				</div>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
+				{% include 'components/_pine-circle.html.twig' with {'pine_number':'5'} %}
+				<div class="ms-2 me-auto">
+					<div class="fw-normal text-primary-light p-2 letter-spacing">REMPLIR LES FICHES DE DÉGUSTATION</div>
+					<p class="mx-2 fw-light">
+						L’équipe fournira des tablettes aux participants afin de remplir des
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											fiches de dégustation via l’application
+						<a class="text-primary-light text-decoration-none fw-bolder" href="#">INOVIN.</a>
 
-				Vous pourrez bien entendu, échanger vos découverte avec vos
-				camarades. Avant tout, cette expérience est un moment de partage
-				et de convivialité !
-				</p>
-			</div>
-		</li>
-		<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-			{% include 'components/_pine-circle.html.twig' with {'pine_number':'8'} %}
-			<div class="ms-2 me-auto">
-				<div class="fw-normal text-primary-light p-2">FIN DE LA SÉANCE</div>
-				<p class="mx-2 fw-light">
-					Vous aurez la possibilité d'acheter votre bouteille et repartir
-					avec afin de la faire découvrir à votre entourage.
-				</p>	
-			</div>
-		</li>
-	</ul>
-</main>
+						Connectez vous avec votre compte utilisateur et choisissez la séance
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											en cours. Vous allez vous retrouver avec 4 fiches de vins à remplir.
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											Pas de panique, les fiches ont été conçues pour être faciles à
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											prendre en main, vous permettant de savourer tranquillement
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											votre vin tout en vous amusant !
+					</p>
+				</div>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
+				{% include 'components/_pine-circle.html.twig' with {'pine_number':'6'} %}
+				<div class="ms-2 me-auto">
+					<div class="fw-normal text-primary-light p-2 letter-spacing">VOTRE RECETTE</div>
+					<p class="mx-2 fw-light">
+						Lorsque vous aurez rempli les 4 fiches, vous obtiendrez votre propre
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											recette de vin selon vos résultats !
+					</p>
+				</div>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
+				{% include 'components/_pine-circle.html.twig' with {'pine_number':'7'} %}
+				<div class="ms-2 me-auto">
+					<div class="fw-normal text-primary-light p-2 letter-spacing">FABRICATION DE VOTRE RECETTE</div>
+					<p class="mx-2 fw-light">
+						Les organisateurs fabriqueront sur place votre vin. Vous aurez
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										l’occasion de voir nos professionnels à l’oeuvre !
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										Vous pourrez bien entendu, échanger vos découverte avec vos
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										camarades. Avant tout, cette expérience est un moment de partage
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										et de convivialité !
+					</p>
+				</div>
+			</li>
+			<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
+				{% include 'components/_pine-circle.html.twig' with {'pine_number':'8'} %}
+				<div class="ms-2 me-auto">
+					<div class="fw-normal text-primary-light p-2 letter-spacing">FIN DE LA SÉANCE</div>
+					<p class="mx-2 fw-light ">
+						Vous aurez la possibilité d'acheter votre bouteille et repartir
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											avec afin de la faire découvrir à votre entourage.
+					</p>
+				</div>
+			</li>
+		</ul>
+	</main>
 
 {% endblock %}
