@@ -31,10 +31,15 @@ class GrapeVarietyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $grapeRepository->save($grapeVariety, true);
 
+            $this->addFlash(
+                'success',
+                'Le cépage a été ajouté'
+            );
+
             return $this->redirectToRoute('app_cepage_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('grape_variety/new.html.twig', [
+        return $this->render('grape_variety/new.html.twig', [
             'grape_variety' => $grapeVariety,
             'form' => $form,
         ]);
