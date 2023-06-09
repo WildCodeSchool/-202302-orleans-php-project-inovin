@@ -9,11 +9,13 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class WineFixtures extends Fixture
 {
+    public const WINE_COUNT = 50;
+
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < self::WINE_COUNT; $i++) {
             $wine = new Wine();
             $wine->setName($faker->word);
 
@@ -28,6 +30,8 @@ class WineFixtures extends Fixture
             $wine->setGrapVariety($this->getReference('grape_variety_' . $faker->numberBetween(1, 16)));
 
             $manager->persist($wine);
+
+            $this->addReference('wine_' . $i, $wine);
         }
 
 
