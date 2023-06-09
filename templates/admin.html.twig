@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Administration
+{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('admin') }}
+{% endblock %}
+{% block navbar %}
+	{% include 'admin/components/_admin-navbar.html.twig' %}
+{% endblock %}
+{% block body %}
+	<main class="container-fluid">
+		<div class="container-admin py-sm-5 mx-sm-5 px-sm-5 mx-1 px-2 py-4">
+			<section>
+				<div class="row">
+					<div class="col">
+						<h1 class="text-center text-uppercase px-1">
+							{% block admin_content_title %}{% endblock %}
+						</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="mb-4 text-center">
+							{% include "components/svg_img/_frame_separator_svg" %}
+						</div>
+						<div class="mb-4 px-1">
+							{% block admin_content %}{% endblock %}
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
+{% endblock %}
+{% block footer %}{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'admin.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Cépages - Nouveau
+{% endblock %}
+{% block admin_content_title %}Nouveau Cépage
+{% endblock %}
+{% block admin_content %}
+	<div class="row d-flex justify-content-center">
+		<div class="col">
+			{{ form_start(form) }}
+			{{ form_row(form.name) }}
+			<div class="d-flex flex-sm-row flex-column justify-content-between my-4">
+				<a role="button " class="order-3 order-sm-1 btn btn-md mb-4" href="{{ path('app_cepage_index') }}">Retour</a>
+				<button class="order-2 btn btn-sm bg-primary-light text-dark fw-bolder mb-4">{{ button_label|default('Valider') }}</button>
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+{% endblock %}
