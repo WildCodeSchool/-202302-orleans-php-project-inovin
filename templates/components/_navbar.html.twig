@@ -1,7 +1,7 @@
-<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark bg-navbar">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="{{ path('home_index') }}">
-			<img class="img-fluid mx-4" src="{{ asset('build/images/logo.svg') }}" alt="logo" width="40">
+			<img class="img-fluid mx-2" src="{{ asset('build/images/logo.svg') }}" alt="logo" width="40">
 		</a>
 		<button class="navbar-toggler border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -37,9 +37,9 @@
 					</span>
 				</li>
 			</ul>
+
+			{# <img class="d-flex align-bottom" src="{{ asset('build/images/line.svg') }}"> #}
+
 		</div>
 	</div>
 </nav>
-<div class="line d-flex justify-content-center">
-	<img class="d-flex align-bottom" src="{{ asset('build/images/line.svg') }}">
-</div>

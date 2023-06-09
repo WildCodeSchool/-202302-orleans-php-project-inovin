@@ -4,6 +4,10 @@
 @import "_footer";
 @import "svg.scss";
 
+body {
+    background-color: $dark-light;
+}
+
 h1,
 h2,
 h3,
@@ -55,20 +59,25 @@ body {
     box-shadow: 0 0 0 0;
 }
 
-.text-primary-light{
+.text-primary-light {
     color: $primary-light;
     font-family: $font-base;
 }
 
-.letter-spacing{
+.letter-spacing {
     letter-spacing: 3px;
 }
 
-.font-sizepara{
+.font-sizepara {
     font-size: 1.5rem;
 }
-.letter-spacing-title{
-    letter-spacing:5px;
+.letter-spacing-title {
+    letter-spacing: 5px;
 }
 
-
+.bg-navbar {
+    background-image: url("../images/line.svg");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% 3px;
+}
