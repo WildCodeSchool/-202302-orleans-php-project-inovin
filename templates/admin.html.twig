@@ -12,15 +12,23 @@
 {% endblock %}
 {% block body %}
 	<main class="container-fluid">
-		<div class="container-admin">
+		<div class="container-admin py-sm-5 mx-sm-5 px-sm-5 mx-1 px-2 py-4">
 			<section>
-				<div class="d-flex flex-column justify-content-center align-items-center row">
-					<h1 class="text-center text-uppercase">
-						{% block admin_content_title %}{% endblock %}
-					</h1>
-					{% include "components/svg_img/_frame_separator_svg" %}
-					<div class="mt-4">
-						{% block admin_content %}{% endblock %}
+				<div class="row">
+					<div class="col">
+						<h1 class="text-center text-uppercase px-1">
+							{% block admin_content_title %}{% endblock %}
+						</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="mb-4 text-center">
+							{% include "components/svg_img/_frame_separator_svg" %}
+						</div>
+						<div class="mb-4 px-1">
+							{% block admin_content %}{% endblock %}
+						</div>
 					</div>
 				</div>
 			</section>
