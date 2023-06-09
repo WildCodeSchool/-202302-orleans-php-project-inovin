@@ -1,8 +1,8 @@
 @import "_variables.scss";
 
 .container-admin {
+    margin: 4rem;
     border: 1px solid $secondary-light;
-    padding: 2rem;
     background: $card-gradient-color;
     border-radius: var(--bs-border-radius);
     box-shadow: $shadow-primary;
