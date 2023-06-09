@@ -14,6 +14,10 @@ label {
     margin-bottom: 1.5rem;
 }
 
+.border-secondary{
+    background: $card-gradient-color;
+}
+
 h1,
 .h1 {
     font-size: calc(1rem + 1vw);
@@ -21,7 +25,6 @@ h1,
 
 .myContainer {
    width: 1200px;
-   background: $card-gradient-color;
 }
 
 textarea.form-control {
