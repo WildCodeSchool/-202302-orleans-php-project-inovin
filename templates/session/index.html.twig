@@ -21,7 +21,7 @@
 				</tr>
 			</thead>
 			<tbody class="table-group-divider">
-				{% for session in sessions|sort((a, b) => b.openingDate <=> a.openingDate) %}
+				{% for session in sessions %}
 					<tr>
 						<td class="px-4 align-middle align-center text-center">{{ session.openingDate ? session.openingDate|date('d/m/Y H:i') : '' }}
 							{% if session.closed is same as(false) %}
