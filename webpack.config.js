@@ -25,6 +25,7 @@ Encore
     // only copy files matching this pattern
     // pattern: /\.(png|jpg|jpeg)$/
     })
+
     /*
      * ENTRY CONFIG
      *
@@ -34,8 +35,10 @@ Encore
     .addEntry('app', './assets/app.js')
     .addStyleEntry('contactForm', './assets/styles/contactForm.scss')
     .addStyleEntry("admin", "./assets/styles/admin.scss")
+    .addStyleEntry('home', './assets/styles/home.scss')
 // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge("./assets/controllers.json")
+
 
 // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
