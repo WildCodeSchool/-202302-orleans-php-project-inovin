@@ -30,11 +30,10 @@ class SessionFixtures extends Fixture
 
         foreach (self::SESSIONS as $key => $sessionName) {
             $session = new Session();
-            $openingDate = new DateTime();
 
             $session->setName($sessionName);
-            $session->setOpeningDate($faker->dateTimeThisYear($openingDate));
-            $session->setDescription($faker->sentence(3));
+            $session->setOpeningDate($faker->dateTimeThisYear(new DateTime()));
+            $session->setDescription($faker->sentence(200));
             $session->setClosed($faker->boolean());
             $manager->persist($session);
             $this->addReference('session_' . $key, $session);

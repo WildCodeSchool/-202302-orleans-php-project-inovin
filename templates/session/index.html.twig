@@ -32,6 +32,9 @@
 						</td>
 						<td class="px-4 align-middle">{{ session.name }}</td>
 						<td class="text-center p-4 w-25 align-middle">
+							<a class="link-offset-2 px-1 mx-1" href="{{ path('app_session_show', {'id': session.id}) }}">
+								<button type="button" class="btn btn-outline-warning">Voir</button>
+							</a>
 							<a class="link-offset-2 px-1 mx-1" href="{{ path('app_session_edit', {'id': session.id}) }}">
 								<button type="button" class="btn btn-outline-warning">Éditer</button>
 							</a>
