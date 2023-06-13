@@ -17,7 +17,7 @@ class WineController extends AbstractController
     public function index(WineRepository $wineRepository): Response
     {
         return $this->render('wine/index.html.twig', [
-            'wines' => $wineRepository->findAll(),
+            'wines' => $wineRepository->findBy([], ['name' => 'ASC']),
         ]);
     }
 
