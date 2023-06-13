@@ -6,13 +6,13 @@
 {% block admin_content_title %}NOS SÉANCES
 {% endblock %}
 {% block admin_content %}
-	<div>
+	<div class="d-flex justify-content-center flex-wrap">
 		<div class="row">
-			<div class="d-flex justify-content-end align-self-end mb-4 px-4">
+			<div class="mb-4 px-4 d-flex justify-content-end">
 				<a role="button" class="btn mt-4" href="{{ path('app_session_new') }}">AJOUTER</a>
 			</div>
 		</div>
-		<table class="table table-striped table-hover table-bordered border-secondary">
+		<table class="table table-striped table-hover table-bordered border-secondary mb-5" style="width: 90%">
 			<thead class="sticky-top">
 				<tr class="py-4">
 					<th class="w-25 py-3 text-center px-2 bg-secondary" scope="col">DATE D'OUVERTURE</th>
@@ -32,11 +32,11 @@
 						</td>
 						<td class="px-4 align-middle">{{ session.name }}</td>
 						<td class="text-center p-4 w-25 align-middle">
-							<a class="link-offset-2 px-1 mx-1" href="{{ path('app_session_show', {'id': session.id}) }}">
-								<button type="button" class="btn btn-outline-warning">Voir</button>
+							<a role="button" class="btn btn-outline-warning" href="{{ path('app_session_show', {'id': session.id}) }}">
+								Voir
 							</a>
-							<a class="link-offset-2 px-1 mx-1" href="{{ path('app_session_edit', {'id': session.id}) }}">
-								<button type="button" class="btn btn-outline-warning">Éditer</button>
+							<a role="button" class="btn btn-outline-warning ms-3" href="{{ path('app_session_edit', {'id': session.id}) }}">
+								Éditer
 							</a>
 						</td>
 					</tr>
