@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\WineRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: WineRepository::class)]
@@ -20,10 +21,7 @@ class Wine
     private ?int $year = null;
 
     #[ORM\Column]
-    private ?int $volume = null;
-
-    #[ORM\Column]
-    private ?float $alcoholPercent = null;
+    private ?float $volume = null;
 
     #[ORM\Column(nullable: true)]
     private ?float $price = null;
@@ -37,6 +35,9 @@ class Wine
     #[ORM\ManyToOne(inversedBy: 'wines')]
     #[ORM\JoinColumn(nullable: false)]
     private ?GrapeVariety $grapVariety = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 1)]
+    private ?string $alcoholPercent = null;
 
 
     public function getId(): ?int
@@ -56,29 +57,18 @@ class Wine
         return $this;
     }
 
-    public function getVolume(): ?int
+    public function getVolume(): ?float
     {
         return $this->volume;
     }
 
-    public function setVolume(int $volume): self
+    public function setVolume(float $volume): self
     {
         $this->volume = $volume;
 
         return $this;
     }
 
-    public function getAlcoholPercent(): ?float
-    {
-        return $this->alcoholPercent;
-    }
-
-    public function setAlcoholPercent(float $alcoholPercent): self
-    {
-        $this->alcoholPercent = $alcoholPercent;
-
-        return $this;
-    }
 
     public function getPrice(): ?float
     {
@@ -136,6 +126,18 @@ class Wine
     public function setYear(?int $year): self
     {
         $this->year = $year;
+
+        return $this;
+    }
+
+    public function getAlcoholPercent(): ?string
+    {
+        return $this->alcoholPercent;
+    }
+
+    public function setAlcoholPercent(string $alcoholPercent): static
+    {
+        $this->alcoholPercent = $alcoholPercent;
 
         return $this;
     }
