@@ -21,17 +21,17 @@ class WineFixtures extends Fixture
 
             $wine->setYear((int)$faker->year());
 
-            $wine->setVolume($faker->numberBetween(3, true));
+            $wine->setVolume($faker->randomFloat(1, 2, 2));
 
-            $wine->setAlcoholPercent($faker->randomFloat(1, 1, 90));
+            $wine->setAlcoholPercent((string)$faker->randomFloat(1, 1, 90));
 
-            $wine->setIsEnable($faker->boolean());
+            $wine->setIsEnabled($faker->boolean());
 
             $wine->setGrapVariety($this->getReference('grape_variety_' . $faker->numberBetween(1, 16)));
 
-            $manager->persist($wine);
-
             $this->addReference('wine_' . $i, $wine);
+
+            $manager->persist($wine);
         }
 
 

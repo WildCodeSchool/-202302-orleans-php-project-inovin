@@ -23,14 +23,11 @@ class Wine
     #[ORM\Column]
     private ?float $volume = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?float $price = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
     #[ORM\Column]
-    private ?bool $isEnable = null;
+    private ?bool $enabled = null;
 
     #[ORM\ManyToOne(inversedBy: 'wines')]
     #[ORM\JoinColumn(nullable: false)]
@@ -38,6 +35,9 @@ class Wine
 
     #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 1)]
     private ?string $alcoholPercent = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 8, scale: 2, nullable: true)]
+    private ?string $price = null;
 
 
     public function getId(): ?int
@@ -69,19 +69,6 @@ class Wine
         return $this;
     }
 
-
-    public function getPrice(): ?float
-    {
-        return $this->price;
-    }
-
-    public function setPrice(?float $price): self
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
     public function getPicture(): ?string
     {
         return $this->picture;
@@ -94,14 +81,14 @@ class Wine
         return $this;
     }
 
-    public function isIsEnable(): ?bool
+    public function isEnabled(): ?bool
     {
-        return $this->isEnable;
+        return $this->enabled;
     }
 
-    public function setIsEnable(bool $isEnable): self
+    public function setIsEnabled(bool $enabled): self
     {
-        $this->isEnable = $isEnable;
+        $this->enabled = $enabled;
 
         return $this;
     }
@@ -138,6 +125,18 @@ class Wine
     public function setAlcoholPercent(string $alcoholPercent): static
     {
         $this->alcoholPercent = $alcoholPercent;
+
+        return $this;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?string $price): static
+    {
+        $this->price = $price;
 
         return $this;
     }
