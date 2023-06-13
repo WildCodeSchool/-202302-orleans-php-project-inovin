@@ -31,7 +31,7 @@ class Wine
 
     #[ORM\ManyToOne(inversedBy: 'wines')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?GrapeVariety $grapVariety = null;
+    private ?GrapeVariety $grapeVariety = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 1)]
     private ?string $alcoholPercent = null;
@@ -93,14 +93,14 @@ class Wine
         return $this;
     }
 
-    public function getGrapVariety(): ?GrapeVariety
+    public function getGrapeVariety(): ?GrapeVariety
     {
-        return $this->grapVariety;
+        return $this->grapeVariety;
     }
 
-    public function setGrapVariety(?GrapeVariety $grapVariety): self
+    public function setGrapeVariety(?GrapeVariety $grapeVariety): self
     {
-        $this->grapVariety = $grapVariety;
+        $this->grapeVariety = $grapeVariety;
 
         return $this;
     }

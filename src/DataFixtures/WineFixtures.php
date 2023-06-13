@@ -27,7 +27,7 @@ class WineFixtures extends Fixture
 
             $wine->setIsEnabled($faker->boolean());
 
-            $wine->setGrapVariety($this->getReference('grape_variety_' . $faker->numberBetween(1, 16)));
+            $wine->setGrapeVariety($this->getReference('grape_variety_' . $faker->numberBetween(1, 16)));
 
             $this->addReference('wine_' . $i, $wine);
 
