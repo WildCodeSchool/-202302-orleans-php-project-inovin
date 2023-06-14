@@ -1,11 +1,11 @@
 {{ form_start(form) }}
 {{ form_widget(form) }}
 <div class="d-flex flex-sm-row flex-column justify-content-between my-4">
-	<button class="order-2 btn btn-sm bg-primary-light text-dark fw-bolder mb-4">
+	<button class="order-2 bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover-left icon-dark text-uppercase order-2 btn">
 		{% include "components/svg_img/_icon_validate.svg.twig" %}
 		{{ button_label|default('Valider') }}
 	</button>
-	<a class="order-3 order-sm-1 btn btn-md mb-4" href="{{ path('app_cepage_index') }}">
+	<a class="btn fw-bolder mb-4 icon-link icon-link-hover-left icon-light text-uppercase order-3 order-sm-1" href="{{ path('app_cepage_index') }}">
 		{% include "components/svg_img/_icon_backlink.svg.twig" %}
 		Retour
 	</a>
