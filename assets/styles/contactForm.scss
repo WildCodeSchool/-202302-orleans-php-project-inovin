@@ -1,0 +1,37 @@
+@import "variables";
+
+label {
+    text-transform: uppercase;
+}
+
+.form-control::placeholder {
+    color: $secondary;
+}
+
+.frame_separator {
+    width: clamp(250px, 50vw, 380px);
+}
+
+.border-secondary{
+    background: $card-gradient-color;
+}
+
+.form-control {
+    border: solid 1px $secondary;
+    height: 3.3rem;
+    margin-bottom: 1.5rem;
+}
+
+h1,
+.h1 {
+    font-size: calc(1rem + 1vw);
+}
+
+.myContainer {
+   width: 1200px;
+}
+
+textarea.form-control {
+    min-height: 150px;
+    resize: none;
+}

@@ -4,6 +4,10 @@
 @import "_footer";
 @import "svg.scss";
 
+body {
+    background-color: $dark-light;
+}
+
 h1,
 h2,
 h3,
@@ -27,6 +31,7 @@ h6 {
     transition-duration: 0.2s;
     box-shadow: $shadow-primary;
 }
+
 .btn:hover {
     background-color: $secondary;
     border-color: $light;
@@ -53,4 +58,31 @@ body {
 
 .navbar-toggler:focus {
     box-shadow: 0 0 0 0;
+}
+
+.text-primary-light {
+    color: $primary-light;
+    font-family: $font-base;
+}
+
+.letter-spacing {
+    letter-spacing: 3px;
+}
+
+.font-sizepara {
+    font-size: 1.5rem;
+}
+.letter-spacing-title {
+    letter-spacing: 5px;
+}
+
+.bg-navbar {
+    background-image: url("../images/line.svg");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% 3px;
+}
+
+.transform {
+    transform: translate(7px, -2px);
 }

@@ -1,10 +1,42 @@
 @import "_variables.scss";
 
 .container-admin {
-    border: 1px solid $secondary-light;
-    padding: 2rem;
     margin: 4rem;
+    border: 1px solid $secondary-light;
     background: $card-gradient-color;
     border-radius: var(--bs-border-radius);
     box-shadow: $shadow-primary;
+}
+
+.frame_separator {
+    width: clamp(250px, 50vw, 380px);
+}
+
+.ornement {
+    border-radius: 0px 8px 0px 8px;
+}
+
+.ornement::before {
+    content: "";
+    background-image: url('../images/corner.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-1px, -1px);
+}
+.ornement::after {
+    content: "";
+    background-image: url('../images/corner.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translate(1px, 1px) rotate(180deg);
 }

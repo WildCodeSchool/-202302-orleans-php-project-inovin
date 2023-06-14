@@ -1,0 +1,40 @@
+<nav class="navbar fixed-top navbar-expand-sm navbar-dark bg-dark">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="{{ path('home_index') }}">
+			<img class="img-fluid mx-4" src="{{ asset('build/images/logo.svg') }}" alt="logo" width="40">
+		</a>
+		<button class="navbar-toggler border-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto ms-4 ms-sm-0 mt-4 mt-sm-0 d-flex justify-content-start align-lg-items-center gap-lg-4 text-uppercase">
+				<li class="nav-item px-2">
+					<a class="nav-link" href="{{ path('app_session_index') }}">Séances</a>
+				</li>
+				<li class="nav-item px-2">
+					<a class="nav-link" href="#">Vins</a>
+				</li>
+				<li class="nav-item px-2">
+					<a class="nav-link" href="{{ path('app_cepage_index') }}">Cépages</a>
+				</li>
+				<li class="nav-item px-2">
+					<a class="nav-link" href="#">Recettes</a>
+				</li>
+				<li class="nav-item px-2">
+					<a class="nav-link" href="#">Membres</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav mr-auto ms-4 ms-sm-0 mb-4 mb-sm-0">
+				<li class="nav-item d-flex align-items-end align-items-center px-2">
+					<a class="nav-link" href="#">CONNEXION</a>
+					<span class="d-none d-sm-inline">
+						{% include 'components/svg/_icon_person.html.twig' %}
+					</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="line d-flex justify-content-center">
+	<img class="d-flex align-bottom" src="{{ asset('build/images/line.svg') }}">
+</div>
