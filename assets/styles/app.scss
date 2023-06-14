@@ -30,6 +30,12 @@ h6 {
     border-radius: 50px;
     transition-duration: 0.2s;
     box-shadow: $shadow-primary;
+    // > svg {
+    //     fill: yellow;
+    //     :hover > svg {
+    //         fill: red;
+    //     }
+    // }
 }
 
 .btn:hover {
