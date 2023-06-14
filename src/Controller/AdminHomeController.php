@@ -15,42 +15,25 @@ class AdminHomeController extends AbstractController
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(AdminDashboardRepository $dashboardRepository, ChartBuilderInterface $chartBuilder): Response
     {
-        $dashboardData = $dashboardRepository->find(1);
-        $chart = $chartBuilder->createChart(Chart::TYPE_BAR);
-        $chart->setData([
-            'labels' => ['Total'],
+        $dashboardData = $dashboardRepository->getDashboardData();
 
+        $chart = $chartBuilder->createChart(Chart::TYPE_BAR);
+
+        $chart->setData([
+            'labels' => [
+                'Nbr Cépages ' . $dashboardData['grapes'],
+            ],
             'datasets' => [
                 [
                     'barPercentage' => 0.3,
+                    'barThickness' => 50,
+                    'maxBarThickness' => 75,
+                    'minBarLength' => 10,
+                    'font' => 'white',
                     'label' => 'Cépages',
                     'backgroundColor' => 'rgba(215, 186, 49, 1)',
                     'borderColor' => 'rgba(242, 234, 191, 1)',
-                    'data' => [$dashboardData->getNbrGrapeVarieties()],
-                    'layout' => ['padding' => '20'],
-                ],
-                [
-                    'barPercentage' => 0.3,
-                    'label' => 'Vins',
-                    'backgroundColor' => 'rgba(215, 150, 100, 1)',
-                    'borderColor' => 'rgba(242, 234, 191, 1)',
-                    'data' => [25],
-                    'layout' => ['padding' => '20'],
-                ],
-                [
-                    'barPercentage' => 0.3,
-                    'label' => 'Séances',
-                    'backgroundColor' => 'rgba(215, 150, 80, 1)',
-                    'borderColor' => 'rgba(242, 234, 191, 1)',
-                    'data' => [6],
-                    'layout' => ['padding' => '20'],
-                ],
-                [
-                    'barPercentage' => 0.3,
-                    'label' => 'Utilisateurs',
-                    'backgroundColor' => 'rgba(215, 150, 60, 1)',
-                    'borderColor' => 'rgba(242, 234, 191, 1)',
-                    'data' => [16],
+                    'data' => [$dashboardData['grapes']],
                     'layout' => ['padding' => '20'],
                 ],
             ],
@@ -58,7 +41,9 @@ class AdminHomeController extends AbstractController
 
         $chart->setOptions([
             'maintainAspectRatio' => false,
-            'layout' => ['padding' => 5],
+            'layout' => [
+                'padding' => 5,
+            ],
             'elements' => [
                 'bar' => [
                     'borderColor' => 'rgba(242, 234, 191, 1)',
@@ -73,25 +58,48 @@ class AdminHomeController extends AbstractController
                     'display' => true,
                     'padding' => 20,
                     'position' => 'right',
-                    'pointStyle' => false,
+                    'pointStyle' => 'circle',
                     'labels' => [
+                        'color' => 'white',
                         'usePointStyle' => true,
-                        'pointStyleWidth' => 15,
-                        'color' => 'rgba(255, 255, 255, 1)',
+                        'pointStyleWidth' => 25,
                         'padding' => 20,
+                        'font' => ['size' => 18],
                     ],
                 ],
             ],
             'scales' => [
                 'xAxes' => [
+                    'beginAtZero' => true,
                     'grid' => [
-                        'color' => 'rgba(255, 255, 255, 0.7)'
+                        'color' => 'rgba(255, 255, 255, 0.5)',
+                        'tickColor' => 'white'
+                    ],
+                    'ticks' => [
+                        'padding' => 30,
+                        'color' => 'white',
+                        'font' => ['size' => 16],
                     ],
                 ],
                 'yAxes' => [
+                    'beginAtZero' => true,
                     'grid' => [
-                        'color' => 'rgba(255, 255, 255, 0.2)'
+                        'color' => 'rgba(255, 255, 255, 0.05)',
+                        'tickColor' => 'white'
                     ],
+                    'ticks' => [
+                        'color' => 'white',
+                        'font' => ['size' => 16],
+                    ],
+                ],
+            ],
+            'animations' => [
+                'borderWidth' => [
+                    'duration' => 500,
+                    'easing' => 'linear',
+                    'from' => 2,
+                    'to' => 6,
+                    'loop' => true
                 ],
             ],
         ]);
