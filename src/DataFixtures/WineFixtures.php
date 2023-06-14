@@ -5,9 +5,11 @@ namespace App\DataFixtures;
 use Faker\Factory;
 use App\Entity\Wine;
 use Doctrine\Persistence\ObjectManager;
+use App\DataFixtures\GrapeVarietyFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class WineFixtures extends Fixture
+class WineFixtures extends Fixture implements DependentFixtureInterface
 {
     public const WINE_COUNT = 50;
 
@@ -36,5 +38,12 @@ class WineFixtures extends Fixture
 
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            GrapeVarietyFixtures::class,
+        ];
     }
 }
