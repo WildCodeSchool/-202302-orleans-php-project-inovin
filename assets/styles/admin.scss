@@ -12,7 +12,8 @@
     width: clamp(250px, 50vw, 380px);
 }
 
-.Container-Dasboard {
-    height: 55vh;
+.container-dasboard {
+    height: 50vh;
+    min-height: 50vh;
     padding: 1rem;
 }
