@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\GrapeVarietyRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -21,6 +23,14 @@ class GrapeVariety
     #[Assert\Length(max: 255)]
     private ?string $name = null;
 
+    #[ORM\OneToMany(mappedBy: 'grapeVariety', targetEntity: Wine::class)]
+    private Collection $wines;
+
+    public function __construct()
+    {
+        $this->wines = new ArrayCollection();
+    }
+
     #[ORM\ManyToOne(inversedBy: 'grapeVarieties')]
     private ?GrapeColor $color = null;
 
@@ -37,6 +47,36 @@ class GrapeVariety
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Wine>
+     */
+    public function getWines(): Collection
+    {
+        return $this->wines;
+    }
+
+    public function addWine(Wine $wine): self
+    {
+        if (!$this->wines->contains($wine)) {
+            $this->wines->add($wine);
+            $wine->setGrapeVariety($this);
+        }
+
+        return $this;
+    }
+
+    public function removeWine(Wine $wine): self
+    {
+        if ($this->wines->removeElement($wine)) {
+            // set the owning side to null (unless already changed)
+            if ($wine->getGrapeVariety() === $this) {
+                $wine->setGrapeVariety(null);
+            }
+        }
 
         return $this;
     }
