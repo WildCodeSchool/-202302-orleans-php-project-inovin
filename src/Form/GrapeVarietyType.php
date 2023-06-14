@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\GrapeColor;
 use App\Entity\GrapeVariety;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -22,6 +24,15 @@ class GrapeVarietyType extends AbstractType
                         'placeholder' => 'Cabernet franc...',
                     ],
                 ]
+            )
+            ->add(
+                'color',
+                EntityType::class,
+                [
+                    'label' => 'Couleur',
+                    'class' => GrapeColor::class,
+                    'choice_label' => 'color',
+                ],
             );
     }
 
