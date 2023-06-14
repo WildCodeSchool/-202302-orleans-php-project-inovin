@@ -22,19 +22,19 @@ class UserFixtures extends Fixture
         $faker = Factory::create();
 
         // Création d'un utilisateur
-        $utilisator = new User();
-        $utilisator->setEmail('utilisator@monsite.com');
-        $utilisator->setRoles(['ROLE_UTILISATOR']);
+        $user = new User();
+        $user->setEmail('user@monsite.com');
+        $user->setRoles(['ROLE_USER']);
         $hashedPassword = $this->passwordHasher->hashPassword(
-            $utilisator,
-            'utilisatorpassword'
+            $user,
+            'userpassword'
         );
-        $utilisator->setPassword($hashedPassword);
-        $utilisator->setFirstname('Simple');
-        $utilisator->setLastname('Utilisator');
-        $utilisator->setDateBirth($faker->dateTime());
+        $user->setPassword($hashedPassword);
+        $user->setFirstname('Simple');
+        $user->setLastname('User');
+        $user->setDateBirth($faker->dateTime());
 
-        $manager->persist($utilisator);
+        $manager->persist($user);
 
         // Création d'un administrateur
         $admin = new User();
