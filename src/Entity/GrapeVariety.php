@@ -7,8 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: GrapeVarietyRepository::class)]
+#[UniqueEntity('name')]
 class GrapeVariety
 {
     #[ORM\Id]
@@ -21,13 +23,16 @@ class GrapeVariety
     #[Assert\Length(max: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'grapVariety', targetEntity: Wine::class)]
+    #[ORM\OneToMany(mappedBy: 'grapeVariety', targetEntity: Wine::class)]
     private Collection $wines;
 
     public function __construct()
     {
         $this->wines = new ArrayCollection();
     }
+
+    #[ORM\ManyToOne(inversedBy: 'grapeVarieties')]
+    private ?GrapeColor $color = null;
 
     public function getId(): ?int
     {
@@ -58,7 +63,7 @@ class GrapeVariety
     {
         if (!$this->wines->contains($wine)) {
             $this->wines->add($wine);
-            $wine->setGrapVariety($this);
+            $wine->setGrapeVariety($this);
         }
 
         return $this;
@@ -68,10 +73,22 @@ class GrapeVariety
     {
         if ($this->wines->removeElement($wine)) {
             // set the owning side to null (unless already changed)
-            if ($wine->getGrapVariety() === $this) {
-                $wine->setGrapVariety(null);
+            if ($wine->getGrapeVariety() === $this) {
+                $wine->setGrapeVariety(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getColor(): ?GrapeColor
+    {
+        return $this->color;
+    }
+
+    public function setColor(?GrapeColor $color): static
+    {
+        $this->color = $color;
 
         return $this;
     }

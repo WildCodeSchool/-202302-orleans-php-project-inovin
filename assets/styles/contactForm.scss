@@ -8,6 +8,14 @@ label {
     color: $secondary;
 }
 
+.frame_separator {
+    width: clamp(250px, 50vw, 380px);
+}
+
+.border-secondary{
+    background: $card-gradient-color;
+}
+
 .form-control {
     border: solid 1px $secondary;
     height: 3.3rem;

@@ -24,7 +24,10 @@
 					<tr>
 						<td class="px-4">{{ grape_variety.name }}</td>
 						<td class="text-center p-2 w-25">
-							<a class="link-offset-2 px-1 mx-1" href="{{ path('app_cepage_edit', {'id': grape_variety.id}) }}">Éditer</a>
+							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+								<a class="link-offset-2 px-1 mx-1" href="{{ path('app_cepage_edit', {'id': grape_variety.id}) }}">Éditer</a>
+								{{ include('./grape_variety/_delete_form.html.twig') }}
+							</div>
 						</td>
 					</tr>
 				{% else %}
