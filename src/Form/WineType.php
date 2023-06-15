@@ -35,7 +35,7 @@ class WineType extends AbstractType
                 'year',
                 IntegerType::class,
                 [
-                    'label' => 'l\'année de mise en bouteille',
+                    'label' => 'Année de mise en bouteille',
                     'attr' => [
                         'placeholder' => '2000',
                     ],
@@ -56,7 +56,7 @@ class WineType extends AbstractType
                 'alcoholPercent',
                 NumberType::class,
                 [
-                    'label' => 'Pourcentage d\'alcool',
+                    'label' => 'Volume d\'alcool (%)',
                     'scale' => 1,
                     'attr' => [
                         'placeholder' => '12'
@@ -68,7 +68,7 @@ class WineType extends AbstractType
                 'price',
                 numberType::class,
                 [
-                    'label' => 'Le prix',
+                    'label' => 'Le prix (€)',
                     'scale' => 3,
                     'attr' => [
                         'placeholder' => '60',
@@ -94,9 +94,9 @@ class WineType extends AbstractType
 
                 'required'      => false,
 
-                'allow_delete'  => true, // not mandatory, default is true
+                'allow_delete'  => false, // not mandatory, default is true
 
-                'download_uri' => true, // not mandatory, default is true
+                'download_uri' => false, // not mandatory, default is true
 
             ]);
     }

@@ -28,6 +28,7 @@ class Wine
 
     #[ORM\Column()]
     #[Assert\NotBlank]
+    #[Assert\Range(min: 1980, max: 'now')]
     private ?int $year = null;
 
     #[ORM\Column]
