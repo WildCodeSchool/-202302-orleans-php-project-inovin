@@ -1,0 +1,56 @@
+{% extends 'admin.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Séances - Index
+{% endblock %}
+{% block admin_content_title %}NOS SÉANCES
+{% endblock %}
+{% block admin_content %}
+	<div>
+		<div class="row">
+			<div class="d-flex justify-content-end align-self-end mb-4 px-4">
+				<a role="button" class="btn mt-4 icon-link icon-link-hover" href="{{ path('app_session_new') }}">
+					{{ include('/components/svg_img/_icon_add.svg.twig') }}
+					AJOUTER</a>
+			</div>
+		</div>
+		<div class="table-responsive">
+			<table class="table table-striped table-hover table-bordered border-secondary">
+				<thead class="sticky-top">
+					<tr class="py-4">
+						<th class="w-auto th-lg py-3 px-4 bg-secondary" scope="col">DATE D'OUVERTURE</th>
+						<th class="w-auto th-lg py-3 px-4 bg-secondary" scope="col">INTITULÉ</th>
+						<th class="w-25 py-3 text-center px-2 bg-secondary" scope="col">ACTIONS</th>
+					</tr>
+				</thead>
+				<tbody class="table-group-divider">
+					{% for session in sessions %}
+						<tr>
+							<td class="px-4 align-middle align-center text-center">{{ session.openingDate ? session.openingDate|date('d/m/Y H:i') : '' }}
+								{% if session.closed is same as(false) %}
+									<span class="badge p-2 m-2 rounded-pill text-bg-success">Ouverte</span>
+								{% else %}
+									<span class="badge p-2 m-2 rounded-pill text-bg-danger">Terminée</span>
+								{% endif %}
+							</td>
+							<td class="px-4 align-middle">{{ session.name }}</td>
+							<td class="text-center p-2 w-25 align-middle">
+								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+									<a class="text-decoration-none icon-link icon-link-hover link-light mx-4" role="button" href="{{ path('app_session_edit', {'id': session.id}) }}">
+										{{ include('/components/svg_img/_icon_edit.svg.twig') }}
+										Éditer
+									</a>
+									{{ include('./session/_delete_form.html.twig') }}
+								</div>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="2">Aucun enregistrement trouvé...</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}
