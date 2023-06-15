@@ -12,7 +12,7 @@
 					<a class="nav-link" href="{{ path('app_session_index') }}">Séances</a>
 				</li>
 				<li class="nav-item px-2">
-					<a class="nav-link" href="#">Vins</a>
+					<a class="nav-link" href="{{ path('app_wine_index') }}">Vins</a>
 				</li>
 				<li class="nav-item px-2">
 					<a class="nav-link" href="{{ path('app_cepage_index') }}">Cépages</a>
@@ -28,7 +28,7 @@
 				<li class="nav-item d-flex align-items-end align-items-center px-2">
 					<a class="nav-link" href="#">CONNEXION</a>
 					<span class="d-none d-sm-inline">
-						{% include 'components/svg/_icon_person.html.twig' %}
+						{% include 'components/svg/_icon_profile.html.twig' %}
 					</span>
 				</li>
 			</ul>
