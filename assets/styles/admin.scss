@@ -11,3 +11,38 @@
 .frame_separator {
     width: clamp(250px, 50vw, 380px);
 }
+
+.container-dashboard {
+    height: 50vh;
+    min-height: 50vh;
+    padding: 1rem;
+}
+
+.ornement {
+    border-radius: 0px 8px 0px 8px;
+}
+
+.ornement::before {
+    content: "";
+    background-image: url("../images/corner.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-1px, -1px);
+}
+.ornement::after {
+    content: "";
+    background-image: url("../images/corner.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translate(1px, 1px) rotate(180deg);
+}

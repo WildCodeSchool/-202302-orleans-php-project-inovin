@@ -31,6 +31,10 @@ class WineController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $wineRepository->save($wine, true);
 
+            $this->addFlash(
+                'success',
+                'Le Vin a été ajouté'
+            );
             return $this->redirectToRoute('app_wine_index', [], Response::HTTP_SEE_OTHER);
         }
 

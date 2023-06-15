@@ -1,0 +1,44 @@
+{% extends 'admin.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Séances
+{% endblock %}
+{% block admin_content_title %}SÉANCE
+{% endblock %}
+{% block admin_content %}
+
+	<div class="d-flex flex-column container-admin justify-content-around align-items-around mb-4">
+		<div class="row justify-content-center">
+			<div>
+				<h3 class="ps-2 mb-3 mt-4">Intitulé</h3>
+				<p class="container-admin m-2 p-3 mt-0" style="box-shadow: none">{{ session.name }}</p>
+			</div>
+			<div class="col-md-6">
+				<h3 class="ps-2 mb-3 mt-4">Date d'ouverture</h3>
+				<p class="container-admin m-2 p-3 mt-0" style="box-shadow: none">{{ session.openingDate ? session.openingDate|date('d/m/Y') : '' }}
+					{% if session.closed is same as(false) %}
+						<span class="badge p-1 rounded-pill text-bg-success">OUVERTE</span>
+					{% else %}
+						<span class="badge p-1 rounded-pill text-bg-danger">TERMINÉE</span>
+					{% endif %}
+				</p>
+			</div>
+			<div class="col-md-6">
+				<h3 class="ps-2 mb-3 mt-4">Horaire</h3>
+				<p class="container-admin m-2 p-3 mt-0" style="box-shadow: none">
+					{{ session.openingDate|date('H:i') }}
+				</p>
+			</div>
+			<div>
+				<h3 class="ps-2 mb-3 mt-4">Description</h3>
+				<p class="container-admin m-2 p-4 mt-0 overflow-auto" id="description" data-mdb-perfect-scrollbar="true" style="max-height: 250px; box-shadow: none">{{ session.description }}</p>
+			</div>
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="d-flex justify-content-start ms-5 g-4 gap-4 mb-4">
+			<a role="button" class="btn btn-sm text-nowrap mb-4" href="{{ path('app_session_index') }}">Retour</a>
+		</div>
+	</div>
+{% endblock %}

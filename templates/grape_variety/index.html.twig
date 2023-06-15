@@ -8,8 +8,8 @@
 {% block admin_content %}
 	<div>
 		<div class="row">
-			<div class="d-flex justify-content-end align-self-end mb-4 px-4">
-				<a role="button" class="btn mt-4 icon-link icon-link-hover" href="{{ path('app_cepage_new') }}">
+			<div class="d-flex justify-content-end align-self-end px-4">
+				<a role="button" class="bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover-left icon-dark text-uppercase order-2 btn" href="{{ path('app_cepage_new') }}">
 					{{ include('/components/svg_img/_icon_add.svg.twig') }}
 					AJOUTER</a>
 			</div>
@@ -26,10 +26,13 @@
 				{% for grape_variety in grape_varieties %}
 					<tr>
 						<td class="px-4">{{ grape_variety.name }}</td>
-						<td class="px-4">{{ grape_variety.color.color }}</td>
+						<td class="px-4">
+							<span class="badge rounded-pill w-25 px-2 py-1 fs-6 text-bg-{{ grape_variety.color.classcolor }}">{{ grape_variety.color.color }}
+							</span>
+						</td>
 						<td class="text-center p-2 w-25">
 							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-								<a class="icon-link icon-link-hover link-light mx-4" href="{{ path('app_cepage_edit', {'id': grape_variety.id}) }}">
+								<a class="icon-link icon-link-hover-left link-light mx-4 text-decoration-none" href="{{ path('app_cepage_edit', {'id': grape_variety.id}) }}">
 									{{ include('/components/svg_img/_icon_edit.svg.twig') }}
 									Éditer
 								</a>
