@@ -15,12 +15,32 @@ class AdminDashboardRepository extends ServiceEntityRepository
         parent::__construct($registry, AdminDashboard::class);
     }
 
-    public function getDashboardData(): array
+    public function getDashboardCountData(): array
     {
-        return $this->entityManager->createQueryBuilder()
+        $grapes = $this->entityManager->createQueryBuilder()
             ->select('COUNT(g.id) as grapes')
             ->from('App\Entity\GrapeVariety', 'g')
             ->getQuery()
             ->getOneOrNullResult();
+
+        $wines = $this->entityManager->createQueryBuilder()
+            ->select('COUNT(w.id) as wines')
+            ->from('App\Entity\Wine', 'w')
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        $sessions = $this->entityManager->createQueryBuilder()
+            ->select('COUNT(s.id) as sessions')
+            ->from('App\Entity\Session', 's')
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        $users = $this->entityManager->createQueryBuilder()
+            ->select('COUNT(u.id) as users')
+            ->from('App\Entity\User', 'u')
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return array_merge($grapes, $users, $wines, $sessions);
     }
 }

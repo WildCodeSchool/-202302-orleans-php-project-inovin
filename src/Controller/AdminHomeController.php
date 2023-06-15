@@ -15,89 +15,87 @@ class AdminHomeController extends AbstractController
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(AdminDashboardRepository $dashboardRepository, ChartBuilderInterface $chartBuilder): Response
     {
-        $dashboardData = $dashboardRepository->getDashboardData();
+        $datasets =  $barsData = $barsBgColor = [];
+        $keyLabels = ['grapes' => 'Cépages', 'users' => 'Utilisateurs', 'wines' => 'Vins', 'sessions' => 'Séances'];
+
+        $dashboardData = $dashboardRepository->getDashboardCountData();
         $chart = $chartBuilder->createChart(Chart::TYPE_BAR);
-        $chart->setData([
-            'labels' => [
-                'Nbr Cépages ' . $dashboardData['grapes'],
-            ],
-            'datasets' => [
-                [
-                    'barPercentage' => 0.3,
-                    'barThickness' => 50,
-                    'maxBarThickness' => 75,
-                    'minBarLength' => 10,
-                    'font' => 'white',
-                    'label' => 'Cépages',
-                    'backgroundColor' => 'rgba(215, 186, 49, 1)',
-                    'borderColor' => 'rgba(242, 234, 191, 1)',
-                    'data' => [$dashboardData['grapes']],
-                    'layout' => ['padding' => '20'],
-                ],
-            ],
-        ]);
+
+        foreach ($dashboardData as $key => $value) {
+            $barsData[] =  ['x' => 'Nbr ' . $keyLabels[$key] . ' ' . $value, 'y' => $value];
+        }
+        $barsBgColor = [
+            'rgba(215, 186 , 49, 0.5)',
+            'rgba(210, 150 , 49, 0.5)',
+            'rgba(221, 120 , 49, 0.5)',
+            'rgba(150, 100 , 49, 0.5)',
+        ];
+
+        $datasets[] = [
+            'data' => $barsData,
+            'barPercentage' => 0.4,
+            'minBarLength' => 2,
+            'font' => 'white',
+            'backgroundColor' => $barsBgColor,
+            'borderColor' => 'rgba(242, 234, 191, 1)',
+            'layout' => ['padding' => '20'],
+        ];
+
+        $chart->setData(
+            [
+                'labels' => [],
+                'datasets' => $datasets
+            ]
+        );
 
         $chart->setOptions([
+            'responsive' => true,
             'maintainAspectRatio' => false,
             'layout' => [
-                'padding' => 5,
+                'padding' => 0,
             ],
             'elements' => [
                 'bar' => [
                     'borderColor' => 'rgba(242, 234, 191, 1)',
-                    'borderWidth' => 3,
+                    'borderWidth' => 2,
                     'backgroundColor' => 'rgba(255, 255, 255, 1)',
-                    'borderRadius' => 15,
+                    'borderRadius' => 8,
                     'pointStyle' => 'circle',
                 ],
             ],
             'plugins' => [
                 'legend' => [
-                    'display' => true,
-                    'padding' => 20,
+                    'display' => false,
+                    'padding' => 0,
                     'position' => 'right',
                     'pointStyle' => 'circle',
                     'labels' => [
                         'color' => 'white',
                         'usePointStyle' => true,
                         'pointStyleWidth' => 25,
-                        'padding' => 20,
+                        'padding' => 15,
                         'font' => ['size' => 18],
                     ],
                 ],
             ],
             'scales' => [
                 'xAxes' => [
-                    'beginAtZero' => true,
-                    'grid' => [
-                        'color' => 'rgba(255, 255, 255, 0.5)',
-                        'tickColor' => 'white'
-                    ],
+                    'display' => true,
                     'ticks' => [
-                        'padding' => 30,
+                        'padding' => 1,
                         'color' => 'white',
-                        'font' => ['size' => 16],
+                        'font' => ['size' => 12],
                     ],
                 ],
                 'yAxes' => [
-                    'beginAtZero' => true,
                     'grid' => [
-                        'color' => 'rgba(255, 255, 255, 0.05)',
-                        'tickColor' => 'white'
+                        'color' => 'rgba(255, 255, 255, 0.08)',
+                        'tickColor' => 'rgba(255, 255, 255, 0.08)'
                     ],
                     'ticks' => [
                         'color' => 'white',
                         'font' => ['size' => 16],
                     ],
-                ],
-            ],
-            'animations' => [
-                'borderWidth' => [
-                    'duration' => 500,
-                    'easing' => 'linear',
-                    'from' => 2,
-                    'to' => 6,
-                    'loop' => true
                 ],
             ],
         ]);
