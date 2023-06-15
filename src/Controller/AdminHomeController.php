@@ -16,9 +16,7 @@ class AdminHomeController extends AbstractController
     public function index(AdminDashboardRepository $dashboardRepository, ChartBuilderInterface $chartBuilder): Response
     {
         $dashboardData = $dashboardRepository->getDashboardData();
-
         $chart = $chartBuilder->createChart(Chart::TYPE_BAR);
-
         $chart->setData([
             'labels' => [
                 'Nbr Cépages ' . $dashboardData['grapes'],
