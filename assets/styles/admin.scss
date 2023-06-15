@@ -12,13 +12,19 @@
     width: clamp(250px, 50vw, 380px);
 }
 
+.container-dashboard {
+    height: 50vh;
+    min-height: 50vh;
+    padding: 1rem;
+}
+
 .ornement {
     border-radius: 0px 8px 0px 8px;
 }
 
 .ornement::before {
     content: "";
-    background-image: url('../images/corner.svg');
+    background-image: url("../images/corner.svg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 120px;
@@ -30,7 +36,7 @@
 }
 .ornement::after {
     content: "";
-    background-image: url('../images/corner.svg');
+    background-image: url("../images/corner.svg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 120px;
