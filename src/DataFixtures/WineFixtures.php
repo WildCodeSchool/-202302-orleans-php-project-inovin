@@ -25,7 +25,7 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
 
             $wine->setVolume($faker->randomFloat(1, 2, 2));
 
-            $wine->setAlcoholPercent((string)$faker->randomFloat(1, 1, 90));
+            $wine->setAlcoholPercent($faker->randomFloat(1, 1, 90));
 
             $wine->setIsEnabled($faker->boolean());
 
