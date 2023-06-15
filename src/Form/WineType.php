@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
@@ -85,7 +86,7 @@ class WineType extends AbstractType
                             ->orderBy('g.name', 'ASC');
                     },
                     'choice_label' => 'name',
-                    'by_reference' => false,
+                    'by_reference' => true,
                 ]
             )
 
