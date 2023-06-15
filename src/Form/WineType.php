@@ -68,7 +68,7 @@ class WineType extends AbstractType
                 'price',
                 numberType::class,
                 [
-                    'label' => 'Le prix (€)',
+                    'label' => 'Prix (€)',
                     'scale' => 3,
                     'attr' => [
                         'placeholder' => '60',
