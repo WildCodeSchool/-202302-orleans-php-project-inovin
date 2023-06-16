@@ -39,13 +39,13 @@ class SessionRepository extends ServiceEntityRepository
         }
     }
 
-    public function getdCount(): array
+    public function getdCount(): int
     {
         return $this->getEntityManager()->createQueryBuilder()
             ->select('COUNT(s.id) as sessions')
             ->from('App\Entity\Session', 's')
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getSingleScalarResult();
     }
 
     //    /**

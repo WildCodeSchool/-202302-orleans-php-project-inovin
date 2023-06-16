@@ -6,11 +6,14 @@ use App\Repository\GrapeVarietyRepository;
 use App\Repository\SessionRepository;
 use App\Repository\UserRepository;
 use App\Repository\WineRepository;
+use Container0sIfSOS\getDataCollector_Request_SessionCollectorService;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 
 class AdminDashboardService
 {
+    private array $data = [];
+
     public function __construct(
         private GrapeVarietyRepository $grapeRepository,
         private WineRepository $wineRepository,
@@ -22,29 +25,28 @@ class AdminDashboardService
 
     public function getDashboardChart(): Chart
     {
-        $dashboardData = $this->getDashBoardData();
-        $chart = $this->buildChartDashboard($dashboardData);
-        return $chart;
+        $this->getDashBoardData();
+        return $this->buildChartDashboard();
     }
 
 
-    private function getDashBoardData(): array
+    private function getDashBoardData(): void
     {
         $grapes = $this->grapeRepository->getCount();
         $users = $this->userRepository->getCount();
         $wines = $this->wineRepository->getCount();
         $sessions = $this->sessionRepository->getdCount();
-        return array_merge($grapes, $users, $wines, $sessions);
+        $this->setData(['grapes' => $grapes, 'users' => $users, 'wines' => $wines, 'sessions' => $sessions]);
     }
 
-    private function buildChartDashboard(array $dashboardData): Chart
+    private function buildChartDashboard(): Chart
     {
         $datasets =  $barsData = $barsBgColor = [];
         $keyLabels = ['grapes' => 'Cépages', 'users' => 'Utilisateurs', 'wines' => 'Vins', 'sessions' => 'Séances'];
 
         $chart = $this->chartBuilder->createChart(Chart::TYPE_BAR);
 
-        foreach ($dashboardData as $key => $value) {
+        foreach ($this->getData() as $key => $value) {
             $barsData[] =  ['x' => 'Nbr ' . $keyLabels[$key] . ' ' . $value, 'y' => $value];
         }
         $barsBgColor = [
@@ -123,5 +125,16 @@ class AdminDashboardService
             ],
         ]);
         return $chart;
+    }
+
+    public function getData(): array
+    {
+        return $this->data;
+    }
+
+    public function setData(array $data): self
+    {
+        $this->data = $data;
+        return $this;
     }
 }
