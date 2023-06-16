@@ -1,14 +1,14 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Edit GrapeVariety
+{% extends 'admin.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Cépages - Édition
 {% endblock %}
-
-{% block body %}
-	<h1>Edit GrapeVariety</h1>
-
-	{{ include('grape_variety/_form.html.twig', {'button_label': 'Update'}) }}
-
-	<a href="{{ path('app_cepage_index') }}">back to list</a>
-
-	{{ include('grape_variety/_delete_form.html.twig') }}
+{% block admin_content_title %}ÉDITION DU CÉPAGE
+{% endblock %}
+{% block admin_content %}
+	<div class="row d-flex justify-content-center">
+		<div class="col">
+			{{ include('grape_variety/_form.html.twig', {'button_label': 'Modifier'}) }}
+		</div>
+	</div>
 {% endblock %}
