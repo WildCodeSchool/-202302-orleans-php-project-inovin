@@ -41,9 +41,8 @@ class GrapeVarietyRepository extends ServiceEntityRepository
 
     public function getCount(): int
     {
-        return $this->getEntityManager()->createQueryBuilder()
+        return $this->createQueryBuilder('g')
             ->select('COUNT(g.id) as grapes')
-            ->from('App\Entity\GrapeVariety', 'g')
             ->getQuery()
             ->getSingleScalarResult();
     }

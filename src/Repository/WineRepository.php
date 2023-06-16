@@ -41,9 +41,8 @@ class WineRepository extends ServiceEntityRepository
 
     public function getCount(): int
     {
-        return $this->getEntityManager()->createQueryBuilder()
+        return $this->createQueryBuilder('w')
             ->select('COUNT(w.id) as wines')
-            ->from('App\Entity\Wine', 'w')
             ->getQuery()
             ->getSingleScalarResult();
     }
