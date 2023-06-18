@@ -1,0 +1,17 @@
+{% extends 'visitor.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	- Home
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{# {{ encore_entry_link_tags('home') }} #}
+{% endblock %}
+
+{% block body %}
+	<main class="container-fluid">
+		{% include './components/session/_opened_sessions.html.twig' %}
+	</main>
+{% endblock %}
