@@ -19,9 +19,9 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_cepage_index') }}">back to list</a>
+	<a href="{{ path('app_admin_cepage_index') }}">back to list</a>
 
-	<a href="{{ path('app_cepage_edit', {'id': grape_variety.id}) }}">edit</a>
+	<a href="{{ path('app_admin_cepage_edit', {'id': grape_variety.id}) }}">edit</a>
 
-	{{ include('grape_variety/_delete_form.html.twig') }}
+	{{ include('admin/grape_variety/_delete_form.html.twig') }}
 {% endblock %}
