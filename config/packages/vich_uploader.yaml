@@ -1,0 +1,12 @@
+vich_uploader:
+    db_driver: orm
+    metadata:
+        type: attribute
+        
+    mappings:
+        wine_file:
+            uri_prefix: /uploads/images/wines
+
+            upload_destination: '%upload_directory%'
+
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

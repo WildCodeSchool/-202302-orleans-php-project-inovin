@@ -77,4 +77,20 @@ class GrapeColor
 
         return $this;
     }
+
+    public function getClassColor(): string
+    {
+        $classColor = [
+            'rouge' => 'red_wine',
+            'rosé' => 'pink_wine',
+            'blanc' => 'white_wine',
+            'gris' => 'gray_wine',
+        ];
+
+        if (array_key_exists(strtolower($this->getColor()), $classColor)) {
+            return $classColor[strtolower($this->getColor())];
+        } else {
+            return 'red_wine';
+        }
+    }
 }

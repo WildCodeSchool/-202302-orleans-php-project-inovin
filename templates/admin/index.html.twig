@@ -1,10 +1,12 @@
 {% extends 'admin.html.twig' %}
-
 {% block title %}
 	{{ parent() }}
-	- Admin Home
+	| Admin - Home
 {% endblock %}
-
-{% block body %}
-	<h1>Inovin Admin</h1>
+{% block admin_content_title %}DASHBOARD
+{% endblock %}
+{% block admin_content %}
+	<div class="container-dashboard">
+		{{ render_chart(chart, {'id': 'dashboard-chart'}) }}
+	</div>
 {% endblock %}

@@ -1,9 +1,0 @@
-<form method="post" action="{{ path('app_cepage_delete', {'id': grape_variety.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer le cépage {{ grape_variety.name }} ?');">
-	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ grape_variety.id) }}">
-	<button class="bg-transparent border-0">
-		<a class="icon-link icon-link-hover link-light">
-			{{ include('/components/svg_img/_icon_trash.svg.twig') }}
-			Supprimer
-		</a>
-	</button>
-</form>
