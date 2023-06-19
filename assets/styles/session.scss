@@ -12,3 +12,37 @@
     border-collapse: separate;
     border-spacing: 1rem 0;
 }
+
+.card-wine {
+    min-width: 350px;
+    max-height: 205px;
+    outline: 1px solid $primary-light;
+    outline-offset: 4px;
+    border: 2px dotted $secondary;
+
+    /* top-left | top-right | bottom-right | bottom-left */
+    border-radius: 174px 25px 0px 174px;
+
+    // background-color: $dark-light;
+    box-shadow: $shadow-primary;
+}
+
+.img-session-wine {
+    outline-offset: 24px;
+    outline: 1px solid $secondary;
+    border: 2px solid $primary-light;
+    border-radius: 50%;
+    padding: 26px;
+    background: $card-gradient-color;
+    object-fit: cover;
+}
+
+.wine-container {
+    height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .card-wine {
+        border-radius: 15px;
+    }
+}
