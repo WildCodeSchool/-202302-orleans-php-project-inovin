@@ -79,10 +79,6 @@ body {
     padding-block-start: $navbar-height;
 }
 
-main {
-    height: calc(100vh - ($navbar-height + $footer-height));
-}
-
 .navbar-toggler:focus {
     box-shadow: 0 0 0 0;
 }
