@@ -19,7 +19,7 @@
 
 	<main class="container-fluid d-flex justify-content-center align-items-center my-5 my-md-0">
 		<div class="row">
-			<div class="col-11 px-3 border border-secondary m-auto d-flex flex-column align-items-center pt-5 bg-card ornement position-relative">
+			<div class="col-11 m-auto px-3 border border-secondary d-flex flex-column align-items-center pt-5 bg-card ornement position-relative">
 				<h2 class="text-center text-uppercase letter-spacing mt-5">Formulaire d'inscription</h2>
 				{% include "icones/surlignage.svg" %}
 
@@ -62,7 +62,7 @@
 							</div>
 
 							{# FORM RIGHT #}
-							<div class="col-12 col-md-5 d-flex flex-column">
+							<div class="col-md-5 d-flex flex-column">
 								<div>
 									{{ form_label(registrationForm.address) }}
 									{{ form_widget(registrationForm.address) }}
@@ -84,9 +84,9 @@
 									{{ form_errors(registrationForm.country) }}
 								</div>
 
-								<div class="col-12 flex-grow align-self-start custom-m">
+								<div class="w-100 flex-grow align-self-start custom-m">
 									<div class="d-flex flex-row justify-content-between flex-lg-row align-items-center gap-3">
-										<button type='submit' class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center">
+										<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center">
 											{{ button_label|default('Valider') }}
 											{{ include('/components/svg_img/_icon_validate.svg.twig') }}
 										</button>
