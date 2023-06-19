@@ -1,0 +1,24 @@
+@import "variables";
+
+.pine-circle {
+    width: 39px;
+    height: 39px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../images/pine-circle.png);
+}
+
+.pin span {
+    transform: rotate(45deg);
+}
+
+.myContainer {
+    width: 1200px;
+ }
+
+.row .rounded-circle{
+  object-fit: cover;
+  width: 300px;
+  height: 300px;
+}

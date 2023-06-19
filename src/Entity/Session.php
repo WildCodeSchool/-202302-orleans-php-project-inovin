@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SessionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +27,14 @@ class Session
 
     #[ORM\Column]
     private ?bool $closed = null;
+
+    #[ORM\ManyToMany(targetEntity: Wine::class, inversedBy: 'sessions')]
+    private Collection $wines;
+
+    public function __construct()
+    {
+        $this->wines = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +85,30 @@ class Session
     public function setClosed(bool $closed): static
     {
         $this->closed = $closed;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Wine>
+     */
+    public function getWines(): Collection
+    {
+        return $this->wines;
+    }
+
+    public function addWine(Wine $wine): static
+    {
+        if (!$this->wines->contains($wine)) {
+            $this->wines->add($wine);
+        }
+
+        return $this;
+    }
+
+    public function removeWine(Wine $wine): static
+    {
+        $this->wines->removeElement($wine);
 
         return $this;
     }
