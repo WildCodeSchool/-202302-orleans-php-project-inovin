@@ -1,28 +1,23 @@
-<div class="card card-wine m-2 m-md-4 rounded-sm">
+<div class="card card-wine m-sm-2 m-sm-4 rounded-sm">
 	<div class="row g-0 d-flex align-items-center justify-content-center ps-3">
-		<div class="col-4 ps-3 wine-container d-none d-md-block">
+		<div class="col ps-3 wine-container ">
 			<img src="{{ asset('build/images/img_card_wine.svg') }}" class="img-session-wine" alt="img round card wine">
 		</div>
-		<div class="col col-md-8">
-			<div class="card-body">
-				<h5 class="card-title">Châteauneuf du Pape</h5>
-				<p class="card-text">Vallée du Rhône, France.</p>
-				<p>
-					<div class="row d-flex flex-row m-4 g-2">
-						<div class="col-4">
-							<div class="bg-primary text-center text-dark letter-spacing me-auto">
-								IG
-							</div>
-							<div class="text-start text-light letter-spacing me-auto mt-2">
-								AOC
-							</div>
-						</div>
-						<div class="col-8">
+		<div class="col-md-8 col-lg-9 col-xl-7 col-xxl-8 p-1">
+			<div class="card-body p-1">
+				<h5 class="card-title text-capitalize text-primary-light fs-5">{{ wine.name }}</h5>
+				<hr>
+				<p class="card-text letter-spacing fs-5">
+					<span class="badge rounded-pill bg-primary-light text-dark px-3">{{ wine.year }}</span>
+				</p>
+				<p class="card-text">
+					<div class="row d-flex flex-row">
+						<div class="col">
 							<div class="bg-primary text-center text-dark letter-spacing ms-auto">
 								CÉPAGE
 							</div>
-							<div class="text-center text-light letter-spacing ms-auto mt-2">
-								Grenache
+							<div class="text-center text-light letter-spacing ms-auto mt-2 text-capitalize fs-5">
+								{{ wine.grapeVariety.name }}
 							</div>
 						</div>
 					</div>

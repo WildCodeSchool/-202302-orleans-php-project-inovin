@@ -14,8 +14,8 @@
 }
 
 .card-wine {
-    min-width: 350px;
-    max-height: 205px;
+    min-width: 330px;
+    // max-height: 205px;
     outline: 1px solid $primary-light;
     outline-offset: 4px;
     border: 2px dotted $secondary;
@@ -28,21 +28,29 @@
 }
 
 .img-session-wine {
-    outline-offset: 24px;
+    outline-offset: 16px;
     outline: 1px solid $secondary;
     border: 2px solid $primary-light;
     border-radius: 50%;
-    padding: 26px;
-    background: $card-gradient-color;
+    padding: 14px;
+    background: $icon-gradient-color;
+    box-shadow: $shadow-primary;
     object-fit: cover;
-}
-
-.wine-container {
-    height: 100%;
+    height: 125px;
+    width: 125px;
+    margin-block: 20px;
 }
 
 @media screen and (max-width: 768px) {
     .card-wine {
         border-radius: 15px;
+    }
+
+    .img-session-wine {
+        margin-top: 2rem;
+        height: 55px;
+        width: 55px;
+        padding: 4px;
+        outline-offset: 6px;
     }
 }
