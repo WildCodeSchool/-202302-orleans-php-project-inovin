@@ -24,7 +24,7 @@
 
 .ornement::before {
     content: "";
-    background-image: url("../images/corner.svg");
+    background-image: url("../images/ornement.svg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 120px;
@@ -36,7 +36,7 @@
 }
 .ornement::after {
     content: "";
-    background-image: url("../images/corner.svg");
+    background-image: url("../images/ornement.svg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 120px;
