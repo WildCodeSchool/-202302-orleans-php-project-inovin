@@ -23,7 +23,6 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('firstname', TextType::class, [
                 'attr' => [
-                    'placeholder' => 'Votre prénom',
                     'class' => 'form-control border border-secondary placeholder-style',
                 ],
                 'label' => 'Prénom',
@@ -33,7 +32,6 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('lastname', TextType::class, [
                 'attr' => [
-                    'placeholder' => 'Votre nom',
                     'class' => 'form-control border border-secondary placeholder-style',
                 ],
                 'label' => 'Nom',
@@ -66,25 +64,24 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('zip_code', IntegerType::class, [
                 'attr' => [
-                    'placeholder' => 'Code postal',
                     'class' => 'form-control border border-secondary placeholder-style',
                 ],
+                'label' => 'Code postal',
                 'label_attr' => [
                     'class' => 'form-label text-uppercase letter-spacing mb-2',
                 ],
             ])
             ->add('city', TextType::class, [
                 'attr' => [
-                    'placeholder' => 'Ville',
                     'class' => 'form-control border border-secondary placeholder-style',
                 ],
+                'label' => 'Ville',
                 'label_attr' => [
                     'class' => 'form-label text-uppercase letter-spacing mb-2'
                 ],
             ])
             ->add('country', TextType::class, [
                 'attr' => [
-                    'placeholder' => 'Pays',
                     'class' => 'form-control border border-secondary placeholder-style',
                 ],
                 'label' => 'Pays',
@@ -94,7 +91,6 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'placeholder' => 'Votre email',
                     'class' => 'form-control border border-secondary mb-3 placeholder-style',
                 ],
                 'label_attr' => [
