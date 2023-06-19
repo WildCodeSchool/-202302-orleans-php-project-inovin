@@ -9,7 +9,6 @@ use DateTime;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\WineRepository;
 use phpDocumentor\Reflection\Types\Float_;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -69,11 +68,10 @@ class Wine
 
     #[ORM\ManyToMany(targetEntity: Session::class, mappedBy: 'Wines')]
     private Collection $sessions;
-  
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DatetimeInterface $updatedAt = null;
 
-    public function __construct()
+    public function __construct(?bool $enabled = true)
     {
         $this->enabled = $enabled;
         $this->sessions = new ArrayCollection();
@@ -203,6 +201,8 @@ class Wine
         if ($this->sessions->removeElement($session)) {
             $session->removeWine($this);
         }
+        return $this;
+    }
 
     public function setWineFile(File $image = null): Wine
     {
