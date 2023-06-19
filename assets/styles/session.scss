@@ -1,0 +1,14 @@
+@import "variables";
+
+.frame_container .frame_separator {
+    width: auto;
+}
+
+.bg-card {
+    background: $card-gradient-color;
+}
+
+.table-hours {
+    border-collapse: separate;
+    border-spacing: 1rem 0;
+}

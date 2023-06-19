@@ -1,6 +1,5 @@
 //start coding by removing this file and adding yours ;)
 @import "_theme.scss";
-
 @import "_footer";
 @import "svg.scss";
 
@@ -78,6 +77,10 @@ p {
 
 body {
     padding-block-start: $navbar-height;
+}
+
+main {
+    height: calc(100vh - ($navbar-height + $footer-height));
 }
 
 .navbar-toggler:focus {

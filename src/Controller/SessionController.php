@@ -77,4 +77,14 @@ class SessionController extends AbstractController
 
         return $this->redirectToRoute('app_session_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/etats/all', name: 'app_session_states', methods: ['GET'])]
+    public function states(SessionRepository $sessionRepository): Response
+    {
+        $sessionsOpened = $sessionRepository->findBy(['closed' => '0'], ['openingDate' => 'desc']);
+
+        return $this->render('session/sessions_states_html.twig', [
+            'sessionsOpened' => $sessionsOpened
+        ]);
+    }
 }

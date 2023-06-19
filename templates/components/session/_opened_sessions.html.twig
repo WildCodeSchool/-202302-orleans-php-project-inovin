@@ -1,0 +1,54 @@
+<div class="row mb-4">
+	<div class="col-sm-12 col-11 px-sm-5 px-3 m-auto pt-5 ">
+		<h2 class="text-primary-light fw-light text-uppercase letter-spacing mt-5">
+			{% include 'components/svg/_icon_decoration.svg.twig' %}SÉANCES OUVERTES
+		</h2>
+		<div class="frame_container">
+			{% include "components/svg/_frame_surlignage_main.svg.twig" %}
+		</div>
+	</div>
+</div>
+
+{% for session in sessionsOpened %}
+	<div class="row mb-4">
+		<div class="col m-auto border border-secondary rounded-3 bg-card">
+
+			<div class="row mb-4">
+				<div class="col d-flex justify-content-between align-items-center">
+					<span class="text-nowrap d-inline-block text-primary-light fs-5 m-2 letter-spacing">
+						Séance du
+						{{ session.openingDate|date("d F Y", "Europe/Paris") }}
+					</span>
+					<span class="w-75 d-inline-block fw-bold align-self-end text-end border-secondary border-bottom mb-2 {{ session.closed ? 'text-warning' : 'text-success' }}">
+						{{ session.closed ? 'FERMÉE' : 'OUVERTE' }}
+					</span>
+				</div>
+			</div>
+
+			<div class="row mb-4">
+				<div class="col table-responsive">
+
+					<table class="table table-hours border-0 mt-4">
+						<thead>
+							<tr class="py-4 g">
+								<th class="w-75 py-0 px-2 bg-primary text-center text-dark letter-spacing pe-2 " scope="col">LIEU</th>
+								<th class="w-25 py-0 px-2 bg-primary text-center text-dark letter-spacing ps-2" scope="col">HORAIRE</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="px-4 text-start bg-transparent border-bottom-0">
+									wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww  TODO
+								</td>
+								<td class="text-center px-4 bg-transparent border-bottom-0">{{ session.openingDate|date("H", "Europe/Paris") ~ 'H' ~ ' - ' ~  session.openingDate|date_modify('+ 3 hours')|date("H", "Europe/Paris") ~ 'H' }}</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+{% endfor %}

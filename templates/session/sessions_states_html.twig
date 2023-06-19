@@ -7,11 +7,11 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	{# {{ encore_entry_link_tags('home') }} #}
+	{{ encore_entry_link_tags('session') }}
 {% endblock %}
 
 {% block body %}
-	<main class="container-fluid">
-		{% include './components/session/_opened_sessions.html.twig' %}
+	<main class="container">
+		{% include './components/session/_opened_sessions.html.twig' with {'sessionsOpened' : sessionsOpened}  %}
 	</main>
 {% endblock %}
