@@ -8,22 +8,17 @@
     background: $card-gradient-color;
 }
 
-.table-hours {
-    border-collapse: separate;
-    border-spacing: 1rem 0;
+.card-title {
+    font-family: $font-card-title;
+    font-size: 2rem;
 }
 
 .card-wine {
     min-width: 330px;
-    // max-height: 205px;
     outline: 1px solid $primary-light;
     outline-offset: 4px;
     border: 2px dotted $secondary;
-
-    /* top-left | top-right | bottom-right | bottom-left */
     border-radius: 174px 25px 0px 174px;
-
-    // background-color: $dark-light;
     box-shadow: $shadow-primary;
 }
 
@@ -32,13 +27,19 @@
     outline: 1px solid $secondary;
     border: 2px solid $primary-light;
     border-radius: 50%;
-    padding: 14px;
+    padding: 4px;
     background: $icon-gradient-color;
     box-shadow: $shadow-primary;
-    object-fit: cover;
+    object-fit: contain;
     height: 125px;
     width: 125px;
     margin-block: 20px;
+}
+
+.separator-line {
+    height: 2px;
+    background: $icon-gradient-color;
+    width: 100%;
 }
 
 @media screen and (max-width: 768px) {
@@ -48,8 +49,8 @@
 
     .img-session-wine {
         margin-top: 2rem;
-        height: 55px;
-        width: 55px;
+        height: clamp(30px, 20vw, 120px);
+        width: clamp(30px, 20vw, 120px);
         padding: 4px;
         outline-offset: 6px;
     }

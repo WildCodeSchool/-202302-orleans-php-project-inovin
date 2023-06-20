@@ -1,24 +1,30 @@
-<div class="card card-wine m-sm-2 m-sm-4 rounded-sm">
+<div class="card card-wine m-2 m-sm-4 rounded-sm">
 	<div class="row g-0 d-flex align-items-center justify-content-center ps-3">
-		<div class="col ps-3 wine-container ">
+		<div class="col ps-2 wine-container ">
 			<img src="{{ asset('build/images/img_card_wine.svg') }}" class="img-session-wine" alt="img round card wine">
 		</div>
-		<div class="col-md-8 col-lg-9 col-xl-7 col-xxl-8 p-1">
+		<div class="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-8 col-xxl-8 pe-1">
 			<div class="card-body p-1">
-				<h5 class="card-title text-capitalize text-primary-light fs-5">{{ wine.name }}</h5>
-				<hr>
-				<p class="card-text letter-spacing fs-5">
+				<h5 class="card-title text-capitalize text-primary-light ">{{ wine.name|u.truncate(22, '...') }}</h5>
+				<div class="separator-line"></div>
+				<p class="card-text letter-spacing fs-5 text-end mt-1">
 					<span class="badge rounded-pill bg-primary-light text-dark px-3">{{ wine.year }}</span>
 				</p>
 				<p class="card-text">
 					<div class="row d-flex flex-row">
-						<div class="col">
+						<div class="col-8 pe-1">
 							<div class="bg-primary text-center text-dark letter-spacing ms-auto">
 								CÉPAGE
 							</div>
-							<div class="text-center text-light letter-spacing ms-auto mt-2 text-capitalize fs-5">
-								{{ wine.grapeVariety.name }}
+							<div class="text-center text-light letter-spacing ms-auto mt-2 text-capitalize fs-6 text-nowrap">
+								{{ wine.grapeVariety.name|u.truncate(20, '...') }}
 							</div>
+						</div>
+						<div class="col ps-1">
+							<div class="bg-primary text-center text-dark letter-spacing">
+								O.G
+							</div>
+							<div class="text-start text-center text-light letter-spacing mt-2 fs-6"></div>
 						</div>
 					</div>
 				</p>

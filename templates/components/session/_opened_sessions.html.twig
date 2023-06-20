@@ -19,7 +19,7 @@
 						Séance du
 						{{ session.openingDate|date("d F Y", "Europe/Paris") }}
 					</span>
-					<span class="fw-bold align-self-end text-end fs-4 {{ session.closed ? 'text-warning' : 'text-success' }}">
+					<span class="badge rounded-pill px-3 fw-bold align-self-end text-end fs-6  text-dark {{ session.closed ? 'bg-danger' : 'bg-success' }}">
 						{{ session.closed ? 'FERMÉE' : 'OUVERTE' }}
 					</span>
 				</div>
@@ -60,7 +60,7 @@
 			<div class="row row-cols-xl-2 row-cols-1 g-2 mb-4">
 				{% for wine in session.wines %}
 					<div class="col m-sm-0 p-sm-0">
-						{% include './components/session/_card_session_grape_variety.html.twig' with { 'wine': wine } %}
+						{% include '/components/session/_card_session_grape_variety.html.twig' with { 'wine': wine } %}
 					</div>
 				{% endfor %}
 			</div>

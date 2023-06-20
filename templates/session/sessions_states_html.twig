@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-	<main class="container">
-		{% include './components/session/_opened_sessions.html.twig' with {'sessionsOpened' : sessionsOpened}  %}
+	<main class="container-fluid container-lg">
+		{% include '/components/session/_opened_sessions.html.twig' with {'sessionsOpened' : sessionsOpened}  %}
 	</main>
 {% endblock %}
