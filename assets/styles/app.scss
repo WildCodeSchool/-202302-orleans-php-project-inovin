@@ -110,3 +110,10 @@ body {
 .transform {
     transform: translate(7px, -2px);
 }
+
+.bg-footer {
+    background-image: url("../images/line.svg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% 3px;
+}
