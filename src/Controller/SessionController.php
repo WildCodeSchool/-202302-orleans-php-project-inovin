@@ -18,7 +18,7 @@ class SessionController extends AbstractController
     {
         $sessions = $sessionRepository->findBy([], ['openingDate' => 'desc',]);
 
-        return $this->render('session/index.html.twig', [
+        return $this->render('admin/session/index.html.twig', [
             'sessions' => $sessions
         ]);
     }
@@ -36,7 +36,7 @@ class SessionController extends AbstractController
             return $this->redirectToRoute('app_session_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('session/new.html.twig', [
+        return $this->render('admin/session/new.html.twig', [
             'session' => $session,
             'form' => $form,
         ]);
@@ -45,7 +45,7 @@ class SessionController extends AbstractController
     #[Route('/{id}', name: 'app_session_show', methods: ['GET'])]
     public function show(Session $session): Response
     {
-        return $this->render('session/show.html.twig', [
+        return $this->render('admin/session/show.html.twig', [
             'session' => $session,
         ]);
     }
@@ -62,7 +62,7 @@ class SessionController extends AbstractController
             return $this->redirectToRoute('app_session_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('session/edit.html.twig', [
+        return $this->render('admin/session/edit.html.twig', [
             'session' => $session,
             'form' => $form,
         ]);
