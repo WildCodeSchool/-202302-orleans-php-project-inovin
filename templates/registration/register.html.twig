@@ -1,6 +1,5 @@
 {% extends 'visitor.html.twig' %}
 
-
 {% block title %}
 	{{ parent()}}
 	- Inscription
@@ -21,7 +20,7 @@
 		<div class="row">
 			<div class="col-11 m-auto px-3 border border-secondary d-flex flex-column align-items-center pt-5 bg-card ornement position-relative">
 				<h2 class="text-center text-uppercase letter-spacing mt-5">Formulaire d'inscription</h2>
-				{% include "icones/surlignage.svg" %}
+				{% include "components/svg/_frame_surlignage.svg.twig" %}
 
 				{{ form_start(registrationForm) }}
 				{# FORM LEFT #}
@@ -58,7 +57,7 @@
 
 							{# LIGNE #}
 							<div class="d-none d-md-block">
-								{% include "icones/ligne.svg" %}
+								{% include "components/svg/_frame_vertical_line.svg" %}
 							</div>
 
 							{# FORM RIGHT #}
@@ -88,10 +87,10 @@
 									<div class="d-flex flex-row justify-content-between flex-lg-row align-items-center gap-3">
 										<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center">
 											{{ button_label|default('Valider') }}
-											{{ include('/components/svg_img/_icon_validate.svg.twig') }}
+											{{ include('/components/svg/_icon_validate.svg.twig') }}
 										</button>
 										<button type='reset' class="btn btn-sm fw-bolder icon-link icon-link-hover-left icon-light text-uppercase order-1 d-flex justify-content-center">
-											{{ include('/components/svg_img/_icon_close.svg.twig') }}
+											{{ include('/components/svg/_icon_close.svg.twig') }}
 											{{ button_label|default('Annuler') }}
 										</button>
 									</div>

@@ -145,3 +145,10 @@ body {
     right: 0;
     transform: translate(1px, 1px) rotate(180deg);
 }
+
+.bg-footer {
+    background-image: url("../images/line.svg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% 3px;
+}

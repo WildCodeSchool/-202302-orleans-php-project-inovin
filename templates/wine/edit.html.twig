@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Edit Wine{% endblock %}
-
-{% block body %}
-    <h1>Edit Wine</h1>
-
-    {{ include('wine/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_wine_index') }}">back to list</a>
-
-    {{ include('wine/_delete_form.html.twig') }}
+{% extends 'admin.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Vins - Édition
+{% endblock %}
+{% block admin_content_title %}ÉDITION DU VIN
+{% endblock %}
+{% block admin_content %}
+	<div class="row d-flex justify-content-center">
+		<div class="col">
+            {{ include('wine/_form.html.twig', {'button_label': 'Modifier'}) }}
+        </div>
 {% endblock %}
