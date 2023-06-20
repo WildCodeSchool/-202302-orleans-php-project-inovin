@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="d-flex justify-content-end align-self-end px-4">
 				<a role="button" class="bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover-left icon-dark text-uppercase order-2 btn" href="{{ path('app_admin_cepage_new') }}">
-					{{ include('/components/svg_img/_icon_add.svg.twig') }}
+					{{ include('/components/svg/_icon_add.svg.twig') }}
 					AJOUTER</a>
 			</div>
 		</div>
@@ -32,10 +32,12 @@
 						</td>
 						<td class="text-center p-2 w-25">
 							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-								<<<<<<<HEAD:templates/grape_variety/index.html.twig<aclass="icon-linkicon-link-hover-leftlink-lightmx-4text-decoration-none"href="{{path('app_cepage_edit',{'id':grape_variety.id})}}">{{include('/components/svg/_icon_edit.svg.twig')}}=======<aclass="icon-linkicon-link-hover-leftlink-lightmx-4text-decoration-none"href="{{path('app_admin_cepage_edit',{'id':grape_variety.id})}}">{{include('/components/svg_img/_icon_edit.svg.twig')}}>>>>>>> cafa750bee73fdea91400d435772ae2945126b16:templates/admin/grape_variety/index.html.twig
-																	Éditer
-							</a>
-							{{ include('./admin/grape_variety/_delete_form.html.twig') }}</td>
+								<a class="icon-link icon-link-hover-left link-light mx-4 text-decoration-none" href="{{ path('app_admin_cepage_edit',{'id':grape_variety.id}) }}">
+									{{include('/components/svg/_icon_edit.svg.twig') }}
+									Éditer
+								</a>
+								{{ include('./admin/grape_variety/_delete_form.html.twig') }}</td>
+						</td>
 					</tr>
 				</div>
 			</tbody>
