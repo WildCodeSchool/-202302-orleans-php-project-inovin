@@ -1,39 +1,5 @@
-@import "variables";
+@import "_variables";
 
 main {
     height: calc(100vh - 155.25px);
-}
-
-.bg-card {
-    background: $card-gradient-color;
-}
-
-.ornement {
-    border-radius: 0 8px 0 8px;
-}
-
-.ornement::before {
-    content: "";
-    background-image: url(../images/ornement.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 120px;
-    width: 120px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(-1px, -1px);
-}
-
-.ornement::after {
-    content: "";
-    background-image: url(../images/ornement.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 120px;
-    width: 120px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    transform: translate(1px, 1px) rotate(180deg);
 }
