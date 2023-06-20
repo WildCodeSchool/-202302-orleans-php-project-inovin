@@ -38,7 +38,7 @@ class WineController extends AbstractController
             return $this->redirectToRoute('app_wine_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('wine/new.html.twig', [
+        return $this->render('wine/new.html.twig', [
             'wine' => $wine,
             'form' => $form,
         ]);
@@ -64,7 +64,7 @@ class WineController extends AbstractController
             return $this->redirectToRoute('app_wine_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('wine/edit.html.twig', [
+        return $this->render('wine/edit.html.twig', [
             'wine' => $wine,
             'form' => $form,
         ]);
