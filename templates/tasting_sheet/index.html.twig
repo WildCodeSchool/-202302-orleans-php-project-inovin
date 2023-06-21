@@ -9,6 +9,25 @@
 {% endblock %}
 
 {% block body %}
+
+	{% set criteriaContents = 
+	{'Apparence': [
+    	'L’intensité : Comment trouvez-vous l\'intensité ?',
+    	'Brillance : Comment trouvez-vous la brillance ?',
+    	'Limpidité : Comment trouvez-vous  la limpidité ?',
+	],
+	'Nez': [
+		'Arôme : Comment trouvez-vous l\'arome ?',
+		'Intensité : Comment trouvez-vous l\'intensité ?',
+		'Impression : Comment trouvez-vous l\'impression ?',
+	],
+	'Palais': [
+		'Matière : Comment trouvez-vous la matière ?',
+		'Structure : Comment trouvez-vous la structure ?',
+		'Saveur : Comment trouvez-vous la saveur ?',
+	],
+	}%}
+
 	<main class="container mb-5 pb-5 mt-5 pt-5">
 		<div class="d-flex flex-column align-items-start mb-4">
 			<h1 class="text-primary-light fw-light letter-spacing spaceBeforeNavbar">
@@ -79,15 +98,11 @@
 									<div class="secondNavBarBorder">
 										<div class="mySecondNavbar p-md-4 pe-5 ps-5 pt-3 pb-4">
 											<ul class="nav nav-pills mb-3 d-flex flex-column flex-md-row ps-md-3 ps-0 ms-md-3 ms-0" id="pills-tab" role="tablist">
-												<li class="nav-item d-flex" role="presentation">
-													<button class="nav-link active align-self-center pt-3 pb-3 pe-0 ps-0 pe-md-4 letter-spacing" id="pills-Apparence{{ loop.index }}-tab" data-bs-toggle="pill" data-bs-target="#pills-Apparence{{ loop.index }}" type="button" role="tab" aria-controls="pills-Apparence{{ loop.index }}" aria-selected="true">Apparence</button>
-												</li>
-												<li class="nav-item d-flex" role="presentation">
-													<button class="nav-link align-self-center pt-3 pb-3 pe-0 ps-0 pe-md-4 ps-md-4 letter-spacing" id="pills-Odeur{{ loop.index }}-tab" data-bs-toggle="pill" data-bs-target="#pills-Odeur{{ loop.index }}" type="button" role="tab" aria-controls="pills-Odeur{{ loop.index }}" aria-selected="false">Odeur</button>
-												</li>
-												<li class="nav-item d-flex" role="presentation">
-													<button class="nav-link align-self-center pt-3 pb-3 pe-0 ps-0 pe-md-4 ps-md-4 letter-spacing" id="pills-Palais{{ loop.index }}-tab" data-bs-toggle="pill" data-bs-target="#pills-Palais{{ loop.index }}" type="button" role="tab" aria-controls="pills-Palais{{ loop.index }}" aria-selected="false">Palais</button>
-												</li>
+												{% for key, criteriaContent in criteriaContents %}
+													<li class="nav-item d-flex" role="presentation">
+														<button class="nav-link {% if loop.first %} {{ 'show active' }} {% endif %} align-self-center pt-3 pb-3 pe-0 ps-0 pe-md-4 letter-spacing" id="pills-{{ key }}{{ loop.index }}-tab" data-bs-toggle="pill" data-bs-target="#pills-{{ key }}{{ loop.index }}" type="button" role="tab" aria-controls="pills-{{ key }}{{ loop.index }}" aria-selected="true">{{ key }}</button>
+													</li>
+												{% endfor %}
 											</ul>
 
 											<p class="ps-md-3 ps-0 ms-md-3 ms-0 spacingCiteriaTitle">Choississez une note de
@@ -98,74 +113,20 @@
 
 											<div class="tab-content" id="pills-tabContent">
 
-												<div class="tab-pane fade show active" id="pills-Apparence{{ loop.index }}" role="tabpanel" aria-labelledby="pills-Apparence{{ loop.index }}-tab" tabindex="0">
-
-													<ul class="d-flex flex-column align-self-center ps-md-5 ps-1 ms-md-5 ms-2 mt-5">
-														<li class="list-group-item d-flex justify-content-between align-items-center mt-4">
-															{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':'1'} %}
-															<div class="ms-2 me-auto">
-																<p class="mx-2 fw-light mb-0">L’intensité : Comment trouvez-vous l'intensité ?</p>
-															</div>
-														</li>
-														<li class="list-group-item d-flex justify-content-between align-items-center mt-4">
-															{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':'2'} %}
-															<div class="ms-2 me-auto">
-																<p class="mx-2 fw-light mb-0">Brillance : Comment trouvez-vous la brillance ?</p>
-															</div>
-														</li>
-														<li class="list-group-item d-flex justify-content-between align-items-center mt-4">
-															{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':'3'} %}
-															<div class="ms-2 me-auto">
-																<p class="mx-2 fw-light mb-0">Limpidité : Comment trouvez-vous  la limpidité ?</p>
-															</div>
-														</li>
-													</ul>
-												</div>
-
-												<div class="tab-pane fade" id="pills-Odeur{{ loop.index }}" role="tabpanel" aria-labelledby="pills-Odeur{{ loop.index }}-tab" tabindex="0">
-													<ul class="d-flex flex-column align-self-center ps-md-5 ps-1 ms-md-5 ms-2 mt-5">
-														<li class="list-group-item d-flex justify-content-between align-items-center mt-4">
-															{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':'1'} %}
-															<div class="ms-2 me-auto">
-																<p class="mx-2 fw-light mb-0">Arôme : Comment trouvez-vous l'arome ?</p>
-															</div>
-														</li>
-														<li class="list-group-item d-flex justify-content-between align-items-center mt-4">
-															{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':'2'} %}
-															<div class="ms-2 me-auto">
-																<p class="mx-2 fw-light mb-0">Intensité : Comment trouvez-vous l'intensité ?</p>
-															</div>
-														</li>
-														<li class="list-group-item d-flex justify-content-between align-items-center mt-4">
-															{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':'3'} %}
-															<div class="ms-2 me-auto">
-																<p class="mx-2 fw-light mb-0">Impression : Comment trouvez-vous l'impression ?</p>
-															</div>
-														</li>
-													</ul>
-												</div>
-												<div class="tab-pane fade" id="pills-Palais{{ loop.index }}" role="tabpanel" aria-labelledby="pills-Palais{{ loop.index }}-tab" tabindex="0">
-													<ul class="d-flex flex-column align-self-center ps-md-5 ps-1 ms-md-5 ms-2 mt-5">
-														<li class="list-group-item d-flex justify-content-between align-items-center mt-4">
-															{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':'1'} %}
-															<div class="ms-2 me-auto">
-																<p class="mx-2 fw-light mb-0">Matière : Comment trouvez-vous la matière ?</p>
-															</div>
-														</li>
-														<li class="list-group-item d-flex justify-content-between align-items-center mt-4">
-															{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':'2'} %}
-															<div class="ms-2 me-auto">
-																<p class="mx-2 fw-light mb-0">Structure : Comment trouvez-vous la structure ?</p>
-															</div>
-														</li>
-														<li class="list-group-item d-flex justify-content-between align-items-center mt-4">
-															{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':'3'} %}
-															<div class="ms-2 me-auto">
-																<p class="mx-2 fw-light mb-0">Saveur : Comment trouvez-vous la saveur ?</p>
-															</div>
-														</li>
-													</ul>
-												</div>
+												{% for key, criteriaContent in criteriaContents %}
+													<div class="tab-pane fade show {% if loop.first %} {{ 'active' }} {% endif %}" id="pills-{{ key }}{{ loop.index }}" role="tabpanel" aria-labelledby="pills-{{ key }}{{ loop.index }}-tab" tabindex="0">
+														<ul class="d-flex flex-column align-self-center ps-md-5 ps-1 ms-md-5 ms-2 mt-5">
+															{% for criteria in criteriaContent %}
+																<li class="list-group-item d-flex justify-content-between align-items-center mt-4">
+																	{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':1} %}
+																	<div class="ms-2 me-auto">
+																		<p class="mx-2 fw-light mb-0">{{ criteria }}</p>
+																	</div>
+																</li>
+															{% endfor %}
+														</ul>
+													</div>
+												{% endfor %}
 											</div>
 										</div>
 									</div>
