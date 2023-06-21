@@ -238,4 +238,9 @@ class Wine
 
         return $this;
     }
+
+    public function getFullLabel(): string
+    {
+        return $this->getYear() . ' - ' . $this->getName() . ' - ' . $this->getGrapeVariety()->getName();
+    }
 }
