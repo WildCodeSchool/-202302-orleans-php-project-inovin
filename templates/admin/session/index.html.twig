@@ -6,6 +6,16 @@
 {% block admin_content_title %}NOS SÉANCES
 {% endblock %}
 {% block admin_content %}
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
+	{% for message in app.flashes('danger') %}
+		<div class="alert alert-danger">
+			{{ message }}
+		</div>
+	{% endfor %}
 	<div>
 		<div class="row">
 			<div class="d-flex justify-content-end align-self-end mb-4 px-4">

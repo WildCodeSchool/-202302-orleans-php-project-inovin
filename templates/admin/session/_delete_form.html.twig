@@ -1,9 +1,8 @@
-<form method="post" action="{{ path('admin_session_delete', {'id': session.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer la séance {{ session.name }} ?');">
+<form method="post" action="{{ path('admin_session_delete', {'id': session.id}) }}">
 	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ session.id) }}">
-	<button class="bg-transparent border-0">
-		<a class="icon-link icon-link-hover-left link-light text-decoration-none">
-			{{ include('/components/svg/_icon_trash.svg.twig') }}
-			Supprimer
-		</a>
-	</button>
-</form>
+    <button class="bg-transparent border-0">
+	<a class="text-decoration-none icon-link icon-link-hover link-light mx-4" role="button" onclick="return confirm('Êtes-vous sûr de bien vouloir supprimer la séance {{ session.name }} ?');">
+		{{ include('/components/svg/_icon_trash.svg.twig') }}
+		Supprimer
+	</a>
+</button></form>
