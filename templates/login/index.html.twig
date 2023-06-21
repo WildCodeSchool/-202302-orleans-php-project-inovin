@@ -28,9 +28,10 @@
 						<input type="text" class="form-control border-secondary bg-dark-light" id="username" name="_username" value="{{ last_username }}">
 					</div>
 
-					<div class="mb-3">
+					<div class="pb-3">
 						<label for="password" class="form-label text-uppercase letter-spacing">Mot de passe</label>
 						<input type="password" class="form-control border-secondary bg-dark-ligh" id="password" name="_password">
+						<a href="{{ path('app_forgot_password_request') }}" class="letter-spacing text-decoration-none d-block mt-2">Mot de passe oublié ?</a>
 					</div>
 
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">

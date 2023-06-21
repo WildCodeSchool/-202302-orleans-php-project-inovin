@@ -38,6 +38,7 @@ Encore
     .addStyleEntry('home', './assets/styles/home.scss')
     .addStyleEntry('login', './assets/styles/login.scss')
     .addStyleEntry("registration", "./assets/styles/registration.scss")
+    .addStyleEntry("resetPassword", "./assets/styles/resetPassword.scss")
     .addStyleEntry('tastingSheet', './assets/styles/tastingSheet.scss')
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge("./assets/controllers.json")
@@ -79,15 +80,15 @@ Encore
     // uncomment if you use TypeScript
     // .enableTypeScriptLoader()
 
-// uncomment if you use React
-// .enableReactPreset()
+    // uncomment if you use React
+    // .enableReactPreset()
 
-// uncomment to get integrity="..." attributes on your script & link tags
-// requires WebpackEncoreBundle 1.4 or higher
-// .enableIntegrityHashes(Encore.isProduction())
+    // uncomment to get integrity="..." attributes on your script & link tags
+    // requires WebpackEncoreBundle 1.4 or higher
+    // .enableIntegrityHashes(Encore.isProduction())
 
-// uncomment if you're having problems with a jQuery plugin
-// .autoProvidejQuery()
+    // uncomment if you're having problems with a jQuery plugin
+    // .autoProvidejQuery()
 
     // enables Sass/SCSS support
     .enableSassLoader();
