@@ -2,26 +2,40 @@
 
 namespace App\Tests\Controller;
 
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class RouteTest extends WebTestCase
 {
+    //private static ?KernelBrowser $client = null;
     /**
      * @dataProvider urlProvider
      */
     public function testPageIsSuccessFul(string $url): void
     {
+        //You can call self::ensureKernelShutdown() before creating your client as per the official recommendation.
+        //this avoid you are using 2 times static::createClient() and this will boot again the kernel !!
+        self::ensureKernelShutdown();
+
         // This calls KernelTestCase::bootKernel(), and creates a
         // "client" that is acting as the browser
         $client = static::createClient();
+
         // Request a specific page
         $client->request('GET', $url);
-        //var_print($url);
+
+        //test page response 200 OK
         $this->assertResponseIsSuccessful('Impossible d\'accéder à l\'url : ' . $url);
     }
 
-    public function urlProvider(): mixed
+    public function urlProvider(): array
     {
+        return $this->getAppRoutes();
+    }
+
+    private function getAppRoutes(): array
+    {
+        $myAppRoutes = [];
         $forbidenRoutes = ['/verify/email'];
         $router = $this->getContainer()->get('router');
         $collection = $router->getRouteCollection();
@@ -43,22 +57,14 @@ class RouteTest extends WebTestCase
                     if (!in_array($pathRoute, $forbidenRoutes)) {
                         //check method GET is possible for the route
                         if (in_array("GET", $methods)) {
-                            //return the route to test
-                            yield [$pathRoute];
+                            //add the route to array for the test
+                            $myAppRoutes[] = [$pathRoute];
                         }
                     }
                 }
             }
         }
 
-        /*
-        yield ['/']; //home page
-        yield ['/admin/']; //admin home page
-        yield ['/contact']; //contact page
-        yield ['/login']; //login page
-        yield ['/session/']; //admin index séance
-        yield ['/admin/cepage/']; //admin index cépage
-        yield ['/vin/']; //admin index vin
-        */
+        return $myAppRoutes;
     }
 }
