@@ -25,10 +25,11 @@ h6 {
     letter-spacing: 2px;
     background-color: $dark-light;
     color: $primary-light;
-    padding-inline: 2em;
+    padding-inline: 1em;
     border-radius: 50px;
     transition-duration: 0.2s;
     box-shadow: $shadow-primary;
+    min-width: 9rem;
 }
 .icon-light > svg {
     color: $primary-light;
@@ -89,7 +90,7 @@ body {
 }
 
 .letter-spacing {
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 
 .font-sizepara {
@@ -108,4 +109,45 @@ body {
 
 .transform {
     transform: translate(7px, -2px);
+}
+
+.bg-card {
+    background: $card-gradient-color;
+}
+
+.ornement {
+    border-radius: 0 8px 0 8px;
+}
+
+.ornement::before {
+    content: "";
+    background-image: url(../images/ornement.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-1px, -1px);
+}
+
+.ornement::after {
+    content: "";
+    background-image: url(../images/ornement.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(1px, 1px) rotate(180deg);
+}
+
+.bg-footer {
+    background-image: url("../images/line.svg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% 3px;
 }
