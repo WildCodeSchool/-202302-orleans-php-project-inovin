@@ -13,7 +13,7 @@
 	<main class="container">
 		<section>
 			<div class="row mb-4">
-				<div class="col-sm-12 col-11 px-sm-5 px-3 m-auto pt-5 ">
+				<div class="col-11 px-sm-5 px-3 m-auto pt-5 ">
 					<h2 class="text-primary-light fw-light text-uppercase letter-spacing mt-5">
 						{% include 'components/svg/_icon_decoration.svg.twig' %}LISTE DE NOS VINS
 					</h2>
@@ -31,7 +31,7 @@
 									{{ wine.price }}
 								</div>
 								<div class="alcool-rate-placeholder text-secondary bg-primary d-flex align-items-center justify-content-center fs-6 fw-bold shadow">{{ wine.alcoholPercent ~ '%' }}</div>
-								<img class="card-img-top" alt="image du vin" src="{{ wine.picture is not empty ? vich_uploader_asset(wine) : asset('build/images/placeholder_wine.svg') }}">
+								<img class="card-img-top" alt="image du vin" src="{{ wine.picture is not empty ? vich_uploader_asset(wine) : asset('build/images/placeholder_wine.jpg') }}">
 								<div class="price-placeholder"></div>
 								<div class="card-body">
 									<h5 class="card-title text-capitalize text-primary-light text-center">{{ wine.name|u.truncate(22, '...') }}</h5>
