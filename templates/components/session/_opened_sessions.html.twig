@@ -1,0 +1,78 @@
+<div class="row mb-4">
+	<div class="col-sm-12 col-11 px-sm-5 px-3 m-auto pt-5 ">
+		<h2 class="text-primary-light fw-light text-uppercase letter-spacing mt-5">
+			{% include 'components/svg/_icon_decoration.svg.twig' %}SÉANCES OUVERTES
+		</h2>
+		<div class="frame_container">
+			{% include "components/svg/_frame_surlignage_main.svg.twig" %}
+		</div>
+	</div>
+</div>
+
+{% for session in sessionsOpened %}
+	<div class="row m-sm-4 p-2">
+		<div class="col m-auto border border-secondary rounded-3 bg-card">
+
+			<div class="row mb-2">
+				<div class="col d-flex justify-content-between align-items-center m-sm-4 border-secondary border-bottom py-2">
+					<span class="text-primary-light fs-4 m-1">
+						Séance du
+						{{ session.openingDate|date("d F Y", "Europe/Paris") }}
+					</span>
+					<span class="badge rounded-pill px-3 fw-bold align-self-end text-end fs-6  text-dark {{ session.closed ? 'bg-danger' : 'bg-success' }}">
+						{{ session.closed ? 'FERMÉE' : 'OUVERTE' }}
+					</span>
+				</div>
+			</div>
+
+			<div class="row mb-2 px-4">
+				<div class="col px-4">
+					<a class="nav-link text-primary-light mb-2 fs-5 letter-spacing" data-bs-toggle="collapse" href="#collapseDescription" role="button" aria-expanded="false" aria-controls="collapseDescription">
+						Voir la description
+						<span class="text-light">{% include "components/svg/_icon_eye.svg.twig" %}</span>
+					</a>
+					<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"></div>
+					<div class="collapse border border-1 border-sedondary rounded-2" id="collapseDescription">
+						<div class="card card-body">
+							{{ session.description }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row d-flex flex-row m-2 m-sm-4 g-2">
+				<div class="col-8">
+					<div class="bg-primary text-center text-dark letter-spacing me-auto">
+						LIEU
+					</div>
+					<div class="text-start text-light letter-spacing me-auto mt-2"></div>
+				</div>
+				<div class="col-4">
+					<div class="bg-primary text-center text-dark letter-spacing ms-auto">
+						HORAIRE
+					</div>
+					<div class="text-center text-light letter-spacing ms-auto mt-2 text-nowrap">
+						{{ session.openingDate|date("H", "Europe/Paris") ~ 'H' ~ ' - ' ~  session.openingDate|date_modify('+ 3 hours')|date("H", "Europe/Paris") ~ 'H' }}
+					</div>
+				</div>
+			</div>
+
+			<div class="row row-cols-xl-2 row-cols-1 g-2 mb-4">
+				{% for wine in session.wines %}
+					<div class="col m-sm-0 p-sm-0">
+						{% include '/components/session/_card_session_grape_variety.html.twig' with { 'wine': wine } %}
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="row mt-4">
+				<div class="col d-flex justify-content-end align-items-center me-4">
+					<button class="btn bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover icon-dark text-uppercase">
+						PARTICIPER
+						{{ include('/components/svg/_icon_validate.svg.twig') }}
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endfor %}

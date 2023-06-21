@@ -1,5 +1,12 @@
 @import "_variables.scss";
 
+footer {
+    height: $footer-height;
+    background-color: $dark;
+    height: 100%;
+    padding-block: 1rem;
+}
+
 .line > img {
     width: 100%;
 }
