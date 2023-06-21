@@ -1,11 +1,14 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}New Session{% endblock %}
-
-{% block body %}
-    <h1>Create new Session</h1>
-
-    {{ include('admin/session/_form.html.twig') }}
-
-    <a href="{{ path('admin_session_index') }}">back to list</a>
+{% extends 'admin.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Séances - Ajouter
+{% endblock %}
+{% block admin_content_title %}AJOUT D'UNE SÉANCE
+{% endblock %}
+{% block admin_content %}
+	<div class="row d-flex justify-content-center">
+		<div class="col">
+			{{ include('admin/session/_form.html.twig') }}
+		</div>
+	</div>
 {% endblock %}
