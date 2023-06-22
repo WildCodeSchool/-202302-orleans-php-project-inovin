@@ -1,6 +1,5 @@
 //start coding by removing this file and adding yours ;)
 @import "_theme.scss";
-
 @import "_footer";
 @import "svg.scss";
 
@@ -78,6 +77,9 @@ h6 {
 p {
     font-family: $font-base;
     letter-spacing: 3px;
+}
+html {
+    height: 100%;
 }
 
 body {

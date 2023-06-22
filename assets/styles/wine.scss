@@ -1,0 +1,86 @@
+@import "variables";
+
+main {
+    min-height: calc(100vh - ($navbar-height + $footer-height));
+}
+
+.frame_container > .frame_separator {
+    width: auto;
+}
+
+.card {
+    background: $card-gradient-color;
+    box-shadow: $shadow-primary;
+    border: 2px solid $secondary;
+    border-radius: 45px 10px 10px 10px;
+    position: relative;
+}
+
+.card > img {
+    border-radius: 45px 9px 0px 0px;
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-title {
+    padding-block: 1rem;
+    font-family: $font-card-title;
+    font-size: 2rem;
+}
+
+.bar_separator {
+    height: 5px;
+    background-image: url("../images/line_bolder.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 110% 5px;
+}
+
+.col-title {
+    color: $primary;
+    border-bottom: 1px solid $secondary;
+    padding-bottom: calc(1rem * 1 / 2);
+}
+
+.col {
+    padding-top: calc(1rem * 1 / 2);
+}
+
+.card-footer {
+    border-top: 2px solid $secondary;
+    margin: 0;
+}
+
+.card-body {
+    outline: 1px dashed $secondary;
+    outline-offset: -6px;
+}
+
+.price-placeholder {
+    position: absolute;
+    width: 120px;
+    height: 70px;
+    top: 40px;
+    right: 0px;
+    transform: rotate(6deg);
+}
+
+.price-placeholder::after {
+    content: "";
+    border: 2px solid $primary;
+    width: 120px;
+    height: 70px;
+    position: absolute;
+    transform: translate(5px, 5px);
+}
+
+.alcool-rate-placeholder {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    top: 15px;
+    left: 15px;
+    border: 2px solid $light;
+}

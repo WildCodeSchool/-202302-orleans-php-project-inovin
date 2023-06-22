@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('app_wine_delete', {'id': wine.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer le vin {{ wine.name }} ?');">
+<form method="post" action="{{ path('app_admin_wine_delete', {'id': wine.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer le vin {{ wine.name }} ?');">
 	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ wine.id) }}">
 	<button class="bg-transparent border-0">
 		<a class="icon-link icon-link-hover-left link-light text-decoration-none">
