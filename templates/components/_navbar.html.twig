@@ -9,7 +9,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto ms-4 ms-sm-0 mt-4 mt-sm-0 d-flex justify-content-start align-lg-items-center gap-lg-4">
 				<li class="nav-item px-2">
-					<a class="nav-link letter-spacing" href="{{ path('app_session_states') }}">SÉANCES</a>
+					<a class="nav-link letter-spacing" href="#">SÉANCES</a>
 				</li>
 				<li class="nav-item px-2">
 					<a class="nav-link letter-spacing" href="{{ path('app_wine_index') }}">NOS VINS</a>
@@ -41,7 +41,7 @@
 						</p>
 						<span class="d-none d-sm-inline">
 							<a class="nav-link text-uppercase letter-spacing" href="{{ path('app_logout') }}">
-								{% include '/components/svg/_icon_logout.svg.twig' %}
+								{% include './components/svg/_icon_logout.svg.twig' %}
 							</a>
 						</span>
 					</li>
@@ -51,7 +51,7 @@
 					<li class="nav-item d-flex align-items-end align-items-center px-2">
 						<a class="nav-link text-uppercase letter-spacing" href="{{ path('login') }}">
 							Connexion
-							{% include '/components/svg/_icon_profile.svg.twig' %}
+							{% include './components/svg/_icon_profile.svg.twig' %}
 						</a>
 					</li>
 				</a>

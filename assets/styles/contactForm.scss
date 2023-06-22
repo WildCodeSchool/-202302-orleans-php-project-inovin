@@ -1,9 +1,5 @@
 @import "variables";
 
-.custom-height {
-    min-height: calc(100vh - ($navbar-height + $footer-height));
-}
-
 label {
     text-transform: uppercase;
 }
@@ -12,13 +8,27 @@ label {
     color: $secondary;
 }
 
-.border-secondary {
+.frame_separator {
+    width: clamp(250px, 50vw, 380px);
+}
+
+.border-secondary{
     background: $card-gradient-color;
 }
 
 .form-control {
     border: solid 1px $secondary;
-    margin-bottom: 1rem;
+    height: 3.3rem;
+    margin-bottom: 1.5rem;
+}
+
+h1,
+.h1 {
+    font-size: calc(1rem + 1vw);
+}
+
+.myContainer {
+   width: 1200px;
 }
 
 textarea.form-control {

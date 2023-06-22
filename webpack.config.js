@@ -42,7 +42,6 @@ Encore
     .addStyleEntry("registration", "./assets/styles/registration.scss")
     .addStyleEntry("wine", "./assets/styles/wine.scss")
 // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-// enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge("./assets/controllers.json")
 
 // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
