@@ -219,7 +219,6 @@ class Wine
         return $this;
     }
 
-
     public function getWineFile(): ?File
     {
         return $this->wineFile;
@@ -267,5 +266,10 @@ class Wine
         $this->protectedOrigin = $protectedOrigin;
 
         return $this;
+    }
+
+    public function getFullLabel(): string
+    {
+        return $this->getName() . ' - ' .  $this->getYear() .  ' - ' . $this->getGrapeVariety()->getName();
     }
 }
