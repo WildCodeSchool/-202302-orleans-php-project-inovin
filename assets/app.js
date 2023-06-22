@@ -6,8 +6,6 @@ import "./bootstrap.js";
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
-const $ = require("jquery");
-
 //import bootstrap bundle
 import * as bootstrap from "bootstrap";
 window.bootstrap = bootstrap;
