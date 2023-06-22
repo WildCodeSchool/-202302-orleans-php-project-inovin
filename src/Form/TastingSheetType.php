@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\TastingSheet;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,10 +13,9 @@ class TastingSheetType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('date')
-            ->add('taste')
-            ->add('smell')
-            ->add('visual')
+            ->add('taste', RangeType::class)
+            ->add('smell', RangeType::class)
+            ->add('visual', RangeType::class)
         ;
     }
 
