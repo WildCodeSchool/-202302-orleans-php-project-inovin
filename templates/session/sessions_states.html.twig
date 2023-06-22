@@ -1,0 +1,15 @@
+{% extends 'visitor.html.twig' %}
+{% block title %}
+    {{ parent() }}
+    - Sessions
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {# {{ encore_entry_link_tags('session') }} #}
+{% endblock %}
+{% block body %}
+    <main class="container">
+        {# {% include './components/session/_opened_sessions.html.twig' with {'sessionsOpened' : sessionsOpened}  %} #}
+        {% include './components/session/_next_sessions.html.twig'   %}
+    </main>
+{% endblock %}

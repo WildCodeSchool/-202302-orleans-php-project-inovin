@@ -23,6 +23,24 @@ class SessionController extends AbstractController
         ]);
     }
 
+    #[Route('/user', name: 'app_session_user', methods: ['GET'])]
+    public function sessionUser(SessionRepository $sessionRepository): Response
+    {
+        $allSessions = $sessionRepository->findBy([], ['openingDate' => 'desc',]);
+        $openSessions = array_filter($allSessions, function ($session) {
+            return $session->isClosed() === false;
+        });
+
+        $closedSessions = array_filter($allSessions, function ($session) {
+            return $session->isClosed() === true;
+        });
+
+        return $this->render('session/sessions_states.html.twig', [
+            'openSessions' => $openSessions,
+            'closedSessions' => $closedSessions
+        ]);
+    }
+
     #[Route('/new', name: 'app_session_new', methods: ['GET', 'POST'])]
     public function new(Request $request, SessionRepository $sessionRepository): Response
     {

@@ -26,7 +26,7 @@ class SessionFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create();
+        $faker = Factory::create('fr_FR');
 
         foreach (self::SESSIONS as $key => $sessionName) {
             $session = new Session();
@@ -35,6 +35,7 @@ class SessionFixtures extends Fixture
             $session->setOpeningDate($faker->dateTimeThisYear(new DateTime()));
             $session->setDescription($faker->sentence(200));
             $session->setClosed($faker->boolean());
+            $session->setLocation($faker->address());
             $manager->persist($session);
             $this->addReference('session_' . $key, $session);
         }
