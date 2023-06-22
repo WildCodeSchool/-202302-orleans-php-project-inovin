@@ -9,7 +9,7 @@
 	<div>
 		<div class="row">
 			<div class="d-flex justify-content-end align-self-end mb-4 px-4">
-				<a role="button" class="btn mt-4 icon-link icon-link-hover" href="{{ path('app_session_new') }}">
+				<a role="button" class="btn mt-4 icon-link icon-link-hover" href="{{ path('admin_session_new') }}">
 					{{ include('/components/svg/_icon_add.svg.twig') }}
 					AJOUTER</a>
 			</div>
@@ -36,11 +36,11 @@
 							<td class="px-4 align-middle">{{ session.name }}</td>
 							<td class="text-center p-2 w-25 align-middle">
 								<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-									<a class="text-decoration-none icon-link icon-link-hover link-light mx-4" role="button" href="{{ path('app_session_edit', {'id': session.id}) }}">
+									<a class="text-decoration-none icon-link icon-link-hover link-light mx-4" role="button" href="{{ path('admin_session_edit', {'id': session.id}) }}">
 										{{ include('/components/svg/_icon_edit.svg.twig') }}
 										Éditer
 									</a>
-									{{ include('./session/_delete_form.html.twig') }}
+									{{ include('admin/session/_delete_form.html.twig') }}
 								</div>
 							</td>
 						</tr>

@@ -5,10 +5,13 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cette adresse e-mail.')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -17,6 +20,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 180)]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -28,26 +33,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 25)]
+    #[ORM\Column(length: 150)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 150)]
     private ?string $firstname = null;
 
-    #[ORM\Column(length: 25)]
+    #[ORM\Column(length: 150)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 150)]
     private ?string $lastname = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\NotBlank]
     private ?\DateTimeInterface $dateBirth = null;
 
-    #[ORM\Column(length: 9, nullable: true)]
+    #[ORM\Column(length: 9)]
+    #[Assert\Length(max: 9)]
     private ?string $zipCode = null;
 
-    #[ORM\Column(length: 45, nullable: true)]
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(max: 255)]
     private ?string $city = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(max: 255)]
     private ?string $address = null;
 
-    #[ORM\Column(length: 45, nullable: true)]
+    #[ORM\Column(length: 255)]
+    #[Assert\Length(max: 255)]
     private ?string $country = null;
+
+    #[ORM\Column(type: 'boolean')]
+    private bool $isVerified = false;
 
     public function getId(): ?int
     {
@@ -148,10 +165,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->dateBirth;
     }
 
-    public function setDateBirth(\DateTimeInterface $dateBirth): static
+    public function setDateBirth(\DateTimeInterface $dateBirth): self
     {
         $this->dateBirth = $dateBirth;
-
         return $this;
     }
 
@@ -184,7 +200,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->address;
     }
 
-    public function setAdress(?string $address): static
+    public function setAddress(?string $address): static
     {
         $this->address = $address;
 
@@ -201,5 +217,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->country = $country;
 
         return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function isIsVerified(): ?bool
+    {
+        return $this->isVerified;
     }
 }
