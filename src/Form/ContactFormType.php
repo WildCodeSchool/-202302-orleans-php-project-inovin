@@ -19,50 +19,31 @@ class ContactFormType extends AbstractType
         $builder
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
-                'attr' => ['placeholder' => 'Veuillez écrire votre nom'],
-                'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
-                ],
+                'attr' => ['placeholder' => 'Veuillez écrire votre nom']
             ])
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
-                'attr' => ['placeholder' => 'Veuillez écrire votre prénom'],
-                'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
-                ],
-            ])
+                'attr' => ['placeholder' => 'Veuillez écrire votre prénom']
+                ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'attr' => ['placeholder' => 'Veuillez écrire votre email'],
-                'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
-                ],
             ])
             ->add('phone', TelType::class, [
                 'required' => false,
                 'label' => 'Téléphone',
                 'attr' => ['placeholder' => 'Veuillez écrire votre numéro'],
-                'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
-                ],
             ])
             ->add('subject', TextType::class, [
                 'label' => 'Sujet',
                 'attr' => ['placeholder' => 'Veuillez renseigner un sujet'],
-                'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
-                ],
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Message',
-                'attr' => [
-                    'placeholder' => 'Veuillez écrire votre message',
-                    'class' => 'message'
-                ],
-                'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
-                ],
-            ]);
+                'attr' => ['placeholder' => 'Veuillez écrire votre message',
+                            'class' => 'message'],
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

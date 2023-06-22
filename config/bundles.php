@@ -17,5 +17,4 @@ return [
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
     Symfony\UX\StimulusBundle\StimulusBundle::class => ['all' => true],
     Symfony\UX\Chartjs\ChartjsBundle::class => ['all' => true],
-    SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle::class => ['all' => true],
 ];

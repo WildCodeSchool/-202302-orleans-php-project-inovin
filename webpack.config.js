@@ -35,13 +35,11 @@ Encore
     .addEntry("app", "./assets/app.js")
     .addStyleEntry("contactForm", "./assets/styles/contactForm.scss")
     .addStyleEntry("admin", "./assets/styles/admin.scss")
-    .addStyleEntry("home", "./assets/styles/home.scss")
-    .addStyleEntry("session", "./assets/styles/session.scss")
-    .addStyleEntry("login", "./assets/styles/login.scss")
-    .addStyleEntry("tastingSheet", "./assets/styles/tastingSheet.scss")
-    .addStyleEntry("registration", "./assets/styles/registration.scss")
-// enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-// enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
+
+    .addStyleEntry('home', './assets/styles/home.scss')
+    .addStyleEntry('login', './assets/styles/login.scss')
+    .addStyleEntry('tastingSheet', './assets/styles/tastingSheet.scss')
+    // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge("./assets/controllers.json")
 
 // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

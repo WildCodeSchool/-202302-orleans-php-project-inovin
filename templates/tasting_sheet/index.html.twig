@@ -9,150 +9,140 @@
 {% endblock %}
 
 {% block body %}
-	<main class="container-fluid myContainer">
+
+	{% set criteriaContents = 
+	{'Apparence': [
+    	'L’intensité : Comment trouvez-vous l\'intensité ?',
+    	'Brillance : Comment trouvez-vous la brillance ?',
+    	'Limpidité : Comment trouvez-vous  la limpidité ?',
+	],
+	'Nez': [
+		'Arôme : Comment trouvez-vous l\'arome ?',
+		'Intensité : Comment trouvez-vous l\'intensité ?',
+		'Impression : Comment trouvez-vous l\'impression ?',
+	],
+	'Palais': [
+		'Matière : Comment trouvez-vous la matière ?',
+		'Structure : Comment trouvez-vous la structure ?',
+		'Saveur : Comment trouvez-vous la saveur ?',
+	],
+	}%}
+
+	<main class="container mb-5 pb-5 mt-5 pt-5">
 		<div class="d-flex flex-column align-items-start mb-4">
-			<h1 class="text-primary-light fw-light mt-5 letter-spacing">
-				{% include 'icones/decoration.svg' %}FICHE DE DÉGUSTATION
+			<h1 class="text-primary-light fw-light letter-spacing spaceBeforeNavbar">
+				{% include 'components/svg/_icon_decoration.svg.twig' %}
+				FICHE DE DÉGUSTATION
 			</h1>
 			<div>
-				{% include "icones/surlignage_main.svg" %}
+				{% include "components/svg/_frame_surlignage_main.svg.twig" %}
 			</div>
 		</div>
-		<h2 class="mt-4">SÉANCE DU 07 JUIN 2023</h2>
-		<h3 class="mb-4">16h - 19h</h3>
-		<div>
-			<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-				<li class="nav-item" role="presentation">
-					<button class="nav-link active" id="pills-1-tab" data-bs-toggle="pill" data-bs-target="#pills-1" type="button" role="tab" aria-controls="pills-1" aria-selected="true">Vin 1</button>
-				</li>
-				<li class="nav-item" role="presentation">
-					<button class="nav-link" id="pills-2-tab" data-bs-toggle="pill" data-bs-target="#pills-2" type="button" role="tab" aria-controls="pills-2" aria-selected="false">Vin 2</button>
-				</li>
-				<li class="nav-item" role="presentation">
-					<button class="nav-link" id="pills-3-tab" data-bs-toggle="pill" data-bs-target="#pills-3" type="button" role="tab" aria-controls="pills-3" aria-selected="false">Vin 3</button>
-				</li>
-				<li class="nav-item" role="presentation">
-					<button class="nav-link" id="pills-4-tab" data-bs-toggle="pill" data-bs-target="#pills-4" type="button" role="tab" aria-controls="pills-4" aria-selected="false">Vin 4</button>
-				</li>
-			</ul>
-			<div class="tab-content" id="pills-tabContent">
-				{% for wine in session.wines %}
-					<div class="tab-pane fade {% if loop.first %} {{ 'show active' }} {% endif %} border border-secondary rounded " id="pills-{{ loop.index }}" role="tabpanel" aria-labelledby="pills-{{ loop.index }}-tab" tabindex="0">
-						<div class="row">
-							<img class="col-6 p-4 rounded-circle" src="{{ asset('build/images/bottleWine.jpg')}}" alt="{{ wine.name ?? 'Default' }} image">
-							<div class="col-6 d-flex flex-column justify-content-start align-items-center mt-4">
-								<h4>{{ wine.name }}</h4>
-								<ul>
-									<li>Millésium:
-										{{ wine.year }}</li>
-									<li>Cépage:
-										{{ wine.grapeVariety.name }}</li>
-									<li>Vin
-										{{ wine.grapeVariety.color.color}}</li>
-									<li>{{ wine.name }}</li>
-								</ul>
-							</div>
-						</div>
-						<div class="border-top border-secondary rounded">
-							<div class=" p-4">
-								<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-									<li class="nav-item" role="presentation">
-										<button class="nav-link active" id="pills-Apparence{{ loop.index }}-tab" data-bs-toggle="pill" data-bs-target="#pills-Apparence{{ loop.index }}" type="button" role="tab" aria-controls="pills-Apparence{{ loop.index }}" aria-selected="true">Apparence</button>
-									</li>
-									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="pills-Odeur{{ loop.index }}-tab" data-bs-toggle="pill" data-bs-target="#pills-Odeur{{ loop.index }}" type="button" role="tab" aria-controls="pills-Odeur{{ loop.index }}" aria-selected="false">Odeur</button>
-									</li>
-									<li class="nav-item" role="presentation">
-										<button class="nav-link" id="pills-Palais{{ loop.index }}-tab" data-bs-toggle="pill" data-bs-target="#pills-Palais{{ loop.index }}" type="button" role="tab" aria-controls="pills-Palais{{ loop.index }}" aria-selected="false">Palais</button>
-									</li>
-								</ul>
-
-								<p>Choississez une note de
-									<span>0</span>
-									à
-									<span>10</span>
-									en fonction des ces critères</p>
-
-								<div class="tab-content" id="pills-tabContent">
-
-									<div class="tab-pane fade show active" id="pills-Apparence{{ loop.index }}" role="tabpanel" aria-labelledby="pills-Apparence{{ loop.index }}-tab" tabindex="0">
-
-										<ul class="d-flex flex-column align-self-center">
-											<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-												{% include 'components/_pine-circle.html.twig' with {'pine_number':'1'} %}
-												<div class="ms-2 me-auto">
-													<p class="mx-2 fw-light">L’intensité : Comment trouvez-vous l'intensité ?</p>
-												</div>
-											</li>
-											<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-												{% include 'components/_pine-circle.html.twig' with {'pine_number':'2'} %}
-												<div class="ms-2 me-auto">
-													<p class="mx-2 fw-light">Brillance : Comment trouvez-vous la brillance ?</p>
-												</div>
-											</li>
-											<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-												{% include 'components/_pine-circle.html.twig' with {'pine_number':'3'} %}
-												<div class="ms-2 me-auto">
-													<p class="mx-2 fw-light">Limpidité : Comment trouvez-vous  la limpidité ?</p>
-												</div>
-											</li>
-										</ul>
+		<h2 class="mt-5">SÉANCE DU 07 JUIN 2023</h2>
+		<h3 class="mb-5 pb-2">16h - 19h</h3>
+		<div class="row">
+			<div class="col myPage mb-4">
+				<div>
+					<ul class="firstNavbar nav nav-pills bg-dark" id="pills-tab" role="tablist">
+						<li class="nav-item" role="presentation">
+							<button class="nav-link active letter-spacing px-3 px-md-5" id="pills-1-tab" data-bs-toggle="pill" data-bs-target="#pills-1" type="button" role="tab" aria-controls="pills-1" aria-selected="true">Vin 1</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link letter-spacing px-3 px-md-5" id="pills-2-tab" data-bs-toggle="pill" data-bs-target="#pills-2" type="button" role="tab" aria-controls="pills-2" aria-selected="false">Vin 2</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link letter-spacing px-3 px-md-5" id="pills-3-tab" data-bs-toggle="pill" data-bs-target="#pills-3" type="button" role="tab" aria-controls="pills-3" aria-selected="false">Vin 3</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link letter-spacing px-3 px-md-5" id="pills-4-tab" data-bs-toggle="pill" data-bs-target="#pills-4" type="button" role="tab" aria-controls="pills-4" aria-selected="false">Vin 4</button>
+						</li>
+					</ul>
+					<div class="myForm">
+						<div class="tab-content myFormBorder" id="pills-tabContent">
+							{% for wine in session.wines %}
+								<div class="tab-pane fade {% if loop.first %} {{ 'show active' }} {% endif %}" id="pills-{{ loop.index }}" role="tabpanel" aria-labelledby="pills-{{ loop.index }}-tab" tabindex="0">
+									<div class="firstNavbarBorder">
+										<div class="row">
+											<div class="col-12 col-md-6 col-lg-4 d-flex align-items-center justify-content-center customMinWidth">
+												<img class="p-1 rounded-circle" src="{{ asset('build/images/bottleWine.jpg')}}" alt="{{ wine.name ?? 'Default' }} image">
+											</div>
+											<div class="col-12 col-md-6 col-lg-8 mt-4 d-flex flex-column align-items-md-start align-items-center justify-content-around	">
+												<h4 class=" mb-5 ps-3">{{ wine.name }}</h4>
+												<ul class="mb-4">
+													<li>
+														<span class="wineSheetListTitle">Millésium :
+														</span>
+														{{ wine.year }}</li>
+													<li>
+														<span class="wineSheetListTitle">Type :
+														</span>
+														Vin
+														{{ wine.grapeVariety.color.color}}</li>
+													<li>
+														<span class="wineSheetListTitle">Cépage :
+														</span>
+														{{ wine.grapeVariety.name }}</li>
+													<br>
+													<li>
+														<span class="wineSheetListTitle">Volume :
+														</span>
+														{{ wine.volume }}L</li>
+													<li>
+														<span class="wineSheetListTitle">Taux d'alcool :
+														</span>
+														{{ wine.alcoholPercent }}%</li>
+												</ul>
+											</div>
+										</div>
 									</div>
+									<div class="secondNavBarBorder">
+										<div class="mySecondNavbar p-md-4 pe-5 ps-5 pt-3 pb-4">
+											<ul class="nav nav-pills mb-3 d-flex flex-column flex-md-row ps-md-3 ps-0 ms-md-3 ms-0" id="pills-tab" role="tablist">
+												{% for key, criteriaContent in criteriaContents %}
+													<li class="nav-item d-flex" role="presentation">
+														<button class="nav-link {% if loop.first %} {{ 'show active' }} {% endif %} align-self-center pt-3 pb-3 pe-0 ps-0 pe-md-4 letter-spacing" id="pills-{{ key }}{{ loop.index }}-tab" data-bs-toggle="pill" data-bs-target="#pills-{{ key }}{{ loop.index }}" type="button" role="tab" aria-controls="pills-{{ key }}{{ loop.index }}" aria-selected="true">{{ key }}</button>
+													</li>
+												{% endfor %}
+											</ul>
 
-									<div class="tab-pane fade" id="pills-Odeur{{ loop.index }}" role="tabpanel" aria-labelledby="pills-Odeur{{ loop.index }}-tab" tabindex="0">
-										<ul class="d-flex flex-column align-self-center">
-											<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-												{% include 'components/_pine-circle.html.twig' with {'pine_number':'1'} %}
-												<div class="ms-2 me-auto">
-													<p class="mx-2 fw-light">Arôme : Comment trouvez-vous l'arome ?</p>
-												</div>
-											</li>
-											<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-												{% include 'components/_pine-circle.html.twig' with {'pine_number':'2'} %}
-												<div class="ms-2 me-auto">
-													<p class="mx-2 fw-light">Intensité : Comment trouvez-vous l'intensité ?</p>
-												</div>
-											</li>
-											<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-												{% include 'components/_pine-circle.html.twig' with {'pine_number':'3'} %}
-												<div class="ms-2 me-auto">
-													<p class="mx-2 fw-light">Impression : Comment trouvez-vous l'impression ?</p>
-												</div>
-											</li>
-										</ul>
+											<p class="ps-md-3 ps-0 ms-md-3 ms-0 spacingCiteriaTitle">Choississez une note de
+												<span class="text-primary">0</span>
+												à
+												<span class="text-primary">10</span>
+												en fonction des ces critères</p>
+
+											<div class="tab-content" id="pills-tabContent">
+
+												{% for key, criteriaContent in criteriaContents %}
+													<div class="tab-pane fade show {% if loop.first %} {{ 'active' }} {% endif %}" id="pills-{{ key }}{{ loop.index }}" role="tabpanel" aria-labelledby="pills-{{ key }}{{ loop.index }}-tab" tabindex="0">
+														<ul class="d-flex flex-column align-self-center ps-md-5 ps-1 ms-md-5 ms-2 mt-5">
+															{% for criteria in criteriaContent %}
+																<li class="list-group-item d-flex justify-content-between align-items-center mt-4">
+																	{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':1} %}
+																	<div class="ms-2 me-auto">
+																		<p class="mx-2 fw-light mb-0">{{ criteria }}</p>
+																	</div>
+																</li>
+															{% endfor %}
+														</ul>
+													</div>
+												{% endfor %}
+											</div>
+										</div>
 									</div>
-
-									<div class="tab-pane fade" id="pills-Palais{{ loop.index }}" role="tabpanel" aria-labelledby="pills-Palais{{ loop.index }}-tab" tabindex="0">
-										<ul class="d-flex flex-column align-self-center">
-											<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-												{% include 'components/_pine-circle.html.twig' with {'pine_number':'1'} %}
-												<div class="ms-2 me-auto">
-													<p class="mx-2 fw-light">Matière : Comment trouvez-vous la matière ?</p>
-												</div>
-											</li>
-											<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-												{% include 'components/_pine-circle.html.twig' with {'pine_number':'2'} %}
-												<div class="ms-2 me-auto">
-													<p class="mx-2 fw-light">Structure : Comment trouvez-vous la structure ?</p>
-												</div>
-											</li>
-											<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
-												{% include 'components/_pine-circle.html.twig' with {'pine_number':'3'} %}
-												<div class="ms-2 me-auto">
-													<p class="mx-2 fw-light">Saveur : Comment trouvez-vous la saveur ?</p>
-												</div>
-											</li>
-										</ul>
+									<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
+										<button class="d-flex align-items-center btn btn-outline-primary mt-3 mb-3 mx-3 letter-spacing px-4">
+											SUIVANT
+											<span class="transform">
+												{% include "components/svg/_icon_next.svg.twig" %}
+											</span>
+										</button>
 									</div>
 								</div>
-
-							</div>
-						</div>
-						<div class="d-flex justify-content-sm-end justify-content-center border-top border-secondary mt-4 w-100">
-							<button type="submit" class="btn m-3">SUIVANT</button>
+							{% endfor %}
 						</div>
 					</div>
-				{% endfor %}
+				</div>
 			</div>
 		</div>
 	</div>

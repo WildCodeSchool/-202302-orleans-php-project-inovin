@@ -33,10 +33,6 @@ class UserFixtures extends Fixture
         $user->setFirstname('Simple');
         $user->setLastname('User');
         $user->setDateBirth($faker->dateTime());
-        $user->setAddress('1 rue du machin truc');
-        $user->setZipCode('75000');
-        $user->setCity('Paris');
-        $user->setCountry('France');
 
         $manager->persist($user);
 
@@ -52,11 +48,6 @@ class UserFixtures extends Fixture
         $admin->setFirstname('Mike');
         $admin->setLastname('Xiong');
         $admin->setDateBirth($faker->dateTime());
-        $admin->setAddress('1 rue du machin truc');
-        $admin->setZipCode('75000');
-        $admin->setCity('Paris');
-        $admin->setCountry('France');
-
         $manager->persist($admin);
 
         $manager->flush();
