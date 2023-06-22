@@ -75,6 +75,9 @@ p {
     font-family: $font-base;
     letter-spacing: 3px;
 }
+html {
+    height: 100%;
+}
 
 body {
     padding-block-start: $navbar-height;

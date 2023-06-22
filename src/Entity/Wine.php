@@ -71,6 +71,12 @@ class Wine
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DatetimeInterface $updatedAt = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $origin = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $protectedOrigin = null;
+
     public function __construct(?bool $enabled = true)
     {
         $this->enabled = $enabled;
@@ -235,6 +241,30 @@ class Wine
     public function setUpdatedAt(DateTime $updatedAt): Wine
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getOrigin(): ?string
+    {
+        return $this->origin;
+    }
+
+    public function setOrigin(?string $origin): static
+    {
+        $this->origin = $origin;
+
+        return $this;
+    }
+
+    public function getProtectedOrigin(): ?string
+    {
+        return $this->protectedOrigin;
+    }
+
+    public function setProtectedOrigin(?string $protectedOrigin): static
+    {
+        $this->protectedOrigin = $protectedOrigin;
 
         return $this;
     }
