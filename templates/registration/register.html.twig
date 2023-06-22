@@ -1,0 +1,106 @@
+{% extends 'visitor.html.twig' %}
+
+{% block title %}
+	{{ parent()}}
+	- Inscription
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('registration') }}
+{% endblock %}
+
+{% block body %}
+	{% for flash_error in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+	{% endfor %}
+
+
+	<main class="container-fluid d-flex justify-content-center align-items-center my-5 my-md-0">
+		<div class="row">
+			<div class="col-11 m-auto px-3 border border-secondary d-flex flex-column align-items-center pt-5 bg-card ornement position-relative">
+				<h2 class="text-center text-uppercase letter-spacing mt-5">Formulaire d'inscription</h2>
+				{% include "components/svg/_frame_surlignage.svg.twig" %}
+
+				{{ form_start(registrationForm) }}
+				{# FORM LEFT #}
+				<div class="d-flex my-5 pb-5">
+					<div class="row mb-4 px-2 px-sm-5">
+						<div class="d-flex justify-content-between flex-md-row flex-column p-0">
+							<div class="col-12 col-md-5 mb-4">
+								<div class="d-flex gap-2 mb-3">
+									<div class="d-flex flex-column">
+										{{ form_label(registrationForm.lastname) }}
+										{{ form_widget(registrationForm.lastname) }}
+										{{ form_errors(registrationForm.lastname) }}
+									</div>
+									<div class="d-flex flex-column">
+										{{ form_label(registrationForm.firstname) }}
+										{{ form_widget(registrationForm.firstname) }}
+										{{ form_errors(registrationForm.firstname) }}
+									</div>
+								</div>
+
+								{{ form_label(registrationForm.email) }}
+								{{ form_widget(registrationForm.email) }}
+								{{ form_errors(registrationForm.email) }}
+
+								{{ form_label(registrationForm.plainPassword) }}
+								{{ form_widget(registrationForm.plainPassword) }}
+								{{ form_errors(registrationForm.plainPassword) }}
+
+
+								{{ form_label(registrationForm.date_birth) }}
+								{{ form_widget(registrationForm.date_birth) }}
+								{{ form_errors(registrationForm.date_birth) }}
+							</div>
+
+							{# LIGNE #}
+							<div class="d-none d-md-block">
+								{% include "components/svg/_frame_vertical_line.svg.twig" %}
+							</div>
+
+							{# FORM RIGHT #}
+							<div class="col-md-5 d-flex flex-column">
+								<div>
+									{{ form_label(registrationForm.address) }}
+									{{ form_widget(registrationForm.address) }}
+									{{ form_errors(registrationForm.address) }}
+									<div class="d-flex gap-2 mb-3 flex-column flex-lg-row">
+										<div class="d-flex flex-column">
+											{{ form_label(registrationForm.zip_code) }}
+											{{ form_widget(registrationForm.zip_code) }}
+											{{ form_errors(registrationForm.zip_code) }}
+										</div>
+										<div class="d-flex flex-column">
+											{{ form_label(registrationForm.city) }}
+											{{ form_widget(registrationForm.city) }}
+											{{ form_errors(registrationForm.city) }}
+										</div>
+									</div>
+									{{ form_label(registrationForm.country) }}
+									{{ form_widget(registrationForm.country) }}
+									{{ form_errors(registrationForm.country) }}
+								</div>
+
+								<div class="w-100 flex-grow align-self-start custom-m">
+									<div class="d-flex flex-row justify-content-between flex-lg-row align-items-center gap-3">
+										<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center">
+											{{ button_label|default('Valider') }}
+											{{ include('/components/svg/_icon_validate.svg.twig') }}
+										</button>
+										<button type='reset' class="btn btn-sm fw-bolder icon-link icon-link-hover-left icon-light text-uppercase order-1 d-flex justify-content-center">
+											{{ include('/components/svg/_icon_close.svg.twig') }}
+											{{ button_label|default('Annuler') }}
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{{ form_end(registrationForm) }}
+			</div>
+		</div>
+	</main>
+{% endblock %}

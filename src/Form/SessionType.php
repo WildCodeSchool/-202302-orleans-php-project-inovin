@@ -49,6 +49,7 @@ class SessionType extends AbstractType
                 CheckboxType::class,
                 [
                     'label' => 'Terminée ?',
+                    'required' => false,
                 ]
             );
     }

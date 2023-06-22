@@ -32,6 +32,7 @@ class SessionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $sessionRepository->save($session, true);
+            $this->addFlash('success', 'La séance a bien été ajoutée.');
 
             return $this->redirectToRoute('admin_session_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,6 +59,7 @@ class SessionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $sessionRepository->save($session, true);
+            $this->addFlash('success', 'La séance a bien été modifiée.');
 
             return $this->redirectToRoute('admin_session_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -73,8 +75,19 @@ class SessionController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $session->getId(), $request->request->get('_token'))) {
             $sessionRepository->remove($session, true);
+            $this->addFlash('success', 'La séance a bien été supprimée.');
         }
 
         return $this->redirectToRoute('admin_session_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/etats/all', name: 'app_session_states', methods: ['GET'])]
+    public function states(SessionRepository $sessionRepository): Response
+    {
+        $sessionsOpened = $sessionRepository->findBy(['closed' => '0'], ['openingDate' => 'desc']);
+
+        return $this->render('session/sessions_states_html.twig', [
+            'sessionsOpened' => $sessionsOpened
+        ]);
     }
 }
