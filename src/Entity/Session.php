@@ -31,9 +31,13 @@ class Session
     #[ORM\ManyToMany(targetEntity: Wine::class, inversedBy: 'sessions')]
     private Collection $wines;
 
+    #[ORM\OneToMany(mappedBy: 'session', targetEntity: Recipe::class)]
+    private Collection $recipes;
+
     public function __construct()
     {
         $this->wines = new ArrayCollection();
+        $this->recipes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -109,6 +113,36 @@ class Session
     public function removeWine(Wine $wine): static
     {
         $this->wines->removeElement($wine);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Recipe>
+     */
+    public function getRecipes(): Collection
+    {
+        return $this->recipes;
+    }
+
+    public function addRecipe(Recipe $recipe): static
+    {
+        if (!$this->recipes->contains($recipe)) {
+            $this->recipes->add($recipe);
+            $recipe->setSession($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecipe(Recipe $recipe): static
+    {
+        if ($this->recipes->removeElement($recipe)) {
+            // set the owning side to null (unless already changed)
+            if ($recipe->getSession() === $this) {
+                $recipe->setSession(null);
+            }
+        }
 
         return $this;
     }

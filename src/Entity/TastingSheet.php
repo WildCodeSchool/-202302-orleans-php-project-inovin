@@ -26,6 +26,10 @@ class TastingSheet
     #[ORM\Column]
     private ?float $visual = null;
 
+    #[ORM\ManyToOne(inversedBy: 'tastingSheet')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Recipe $recipe = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +79,18 @@ class TastingSheet
     public function setVisual(float $visual): static
     {
         $this->visual = $visual;
+
+        return $this;
+    }
+
+    public function getRecipe(): ?Recipe
+    {
+        return $this->recipe;
+    }
+
+    public function setRecipe(?Recipe $recipe): static
+    {
+        $this->recipe = $recipe;
 
         return $this;
     }
