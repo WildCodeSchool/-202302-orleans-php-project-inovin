@@ -1,14 +1,14 @@
 {% extends 'admin.html.twig' %}
 {% block title %}
 	{{ parent() }}
-	| Séances - Édition
+	| Séances - Ajouter
 {% endblock %}
-{% block admin_content_title %}ÉDITION D'UNE SÉANCE
+{% block admin_content_title %}AJOUT D'UNE SÉANCE
 {% endblock %}
 {% block admin_content %}
 	<div class="row d-flex justify-content-center">
 		<div class="col">
-			{{ include('session/_form.html.twig', {'button_label': 'Modifier'}) }}
+			{{ include('admin/session/_form.html.twig') }}
 		</div>
 	</div>
 {% endblock %}

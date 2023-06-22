@@ -1,5 +1,7 @@
+@import "_variables.scss";
+
 footer {
-    height: 120px;
+    height: $footer-height;
     background-color: $dark;
     height: 100%;
     padding-block: 1rem;
