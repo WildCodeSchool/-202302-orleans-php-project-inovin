@@ -13,17 +13,17 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/session')]
 class SessionController extends AbstractController
 {
-    #[Route('/', name: 'app_session_index', methods: ['GET'])]
+    #[Route('/', name: 'admin_session_index', methods: ['GET'])]
     public function index(SessionRepository $sessionRepository): Response
     {
         $sessions = $sessionRepository->findBy([], ['openingDate' => 'desc',]);
 
-        return $this->render('session/index.html.twig', [
+        return $this->render('admin/session/index.html.twig', [
             'sessions' => $sessions
         ]);
     }
 
-    #[Route('/new', name: 'app_session_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'admin_session_new', methods: ['GET', 'POST'])]
     public function new(Request $request, SessionRepository $sessionRepository): Response
     {
         $session = new Session();
@@ -32,25 +32,26 @@ class SessionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $sessionRepository->save($session, true);
+            $this->addFlash('success', 'La séance a bien été ajoutée.');
 
-            return $this->redirectToRoute('app_session_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_session_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('session/new.html.twig', [
+        return $this->render('admin/session/new.html.twig', [
             'session' => $session,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_session_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'admin_session_show', methods: ['GET'])]
     public function show(Session $session): Response
     {
-        return $this->render('session/show.html.twig', [
+        return $this->render('admin/session/show.html.twig', [
             'session' => $session,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_session_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'admin_session_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Session $session, SessionRepository $sessionRepository): Response
     {
         $form = $this->createForm(SessionType::class, $session);
@@ -58,23 +59,35 @@ class SessionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $sessionRepository->save($session, true);
+            $this->addFlash('success', 'La séance a bien été modifiée.');
 
-            return $this->redirectToRoute('app_session_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_session_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('session/edit.html.twig', [
+        return $this->render('admin/session/edit.html.twig', [
             'session' => $session,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_session_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'admin_session_delete', methods: ['POST'])]
     public function delete(Request $request, Session $session, SessionRepository $sessionRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $session->getId(), $request->request->get('_token'))) {
             $sessionRepository->remove($session, true);
+            $this->addFlash('success', 'La séance a bien été supprimée.');
         }
 
-        return $this->redirectToRoute('app_session_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_session_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/etats/all', name: 'app_session_states', methods: ['GET'])]
+    public function states(SessionRepository $sessionRepository): Response
+    {
+        $sessionsOpened = $sessionRepository->findBy(['closed' => '0'], ['openingDate' => 'desc']);
+
+        return $this->render('session/sessions_states_html.twig', [
+            'sessionsOpened' => $sessionsOpened
+        ]);
     }
 }
