@@ -67,7 +67,8 @@ class SessionType extends AbstractType
                     'query_builder' => function (WineRepository $er): QueryBuilder {
                         return $er->createQueryBuilder('w')
                             ->where('w.enabled = 1')
-                            ->orderBy('w.name', 'ASC');
+                            ->orderBy('w.name', 'ASC')
+                            ->addOrderBy('w.year', 'ASC');
                     },
                     'multiple' => true,
                     'expanded' => true,
