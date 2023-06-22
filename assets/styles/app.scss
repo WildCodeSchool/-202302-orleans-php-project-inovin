@@ -19,6 +19,9 @@ h6 {
 }
 
 .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     outline: 1px solid $primary-light;
     outline-offset: 4px;
     border: 2px dotted $secondary;
