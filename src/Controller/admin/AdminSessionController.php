@@ -43,7 +43,7 @@ class AdminSessionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'admin_session_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'show', methods: ['GET'])]
     public function show(Session $session): Response
     {
         return $this->render('admin/session/show.html.twig', [
@@ -51,7 +51,7 @@ class AdminSessionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'admin_session_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Session $session, SessionRepository $sessionRepository): Response
     {
         $form = $this->createForm(SessionType::class, $session);
@@ -70,7 +70,7 @@ class AdminSessionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'admin_session_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Session $session, SessionRepository $sessionRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $session->getId(), $request->request->get('_token'))) {
