@@ -14,67 +14,7 @@
         {% set sessionsList = openSessions|slice(1) %}
         {% for session in openSessions %}
         <div class="carousel-item {% if loop.first %} active {% endif %}">
-
-            <div class="d-flex flex-row justify-content-center">
-
-                <div class="card bg-card me-3 mini-card position-relative">
-                    <div class="line-card"></div>
-                    <div class="card-body d-flex justify-content-center me-3 align-items-center flex-column">
-                        <h2 class="px-4 align-left align-self-start text-center text-primary-light fs-3">
-                            Séance du {{ session.openingDate ? session.openingDate|date('d-m-Y') : '' }}
-                        </h2>
-                        <p class="px-4 secondary-light align-self-start">PROCHAINEMENT</p>
-                        <div class="row px-2 my-2  g-2">
-                            <div class="col-7">
-                                <div class="bg-primary text-center text-dark letter-spacing me-auto">
-                                    LIEU
-                                </div>
-                                <div class="text-start text-light letter-spacing me-auto mt-2"> {{ session.location }}
-                                </div>
-                            </div>
-                            <div class="col-5">
-                                <div class="bg-primary text-center text-dark letter-spacing ms-auto">
-                                    HORAIRE
-                                </div>
-                                <div class="text-center text-light letter-spacing ms-auto mt-2 text-nowrap">
-                                    {{ session.openingDate|date("H") ~ 'H' ~ ' - ' ~ session.openingDate|date_modify('+3 hours')|date("H") ~ 'H' }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {% if loop.index < openSessions|length - 1 %} 
-                <div class="card bg-card mini-card position-relative">
-                    <div class="line-card"></div>
-                    <div class="card-body d-flex me-3 justify-content-center align-items-center flex-column">
-                        <h2 class="px-4 align-self-start align-left text-center text-primary-light fs-3">
-                            Séance du {{ sessionsList[loop.index].openingDate ?
-                            sessionsList[loop.index].openingDate|date('d-m-Y') : '' }}
-                        </h2>
-                        <p class="px-4 text-secondary-light align-self-start">PROCHAINEMENT</p>
-
-                        <div class="row px-2 my-2  g-2">
-                            <div class="col-7">
-                                <div class="bg-primary text-center text-dark letter-spacing me-auto">
-                                    LIEU
-                                </div>
-                                <div class="text-start text-light letter-spacing me-auto mt-2"> {{
-                                    sessionsList[loop.index].location }} </div>
-                            </div>
-                            <div class="col-5">
-                                <div class="bg-primary text-center text-dark letter-spacing ms-auto">
-                                    HORAIRE
-                                </div>
-                                <div class="text-center text-light letter-spacing ms-auto mt-2 text-nowrap">
-                                    {{ sessionsList[loop.index].openingDate|date("H") ~ 'H' ~ ' - ' ~
-                                    sessionsList[loop.index].openingDate|date_modify('+ 3 hours')|date("H") ~ 'H' }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            {% endif %}
+            {% include "components/session/_card_session.html.twig" %}
         </div>
     </div>
     {% endfor %}
@@ -107,67 +47,7 @@
         {% set sessionsList = closedSessions|slice(1) %}
         {% for session in closedSessions %}
         <div class="carousel-item {% if loop.first %} active {% endif %}">
-
-            <div class="d-flex flex-row justify-content-center">
-
-                <div class="card bg-card me-3 mini-card position-relative">
-                    <div class="line-card"></div>
-                    <div class="card-body d-flex justify-content-center me-3 align-items-center flex-column">
-                        <h2 class="px-4 align-left align-self-start text-center text-primary-light fs-3">
-                            Séance du {{ session.openingDate ? session.openingDate|date('d-m-Y') : '' }}
-                        </h2>
-                        <p class="px-4 text-danger align-self-start">TERMINER</p>
-                        <div class="row px-2 my-2 g-2">
-                            <div class="col-7">
-                                <div class="bg-primary text-center text-dark letter-spacing me-auto">
-                                    LIEU
-                                </div>
-                                <div class="text-start text-light letter-spacing me-auto mt-2"> {{ session.location }}
-                                </div>
-                            </div>
-                            <div class="col-5">
-                                <div class="bg-primary text-center text-dark letter-spacing ms-auto">
-                                    HORAIRE
-                                </div>
-                                <div class="text-center text-light letter-spacing ms-auto mt-2 text-nowrap">
-                                    {{ session.openingDate|date("H") ~ 'H' ~ ' - ' ~ session.openingDate|date_modify('+3 hours')|date("H") ~ 'H' }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {% if loop.index < closedSessions|length - 1 %} 
-                <div class="card bg-card mini-card position-relative">
-                    <div class="line-card"></div>
-                    <div class="card-body d-flex me-3 justify-content-center align-items-center flex-column">
-                        <h2 class="px-4 align-self-start align-left text-center text-primary-light fs-3">
-                            Séance du {{ sessionsList[loop.index].openingDate ?
-                            sessionsList[loop.index].openingDate|date('d-m-Y') : '' }}
-                        </h2>
-                        <p class="px-4 text-danger align-self-start">TERMINER</p>
-
-                        <div class="row px-2 my-2 g-2">
-                            <div class="col-7">
-                                <div class="bg-primary text-center text-dark letter-spacing me-auto">
-                                    LIEU
-                                </div>
-                                <div class="text-start text-light letter-spacing me-auto mt-2"> {{
-                                    sessionsList[loop.index].location }} </div>
-                            </div>
-                            <div class="col-5">
-                                <div class="bg-primary text-center text-dark letter-spacing ms-auto">
-                                    HORAIRE
-                                </div>
-                                <div class="text-center text-light letter-spacing ms-auto mt-2 text-nowrap">
-                                    {{ sessionsList[loop.index].openingDate|date("H") ~ 'H' ~ ' - ' ~
-                                    sessionsList[loop.index].openingDate|date_modify('+ 3 hours')|date("H") ~ 'H' }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-            {% endif %}
+            {% include "components/session/_card_session.html.twig" %}
         </div>
     </div>
     {% endfor %}
