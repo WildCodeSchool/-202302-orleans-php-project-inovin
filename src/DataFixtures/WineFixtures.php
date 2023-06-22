@@ -15,7 +15,7 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create();
+        $faker = Factory::create('fr_FR');
 
         for ($i = 0; $i < self::WINE_COUNT; $i++) {
             $wine = new Wine();
@@ -23,11 +23,17 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
 
             $wine->setYear((int)$faker->year());
 
-            $wine->setVolume($faker->randomFloat(1, 2, 2));
+            $wine->setVolume($faker->randomFloat(2, 1.0, 2.0));
 
-            $wine->setAlcoholPercent($faker->randomFloat(1, 1, 90));
+            $wine->setAlcoholPercent($faker->randomFloat(2, 10, 16));
+
+            $wine->setPrice($faker->randomFloat(2, 5, 50));
 
             $wine->setIsEnabled($faker->boolean());
+
+            $wine->setOrigin($faker->country());
+
+            $wine->setProtectedOrigin($faker->randomElement(['AOC', 'AOP', 'IGP']));
 
             $wine->setGrapeVariety($this->getReference('grape_variety_' . $faker->numberBetween(1, 16)));
 
