@@ -12,6 +12,11 @@
     width: clamp(250px, 50vw, 380px);
 }
 
+.max-height-select {
+    height: clamp(150px, 20vw, 200px);
+    overflow: auto;
+}
+
 .container-dashboard {
     height: 50vh;
     min-height: 50vh;

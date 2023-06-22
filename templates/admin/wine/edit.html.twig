@@ -1,14 +1,13 @@
 {% extends 'admin.html.twig' %}
 {% block title %}
 	{{ parent() }}
-	| Séances - Édition
+	| Vins - Édition
 {% endblock %}
-{% block admin_content_title %}ÉDITION D'UNE SÉANCE
+{% block admin_content_title %}ÉDITION DU VIN
 {% endblock %}
 {% block admin_content %}
 	<div class="row d-flex justify-content-center">
 		<div class="col">
-			{{ include('session/_form.html.twig', {'button_label': 'Modifier'}) }}
+			{{ include('admin/wine/_form.html.twig', {'button_label': 'Modifier'}) }}
 		</div>
-	</div>
-{% endblock %}
+	{% endblock %}
