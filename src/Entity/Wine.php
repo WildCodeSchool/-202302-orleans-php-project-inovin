@@ -241,6 +241,6 @@ class Wine
 
     public function getFullLabel(): string
     {
-        return $this->getYear() . ' - ' . $this->getName() . ' - ' . $this->getGrapeVariety()->getName();
+        return $this->getName() . ' - ' .  $this->getYear() .  ' - ' . $this->getGrapeVariety()->getName();
     }
 }
