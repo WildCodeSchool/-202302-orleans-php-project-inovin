@@ -1,0 +1,40 @@
+<div class="container px-4">
+	{{ form_start(form) }}
+	<div class="row">
+		<div class="col-sm-4">
+			{{ form_row(form.name) }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			{{ form_row(form.grapeVarieties) }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col my-3 d-flex justify-content-between">
+			<div>
+				<h4 class="mb-3 fs-4">Prix min</h4>
+				{{ form_row(form.minPrice) }}
+			</div>
+			<div>
+				<h4 class="mb-3 fs-4">Prix max</h4>
+				{{ form_row(form.maxPrice) }}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col my-3">
+			<div id="price_wine_slider" class="m-4"></div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col my-3 d-flex justify-content-end gap-4">
+			{{ form_row(form.Reset) }}
+			<button class="btn btn-sm bg-primary-light text-dark fw-bolder mb-4">
+				{% include "components/svg/_icon_search.svg.twig" %}
+				Filtrer
+			</button>
+		</div>
+	</div>
+	{{ form_end(form) }}
+</div>

@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Wine;
+use App\Form\Search\SearchWineDataFormType;
 use App\Repository\WineRepository;
+use App\Search\SearchWineData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,10 +15,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class WineController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(WineRepository $wineRepository): Response
+    public function index(Request $request, WineRepository $wineRepository): Response
     {
+        $searchWineData = new SearchWineData();
+        $form = $this->createForm(SearchWineDataFormType::class, $searchWineData);
+        $form->handleRequest($request);
+        $wines = $wineRepository->findSearch($searchWineData, ['name' => 'ASC']);
+
         return $this->render('wine/index.html.twig', [
-            'wines' => $wineRepository->findBy([], ['name' => 'ASC']),
+            'wines' => $wines,
+            'form' =>  $form
         ]);
     }
 }

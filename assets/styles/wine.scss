@@ -84,3 +84,31 @@ main {
     left: 15px;
     border: 2px solid $light;
 }
+
+#price_wine_slider .noUi-active .noUi-tooltip {
+    display: block;
+    background-color: transparent;
+}
+#price_wine_slider .noUi-connect {
+    background: $primary;
+}
+
+#price_wine_slider .noUi-handle {
+    height: 28px;
+    width: 28px;
+    top: -5px;
+    right: -9px; /* half the width */
+    border-radius: 28px;
+}
+
+#price_wine_slider .noUi-tooltip {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    font-size: 1.5rem;
+    color: $primary;
+    font-weight: 600;
+    padding: 5px;
+    text-align: center;
+    white-space: nowrap;
+}
