@@ -41,7 +41,6 @@ Encore
     .addStyleEntry("tastingSheet", "./assets/styles/tastingSheet.scss")
     .addStyleEntry("registration", "./assets/styles/registration.scss")
     .addStyleEntry("resetPassword", "./assets/styles/resetPassword.scss")
-    .addStyleEntry('tastingSheet', './assets/styles/tastingSheet.scss')
     .addStyleEntry("wine", "./assets/styles/wine.scss")
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
