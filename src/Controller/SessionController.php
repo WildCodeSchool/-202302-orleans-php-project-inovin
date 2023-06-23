@@ -26,18 +26,12 @@ class SessionController extends AbstractController
     #[Route('/user', name: 'app_session_user', methods: ['GET'])]
     public function sessionUser(SessionRepository $sessionRepository): Response
     {
-        $allSessions = $sessionRepository->findBy([], ['openingDate' => 'desc',]);
-        $openSessions = array_filter($allSessions, function ($session) {
-            return $session->isClosed() === false;
-        });
-
-        $closedSessions = array_filter($allSessions, function ($session) {
-            return $session->isClosed() === true;
-        });
+        $openSessions = $sessionRepository->findBy(['closed' => false], ['openingDate' => 'ASC',]);
+        $closeSessions = $sessionRepository->findBy(['closed' => true], ['openingDate' => 'desc',]);
 
         return $this->render('session/sessions_states.html.twig', [
             'openSessions' => $openSessions,
-            'closedSessions' => $closedSessions
+            'closedSessions' => $closeSessions
         ]);
     }
 

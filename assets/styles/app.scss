@@ -144,7 +144,7 @@ body {
     height: 1px;
     width: 100%;
     background-color: $secondary;
-    top: 85px;
+    top: 100px;
     left: 0;
 }
 
@@ -155,3 +155,8 @@ body {
   .carousel-control-next{
     right: -100px;
   }
+
+.height-location{
+    min-height:53px;
+    max-height:53px;
+}
