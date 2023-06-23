@@ -18,9 +18,9 @@
 				<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 			{% endif %}
 
-			<div class="col-sm-12 col-11 px-sm-5 px-3 border border-secondary m-auto d-flex flex-column align-items-center pt-5 bg-card-gradient-color bg-card ornement position-relative">
+			<div class="px-sm-5 px-3 border border-secondary m-auto d-flex flex-column align-items-center pt-5 bg-card-gradient-color bg-card ornement position-relative">
 				<h2 class="text-center text-uppercase letter-spacing mt-5">Espace de connexion</h2>
-				{% include "icones/surlignage.svg" %}
+				{% include "components/svg/_frame_surlignage.svg.twig" %}
 
 				<form action="{{ path('login') }}" method="post" class="col-12 m-auto d-flex flex-column gap-1 mt-5">
 					<div class="mb-3">
@@ -28,16 +28,17 @@
 						<input type="text" class="form-control border-secondary bg-dark-light" id="username" name="_username" value="{{ last_username }}">
 					</div>
 
-					<div class="mb-3">
+					<div class="pb-3">
 						<label for="password" class="form-label text-uppercase letter-spacing">Mot de passe</label>
 						<input type="password" class="form-control border-secondary bg-dark-ligh" id="password" name="_password">
+						<a href="{{ path('app_forgot_password_request') }}" class="letter-spacing text-decoration-none d-block mt-2">Mot de passe oublié ?</a>
 					</div>
 
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 					<div class="d-flex flex-column justify-content-center align-items-center m-auto my-5">
 						<p class="mb-1 fs-6 fw-light text-center">Vous n'avez pas encore de compte ?</p>
-						<a href="#" class="letter-spacing text-decoration-none">Créer votre compte</a>
+						<a href="{{ path('app_register') }}" class="letter-spacing text-decoration-none">Créer votre compte</a>
 						<button type="submit" class="btn my-5">Se connecter</button>
 					</div>
 				</form>

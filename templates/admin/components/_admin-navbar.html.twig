@@ -9,13 +9,13 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto ms-4 ms-sm-0 mt-4 mt-sm-0 d-flex justify-content-start align-lg-items-center gap-lg-4 text-uppercase">
 				<li class="nav-item px-2">
-					<a class="nav-link" href="{{ path('app_session_index') }}">Séances</a>
+					<a class="nav-link" href="{{ path('admin_session_index') }}">Séances</a>
 				</li>
 				<li class="nav-item px-2">
-					<a class="nav-link" href="{{ path('app_wine_index') }}">Vins</a>
+					<a class="nav-link" href="{{ path('app_admin_wine_index') }}">Vins</a>
 				</li>
 				<li class="nav-item px-2">
-					<a class="nav-link" href="{{ path('app_cepage_index') }}">Cépages</a>
+					<a class="nav-link" href="{{ path('app_admin_cepage_index') }}">Cépages</a>
 				</li>
 				<li class="nav-item px-2">
 					<a class="nav-link" href="#">Recettes</a>
@@ -28,7 +28,7 @@
 				<li class="nav-item d-flex align-items-end align-items-center px-2">
 					<a class="nav-link" href="#">CONNEXION</a>
 					<span class="d-none d-sm-inline">
-						{% include 'components/svg/_icon_profile.html.twig' %}
+						{% include 'components/svg/_icon_profile.svg.twig' %}
 					</span>
 				</li>
 			</ul>

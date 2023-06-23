@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Cépages - Édition
+{% endblock %}
+{% block admin_content_title %}ÉDITION DU CÉPAGE
+{% endblock %}
+{% block admin_content %}
+	<div class="row d-flex justify-content-center">
+		<div class="col">
+			{{ include('admin/grape_variety/_form.html.twig', {'button_label': 'Modifier'}) }}
+		</div>
+	</div>
+{% endblock %}

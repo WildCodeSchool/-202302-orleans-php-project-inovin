@@ -12,6 +12,11 @@
     width: clamp(250px, 50vw, 380px);
 }
 
+.max-height-select {
+    height: clamp(150px, 20vw, 200px);
+    overflow: auto;
+}
+
 .container-dashboard {
     height: 50vh;
     min-height: 50vh;
@@ -24,7 +29,7 @@
 
 .ornement::before {
     content: "";
-    background-image: url("../images/corner.svg");
+    background-image: url("../images/ornement.svg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 120px;
@@ -36,7 +41,7 @@
 }
 .ornement::after {
     content: "";
-    background-image: url("../images/corner.svg");
+    background-image: url("../images/ornement.svg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 120px;
