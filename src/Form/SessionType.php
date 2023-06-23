@@ -75,6 +75,7 @@ class SessionType extends AbstractType
                         'class' => 'form-check-input fs-5',
                         'role' => "switch"
                     ],
+                    'row_attr' => ['class' => "form-check form-switch"],
                 ],
             )
             ->add(

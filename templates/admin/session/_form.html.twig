@@ -2,13 +2,7 @@
 <div class="d-flex justify-content-center">
 	<div class="form-control w-75 p-4 m-5 border-secondary" style="background-color: var(--dark-light);">
 		<div class="container-fluid">
-			<div class="col d-flex flex-column">
-				<div class="form-check form-switch">
-					{{ form_label(form.closed) }}
-					{{ form_widget(form.closed) }}
-					{{ form_errors(form.closed) }}
-				</div>
-			</div>
+
 			{{ form_row(form.name) }}
 			{{ form_row(form.description) }}
 			<div class="row">
@@ -16,7 +10,9 @@
 					<div class="col-md-6 col-xl-4">
 						{{ form_row(form.openingDate) }}
 					</div>
-
+					<div class="col">
+						{{ form_row(form.closed) }}
+					</div>
 				</div>
 			</div>
 			{{ form_row(form.wines) }}
