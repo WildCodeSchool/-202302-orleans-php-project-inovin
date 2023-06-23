@@ -1,0 +1,66 @@
+{% extends 'visitor.html.twig' %}
+
+{% block title %}Fiche De Dégustation - Résultats
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('tastingSheetResult') }}
+{% endblock %}
+
+{% block body %}
+
+	<main class="container-fluid container-md pt-5 pb-2 mb-5">
+		<h2 class="text-primary-light fw-light mt-5 letter-spacing">
+			{% include 'components/svg/_icon_decoration.svg.twig' %}RÉSULTATS
+		</h2>
+
+		<div>
+			{% include "components/svg/_frame_surlignage_main.svg.twig" %}
+		</div>
+
+		<div class="text-primary-light fs-4 mt-4">
+			<p class="mb-1">Séance du 07 juin 2023</p>
+			<p class="mb-1">16h - 19h</p>
+		</div>
+
+		<div class="row mx-1 mt-5">
+			<div class="col px-3 border border-secondary d-flex flex-column align-items-center pt-5 bg-card rounded-2">
+				<div class="custom-card">
+					<div class="h-100 d-md-flex align-items-md-center gap-2">
+						<div class="ms-4 custom-height d-none d-md-block">
+							<div class="circle">
+								<p class="custom-text">14</p>
+							</div>
+						</div>
+						<div class="content col align-self-start">
+							<header class="d-flex">
+								<div class="mini-circle d-md-none">
+									<p>15</p>
+								</div>
+								<div>
+									<h3 class="custom-title-card">Vin 1</h3>
+									<h4 class="custom-title-wine">Sauvignon</h4>
+								</div>
+							</header>
+							<div class="rate row text-center text-dark text-uppercase custom-margin">
+								<div class="col custom-padding">
+									<p class="bg-primary mb-1 fw-bolder custom-size">Apparence</p>
+									<p class="text-primary fs-1 fw-normal border border-secondary py-2">4</p>
+								</div>
+								<div class="col custom-padding">
+									<p class="bg-primary mb-1 fw-bolder custom-size">Nez</p>
+									<p class="text-primary fs-1 fw-normal border border-secondary py-2">7</p>
+								</div>
+								<div class="col custom-padding">
+									<p class="bg-primary mb-1 fw-bolder custom-size">Palais</p>
+									<p class="text-primary fs-1 fw-normal border border-secondary py-2">9</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	{% endblock %}

@@ -33,4 +33,10 @@ class TastingSheetController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('ficheDeDegustation/{session}/result', name: 'app_tasting_sheet_result')]
+    public function result(): Response
+    {
+        return $this->render('tasting_sheet/resultTastingSheet.html.twig', []);
+    }
 }

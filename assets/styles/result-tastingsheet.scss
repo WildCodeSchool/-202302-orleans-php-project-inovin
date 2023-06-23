@@ -1,0 +1,143 @@
+@import "_variables.scss";
+
+main {
+    min-height: calc(100vh - ($navbar-height + $footer-height));
+}
+.frame_separator {
+    width: 100%;
+}
+
+.custom-card {
+    height: 230px;
+    width: 95%;
+    border: 1px dashed $secondary;
+    outline: 1px solid $secondary;
+    outline-offset: 5px;
+    border-radius: 150px 8px 8px 150px;
+    margin-bottom: 2rem;
+
+    .circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 180px;
+        width: 180px;
+        background-color: $primary;
+        border-radius: 50%;
+        outline: 1px solid $secondary;
+        outline-offset: 7px;
+        position: relative;
+
+        > .custom-text {
+            color: $dark;
+            font-size: 4rem;
+            font-weight: bolder;
+            margin: 0;
+
+            &::before {
+                content: "total";
+                position: absolute;
+                top: 15px;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                font-size: 0.875rem;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    & .content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 0;
+
+        &::after {
+            content: "";
+            height: 1px;
+            width: 100%;
+            background-color: $secondary;
+            transform: translate(0px, 10px);
+
+            position: absolute;
+            top: 100px;
+            right: 0;
+        }
+
+        & .mini-circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: $primary;
+            height: 75px;
+            width: 75px;
+            min-width: 75px;
+            border-radius: 50%;
+            outline: 1px solid $secondary;
+            outline-offset: 5px;
+            margin-left: 1.5rem;
+            margin-right: 0.5rem;
+
+            > p {
+                color: $dark-light;
+                font-size: 2rem;
+                font-weight: bold;
+                margin: 0;
+                position: relative;
+                transform: translateY(5px);
+
+                &::before {
+                    content: "total";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    transform: translateY(-11px);
+
+                    font-size: 10px;
+                    font-weight: bolder;
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        & .custom-title-card {
+            font-family: $font-base;
+            text-transform: uppercase;
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-left: 1rem;
+        }
+
+        & .custom-title-wine {
+            font-family: $font-card-title;
+            font-size: 2rem;
+            letter-spacing: 3px;
+            margin-left: 1.5rem;
+        }
+
+        & .custom-margin {
+            margin: 1.8rem 1rem 0 1rem;
+        }
+
+        & .custom-size {
+            font-size: 0.625rem;
+        }
+
+        & .custom-padding {
+            padding: 0 0.15rem;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .custom-card {
+        border-radius: 8px;
+    }
+
+    .custom-margin {
+        margin-top: 1.9rem;
+    }
+}
