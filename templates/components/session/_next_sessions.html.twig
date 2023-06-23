@@ -11,11 +11,11 @@
 
 <div id="carouselExample" class="carousel slide mb-3 mt-5">
     <div class="carousel-inner p-3">
-        {% set sessionNumber = ((openSessions|length -1) / 2)|round(0, 'floor') %}
+        {% set sessionNumber = ((nextSessions|length -1) / 2)|round(0, 'floor') %}
         {% for i in 0 .. sessionNumber %}
         <div class="carousel-item {% if loop.first %} active {% endif %}">
             <div class="d-flex flex-row justify-content-center">
-                {% for session in openSessions|slice(i * 2, 2) %}
+                {% for session in nextSessions|slice(i * 2, 2) %}
                 {% include "components/session/_card_session.html.twig" %}
                 {% endfor %}
             </div>
