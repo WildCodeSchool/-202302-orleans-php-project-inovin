@@ -8,8 +8,9 @@ use DateTimeInterface;
 use App\Entity\Session;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class SessionFixtures extends Fixture
+class SessionFixtures extends Fixture implements DependentFixtureInterface
 {
     public const SESSIONS = [
         'Découverte des cépages : Explorez les variétés de vins du monde',
@@ -30,16 +31,36 @@ class SessionFixtures extends Fixture
 
         foreach (self::SESSIONS as $key => $sessionName) {
             $session = new Session();
+            $wine = new WineFixtures();
 
             $session->setName($sessionName);
             $session->setOpeningDate($faker->dateTimeThisYear(new DateTime()));
             $session->setDescription($faker->sentence(200));
             $session->setClosed($faker->boolean());
             $session->setLocation($faker->address());
+
+            $wine1 = $this->getReference('wine_' . $faker->numberBetween(1, $wine::WINE_COUNT - 1));
+            $wine2 = $this->getReference('wine_' . $faker->numberBetween(1, $wine::WINE_COUNT - 1));
+            $wine3 = $this->getReference('wine_' . $faker->numberBetween(1, $wine::WINE_COUNT - 1));
+            $wine4 = $this->getReference('wine_' . $faker->numberBetween(1, $wine::WINE_COUNT - 1));
+
+            $session->addWine($wine1);
+            $session->addWine($wine2);
+            $session->addWine($wine3);
+            $session->addWine($wine4);
+
             $manager->persist($session);
+
             $this->addReference('session_' . $key, $session);
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            WineFixtures::class,
+        ];
     }
 }

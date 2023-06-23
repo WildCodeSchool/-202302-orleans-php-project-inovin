@@ -22,24 +22,23 @@
 				<h1 class="size-inovin text-center">INO VIN</h1>
 				{% include "components/svg/_frame_surlignage.svg.twig" %}
 				<p class="mt-4 w-75 font-sizepara">
-					Découvrez l'application Inovin, une plateforme innovante qui vous invite à rejoindre des ateliers de
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										dégustation de vins variés lors de différents événements en France.
+					Découvrez l'application Innovin, une plateforme innovante qui vous invite à rejoindre des ateliers de dégustation de vins variés lors de différents événements en France.
+					Avec Innovin, vous pouvez également laisser libre cours à votre créativité en créant votre propre recette de vin, que nous nous ferons un plaisir de fabriquer pour vous.
 				</p>
 
 				<p class="mt-3 w-75 font-sizepara">
-					Avec Inovin, vous pouvez également laisser libre cours à votre créativité en créant votre propre
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																										recette de vin, que nous nous ferons un plaisir d'élaborer pour vous.
+					Avec Inovin, vous pouvez également laisser libre cours à votre créativité en créant votre propre recette de vin, que nous ferons un plaisir d'élaborer pour vous.
 				</p>
-				<button class="d-flex align-items-center btn btn-outline-primary mt-4 letter-spacing px-4">
+				<a href="{{ path('app_register' )}}" class=" d-flex align-items-center btn btn-outline-primary mt-4 letter-spacing px-4">
 					S'ENREGISTRER
 					<span class="transform">
 						{% include "components/svg/_icon_next.svg.twig" %}
 					</span>
-				</button>
+				</a>
 			</div>
 		</header>
 	</div>
-	<main class="container pt-5 ">
+	<main class="container pt-5 pb-2 mb-5">
 		<h2 class="text-primary-light fw-light mt-5 letter-spacing">
 			{% include 'components/svg/_icon_decoration.svg.twig' %}DÉCOUVREZ TOUTES LES ÉTAPES
 		</h2>
@@ -53,9 +52,8 @@
 				<div class="ms-2 me-auto">
 					<div class="fw-normal text-primary-light p-2 letter-spacing">S’INSCRIRE</div>
 					<p class="mx-2 fw-light">
-						Avant de commencer l’aventure, rejoignez la communauté des
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									amateurs de vins en créant un compte sur notre site officiel
-						<a class="text-primary-light text-decoration-none fw-bolder" href="#">INOVIN.</a>
+						Avant de commencer l’aventure, rejoignez la communauté des amateurs de vins en créant un compte sur notre site officiel
+						<span class="text-primary-light text-decoration-none fw-bolder">INOVIN</span>.
 					</p>
 				</div>
 			</li>
@@ -64,8 +62,7 @@
 				<div class="ms-2 me-auto ">
 					<div class="fw-normal text-primary-light p-2 letter-spacing">VALIDER VOTRE COMPTE</div>
 					<p class="mx-2 fw-light">
-						Un e-mail de confirmation vous sera envoyé dans votre boîte de réception. 
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									Veuillez vérifier votre messagerie et cliquer sur le lien pour confirmer votre inscription.
+						Un e-mail de confirmation vous sera envoyé dans votre boîte de réception. Veuillez vérifier votre messagerie et cliquer sur le lien pour confirmer votre inscription.
 					</p>
 				</div>
 			</li>
@@ -74,11 +71,8 @@
 				<div class="ms-2 me-auto ">
 					<div class="fw-normal text-primary-light p-2 letter-spacing">CHOISIR UNE SÉANCE</div>
 					<p class="mx-2 fw-light">
-						Consultez les séances disponibles dans votre espace personnel ou via
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									la barre de navigation. Retrouvez le lieu et les horaires ainsi que les vins
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									que nous allons vous proposer lors de la séance de dégustation.
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																						Pour participez à une séance, cliquez simplement sur
-						<a class="text-primary-light text-decoration-none fw-bolder" href="#">PARTICIPER.</a>
+						Consultez les séances disponibles dans votre espace personnel ou via la barre de navigation. Retrouvez le lieu et les horaires ainsi que les vins que nous allons vous proposer lors de la séance de dégustation. Pour participez à une séance, cliquez simplement sur la barre de navigation.Retrouvez le lieu et les horaires ainsi que les vins que nous allons vous proposer lors de la séance de dégustation. Pour participez à une séance, cliquez simplement sur
+						<span class="text-primary-light text-decoration-none fw-bolder">PARTICIPER</span>.
 					</p>
 				</div>
 			</li>
@@ -87,13 +81,11 @@
 				<div class="ms-2 me-auto">
 					<div class="fw-normal text-primary-light p-2 letter-spacing">LE JOUR J</div>
 					<p class="mx-2 fw-light">
-						Vous allez rencontrer les organisateurs de la séance qui vous
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									expliqueront le déroulement des différents ateliers : la
-						<a class="text-primary-light text-decoration-none fw-bolder" href="#">DÉGUSTATION</a>
+						Vous allez rencontrer les organisateurs de la séance qui vous expliqueront le déroulement des différents ateliers : la
+						<span class="text-primary-light text-decoration-none fw-bolder">DÉGUSTATION</span>
 						et la
-						<a class="text-primary-light text-decoration-none fw-bolder" href="#">FABRICATION</a>
-						de votre vin
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									personnalisé.
+						<span class="text-primary-light text-decoration-none fw-bolder">FABRICATION</span>
+						de votre vin personnalisé.
 					</p>
 				</div>
 			</li>
@@ -102,15 +94,8 @@
 				<div class="ms-2 me-auto">
 					<div class="fw-normal text-primary-light p-2 letter-spacing">REMPLIR LES FICHES DE DÉGUSTATION</div>
 					<p class="mx-2 fw-light">
-						L’équipe fournira des tablettes aux participants afin de remplir des
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									fiches de dégustation via l’application
-						<a class="text-primary-light text-decoration-none fw-bolder" href="#">INOVIN.</a>
-
-						Connectez vous avec votre compte utilisateur et choisissez la séance
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									en cours. Vous allez vous retrouver avec 4 fiches de vins à remplir.
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									Pas de panique, les fiches ont été conçues pour être faciles à
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									prendre en main, vous permettant de savourer tranquillement
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									votre vin tout en vous amusant !
+						L’équipe fournira des tablettes aux participants afin de remplir des fiches de dégustation via l’application
+						<span class="text-primary-light text-decoration-none fw-bolder">INOVIN</span>. Connectez vous avec votre compte utilisateur et choisissez la séance en cours. Vous allez vous retrouver avec 4 fiches de vins à remplir. Pas de panique, les fiches ont été conçues pour être faciles à prendre en main,vous permettant de savourer tranquillement votre vin tout en vous amusant !
 					</p>
 				</div>
 			</li>
@@ -119,8 +104,8 @@
 				<div class="ms-2 me-auto">
 					<div class="fw-normal text-primary-light p-2 letter-spacing">VOTRE RECETTE</div>
 					<p class="mx-2 fw-light">
-						Lorsque vous aurez rempli les 4 fiches, vous obtiendrez votre propre
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									recette de vin selon vos résultats !
+						Lorsque vous aurez rempli les 4 fiches, vous obtiendrez votre propre recette de vin selon vos résultats ! Si le résultat ne nous satisfait pas, vous pourrez toujours modifier la recette afin de la réadapter à votre goût en cliquant sur
+						<span class="text-primary-light text-decoration-none fw-bolder">MODIFIER</span>.
 					</p>
 				</div>
 			</li>
@@ -129,12 +114,7 @@
 				<div class="ms-2 me-auto">
 					<div class="fw-normal text-primary-light p-2 letter-spacing">FABRICATION DE VOTRE RECETTE</div>
 					<p class="mx-2 fw-light">
-						Les organisateurs fabriqueront sur place votre vin. Vous aurez
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								l’occasion de voir nos professionnels à l’oeuvre !
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								Vous pourrez bien entendu, échanger vos découverte avec vos
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								camarades. Avant tout, cette expérience est un moment de partage
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								et de convivialité !
+						Les organisateurs fabriqueront sur place votre vin. Vous aurez l’occasion de voir nos professionnels à l’oeuvre ! Vous pourrez bien entendu, échanger vos découverte avec vos camarades. Avant tout,cette expérience est un moment de partage et de convivialité !
 					</p>
 				</div>
 			</li>
@@ -143,12 +123,10 @@
 				<div class="ms-2 me-auto">
 					<div class="fw-normal text-primary-light p-2 letter-spacing">FIN DE LA SÉANCE</div>
 					<p class="mx-2 fw-light ">
-						Vous aurez la possibilité d'acheter votre bouteille et repartir
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																									avec afin de la faire découvrir à votre entourage.
+						Vous aurez la possibilité d'acheter votre bouteille et repartir avec afin de la faire découvrir à votre entourage.
 					</p>
 				</div>
 			</li>
 		</ul>
 	</main>
-
 {% endblock %}
