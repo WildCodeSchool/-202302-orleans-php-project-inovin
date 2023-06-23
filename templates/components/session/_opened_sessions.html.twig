@@ -19,7 +19,7 @@
 						Séance du
 						{{ session.openingDate|date("d F Y", "Europe/Paris") }}
 					</span>
-					<span class="badge rounded-pill px-3 fw-bold align-self-end text-end fs-6  text-dark {{ session.closed ? 'bg-danger' : 'bg-success' }}">
+					<span class="badge rounded-pill px-3 fw-bold align-self-end text-end fs-6  text-dark {{ session.closed ? 'bg-danger' : 'bg-success-light' }}">
 						{{ session.closed ? 'FERMÉE' : 'OUVERTE' }}
 					</span>
 				</div>
