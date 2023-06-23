@@ -59,8 +59,7 @@
 					</ul>
 					<div class="myForm">
 						<div class="tab-content myFormBorder" id="pills-tabContent">
-							{{ form_start(form) }}
-							{% for wine in session.wines %}
+							{% for wine in recipe.session.wines %}
 								<div class="tab-pane fade {% if loop.first %} {{ 'show active' }} {% endif %}" id="pills-{{ loop.index }}" role="tabpanel" aria-labelledby="pills-{{ loop.index }}-tab" tabindex="0">
 									<div class="firstNavbarBorder">
 										<div class="row">
@@ -122,15 +121,93 @@
 																		<p class="mx-2 fw-light mb-0">{{ criteria }}</p>
 																	</div>
 																</li>
-																{% if loop.parent.loop.parent.loop.index == 1 and key == 'Apparence' and criteria == 'Limpidité : Comment trouvez-vous  la limpidité ?' %}
-																	{{ form_row(form.visual) }}
+
+																{% if loop.parent.loop.parent.loop.index == 1 %}
+																	{{ form_start(form1) }}
+																	{% if key == 'Apparence' and criteria == 'Limpidité : Comment trouvez-vous  la limpidité ?' %}
+																		{{ form_row(form1.visual) }}
+																	{% endif %}
+																	{% if key == 'Nez' and criteria == 'Impression : Comment trouvez-vous l\'impression ?'%}
+																		{{ form_row(form1.smell) }}
+																	{% endif %}
+																	{% if key == 'Palais' and criteria == 'Saveur : Comment trouvez-vous la saveur ?'%}
+																		{{ form_row(form1.taste) }}
+																	<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
+																		<button class="d-flex align-items-center btn btn-outline-primary mt-3 mb-3 mx-3 letter-spacing px-4">
+																			SUIVANT
+																			<span class="transform">
+																				{% include "components/svg/_icon_next.svg.twig" %}
+																			</span>
+																		</button>
+																	</div>
+																	{{ form_end(form1) }}
+																	{% endif %}
 																{% endif %}
-																{% if loop.parent.loop.parent.loop.index == 1 and key == 'Nez' and criteria == 'Impression : Comment trouvez-vous l\'impression ?'%}
-																	{{ form_row(form.smell) }}
+
+																{% if loop.parent.loop.parent.loop.index == 2 %}
+																{{ form_start(form2) }}
+																{% if key == 'Apparence' and criteria == 'Limpidité : Comment trouvez-vous  la limpidité ?' %}
+																	{{ form_row(form2.visual) }}
 																{% endif %}
-																{% if loop.parent.loop.parent.loop.index == 1 and key == 'Palais' and criteria == 'Saveur : Comment trouvez-vous la saveur ?'%}
-																	{{ form_row(form.taste) }}
-																	{{ form_end(form) }}
+																{% if key == 'Nez' and criteria == 'Impression : Comment trouvez-vous l\'impression ?'%}
+																		{{ form_row(form2.smell) }}
+																	{% endif %}
+																	{% if key == 'Palais' and criteria == 'Saveur : Comment trouvez-vous la saveur ?'%}
+																		{{ form_row(form2.taste) }}
+																		<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
+																			<button class="d-flex align-items-center btn btn-outline-primary mt-3 mb-3 mx-3 letter-spacing px-4">
+																				SUIVANT
+																				<span class="transform">
+																					{% include "components/svg/_icon_next.svg.twig" %}
+																				</span>
+																			</button>
+																		</div>
+																		{{ form_end(form2) }}
+																	{% endif %}
+																{% endif %}
+
+																{% if loop.parent.loop.parent.loop.index == 3 %}
+																	{{ form_start(form3) }}
+																	{% if key == 'Apparence' and criteria == 'Limpidité : Comment trouvez-vous  la limpidité ?' %}
+																		{{ form_row(form3.visual) }}
+																	{% endif %}
+																	{% if key == 'Nez' and criteria == 'Impression : Comment trouvez-vous l\'impression ?'%}
+																	{{ form_row(form3.smell) }}
+																	{% endif %}
+																	{% if key == 'Palais' and criteria == 'Saveur : Comment trouvez-vous la saveur ?'%}
+																	{{ form_row(form3.taste) }}
+																	<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
+																		<button class="d-flex align-items-center btn btn-outline-primary mt-3 mb-3 mx-3 letter-spacing px-4">
+																			SUIVANT
+																			<span class="transform">
+																				{% include "components/svg/_icon_next.svg.twig" %}
+																			</span>
+																		</button>
+																	</div>
+																	{{ form_end(form3) }}
+																	{% endif %}
+																{% endif %}
+
+																{% if loop.parent.loop.parent.loop.index == 4 %}
+																{{ form_start(form4) }}
+																	{% if key == 'Apparence' and criteria == 'Limpidité : Comment trouvez-vous  la limpidité ?' %}
+																		{{ form_row(form4.visual) }}
+																	{% endif %}
+																	{% if key == 'Nez' and criteria == 'Impression : Comment trouvez-vous l\'impression ?'%}
+																		{{ form_row(form4.smell) }}
+																	{% endif %}
+																	{% if key == 'Palais' and criteria == 'Saveur : Comment trouvez-vous la saveur ?'%}
+																		{{ form_row(form4.taste) }}
+																		<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
+																			<button class="d-flex align-items-center btn btn-outline-primary mt-3 mb-3 mx-3 letter-spacing px-4">
+																				SUIVANT
+																				<span class="transform">
+																					{% include "components/svg/_icon_next.svg.twig" %}
+																				</span>
+																			</button>
+																		</div>
+																		{{ form_end(form4) }}
+																	{% endif %}
 																{% endif %}
 															{% endfor %}
 														</ul>
@@ -139,14 +216,6 @@
 												{% endfor %}
 											</div>
 										</div>
-									</div>
-									<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
-										<button class="d-flex align-items-center btn btn-outline-primary mt-3 mb-3 mx-3 letter-spacing px-4">
-											SUIVANT
-											<span class="transform">
-												{% include "components/svg/_icon_next.svg.twig" %}
-											</span>
-										</button>
 									</div>
 								</div>
 							{% endfor %}

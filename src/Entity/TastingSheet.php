@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TastingSheetRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,8 +28,11 @@ class TastingSheet
     private ?float $visual = null;
 
     #[ORM\ManyToOne(inversedBy: 'tastingSheet')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Recipe $recipe = null;
+
+    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    private ?Wine $wine = null;
 
     public function getId(): ?int
     {
@@ -55,6 +59,9 @@ class TastingSheet
     public function setTaste(float $taste): static
     {
         $this->taste = $taste;
+        $this->setDate(new DateTime('now'));
+
+
 
         return $this;
     }
@@ -91,6 +98,18 @@ class TastingSheet
     public function setRecipe(?Recipe $recipe): static
     {
         $this->recipe = $recipe;
+
+        return $this;
+    }
+
+    public function getWine(): ?Wine
+    {
+        return $this->wine;
+    }
+
+    public function setWine(?Wine $wine): static
+    {
+        $this->wine = $wine;
 
         return $this;
     }

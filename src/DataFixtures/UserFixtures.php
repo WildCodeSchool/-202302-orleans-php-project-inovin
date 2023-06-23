@@ -38,6 +38,8 @@ class UserFixtures extends Fixture
         $user->setCity('Paris');
         $user->setCountry('France');
 
+        $this->addReference('user_1', $user);
+
         $manager->persist($user);
 
         // Création d'un administrateur
@@ -56,6 +58,9 @@ class UserFixtures extends Fixture
         $admin->setZipCode('75000');
         $admin->setCity('Paris');
         $admin->setCountry('France');
+
+        $this->addReference('user_2', $admin);
+
 
         $manager->persist($admin);
 

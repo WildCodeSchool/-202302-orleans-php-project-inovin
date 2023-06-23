@@ -15,8 +15,7 @@ class TastingSheetType extends AbstractType
         $builder
             ->add('taste', RangeType::class)
             ->add('smell', RangeType::class)
-            ->add('visual', RangeType::class)
-        ;
+            ->add('visual', RangeType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
