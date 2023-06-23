@@ -1,5 +1,7 @@
-var myWineSlider = document.getElementById("price_wine_slider");
-var resetButon = document.getElementById("Reset");
+const myWineSlider = document.getElementById("price_wine_slider");
+const resetButon = document.getElementById("Reset");
+const minValue = 0;
+const maxValue = 100;
 
 if (resetButon) {
     resetButon.addEventListener("click", resetSlider);
@@ -7,6 +9,8 @@ if (resetButon) {
 
 function resetSlider() {
     myWineSlider.noUiSlider.reset();
+    document.getElementById("minPrice").value = minValue;
+    document.getElementById("maxPrice").value = maxValue;
 }
 
 if (myWineSlider) {
@@ -14,14 +18,14 @@ if (myWineSlider) {
     const max = document.getElementById("maxPrice");
 
     const range = window.noUiSlider.create(myWineSlider, {
-        start: [Number(min.value) || 0, Number(max.value) || 100],
+        start: [Number(min.value) || minValue, Number(max.value) || maxValue],
         connect: true,
         padding: [0, 0],
         tooltips: true,
         step: 1,
         range: {
-            min: 0,
-            max: 100,
+            min: minValue,
+            max: maxValue,
         },
         format: {
             to: function (value) {
