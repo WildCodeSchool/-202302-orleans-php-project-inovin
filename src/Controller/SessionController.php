@@ -18,9 +18,13 @@ class SessionController extends AbstractController
     public function states(SessionRepository $sessionRepository): Response
     {
         $sessionsOpened = $sessionRepository->findBy(['closed' => '0'], ['openingDate' => 'desc']);
+        $nextSessions = $sessionRepository->findBy(['closed' => false], ['openingDate' => 'ASC',]);
+        $closedSessions = $sessionRepository->findBy(['closed' => true], ['openingDate' => 'desc',]);
 
         return $this->render('session/sessions_states_html.twig', [
-            'sessionsOpened' => $sessionsOpened
+            'sessionsOpened' => $sessionsOpened,
+            'nextSessions' => $nextSessions,
+            'closedSessions' => $closedSessions
         ]);
     }
 

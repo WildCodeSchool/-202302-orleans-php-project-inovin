@@ -90,8 +90,7 @@ body {
     box-shadow: 0 0 0 0;
 }
 
-.text-primary-light {
-    color: $primary-light;
+.mini-card h2 {
     font-family: $font-base;
 }
 
@@ -117,10 +116,56 @@ body {
     transform: translate(7px, -2px);
 }
 
+.secondary-light{
+    color: $secondary-light;
+}
+
 .bg-card {
     background: $card-gradient-color;
 }
 
+.mini-card{
+    width: 50%;
+    height: auto; 
+    outline: 1px solid $secondary;
+    outline-offset: 2px;
+    border: 2px dotted $secondary;
+}
+
+.frame_container > .frame_separator {
+    width: auto;
+}
+
+.table-spacing {
+    border-collapse: separate;
+    border-spacing: 20px 0;
+}
+
+.table-row {
+    height: 20px; /* Hauteur des lignes */
+}
+
+.line-card{
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: $secondary;
+    top: 100px;
+    left: 0;
+}
+
+.carousel-control-prev {
+    left: -100px;
+  }
+
+  .carousel-control-next{
+    right: -100px;
+  }
+
+.height-location{
+    min-height:53px;
+    max-height:53px;
+}
 .ornement {
     border-radius: 0 8px 0 8px;
 }
