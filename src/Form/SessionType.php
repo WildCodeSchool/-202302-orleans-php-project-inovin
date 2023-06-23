@@ -29,6 +29,9 @@ class SessionType extends AbstractType
                     'attr' => [
                         'placeholder' => 'Intitulé de la séance...',
                     ],
+                    'label_attr' => [
+                        'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    ],
                 ]
             )
 
@@ -36,7 +39,14 @@ class SessionType extends AbstractType
                 'openingDate',
                 DateTimeType::class,
                 [
+                    'widget' => 'single_text',
                     'label' => 'Date d\'ouverture',
+                    'attr' => [
+                        'class' => 'form-control border border-secondary',
+                    ],
+                    'label_attr' => [
+                        'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    ],
                 ]
             )
             ->add(
@@ -47,6 +57,9 @@ class SessionType extends AbstractType
                     'attr' => [
                         'placeholder' => 'Descriptif de la séance...',
                     ],
+                    'label_attr' => [
+                        'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    ],
                 ]
             )
             ->add(
@@ -55,7 +68,14 @@ class SessionType extends AbstractType
                 [
                     'label' => 'Terminée ?',
                     'required' => false,
-                ]
+                    'label_attr' => [
+                        'class' => 'form-check-label text-uppercase letter-spacing mb-2'
+                    ],
+                    'attr' => [
+                        'class' => 'form-check-input fs-5',
+                        'role' => "switch"
+                    ],
+                ],
             )
             ->add(
                 'wines',
@@ -70,6 +90,9 @@ class SessionType extends AbstractType
                             ->orderBy('w.name', 'ASC')
                             ->addOrderBy('w.year', 'ASC');
                     },
+                    'label_attr' => [
+                        'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    ],
                     'multiple' => true,
                     'expanded' => true,
                     'attr' => [

@@ -28,6 +28,7 @@ class SessionController extends AbstractController
     #[Route('/start/{session}', requirements: ['session' => '\d+'], methods: ['GET'], name: 'start_new')]
     public function startSession(Session $session, SessionRepository $sessionRepository): Response
     {
+
         return $this->render('tasting_sheet/index.html.twig', [
             'session' => $session,
         ]);
