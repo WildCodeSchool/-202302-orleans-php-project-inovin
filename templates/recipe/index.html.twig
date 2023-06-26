@@ -1,0 +1,61 @@
+{% extends 'visitor.html.twig' %}
+
+{% block title %}
+	{{ parent()}}
+	- Recette
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('recipe') }}
+{% endblock %}
+
+{% block body %}
+	<main class="container-fluid container-md py-5 mb-5">
+		<h2 class="text-primary-light fw-light mt-5 letter-spacing">
+			{% include 'components/svg/_icon_decoration.svg.twig' %}RÉSULTATS
+		</h2>
+
+		<div>
+			{% include "components/svg/_frame_surlignage_main.svg.twig" %}
+		</div>
+
+		<div class="text-primary-light fs-4 mt-4">
+			<p class="mb-1">Séance du 07 juin 2023</p>
+			<p class="mb-1">16h - 19h</p>
+		</div>
+
+		<div class="row mx-1 mt-5">
+			<div class="col custom-card px-3 border border-secondary d-flex align-items-center pt-3 bg-card m-0">
+				<div class="wine-ticket">
+					{% include "components/svg/_icon_wine_ticket.svg.twig" %}
+				</div>
+				<div class="content">
+					<p class="text-center text-uppercase fs-3 mb-1 text-primary">Bravo</p>
+					<p class="text-center text-uppercase">Tu as crées ta propre bouteille de vin !</p>
+					<div>
+						<div class="stats">
+							<h2 class="custom-card-title fs-5 flex-fill">Dosage des cépages</h2>
+						</div>
+						{{ form_label(form.visual, 'Grenache') }}
+						{{ form_widget(form.visual) }}
+						{{ form_errors(form.visual) }}
+
+						{{ form_label(form.smell) }}
+						{{ form_widget(form.smell) }}
+						{{ form_errors(form.smell) }}
+
+						{{ form_label(form.taste) }}
+						{{ form_widget(form.taste) }}
+						{{ form_errors(form.taste) }}
+					</div>
+				</div>
+			</div>
+			<div class="d-flex justify-content-end align-items-center border border-secondary py-3 rounded-bottom">
+				<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center custom-margin">
+					{{ button_label|default('Commander') }}
+					{{ include('/components/svg/_icon_validate.svg.twig') }}
+				</button>
+			</div>
+		</main>
+	{% endblock %}

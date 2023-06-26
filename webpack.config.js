@@ -42,6 +42,7 @@ Encore
     .addStyleEntry("registration", "./assets/styles/registration.scss")
     .addStyleEntry("resetPassword", "./assets/styles/resetPassword.scss")
     .addStyleEntry("wine", "./assets/styles/wine.scss")
+    .addStyleEntry("recipe", "./assets/styles/recipe.scss")
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge("./assets/controllers.json")
