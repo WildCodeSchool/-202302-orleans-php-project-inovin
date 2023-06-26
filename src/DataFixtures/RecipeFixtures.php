@@ -19,7 +19,7 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
             $recipe->setName($faker->name());
             $recipe->setSessionRate($faker->randomNumber(1));
             $recipe->setSession($this->getReference('session_' . $i));
-            $recipe->setUser($this->getReference('user_1'));
+            $recipe->setUser($this->getReference('user_0'));
             $manager->persist($recipe);
         }
         $manager->flush();
