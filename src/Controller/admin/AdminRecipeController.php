@@ -50,7 +50,7 @@ class AdminRecipeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $recipeRepository->save($recipe, true);
-
+            $this->addFlash('success', 'La recette a bien été modifiée.');
             return $this->redirectToRoute('app_admin_recipe_index', [], Response::HTTP_SEE_OTHER);
         }
 

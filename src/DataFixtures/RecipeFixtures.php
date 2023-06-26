@@ -10,7 +10,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class RecipeFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const RECIPE_COUNT = 5;
+    public const RECIPE_COUNT = 2;
     public function load(ObjectManager $manager): void
     {
         for ($i = 0; $i < self::RECIPE_COUNT; $i++) {

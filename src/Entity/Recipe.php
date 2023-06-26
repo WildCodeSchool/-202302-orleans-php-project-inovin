@@ -6,6 +6,7 @@ use App\Repository\RecipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
@@ -27,9 +28,14 @@ class Recipe
     private Collection $tastingSheet;
 
     #[ORM\Column(length: 45)]
+    #[Assert\NotBlank]
+    #[Assert\Type('string')]
+    #[Assert\Length(max: 45)]
     private ?string $name = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\Type('integer')]
     private ?int $sessionRate = null;
 
     public function __construct()
