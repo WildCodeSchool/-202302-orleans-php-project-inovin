@@ -100,11 +100,10 @@
 											<ul class="nav nav-pills mb-3 d-flex flex-column flex-md-row ps-md-3 ps-0 ms-md-3 ms-0" id="pills-tab" role="tablist">
 												{% for key, criteriaContent in criteriaContents %}
 													<li class="nav-item d-flex" role="presentation">
-														<button class="nav-link {% if loop.first %} {{ 'show active' }} {% endif %} align-self-center pt-3 pb-3 pe-0 ps-0 pe-md-4 letter-spacing" id="pills-{{ key }}{{ loop.index }}-tab" data-bs-toggle="pill" data-bs-target="#pills-{{ key }}{{ loop.index }}" type="button" role="tab" aria-controls="pills-{{ key }}{{ loop.index }}" aria-selected="true">{{ key }}</button>
+														<button class="nav-link {% if loop.first %} {{ 'show active' }} {% endif %} align-self-center pt-3 pb-3 pe-0 ps-0 pe-md-4 letter-spacing" id="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}-tab" data-bs-toggle="pill" data-bs-target="#pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}" type="button" role="tab" aria-controls="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}" aria-selected="true">{{ key }}</button>
 													</li>
 												{% endfor %}
 											</ul>
-
 											<p class="ps-md-3 ps-0 ms-md-3 ms-0 spacingCiteriaTitle">Choississez une note de
 												<span class="text-primary">0</span>
 												à
@@ -112,13 +111,12 @@
 												en fonction des ces critères</p>
 
 											<div class="tab-content" id="pills-tabContent">
-
 												{% for key, criteriaContent in criteriaContents %}
-													<div class="tab-pane fade show {% if loop.first %} {{ 'active' }} {% endif %}" id="pills-{{ key }}{{ loop.index }}" role="tabpanel" aria-labelledby="pills-{{ key }}{{ loop.index }}-tab" tabindex="0">
+													<div class="tab-pane fade show {% if loop.first %} {{ 'active' }} {% endif %}" id="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}" role="tabpanel" aria-labelledby="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}-tab" tabindex="0">
 														<ul class="d-flex flex-column align-self-center ps-md-5 ps-1 ms-md-5 ms-2 mt-5">
 															{% for criteria in criteriaContent %}
 																<li class="list-group-item d-flex justify-content-between align-items-center mt-4">
-																	{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':1} %}
+																	{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':loop.index} %}
 																	<div class="ms-2 me-auto">
 																		<p class="mx-2 fw-light mb-0">{{ criteria }}</p>
 																	</div>
@@ -126,21 +124,27 @@
 															{% endfor %}
 														</ul>
 													</div>
+													{{ form_start(form) }}
+													{{ form_row(form.date) }}
+													{{ form_row(form.taste) }}
+													{{ form_row(form.smell) }}
+													{{ form_row(form.visual) }}
 												{% endfor %}
 											</div>
 										</div>
 									</div>
-									<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
-										<button class="d-flex align-items-center btn btn-outline-primary mt-3 mb-3 mx-3 letter-spacing px-4">
-											SUIVANT
-											<span class="transform">
-												{% include "components/svg/_icon_next.svg.twig" %}
-											</span>
-										</button>
-									</div>
 								</div>
 							{% endfor %}
 						</div>
+						<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
+							<button class="d-flex align-items-center btn btn-outline-primary mt-3 mb-3 mx-3 letter-spacing px-4">
+								SUIVANT
+								<span class="transform">
+									{% include "components/svg/_icon_next.svg.twig" %}
+								</span>
+							</button>
+						</div>
+						{{ form_end(form) }}
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,5 @@
 <div class="row mb-4">
-	<div class="col-sm-12 col-11 px-sm-5 px-3 m-auto pt-5 ">
+	<div class="px-sm-5 px-3 m-auto pt-5 ">
 		<h2 class="text-primary-light fw-light text-uppercase letter-spacing mt-5">
 			{% include 'components/svg/_icon_decoration.svg.twig' %}SÉANCES OUVERTES
 		</h2>
@@ -19,7 +19,7 @@
 						Séance du
 						{{ session.openingDate|date("d F Y", "Europe/Paris") }}
 					</span>
-					<span class="badge rounded-pill px-3 fw-bold align-self-end text-end fs-6  text-dark {{ session.closed ? 'bg-danger' : 'bg-success' }}">
+					<span class="badge rounded-pill px-3 fw-bold align-self-end text-end fs-6  text-dark {{ session.closed ? 'bg-danger' : 'bg-success-light' }}">
 						{{ session.closed ? 'FERMÉE' : 'OUVERTE' }}
 					</span>
 				</div>
@@ -67,10 +67,10 @@
 
 			<div class="row mt-4">
 				<div class="col d-flex justify-content-end align-items-center me-4">
-					<button class="btn bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover icon-dark text-uppercase">
+					<a role="button" href="{{ path( 'app_session_start_new', {'session': session.id }) }}" class="btn bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover icon-dark text-uppercase">
 						PARTICIPER
 						{{ include('/components/svg/_icon_validate.svg.twig') }}
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>

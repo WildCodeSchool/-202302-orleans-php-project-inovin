@@ -3,6 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Session;
+use App\Entity\Wine;
+use App\Repository\WineRepository;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,6 +29,9 @@ class SessionType extends AbstractType
                     'attr' => [
                         'placeholder' => 'Intitulé de la séance...',
                     ],
+                    'label_attr' => [
+                        'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    ],
                 ]
             )
 
@@ -31,7 +39,14 @@ class SessionType extends AbstractType
                 'openingDate',
                 DateTimeType::class,
                 [
+                    'widget' => 'single_text',
                     'label' => 'Date d\'ouverture',
+                    'attr' => [
+                        'class' => 'form-control border border-secondary',
+                    ],
+                    'label_attr' => [
+                        'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    ],
                 ]
             )
             ->add(
@@ -42,6 +57,9 @@ class SessionType extends AbstractType
                     'attr' => [
                         'placeholder' => 'Descriptif de la séance...',
                     ],
+                    'label_attr' => [
+                        'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    ],
                 ]
             )
             ->add(
@@ -50,7 +68,38 @@ class SessionType extends AbstractType
                 [
                     'label' => 'Terminée ?',
                     'required' => false,
-                ]
+                    'label_attr' => [
+                        'class' => 'form-check-label text-uppercase letter-spacing mb-2'
+                    ],
+                    'attr' => [
+                        'class' => 'form-check-input fs-5',
+                        'role' => "switch"
+                    ],
+                    'row_attr' => ['class' => "form-check form-switch"],
+                ],
+            )
+            ->add(
+                'wines',
+                EntityType::class,
+                [
+                    'label' => 'Choix des vins pour cette séance',
+                    'class' => Wine::class,
+                    'choice_label' => 'FullLabel',
+                    'query_builder' => function (WineRepository $er): QueryBuilder {
+                        return $er->createQueryBuilder('w')
+                            ->where('w.enabled = 1')
+                            ->orderBy('w.name', 'ASC')
+                            ->addOrderBy('w.year', 'ASC');
+                    },
+                    'label_attr' => [
+                        'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    ],
+                    'multiple' => true,
+                    'expanded' => true,
+                    'attr' => [
+                        'class' => 'form-control border border-secondary rounded-1 max-height-select',
+                    ],
+                ],
             );
     }
 
