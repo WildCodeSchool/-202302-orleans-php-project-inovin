@@ -7,10 +7,21 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class SearchWineData
 {
+    public const MIN_PRICE = 0;
+    public const MAX_PRICE = 100;
+
     #[Assert\Length(max: 255)]
     private ?string $name = '';
     private array $grapeVarieties = [];
+
+    #[Assert\PositiveOrZero]
+    #[Assert\Range(
+        min: self::MIN_PRICE,
+        max: self::MAX_PRICE,
+    )]
     private ?int $maxPrice = null;
+
+    #[Assert\PositiveOrZero]
     private ?int $minPrice = null;
 
     /**

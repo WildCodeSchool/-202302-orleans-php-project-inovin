@@ -28,23 +28,21 @@
 			</div>
 			<div class="container-fluid">
 
-				{% if form %}
-					<div class="row">
-						<div class="col">
-							<div class="text-end">
-								<a class="link icon-link icon-link-hover icon text-uppercase text-decoration-none me-2 my-3" data-bs-toggle="collapse" href="#collapseSearch" role="button" aria-expanded="false" aria-controls="collapseSearch">
-									Filtrer
-									{% include "components/svg/_icon_eye.svg.twig" %}
-								</a>
-							</div>
-							<div class="collapse" id="collapseSearch">
-								<div class="card card-body">
-									{% include "components/search/_searchWinFormData.html.twig" with {form : form } only %}
-								</div>
+				<div class="row">
+					<div class="col">
+						<div class="text-end">
+							<a class="link icon-link icon-link-hover icon text-uppercase text-decoration-none me-2 my-3" data-bs-toggle="collapse" href="#collapseSearch" role="button" aria-expanded="false" aria-controls="collapseSearch">
+								Filtrer
+								{% include "components/svg/_icon_eye.svg.twig" %}
+							</a>
+						</div>
+						<div class="collapse" id="collapseSearch">
+							<div class="card card-body">
+								{% include "components/search/_searchWinFormData.html.twig" with {form : form } only %}
 							</div>
 						</div>
 					</div>
-				{% endif %}
+				</div>
 
 				<div class="row my-4">
 					{% for wine in wines %}

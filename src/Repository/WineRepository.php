@@ -48,7 +48,7 @@ class WineRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
-    public function findSearch(SearchWineData $searchWineData, array $order = []): array
+    public function findSearch(SearchWineData $searchWineData, array $orders = []): array
     {
         $query = $this->createQueryBuilder('w')
             ->select('w')
@@ -76,6 +76,12 @@ class WineRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere('w.grapeVariety IN (:grapevarieties)')
                 ->setParameter('grapevarieties', $searchWineData->getGrapeVarieties());
+        }
+        if (!empty($orders)) {
+            foreach ($orders as $column => $direction) {
+                $query = $query
+                    ->addOrderBy("w." . trim($column), strtoupper($direction));
+            }
         }
 
         return $query->getQuery()->getResult();

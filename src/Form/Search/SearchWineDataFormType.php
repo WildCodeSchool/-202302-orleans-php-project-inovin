@@ -37,6 +37,7 @@ class SearchWineDataFormType extends AbstractType
                 ],
                 'required' => false,
                 'class' => GrapeVariety::class,
+                'choice_label' => 'name',
                 'expanded' => true,
                 'multiple' => true,
                 'attr' => [

@@ -20,6 +20,7 @@ class WineController extends AbstractController
         $searchWineData = new SearchWineData();
         $form = $this->createForm(SearchWineDataFormType::class, $searchWineData);
         $form->handleRequest($request);
+
         $wines = $wineRepository->findSearch($searchWineData, ['name' => 'ASC']);
 
         return $this->render('wine/index.html.twig', [

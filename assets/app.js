@@ -20,11 +20,3 @@ import "./bootstrap";
 import * as noUiSlider from "nouislider";
 window.noUiSlider = noUiSlider;
 import "nouislider/dist/nouislider.css";
-
-//enable boostrap Popover
-const popoverTriggerList = document.querySelectorAll(
-    '[data-bs-toggle="popover"]'
-);
-const popoverList = [...popoverTriggerList].map(
-    (popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl)
-);
