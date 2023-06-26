@@ -3,9 +3,11 @@
 namespace App\Search;
 
 use App\Entity\GrapeVariety;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class SearchWineData
 {
+    #[Assert\Length(max: 255)]
     private ?string $name = '';
     private array $grapeVarieties = [];
     private ?int $maxPrice = null;
