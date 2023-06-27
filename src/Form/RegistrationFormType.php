@@ -41,6 +41,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('date_birth', BirthdayType::class, [
                 'attr' => [
+                    'required' => false,
                     'placeholder' => 'JJ-MM-YYYY',
                     'class' => 'form-control border border-secondary placeholder-style w-100',
                 ],

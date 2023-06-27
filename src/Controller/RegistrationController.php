@@ -25,7 +25,7 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
-    #[Route('/register', name: 'app_register', methods: ['GET', 'POST'])]
+    #[Route('/inscription', name: 'app_register', methods: ['GET', 'POST'])]
     public function register(
         Request $request,
         UserPasswordHasherInterface $userPasswordHasher,
@@ -62,7 +62,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('home_index');
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('components/RegistrationForm.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
