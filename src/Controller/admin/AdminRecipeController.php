@@ -21,27 +21,6 @@ class AdminRecipeController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_admin_recipe_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RecipeRepository $recipeRepository): Response
-    {
-        $recipe = new Recipe();
-        $form = $this->createForm(RecipeType::class, $recipe);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $recipeRepository->save($recipe, true);
-
-            return $this->redirectToRoute('app_admin_recipe_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('admin/admin_recipe/new.html.twig', [
-            'recipe' => $recipe,
-            'form' => $form,
-        ]);
-    }
-
-
-
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Recipe $recipe, RecipeRepository $recipeRepository): Response
     {
