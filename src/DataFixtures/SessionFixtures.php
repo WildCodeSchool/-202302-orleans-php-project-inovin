@@ -28,7 +28,6 @@ class SessionFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-
         foreach (self::SESSIONS as $key => $sessionName) {
             $session = new Session();
             $wine = new WineFixtures();

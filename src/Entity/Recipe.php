@@ -26,6 +26,12 @@ class Recipe
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: TastingSheet::class)]
     private Collection $tastingSheet;
 
+    #[ORM\Column(length: 45)]
+    private ?string $name = null;
+
+    #[ORM\Column]
+    private ?int $sessionRate = null;
+
     public function __construct()
     {
         $this->tastingSheet = new ArrayCollection();
@@ -86,6 +92,30 @@ class Recipe
                 $tastingSheet->setRecipe(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSessionRate(): ?int
+    {
+        return $this->sessionRate;
+    }
+
+    public function setSessionRate(int $sessionRate): static
+    {
+        $this->sessionRate = $sessionRate;
 
         return $this;
     }
