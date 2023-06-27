@@ -36,7 +36,7 @@ class RecipeType extends AbstractType
                 [
                     'label' => 'Note de la recette',
                     'attr' => [
-                        'placeholder' => '14',
+                        'placeholder' => '9',
                     ],
                 ]
             )
