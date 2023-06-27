@@ -22,9 +22,15 @@
             {% for recipe in recipes %}
                 <tr>
                     <td class="px-4">{{ recipe.name }}</td>
-                    <td>
-                        <a href="{{ path('app_admin_recipe_edit', {'id': recipe.id}) }}">edit</a>
+                    <td class="text-center p-2 w-25">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a class="icon-link icon-link-hover-left link-light mx-4 text-decoration-none" href="{{ path('app_admin_recipe_edit', {'id': recipe.id}) }}">
+                                {{ include('/components/svg/_icon_edit.svg.twig') }}
+                                Éditer
+                            </a>
+                        </div>    
                     </td>
+                    
                 </tr>
             {% else %}
             <tr>
