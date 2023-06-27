@@ -25,7 +25,8 @@ class RecipeType extends AbstractType
                 [
                     'label' => 'Nom de la recette',
                     'attr' => [
-                        'placeholder' => 'Thomas',
+                        'required' => false,
+                        'placeholder' => 'Ma recette.',
                     ],
                 ]
             )

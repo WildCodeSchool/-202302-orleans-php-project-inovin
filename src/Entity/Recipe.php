@@ -35,6 +35,8 @@ class Recipe
 
     #[ORM\Column]
     #[Assert\NotBlank]
+    #[Assert\PositiveOrZero]
+    #[Assert\Range(min: 0, max: 10)]
     #[Assert\Type('integer')]
     private ?int $sessionRate = null;
 
