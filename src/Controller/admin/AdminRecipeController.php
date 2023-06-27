@@ -16,7 +16,7 @@ class AdminRecipeController extends AbstractController
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(RecipeRepository $recipeRepository): Response
     {
-        return $this->render('admin_recipe/index.html.twig', [
+        return $this->render('/admin/admin_recipe/index.html.twig', [
             'recipes' => $recipeRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class AdminRecipeController extends AbstractController
             return $this->redirectToRoute('app_admin_recipe_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_recipe/new.html.twig', [
+        return $this->renderForm('admin/admin_recipe/new.html.twig', [
             'recipe' => $recipe,
             'form' => $form,
         ]);
@@ -54,13 +54,13 @@ class AdminRecipeController extends AbstractController
             return $this->redirectToRoute('app_admin_recipe_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin_recipe/edit.html.twig', [
+        return $this->renderForm('admin/admin_recipe/edit.html.twig', [
             'recipe' => $recipe,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_recipe_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'delete', methods: ['POST'])]
     public function delete(Request $request, Recipe $recipe, RecipeRepository $recipeRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $recipe->getId(), $request->request->get('_token'))) {
