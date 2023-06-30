@@ -1,8 +1,21 @@
+{{ form_start(form) }}
 <div class="d-flex justify-content-center">
 	<div class="form-control w-75 p-4 m-5 border-secondary" style="background-color: var(--dark-light);">
-		<div class="form-label fw-bold">
-			{{ form_start(form) }}
-			{{ form_widget(form) }}
+		<div class="container-fluid">
+
+			{{ form_row(form.name) }}
+			{{ form_row(form.description) }}
+			<div class="row">
+				<div class="col">
+					<div class="col-md-6 col-xl-4">
+						{{ form_row(form.openingDate) }}
+					</div>
+					<div class="col">
+						{{ form_row(form.closed) }}
+					</div>
+				</div>
+			</div>
+			{{ form_row(form.wines) }}
 		</div>
 	</div>
 </div>
@@ -12,7 +25,7 @@
 			{% include "components/svg/_icon_validate.svg.twig" %}
 			{{ button_label|default('Valider') }}
 		</button>
-		<a class="btn fw-bolder mb-4 icon-link icon-link-hover-left icon-light text-uppercase order-3 order-sm-1" href="{{ path('app_session_index') }}">
+		<a class="btn fw-bolder mb-4 icon-link icon-link-hover-left icon-light text-uppercase order-3 order-sm-1" href="{{ path('admin_session_index') }}">
 			{% include "components/svg/_icon_backlink.svg.twig" %}
 			Retour
 		</a>

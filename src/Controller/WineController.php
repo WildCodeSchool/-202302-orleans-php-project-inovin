@@ -3,80 +3,30 @@
 namespace App\Controller;
 
 use App\Entity\Wine;
+use App\Form\Search\SearchWineDataFormType;
 use App\Form\WineType;
 use App\Repository\WineRepository;
+use App\Search\SearchWineData;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/vin')]
+#[Route('/vin', name: 'app_wine_')]
 class WineController extends AbstractController
 {
-    #[Route('/', name: 'app_wine_index', methods: ['GET'])]
-    public function index(WineRepository $wineRepository): Response
+    #[Route('/', name: 'index', methods: ['GET'])]
+    public function index(Request $request, WineRepository $wineRepository): Response
     {
+        $searchWineData = new SearchWineData();
+        $form = $this->createForm(SearchWineDataFormType::class, $searchWineData);
+        $form->handleRequest($request);
+
+        $wines = $wineRepository->findSearch($searchWineData, ['name' => 'ASC']);
+
         return $this->render('wine/index.html.twig', [
-            'wines' => $wineRepository->findBy([], ['name' => 'ASC']),
+            'wines' => $wines,
+            'form' =>  $form
         ]);
-    }
-
-    #[Route('/new', name: 'app_wine_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, WineRepository $wineRepository): Response
-    {
-        $wine = new Wine();
-        $form = $this->createForm(WineType::class, $wine);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $wineRepository->save($wine, true);
-
-            $this->addFlash(
-                'success',
-                'Le Vin a été ajouté'
-            );
-            return $this->redirectToRoute('app_wine_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('wine/new.html.twig', [
-            'wine' => $wine,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_wine_show', methods: ['GET'])]
-    public function show(Wine $wine): Response
-    {
-        return $this->render('wine/show.html.twig', [
-            'wine' => $wine,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'app_wine_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Wine $wine, WineRepository $wineRepository): Response
-    {
-        $form = $this->createForm(WineType::class, $wine);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $wineRepository->save($wine, true);
-            $this->addFlash("success", "Modifications du vin effectuées !");
-            return $this->redirectToRoute('app_wine_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('wine/edit.html.twig', [
-            'wine' => $wine,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_wine_delete', methods: ['POST'])]
-    public function delete(Request $request, Wine $wine, WineRepository $wineRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $wine->getId(), $request->request->get('_token'))) {
-            $wineRepository->remove($wine, true);
-        }
-
-        return $this->redirectToRoute('app_wine_index', [], Response::HTTP_SEE_OTHER);
     }
 }

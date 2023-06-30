@@ -1,4 +1,4 @@
-import './bootstrap.js';
+import "./bootstrap.js";
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -7,10 +7,16 @@ import './bootstrap.js';
  */
 
 //import bootstrap bundle
-require("bootstrap");
+import * as bootstrap from "bootstrap";
+window.bootstrap = bootstrap;
 
 // any CSS you import will output into a single css file (app.css in this case)
 import "./styles/app.scss";
 
 // start the Stimulus application
 import "./bootstrap";
+
+//import noUiSlider bundle
+import * as noUiSlider from "nouislider";
+window.noUiSlider = noUiSlider;
+import "nouislider/dist/nouislider.css";

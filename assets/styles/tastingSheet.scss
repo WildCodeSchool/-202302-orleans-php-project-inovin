@@ -1,5 +1,7 @@
 @import "variables";
 
+
+/* circlewith number */
 .pine-circle {
     width: 39px;
     height: 39px;
@@ -13,12 +15,107 @@
     transform: rotate(45deg);
 }
 
-.myContainer {
-    width: 1200px;
- }
+/* the background */
 
-.row .rounded-circle{
-  object-fit: cover;
-  width: 300px;
-  height: 300px;
+.myPage {
+    background: $card-gradient-color;
+}
+
+/* all the border of the page */
+
+.myForm {
+    border: 1px solid $secondary;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.myFormBorder {
+    border: 2px dotted $secondary;
+    margin: 4px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.secondNavBarBorder {
+    border-top: 1px solid $secondary;
+    padding-top: 4px;
+}
+
+.mySecondNavbar {
+    border-top: 2px dotted $secondary;
+}
+
+.firstNavbarBorder {
+    border-bottom: 2px dotted $secondary;
+    margin-bottom: 4px;
+}
+
+.buttonNext {
+    border-top: 2px dotted $secondary;
+}
+
+/* all the active-link */
+
+.firstNavbar .nav-link.active {
+    background: $navbarTastingSheetBg;
+    border-top: 1px solid $secondary;
+    border-left: 1px solid $secondary;
+    border-right: 1px solid $secondary;
+    border-radius: 0px;
+    transform: translateY(1.1px);
+    z-index: 10;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    color: $primary-light;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.mySecondNavbar .nav-link.active {
+    background: transparent;
+    font-size: 1.5rem;
+    color: $primary-light;
+}
+
+/* the image */
+.row .rounded-circle {
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+    outline: 2px dotted $secondary;
+    outline-offset: 4px;
+    border: 1px solid $secondary;
+}
+
+/* my navbar*/
+.firstNavbar .nav-item button {
+    color: $primary-light;
+    letter-spacing: 2px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.mySecondNavbar .nav-link {
+    color: $secondary-light;
+}
+
+/* my wine sheet */
+.firstNavbarBorder h4 {
+    font-family: $font-card-title;
+    font-size: 3rem;
+    text-transform: capitalize;
+}
+
+.firstNavbarBorder ul {
+    list-style-type: none;
+    line-height: 220%;
+    padding-left: 0px;
+}
+
+.wineSheetListTitle {
+    font-weight: bold;
+    letter-spacing: 1px;
 }

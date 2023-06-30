@@ -25,12 +25,12 @@
 			<tbody class="table-group-divider">
 				{% for grape_variety in grape_varieties %}
 					<tr>
-						<td class="px-4">{{ grape_variety.name }}</td>
-						<td class="px-4">
-							<span class="badge rounded-pill w-25 px-2 py-1 fs-6 text-bg-{{ grape_variety.color.classcolor }}">{{ grape_variety.color.color }}
+						<td class="px-4 align-middle">{{ grape_variety.name }}</td>
+						<td class="px-4 align-middle">
+							<span class="grappe-color-spinner text-center badge rounded-pill py-1 fs-6 text-bg-{{ grape_variety.color.classcolor }}">{{ grape_variety.color.color }}
 							</span>
 						</td>
-						<td class="text-center p-2 w-25">
+						<td class="text-center p-2 w-25 align-middle">
 							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 								<a class="icon-link icon-link-hover-left link-light mx-4 text-decoration-none" href="{{ path('app_admin_cepage_edit', {'id' : grape_variety.id}) }}">
 									{{include('/components/svg/_icon_edit.svg.twig')}}
@@ -39,12 +39,12 @@
 								{{ include('./admin/grape_variety/_delete_form.html.twig') }}</td>
 						</td>
 					</tr>
-				</div>
+				{% else %}
+					<tr>
+						<td colspan="3">aucun enregistrement trouvé</td>
+					</tr>
+				{% endfor %}
 			</tbody>
-		</td>
-	</tr>
-{% else %}
-	<tr>
-		<td colspan="3">aucun enregistrement trouvé</td>
-	</tr>
-{% endfor %}</tbody></table></div>{% endblock %}
+		</table>
+	</div>
+{% endblock %}
