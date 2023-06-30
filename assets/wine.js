@@ -10,8 +10,19 @@ if (resetButon) {
 
 function resetSlider() {
     myWineSlider.noUiSlider.reset();
-    document.getElementById("minPrice").value = minValue;
-    document.getElementById("maxPrice").value = maxValue;
+    document.getElementById("minPrice").setAttribute("value", minValue);
+    document.getElementById("maxPrice").setAttribute("value", maxValue);
+    resetOption();
+}
+
+function resetOption() {
+    myWineSlider.noUiSlider.updateOptions({
+        start: [minValue, maxValue],
+        range: {
+            min: minValue,
+            max: maxValue,
+        },
+    });
 }
 
 if (myWineSlider) {
