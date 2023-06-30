@@ -6,6 +6,7 @@ use App\Repository\RecipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
 class Recipe
@@ -25,6 +26,19 @@ class Recipe
 
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: TastingSheet::class)]
     private Collection $tastingSheet;
+
+    #[ORM\Column(length: 45)]
+    #[Assert\NotBlank]
+    #[Assert\Type('string')]
+    #[Assert\Length(max: 45)]
+    private ?string $name = null;
+
+    #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\PositiveOrZero]
+    #[Assert\Range(min: 0, max: 10)]
+    #[Assert\Type('integer')]
+    private ?int $sessionRate = null;
 
     public function __construct()
     {
@@ -86,6 +100,30 @@ class Recipe
                 $tastingSheet->setRecipe(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSessionRate(): ?int
+    {
+        return $this->sessionRate;
+    }
+
+    public function setSessionRate(int $sessionRate): static
+    {
+        $this->sessionRate = $sessionRate;
 
         return $this;
     }

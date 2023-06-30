@@ -1,0 +1,43 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}
+    {{ parent() }}
+    |Recette - index
+{% endblock %}
+
+{% block admin_content_title %}
+    NOS RECETTES
+{% endblock %}
+
+{% block admin_content %}
+<div>
+    <table class="table table-striped table-hover table-bordered border-secondary">
+        <thead class="sticky-top">
+            <tr class="py-4">
+                <th class="w-auto th-lg py-3 px-4 bg-secondary" scope="col">NOM</th>
+                <th class="w-25 py-3 text-center px-2 bg-secondary" scope="col">ACTIONS</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for recipe in recipes %}
+                <tr>
+                    <td class="px-4">{{ recipe.name }}</td>
+                    <td class="text-center p-2 w-25">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a class="icon-link icon-link-hover-left link-light mx-4 text-decoration-none" href="{{ path('app_admin_recipe_edit', {'id': recipe.id}) }}">
+                                {{ include('/components/svg/_icon_edit.svg.twig') }}
+                                Éditer
+                            </a>
+                        </div>    
+                    </td>
+                    
+                </tr>
+            {% else %}
+            <tr>
+                <td colspan="2">Aucun enregistrement.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
