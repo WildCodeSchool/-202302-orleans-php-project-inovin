@@ -19,12 +19,12 @@ class SessionController extends AbstractController
     {
         $sessionsOpened = $sessionRepository->getNextOpenedSessions();
         $firstOpenedSession = (count($sessionsOpened) === 0 ? [] :  [$sessionsOpened[0]]);
-        $nextOpnedSessions = count($sessionsOpened) > 1 ? array_splice($sessionsOpened, 1) : [];
+        $nextOpenedSessions = count($sessionsOpened) > 1 ? array_splice($sessionsOpened, 1) : [];
         $closedSessions = $sessionRepository->findBy(['closed' => true], ['openingDate' => 'desc',]);
 
         return $this->render('session/sessions_states_html.twig', [
             'firstOpenedSession' => $firstOpenedSession,
-            'nextSessions' => $nextOpnedSessions,
+            'nextSessions' => $nextOpenedSessions,
             'closedSessions' => $closedSessions
         ]);
     }
