@@ -21,14 +21,17 @@ class TastingSheet
 
     #[ORM\Column]
     #[Assert\NotBlank]
+    #[Assert\Range(min: 120, max: 180)]
     private ?float $taste = null;
 
     #[ORM\Column]
     #[Assert\NotBlank]
+    #[Assert\Range(min: 120, max: 180)]
     private ?float $smell = null;
 
     #[ORM\Column]
     #[Assert\NotBlank]
+    #[Assert\Range(min: 120, max: 180)]
     private ?float $visual = null;
 
     #[ORM\ManyToOne(inversedBy: 'tastingSheet')]

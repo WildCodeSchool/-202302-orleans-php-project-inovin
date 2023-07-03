@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TastingSheetController extends AbstractController
 {
-    #[Route('/ficheDeDegustation/{recipe}', name: 'app_tasting_sheet')]
+    #[Route('/Degustation/{recipe}', name: 'app_tasting_sheet')]
     public function index(Request $request, RecipeRepository $recipeRepository, Recipe $recipe): Response
     {
         foreach ($recipe->getSession()->getWines() as $wine) {
