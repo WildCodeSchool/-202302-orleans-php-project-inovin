@@ -6,6 +6,7 @@ use App\Repository\TastingSheetRepository;
 use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TastingSheetRepository::class)]
 class TastingSheet
@@ -19,12 +20,15 @@ class TastingSheet
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?float $taste = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?float $smell = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?float $visual = null;
 
     #[ORM\ManyToOne(inversedBy: 'tastingSheet')]
@@ -60,8 +64,6 @@ class TastingSheet
     {
         $this->taste = $taste;
         $this->setDate(new DateTime('now'));
-
-
 
         return $this;
     }

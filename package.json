@@ -28,5 +28,7 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
-    "dependencies": {}
+    "dependencies": {
+        "@a2lix/symfony-collection": "^0.6.1"
+    }
 }

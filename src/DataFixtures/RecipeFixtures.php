@@ -17,20 +17,15 @@ class RecipeFixtures extends Fixture implements DependentFixtureInterface
 
         for ($i = 0; $i < self::RECIPE_COUNT; $i++) {
             $recipe = new Recipe();
-            $tastingSheet = new TastingSheetFixtures();
 
             $recipe->setSession($this->getReference('session_' . $faker->numberBetween(1, 9)));
             $recipe->setUser($this->getReference('user_' . $faker->numberBetween(1, 2)));
 
 
-            $tastingSheet1 = $this->getReference('tastingSheet_' .
-            $faker->numberBetween(1, $tastingSheet::TASTING_SHEET_COUNT - 1));
-            $tastingSheet2 = $this->getReference('tastingSheet_' .
-            $faker->numberBetween(1, $tastingSheet::TASTING_SHEET_COUNT - 1));
-            $tastingSheet3 = $this->getReference('tastingSheet_' .
-            $faker->numberBetween(1, $tastingSheet::TASTING_SHEET_COUNT - 1));
-            $tastingSheet4 = $this->getReference('tastingSheet_' .
-            $faker->numberBetween(1, $tastingSheet::TASTING_SHEET_COUNT - 1));
+            $tastingSheet1 = $this->getReference('tastingSheet_1');
+            $tastingSheet2 = $this->getReference('tastingSheet_2');
+            $tastingSheet3 = $this->getReference('tastingSheet_3');
+            $tastingSheet4 = $this->getReference('tastingSheet_4');
 
             $recipe->addTastingSheet($tastingSheet1);
             $recipe->addTastingSheet($tastingSheet2);

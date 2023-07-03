@@ -11,22 +11,22 @@
 {% block body %}
 
 	{% set criteriaContents = 
-	{'Apparence': [
-    	'L’intensité : Comment trouvez-vous l\'intensité ?',
-    	'Brillance : Comment trouvez-vous la brillance ?',
-    	'Limpidité : Comment trouvez-vous  la limpidité ?',
-	],
-	'Nez': [
-		'Arôme : Comment trouvez-vous l\'arome ?',
-		'Intensité : Comment trouvez-vous l\'intensité ?',
-		'Impression : Comment trouvez-vous l\'impression ?',
-	],
-	'Palais': [
-		'Matière : Comment trouvez-vous la matière ?',
-		'Structure : Comment trouvez-vous la structure ?',
-		'Saveur : Comment trouvez-vous la saveur ?',
-	],
-	}%}
+		{'Apparence': [
+	    	'L’intensité : Comment trouvez-vous l\'intensité ?',
+	    	'Brillance : Comment trouvez-vous la brillance ?',
+	    	'Limpidité : Comment trouvez-vous  la limpidité ?',
+		],
+		'Nez': [
+			'Arôme : Comment trouvez-vous l\'arome ?',
+			'Intensité : Comment trouvez-vous l\'intensité ?',
+			'Impression : Comment trouvez-vous l\'impression ?',
+		],
+		'Palais': [
+			'Matière : Comment trouvez-vous la matière ?',
+			'Structure : Comment trouvez-vous la structure ?',
+			'Saveur : Comment trouvez-vous la saveur ?',
+		],
+		}%}
 
 	<main class="container mb-5 pb-5 mt-5 pt-5">
 		<div class="d-flex flex-column align-items-start mb-4">
@@ -40,6 +40,7 @@
 		</div>
 		<h2 class="mt-5">SÉANCE DU 07 JUIN 2023</h2>
 		<h3 class="mb-5 pb-2">16h - 19h</h3>
+		{{ form_start(form) }}
 		<div class="row">
 			<div class="col myPage mb-4">
 				<div>
@@ -59,7 +60,8 @@
 					</ul>
 					<div class="myForm">
 						<div class="tab-content myFormBorder" id="pills-tabContent">
-							{% for wine in recipe.session.wines %}
+							{% for tastingSheetForm in form.tastingSheet %}
+								{% set wine = tastingSheetForm.vars.value.wine %}
 								<div class="tab-pane fade {% if loop.first %} {{ 'show active' }} {% endif %}" id="pills-{{ loop.index }}" role="tabpanel" aria-labelledby="pills-{{ loop.index }}-tab" tabindex="0">
 									<div class="firstNavbarBorder">
 										<div class="row">
@@ -109,7 +111,6 @@
 												à
 												<span class="text-primary">10</span>
 												en fonction des ces critères</p>
-
 											<div class="tab-content" id="pills-tabContent">
 												{% for key, criteriaContent in criteriaContents %}
 													<div class="tab-pane fade show {% if loop.first %} {{ 'active' }} {% endif %}" id="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}" role="tabpanel" aria-labelledby="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}-tab" tabindex="0">
@@ -122,97 +123,26 @@
 																	</div>
 																</li>
 
-																{% if loop.parent.loop.parent.loop.index == 1 %}
-																	{{ form_start(form1) }}
-																	{% if key == 'Apparence' and criteria == 'Limpidité : Comment trouvez-vous  la limpidité ?' %}
-																		{{ form_row(form1.visual) }}
-																	{% endif %}
-																	{% if key == 'Nez' and criteria == 'Impression : Comment trouvez-vous l\'impression ?'%}
-																		{{ form_row(form1.smell) }}
-																	{% endif %}
-																	{% if key == 'Palais' and criteria == 'Saveur : Comment trouvez-vous la saveur ?'%}
-																		{{ form_row(form1.taste) }}
-																	<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
-																		<button class="d-flex align-items-center btn btn-outline-primary mt-3 mb-3 mx-3 letter-spacing px-4">
-																			SUIVANT
-																			<span class="transform">
-																				{% include "components/svg/_icon_next.svg.twig" %}
-																			</span>
-																		</button>
-																	</div>
-																	{{ form_end(form1) }}
-																	{% endif %}
-																{% endif %}
-
-																{% if loop.parent.loop.parent.loop.index == 2 %}
-																{{ form_start(form2) }}
-																{% if key == 'Apparence' and criteria == 'Limpidité : Comment trouvez-vous  la limpidité ?' %}
-																	{{ form_row(form2.visual) }}
-																{% endif %}
-																{% if key == 'Nez' and criteria == 'Impression : Comment trouvez-vous l\'impression ?'%}
-																		{{ form_row(form2.smell) }}
-																	{% endif %}
-																	{% if key == 'Palais' and criteria == 'Saveur : Comment trouvez-vous la saveur ?'%}
-																		{{ form_row(form2.taste) }}
-																		<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
-																			<button class="d-flex align-items-center btn btn-outline-primary mt-3 mb-3 mx-3 letter-spacing px-4">
-																				SUIVANT
-																				<span class="transform">
-																					{% include "components/svg/_icon_next.svg.twig" %}
-																				</span>
-																			</button>
-																		</div>
-																		{{ form_end(form2) }}
-																	{% endif %}
-																{% endif %}
-
-																{% if loop.parent.loop.parent.loop.index == 3 %}
-																	{{ form_start(form3) }}
-																	{% if key == 'Apparence' and criteria == 'Limpidité : Comment trouvez-vous  la limpidité ?' %}
-																		{{ form_row(form3.visual) }}
-																	{% endif %}
-																	{% if key == 'Nez' and criteria == 'Impression : Comment trouvez-vous l\'impression ?'%}
-																	{{ form_row(form3.smell) }}
-																	{% endif %}
-																	{% if key == 'Palais' and criteria == 'Saveur : Comment trouvez-vous la saveur ?'%}
-																	{{ form_row(form3.taste) }}
-																	<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
-																		<button class="d-flex align-items-center btn btn-outline-primary mt-3 mb-3 mx-3 letter-spacing px-4">
-																			SUIVANT
-																			<span class="transform">
-																				{% include "components/svg/_icon_next.svg.twig" %}
-																			</span>
-																		</button>
-																	</div>
-																	{{ form_end(form3) }}
-																	{% endif %}
-																{% endif %}
-
-																{% if loop.parent.loop.parent.loop.index == 4 %}
-																{{ form_start(form4) }}
-																	{% if key == 'Apparence' and criteria == 'Limpidité : Comment trouvez-vous  la limpidité ?' %}
-																		{{ form_row(form4.visual) }}
-																	{% endif %}
-																	{% if key == 'Nez' and criteria == 'Impression : Comment trouvez-vous l\'impression ?'%}
-																		{{ form_row(form4.smell) }}
-																	{% endif %}
-																	{% if key == 'Palais' and criteria == 'Saveur : Comment trouvez-vous la saveur ?'%}
-																		{{ form_row(form4.taste) }}
-																		<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
-																			<button class="d-flex align-items-center btn btn-outline-primary mt-3 mb-3 mx-3 letter-spacing px-4">
-																				SUIVANT
-																				<span class="transform">
-																					{% include "components/svg/_icon_next.svg.twig" %}
-																				</span>
-																			</button>
-																		</div>
-																		{{ form_end(form4) }}
-																	{% endif %}
-																{% endif %}
 															{% endfor %}
 														</ul>
+														{% if key == 'Apparence' %}
+															{{ form_row(tastingSheetForm.visual) }}
+														{% endif %}
+														{% if key == 'Nez' %}
+															{{ form_row(tastingSheetForm.smell) }}
+														{% endif %}
+														{% if key == 'Palais' %}
+															{{ form_row(tastingSheetForm.taste) }}
+														{% endif %}
+														<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
+															<button class="d-flex align-items-center btn btn-outline-primary mt-3 mb-3 mx-3 letter-spacing px-4">
+																ENREGISTRER
+																<span class="transform">
+																	{% include "components/svg/_icon_next.svg.twig" %}
+																</span>
+															</button>
+														</div>
 													</div>
-
 												{% endfor %}
 											</div>
 										</div>
@@ -224,5 +154,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</main>{% endblock %}
+		{{ form_end(form) }}
+	</main>
+{% endblock %}
