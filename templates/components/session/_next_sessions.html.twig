@@ -1,72 +1,69 @@
 <div class="row mb-4">
-    <div class="col-sm-12 col-11 px-sm-5 px-3 m-auto pt-5 ">
-        <h2 class="text-primary-light fw-light text-uppercase letter-spacing mt-5 mb-0">
-            {% include 'components/svg/_icon_decoration.svg.twig' %}SÉANCES A VENIR
-        </h2>
-        <div class="frame_container">
-            {% include "components/svg/_frame_surlignage_main.svg.twig" %}
-        </div>
-    </div>
+	<div class="col-sm-12 col-11 px-sm-5 px-3 m-auto pt-5 ">
+		<h2 class="text-primary-light fw-light text-uppercase letter-spacing mt-5 mb-0">
+			{% include 'components/svg/_icon_decoration.svg.twig' %}SÉANCES A VENIR
+		</h2>
+		<div class="frame_container">
+			{% include "components/svg/_frame_surlignage_main.svg.twig" %}
+		</div>
+	</div>
 </div>
 
 <div id="carouselExample" class="carousel slide mb-3 mt-5">
-    <div class="carousel-inner p-3">
-        {% set sessionNumber = ((nextSessions|length -1) / 2)|round(0, 'floor') %}
-        {% for i in 0 .. sessionNumber %}
-        <div class="carousel-item {% if loop.first %} active {% endif %}">
-            <div class="d-flex flex-row justify-content-center">
-                {% for session in nextSessions|slice(i * 2, 2) %}
-                {% include "components/session/_card_session.html.twig" %}
-                {% endfor %}
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+	<div class="carousel-inner p-3">
+		{% set sessionNumber = ((nextSessions|length -1) / 2)|round(0, 'floor') %}
+		{% for i in 0 .. sessionNumber %}
+			<div class="carousel-item {% if loop.first %} active {% endif %}">
+				<div class="d-flex flex-row justify-content-center">
+					{% for session in nextSessions|slice(i * 2, 2) %}
+						{% include "components/session/_card_session.html.twig" %}
+					{% endfor %}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 
-
-
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        {% include('components/svg/arrow_left.svg') %}
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        {% include('components/svg/arrow_right.svg') %}
-        <span class="visually-hidden">Next</span>
-    </button>
+	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+		{% include('components/svg/arrow_left.svg') %}
+		<span class="visually-hidden">Previous</span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+		{% include('components/svg/arrow_right.svg') %}
+		<span class="visually-hidden">Next</span>
+	</button>
 </div>
 
 <div class="row mb-4">
-    <div class="col-sm-12 col-11 px-sm-5 px-3 m-auto pt-5 ">
-        <h2 class="text-primary-light fw-light text-uppercase letter-spacing mt-5">
-            {% include 'components/svg/_icon_decoration.svg.twig' %}SÉANCES TERMINÉES
-        </h2>
-        <div class="frame_container">
-            {% include "components/svg/_frame_surlignage_main.svg.twig" %}
-        </div>
-    </div>
+	<div class="col-sm-12 col-11 px-sm-5 px-3 m-auto pt-5 ">
+		<h2 class="text-primary-light fw-light text-uppercase letter-spacing mt-5">
+			{% include 'components/svg/_icon_decoration.svg.twig' %}SÉANCES TERMINÉES
+		</h2>
+		<div class="frame_container">
+			{% include "components/svg/_frame_surlignage_main.svg.twig" %}
+		</div>
+	</div>
 </div>
 
 <div id="carouselfinish" class="carousel slide mb-5 mt-5">
-    <div class="carousel-inner p-3">
-        {% set sessionNumber = ((closedSessions|length -1) / 2)|round(0, 'floor') %}
-        {% for i in 0 .. sessionNumber %}
-            <div class="carousel-item {% if loop.first %} active {% endif %}">
-                <div class="d-flex flex-row justify-content-center">
-                    {% for session in closedSessions|slice(i * 2, 2) %}
-                        {% include "components/session/_card_session.html.twig" %}
-                    {% endfor %}
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+	<div class="carousel-inner p-3">
+		{% set sessionNumber = ((closedSessions|length -1) / 2)|round(0, 'floor') %}
+		{% for i in 0 .. sessionNumber %}
+			<div class="carousel-item {% if loop.first %} active {% endif %}">
+				<div class="d-flex flex-row justify-content-center">
+					{% for session in closedSessions|slice(i * 2, 2) %}
+						{% include "components/session/_card_session.html.twig" %}
+					{% endfor %}
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 
-    <button class="carousel-control-prev me-5" type="button" data-bs-target="#carouselfinish" data-bs-slide="prev">
-        {% include('components/svg/arrow_left.svg') %}
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselfinish" data-bs-slide="next">
-        {% include('components/svg/arrow_right.svg') %}
-        <span class="visually-hidden">Next</span>
-    </button>
+	<button class="carousel-control-prev me-5" type="button" data-bs-target="#carouselfinish" data-bs-slide="prev">
+		{% include('components/svg/arrow_left.svg') %}
+		<span class="visually-hidden">Previous</span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#carouselfinish" data-bs-slide="next">
+		{% include('components/svg/arrow_right.svg') %}
+		<span class="visually-hidden">Next</span>
+	</button>
 </div>

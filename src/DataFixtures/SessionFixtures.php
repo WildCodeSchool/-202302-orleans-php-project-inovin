@@ -33,9 +33,17 @@ class SessionFixtures extends Fixture implements DependentFixtureInterface
             $wine = new WineFixtures();
 
             $session->setName($sessionName);
-            $session->setOpeningDate($faker->dateTimeThisYear(new DateTime()));
+
+            if ($key % 2 === 0) {
+                $session->setOpeningDate($faker->dateTimeBetween('-3 days', '+2 weeks'));
+                $session->setClosed(false);
+            } else {
+                $session->setOpeningDate($faker->dateTimeBetween('-5 months', '-1 day'));
+                $session->setClosed(true);
+            }
+
             $session->setDescription($faker->sentence(200));
-            $session->setClosed($faker->boolean());
+
             $session->setLocation($faker->address());
 
             $wine1 = $this->getReference('wine_' . $faker->numberBetween(1, $wine::WINE_COUNT - 1));
