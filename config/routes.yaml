@@ -11,7 +11,3 @@ kernel:
 app_logout:
     path: /logout
     methods: GET
-
-# app_verify_email:
-#     path: /verification-email/
-#     controller: App\Security\EmailVerifier::handleEmailConfirmation
