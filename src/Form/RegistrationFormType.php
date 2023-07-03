@@ -27,7 +27,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Prénom',
                 'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    'class' => 'form-label text-uppercase letter-spacing'
                 ],
             ])
             ->add('lastname', TextType::class, [
@@ -36,7 +36,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Nom',
                 'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    'class' => 'form-label text-uppercase letter-spacing'
                 ],
             ])
             ->add('date_birth', BirthdayType::class, [
@@ -47,7 +47,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Date de naissance',
                 'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-1'
+                    'class' => 'form-label text-uppercase letter-spacing'
                 ],
                 'widget' => 'single_text',
                 'html5' => false,
@@ -56,11 +56,11 @@ class RegistrationFormType extends AbstractType
             ->add('address', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Adresse complète',
-                    'class' => 'form-control border border-secondary mb-3 placeholder-style',
+                    'class' => 'form-control border border-secondary placeholder-style',
                 ],
                 'label' => 'Adresse',
                 'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    'class' => 'form-label text-uppercase letter-spacing'
                 ],
             ])
             ->add('zip_code', TextType::class, [
@@ -69,7 +69,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Code postal',
                 'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2',
+                    'class' => 'form-label text-uppercase letter-spacing',
                 ],
             ])
             ->add('city', TextType::class, [
@@ -78,7 +78,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Ville',
                 'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    'class' => 'form-label text-uppercase letter-spacing'
                 ],
             ])
             ->add('country', TextType::class, [
@@ -87,15 +87,15 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Pays',
                 'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    'class' => 'form-label text-uppercase letter-spacing'
                 ],
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form-control border border-secondary mb-3 placeholder-style',
+                    'class' => 'form-control border border-secondary placeholder-style',
                 ],
                 'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    'class' => 'form-label text-uppercase letter-spacing'
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
@@ -103,11 +103,11 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',
-                    'class' => 'form-control border border-secondary mb-3 placeholder-style'
+                    'class' => 'form-control border border-secondary placeholder-style'
                 ],
                 'label' => 'Mot de passe',
                 'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    'class' => 'form-label text-uppercase letter-spacing'
                 ],
                 'constraints' => [
                     new NotBlank(),
