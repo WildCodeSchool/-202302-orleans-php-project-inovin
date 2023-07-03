@@ -24,6 +24,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\NotBlank]
+    #[Assert\Email]
     #[Assert\Length(max: 180)]
     private ?string $email = null;
 
@@ -52,6 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 9)]
     #[Assert\Length(max: 9)]
+    #[Assert\Regex(pattern: '/^\d+$/')]
     private ?string $zipCode = null;
 
     #[ORM\Column(length: 255)]

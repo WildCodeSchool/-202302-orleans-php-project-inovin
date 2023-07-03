@@ -63,7 +63,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-label text-uppercase letter-spacing mb-2'
                 ],
             ])
-            ->add('zip_code', IntegerType::class, [
+            ->add('zip_code', TextType::class, [
                 'attr' => [
                     'class' => 'form-control border border-secondary placeholder-style',
                 ],
@@ -99,6 +99,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
+                'always_empty' => false,
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',
@@ -110,7 +111,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'constraints' => [
                     new NotBlank(),
-                    new Length(['min' => 6, 'max' => 4096]),
+                    new Length(['min' => 6, 'max' => 50]),
                 ],
             ]);
     }
