@@ -17,13 +17,14 @@ class SessionController extends AbstractController
     #[Route('/etats/all', name: 'all_states', methods: ['GET'])]
     public function states(SessionRepository $sessionRepository): Response
     {
-        $sessionsOpened = $sessionRepository->findBy(['closed' => '0'], ['openingDate' => 'desc']);
-        $nextSessions = $sessionRepository->findBy(['closed' => false], ['openingDate' => 'ASC',]);
+        $sessionsOpened = $sessionRepository->getNextOpenedSessions();
+        $firstOpenedSession = (count($sessionsOpened) === 0 ? [] :  [$sessionsOpened[0]]);
+        $nextOpnedSessions = count($sessionsOpened) > 1 ? array_splice($sessionsOpened, 1) : [];
         $closedSessions = $sessionRepository->findBy(['closed' => true], ['openingDate' => 'desc',]);
 
         return $this->render('session/sessions_states_html.twig', [
-            'sessionsOpened' => $sessionsOpened,
-            'nextSessions' => $nextSessions,
+            'firstOpenedSession' => $firstOpenedSession,
+            'nextSessions' => $nextOpnedSessions,
             'closedSessions' => $closedSessions
         ]);
     }

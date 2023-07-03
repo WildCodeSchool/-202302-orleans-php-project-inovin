@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Session;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -45,6 +46,21 @@ class SessionRepository extends ServiceEntityRepository
             ->select('COUNT(s.id) as sessions')
             ->getQuery()
             ->getSingleScalarResult();
+    }
+
+    /**
+     * @return Session[] Returns an array of Session objects
+     */
+    public function getNextOpenedSessions(): array
+    {
+        $today = new DateTime();
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.closed = 0')
+            ->andWhere('s.openingDate >= :date_start')
+            ->setParameter('date_start', $today->format('Y-m-d 00:00:00'))
+            ->orderBy('s.openingDate', 'asc')
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**
