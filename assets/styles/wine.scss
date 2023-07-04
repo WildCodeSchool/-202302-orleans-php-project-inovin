@@ -50,6 +50,7 @@ main {
 .card-footer {
     border-top: 2px solid $secondary;
     margin: 0;
+    min-height: 75px;
 }
 
 .card-body {
@@ -59,28 +60,49 @@ main {
 
 .price-placeholder {
     position: absolute;
-    width: 120px;
-    height: 70px;
-    top: 40px;
-    right: 0px;
-    transform: rotate(6deg);
+    width: 115px;
+    height: 60px;
+    top: -4px;
+    left: -4px;
+    border-radius: 45px 0px 45px;
 }
 
 .price-placeholder::after {
     content: "";
-    border: 2px solid $primary;
-    width: 120px;
-    height: 70px;
+    border: none;
+    border-right: 2px solid $secondary;
+    border-bottom: 2px solid $secondary;
+    width: 115px;
+    height: 60px;
     position: absolute;
-    transform: translate(5px, 5px);
+    border-radius: 47px 0px 47px;
+    transform: translate(4px, 4px);
 }
 
-.alcool-rate-placeholder {
-    position: absolute;
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    top: 15px;
-    left: 15px;
-    border: 2px solid $light;
+#price_wine_slider .noUi-active .noUi-tooltip {
+    display: block;
+    background-color: transparent;
+}
+#price_wine_slider .noUi-connect {
+    background: $primary;
+}
+
+#price_wine_slider .noUi-handle {
+    height: 28px;
+    width: 28px;
+    top: -5px;
+    right: -9px; /* half the width */
+    border-radius: 28px;
+}
+
+#price_wine_slider .noUi-tooltip {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    font-size: 1.5rem;
+    color: $primary;
+    font-weight: 600;
+    padding: 5px;
+    text-align: center;
+    white-space: nowrap;
 }

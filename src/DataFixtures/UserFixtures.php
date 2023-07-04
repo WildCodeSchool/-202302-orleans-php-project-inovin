@@ -20,7 +20,7 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
-
+        $userNumber = 0;
         // Création d'un utilisateur
         $user = new User();
         $user->setEmail('user@monsite.com');
@@ -38,8 +38,10 @@ class UserFixtures extends Fixture
         $user->setCity('Paris');
         $user->setCountry('France');
 
-        $manager->persist($user);
+        $this->addReference('user_' . $userNumber, $user);
 
+        $manager->persist($user);
+        $userNumber++;
         // Création d'un administrateur
         $admin = new User();
         $admin->setEmail('admin@monsite.com');
@@ -56,6 +58,9 @@ class UserFixtures extends Fixture
         $admin->setZipCode('75000');
         $admin->setCity('Paris');
         $admin->setCountry('France');
+
+        $this->addReference('user_2', $admin);
+
 
         $manager->persist($admin);
 

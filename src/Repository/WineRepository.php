@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Wine;
+use App\Search\SearchWineData;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -46,6 +47,46 @@ class WineRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function findSearch(SearchWineData $searchWineData, array $orders = []): array
+    {
+        $query = $this->createQueryBuilder('w')
+            ->select('w')
+            ->andWhere('w.enabled = 1');
+
+        if (!empty($searchWineData->getName())) {
+            $query = $query
+                ->andWhere('w.name LIKE :name')
+                ->setParameter('name', "%{$searchWineData->getName()}%");
+        }
+
+        if (!empty($searchWineData->getMinPrice())) {
+            $query = $query
+                ->andWhere('w.price >= :min')
+                ->setParameter('min', $searchWineData->getMinPrice());
+        }
+
+        if (!empty($searchWineData->getMaxPrice())) {
+            $query = $query
+                ->andWhere('w.price <= :max')
+                ->setParameter('max', $searchWineData->getMaxPrice());
+        }
+
+        if (!empty($searchWineData->getGrapeVarieties())) {
+            $query = $query
+                ->andWhere('w.grapeVariety IN (:grapevarieties)')
+                ->setParameter('grapevarieties', $searchWineData->getGrapeVarieties());
+        }
+        if (!empty($orders)) {
+            foreach ($orders as $column => $direction) {
+                $query = $query
+                    ->addOrderBy("w." . trim($column), strtoupper($direction));
+            }
+        }
+
+        return $query->getQuery()->getResult();
+    }
+
     //    /**
     //     * @return Wine[] Returns an array of Wine objects
     //     */
