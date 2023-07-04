@@ -66,7 +66,7 @@ class Wine
     #[Assert\Type(type: 'float')]
     private ?float $price = null;
 
-    #[ORM\ManyToMany(targetEntity: Session::class, mappedBy: 'Wines')]
+    #[ORM\ManyToMany(targetEntity: Session::class, mappedBy: 'wines')]
     private Collection $sessions;
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DatetimeInterface $updatedAt = null;

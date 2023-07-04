@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Recipe;
 use App\Entity\TastingSheet;
-use App\Form\RecipeType;
+use App\Form\RecipeTastingSheetType;
 use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +21,7 @@ class TastingSheetController extends AbstractController
             $tastingSheet->setWine($wine);
             $recipe->addTastingSheet($tastingSheet);
         }
-        $form = $this->createForm(RecipeType::class, $recipe);
+        $form = $this->createForm(RecipeTastingSheetType::class, $recipe);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $recipeRepository->save($recipe, true);

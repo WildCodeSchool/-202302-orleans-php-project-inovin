@@ -12,8 +12,10 @@
 
 // 4. Include any default map overrides here
 $custom-colors: (
+    "success-light": $success-light,
     "tertiary": $tertiary,
     "primary-light": $primary-light,
+    "secondary-light": $secondary-light,
     "red_wine": rgb(111, 51, 81),
     "white_wine": rgb(246, 221, 234),
     "pink_wine": rgb(245, 161, 239),
