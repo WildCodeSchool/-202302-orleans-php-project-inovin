@@ -29,7 +29,7 @@ class QuizKnowledgeType extends AbstractType
                         'Un bon connaisseur pour qui le vin n’a pas de secrets' => 'Connaisseur',
                         'Un véritable oenologue' => 'Oenologue',
                     ],
-                    'multiple' => true,
+                    'multiple' => false,
                     'expanded' => true,
                 ]
             );

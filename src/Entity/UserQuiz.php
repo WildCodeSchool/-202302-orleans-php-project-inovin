@@ -19,7 +19,7 @@ class UserQuiz
     private ?string $questionText = null;
 
     #[ORM\Column]
-    private array $options = [];
+    private ?string $options = "";
 
     #[ORM\OneToOne(mappedBy: 'preferences', cascade: ['persist', 'remove'])]
     private ?User $userPreferences = null;
@@ -41,12 +41,12 @@ class UserQuiz
         return $this;
     }
 
-    public function getOptions(): array
+    public function getOptions(): ?string
     {
         return $this->options;
     }
 
-    public function setOptions(array $options): static
+    public function setOptions(?string $options): static
     {
         $this->options = $options;
 
@@ -58,11 +58,11 @@ class UserQuiz
         return $this->userPreferences;
     }
 
-    public function setUserPreferences(?User $userPreferences, array $preferences): static
+    public function setUserPreferences(?User $userPreferences): static
     {
         // set the owning side of the relation if necessary
         if ($userPreferences->getPreferences() !== $this) {
-            $userPreferences->setPreferences($preferences);
+            $userPreferences->setPreferences($userPreferences);
         }
 
         $this->userPreferences = $userPreferences;

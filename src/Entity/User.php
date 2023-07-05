@@ -72,7 +72,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $recipes;
 
     #[ORM\Column(nullable: true)]
-    private array $preferences = ['default'];
+    private ?array $preferences = [];
 
     public function __construct()
     {
@@ -279,12 +279,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPreferences(): array
+    public function getPreferences(): ?array
     {
         return $this->preferences;
     }
 
-    public function setPreferences(?array $preferences): static
+    public function setPreferences(?string $preferences): static
     {
         $this->preferences[] = $preferences;
 

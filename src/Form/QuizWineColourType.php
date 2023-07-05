@@ -28,7 +28,7 @@ class QuizWineColourType extends AbstractType
                         'Le vin blanc' => 'Le vin blanc',
                         'Le vin rosé' => 'Le vin rosé',
                     ],
-                    'multiple' => true,
+                    'multiple' => false,
                     'expanded' => true,
                 ]
             );

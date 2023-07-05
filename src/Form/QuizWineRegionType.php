@@ -35,7 +35,7 @@ class QuizWineRegionType extends AbstractType
                         'Vallée de la Loire' => 'Vallée de la Loire',
                         'Vallée du Rhône' => 'Vallée du Rhône',
                     ],
-                    'multiple' => true,
+                    'multiple' => false,
                     'expanded' => true,
                 ]
             );

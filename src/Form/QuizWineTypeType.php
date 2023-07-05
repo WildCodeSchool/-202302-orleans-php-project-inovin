@@ -30,7 +30,7 @@ class QuizWineTypeType extends AbstractType
                         'Pétillant' => 'Pétillant',
                         'Tranquille' => 'Tranquille,'
                     ],
-                    'multiple' => true,
+                    'multiple' => false,
                     'expanded' => true,
                 ]
             );
