@@ -6,13 +6,15 @@ use App\Entity\Recipe;
 use App\Entity\TastingSheet;
 use App\Form\RecipeTastingSheetType;
 use App\Repository\RecipeRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TastingSheetController extends AbstractController
 {
+    #[IsGranted('ROLE_USER')]
     #[Route('/degustation/{recipe}', name: 'app_tasting_sheet')]
     public function index(Request $request, RecipeRepository $recipeRepository, Recipe $recipe): Response
     {
@@ -30,6 +32,15 @@ class TastingSheetController extends AbstractController
         return $this->render('tasting_sheet/index.html.twig', [
             'recipe' => $recipe,
             'form' => $form,
+        ]);
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('degustation/{recipe}/resultat', name: 'app_tasting_sheet_result')]
+    public function result(Recipe $recipe): Response
+    {
+        return $this->render('tasting_sheet/resultTastingSheet.html.twig', [
+            'recipe' => $recipe,
         ]);
     }
 }

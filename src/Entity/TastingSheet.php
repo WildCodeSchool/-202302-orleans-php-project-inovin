@@ -34,11 +34,11 @@ class TastingSheet
     #[Assert\Range(min: 0, max: 10)]
     private ?float $visual = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tastingSheet')]
+    #[ORM\ManyToOne(inversedBy: 'tastingSheet', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: true)]
     private ?Recipe $recipe = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    #[ORM\ManyToOne(inversedBy: 'tastingSheets', fetch: 'EAGER')]
     private ?Wine $wine = null;
 
     public function getId(): ?int
