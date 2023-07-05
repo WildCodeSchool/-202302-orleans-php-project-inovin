@@ -71,6 +71,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Recipe::class)]
     private Collection $recipes;
 
+    #[ORM\Column(nullable: true)]
+    private array $preferences = ['default'];
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
@@ -272,6 +275,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $recipe->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPreferences(): array
+    {
+        return $this->preferences;
+    }
+
+    public function setPreferences(?array $preferences): static
+    {
+        $this->preferences[] = $preferences;
 
         return $this;
     }
