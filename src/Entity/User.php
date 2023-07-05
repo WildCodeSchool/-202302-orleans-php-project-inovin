@@ -77,10 +77,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Wine::class, inversedBy: 'likedUsers')]
     private Collection $favoritesWines;
 
+    #[ORM\ManyToMany(targetEntity: Recipe::class, mappedBy: 'likedUsers')]
+    private Collection $favoritesRecipes;
+
     public function __construct()
     {
         $this->recipes = new ArrayCollection();
         $this->favoritesWines = new ArrayCollection();
+        $this->favoritesRecipes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -312,5 +316,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function isInFavoritesWines(Wine $wine): bool
     {
         return $this->favoritesWines->contains($wine);
+    }
+
+    /**
+     * @return Collection<int, Recipe>
+     */
+    public function getFavoritesRecipes(): Collection
+    {
+        return $this->favoritesRecipes;
+    }
+
+    public function addFavoritesRecipe(Recipe $favoritesRecipe): static
+    {
+        if (!$this->favoritesRecipes->contains($favoritesRecipe)) {
+            $this->favoritesRecipes->add($favoritesRecipe);
+            $favoritesRecipe->addLikedUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoritesRecipe(Recipe $favoritesRecipe): static
+    {
+        if ($this->favoritesRecipes->removeElement($favoritesRecipe)) {
+            $favoritesRecipe->removeLikedUser($this);
+        }
+
+        return $this;
+    }
+
+    public function isInFavoritesRecipes(Recipe $recipe): bool
+    {
+        return $this->favoritesRecipes->contains($recipe);
     }
 }

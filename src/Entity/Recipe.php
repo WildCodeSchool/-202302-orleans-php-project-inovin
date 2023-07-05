@@ -40,9 +40,13 @@ class Recipe
     #[Assert\Type('integer')]
     private ?int $sessionRate = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'favoritesRecipes')]
+    private Collection $likedUsers;
+
     public function __construct()
     {
         $this->tastingSheet = new ArrayCollection();
+        $this->likedUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -126,5 +130,37 @@ class Recipe
         $this->sessionRate = $sessionRate;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLikedUsers(): Collection
+    {
+        return $this->likedUsers;
+    }
+
+    public function addLikedUser(User $likedUser): static
+    {
+        if (!$this->likedUsers->contains($likedUser)) {
+            $this->likedUsers->add($likedUser);
+            $likedUser->addFavoritesRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLikedUser(User $likedUser): static
+    {
+        if ($this->likedUsers->removeElement($likedUser)) {
+            $likedUser->removeFavoritesRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function isInLikedUsers(User $user): bool
+    {
+        return $this->likedUsers->contains($user);
     }
 }
