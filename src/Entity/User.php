@@ -71,8 +71,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Recipe::class)]
     private Collection $recipes;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $preferences = [];
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?UserPreference $userPreference = null;
 
     public function __construct()
     {
@@ -279,14 +279,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPreferences(): ?array
+    public function getUserPreference(): ?UserPreference
     {
-        return $this->preferences;
+        return $this->userPreference;
     }
 
-    public function setPreferences(?string $preferences): static
+    public function setUserPreference(?UserPreference $userPreference): static
     {
-        $this->preferences[] = $preferences;
+        // unset the owning side of the relation if necessary
+        if ($userPreference === null && $this->userPreference !== null) {
+            $this->userPreference->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($userPreference !== null && $userPreference->getUser() !== $this) {
+            $userPreference->setUser($this);
+        }
+
+        $this->userPreference = $userPreference;
 
         return $this;
     }
