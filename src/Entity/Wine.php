@@ -80,11 +80,15 @@ class Wine
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoritesWines')]
     private Collection $likedUsers;
 
+    #[ORM\OneToMany(mappedBy: 'Wine', targetEntity: TastingSheet::class)]
+    private Collection $tastingSheets;
+
     public function __construct(?bool $enabled = true)
     {
         $this->enabled = $enabled;
         $this->sessions = new ArrayCollection();
         $this->likedUsers = new ArrayCollection();
+        $this->tastingSheets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -277,13 +281,37 @@ class Wine
         return $this->getName() . ' - ' .  $this->getYear() .  ' - ' . $this->getGrapeVariety()->getName();
     }
 
+
     /**
-     * @return Collection<int, User>
+     * @return Collection<int, TastingSheet>
      */
-    public function getLikedUsers(): Collection
+    public function getTastingSheets(): Collection
     {
-        return $this->likedUsers;
+        return $this->tastingSheets;
     }
+
+    public function addTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if (!$this->tastingSheets->contains($tastingSheet)) {
+            $this->tastingSheets->add($tastingSheet);
+            $tastingSheet->setWine($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if ($this->tastingSheets->removeElement($tastingSheet)) {
+            // set the owning side to null (unless already changed)
+            if ($tastingSheet->getWine() === $this) {
+                $tastingSheet->setWine(null);
+            }
+        }
+
+        return $this;
+    }
+
 
     public function addLikedUser(User $likedUser): static
     {
@@ -291,7 +319,6 @@ class Wine
             $this->likedUsers->add($likedUser);
             $likedUser->addFavoritesWine($this);
         }
-
         return $this;
     }
 
@@ -300,12 +327,19 @@ class Wine
         if ($this->likedUsers->removeElement($likedUser)) {
             $likedUser->removeFavoritesWine($this);
         }
-
         return $this;
     }
 
     public function isInLikedUsers(User $user): bool
     {
         return $this->likedUsers->contains($user);
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLikedUsers(): Collection
+    {
+        return $this->likedUsers;
     }
 }
