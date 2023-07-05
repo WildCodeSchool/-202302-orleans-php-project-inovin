@@ -6,6 +6,7 @@ use App\Repository\RecipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
@@ -41,6 +42,7 @@ class Recipe
     private ?int $sessionRate = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'favoritesRecipes')]
+    #[JoinTable(name: 'favorite_recipe')]
     private Collection $likedUsers;
 
     public function __construct()
