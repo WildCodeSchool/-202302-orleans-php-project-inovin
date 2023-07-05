@@ -79,7 +79,6 @@ class Wine
     private ?string $protectedOrigin = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoritesWines')]
-    #[JoinTable(name: 'users_groups')]
     private Collection $likedUsers;
 
     #[ORM\OneToMany(mappedBy: 'Wine', targetEntity: TastingSheet::class)]
