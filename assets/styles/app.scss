@@ -219,12 +219,3 @@ body {
     height: clamp(150px, 20vw, 200px);
     overflow: auto;
 }
-
-.pine-circle {
-    width: 39px;
-    height: 39px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url(../images/pine-circle.png);
-}

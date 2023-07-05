@@ -23,3 +23,12 @@ header {
 .size-vine {
     width: clamp(280px, 45vw, 800px);
 }
+
+.pine-circle {
+    width: 39px;
+    height: 39px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../images/pine-circle.png);
+}
