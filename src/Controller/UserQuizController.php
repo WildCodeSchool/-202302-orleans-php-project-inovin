@@ -5,8 +5,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\UserPreference;
 use App\Form\QuizIntroductionType;
-use App\Repository\UserRepository;
-use Symfony\Bundle\SecurityBundle\Security;
 use App\Repository\UserPreferenceRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

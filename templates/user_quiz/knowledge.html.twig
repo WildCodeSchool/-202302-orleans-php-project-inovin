@@ -23,8 +23,8 @@
 				<div class="d-flex mt-5 pb-5 w-75">
 					<div class="row px-2 px-sm-5">
 						<div class="d-flex justify-content-between flex-md-row flex-column p-0">
-							<div class="d-flex gap-2 mb-0">
-								<div class="d-flex flex-column">
+							<div class="d-flex gap-2 ms-5 mb-0">
+								<div class="d-flex flex-column mt-5">
 									{{ form_label(form.wineKnowledge) }}
 									{{ form_widget(form.wineKnowledge) }}
 								</div>
@@ -34,10 +34,11 @@
 				</div>
 
 				{# FORM LEFT #}
-				<div class="d-flex mt-5 pb-5 w-75">
+				<img class="mb-5" src="{{ asset('build/images/line.svg') }}">
+				<div class="d-flex my-2 pb-5 w-75">
 					<div class="row px-2 px-sm-5">
 						<div class="d-flex justify-content-between flex-md-row flex-column p-0">
-							<div class="d-flex gap-2 mb-0">
+							<div class="d-flex gap-2 ms-5 mb-0">
 								<div class="d-flex flex-column">
 									{{ form_label(form.wineColour) }}
 									{{ form_widget(form.wineColour) }}
@@ -49,25 +50,27 @@
 
 
 				{# FORM LEFT #}
-				<div class="d-flex mt-5 pb-5 w-75">
+				<img class="mb-5" src="{{ asset('build/images/line.svg') }}">
+				<div class="d-flex my-2 pb-5 w-75">
 					<div class="row px-2 px-sm-5">
 						<div class="d-flex justify-content-between flex-md-row flex-column p-0">
-							<div class="d-flex gap-2 mb-0">
+							<div class="d-flex gap-2 ms-5 mb-0">
 								<div class="d-flex flex-column">
-										{{ form_label(form.wineType) }}
-										{{ form_widget(form.wineType) }}
-									</div>
+									{{ form_label(form.wineType) }}
+									{{ form_widget(form.wineType) }}
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
 
 				{# FORM LEFT #}
+				<img class="mb-5" src="{{ asset('build/images/line.svg') }}">
 				<div class="d-flex my-2 pb-5 w-75">
 					<div class="row mb-0 px-2 px-sm-5">
 						<div class="d-flex justify-content-between flex-md-row flex-column p-0">
 							<div class="mb-0">
-								<div class="d-flex gap-2 mb-0">
+								<div class="d-flex gap-2 ms-5 mb-0">
 									<div class="d-flex flex-column">
 										{{ form_label(form.wineRegion) }}
 										{{ form_widget(form.wineRegion) }}
