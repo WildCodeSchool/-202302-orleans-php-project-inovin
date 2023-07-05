@@ -21,16 +21,8 @@ class UserQuiz
     #[ORM\Column]
     private array $options = [];
 
-    #[ORM\Column]
-    private array $questions;
-
     #[ORM\OneToOne(mappedBy: 'preferences', cascade: ['persist', 'remove'])]
     private ?User $userPreferences = null;
-
-    public function __construct()
-    {
-        $this->questions;
-    }
 
     public function getId(): ?int
     {
