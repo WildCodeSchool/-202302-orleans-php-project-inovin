@@ -16,8 +16,13 @@ class AdminUserController extends AbstractController
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
+        $users = $userRepository->findBy([], [
+            'lastname' => 'ASC',
+            'firstname' => 'ASC',
+        ]);
+
         return $this->render('admin/user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $users,
         ]);
     }
 
