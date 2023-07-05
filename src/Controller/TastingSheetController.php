@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Form\TastingSheetType;
-use App\Entity\Session;
+use App\Entity\Recipe;
 use App\Entity\TastingSheet;
-use App\Repository\TastingSheetRepository;
+use App\Form\RecipeTastingSheetType;
+use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,23 +13,22 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TastingSheetController extends AbstractController
 {
-    #[Route('/ficheDeDegustation/{session}', name: 'app_tasting_sheet')]
-    public function index(Request $request, TastingSheetRepository $tastingRepository, Session $session): Response
+    #[Route('/degustation/{recipe}', name: 'app_tasting_sheet')]
+    public function index(Request $request, RecipeRepository $recipeRepository, Recipe $recipe): Response
     {
-        $tastingSheet = new tastingSheet();
-        $form = $this->createForm(TastingSheetType::class, $tastingSheet);
-
+        foreach ($recipe->getSession()->getWines() as $wine) {
+            $tastingSheet = new TastingSheet();
+            $tastingSheet->setWine($wine);
+            $recipe->addTastingSheet($tastingSheet);
+        }
+        $form = $this->createForm(RecipeTastingSheetType::class, $recipe);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
-            // Deal with the submitted data
-            // For example : persiste & flush the entity
-            $tastingRepository->save($tastingSheet, true);
-            // And redirect to a route that display the result
-            return $this->redirectToRoute('app_tasting_sheet', ['session' => $session->getId()]);
+            $recipeRepository->save($recipe, true);
+            return $this->redirectToRoute('home_index');
         }
-
         return $this->render('tasting_sheet/index.html.twig', [
-            'session' => $session,
+            'recipe' => $recipe,
             'form' => $form,
         ]);
     }

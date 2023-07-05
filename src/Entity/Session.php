@@ -30,6 +30,7 @@ class Session
 
     #[ORM\Column(length: 255)]
     private ?string $location = null;
+
     #[ORM\ManyToMany(targetEntity: Wine::class, inversedBy: 'sessions')]
     private Collection $wines;
 

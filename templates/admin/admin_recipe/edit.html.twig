@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+{% block title %}
+	{{ parent() }}
+	| Recette - Édition
+{% endblock %}
+{% block admin_content_title %}
+    ÉDITION DE LA RECETTE
+{% endblock %}
+{% block admin_content %}
+	<div class="row d-flex justify-content-center">
+		<div class="col">
+            {{ include('admin_recipe/_form.html.twig', {'button_label': 'Modifier'}) }}
+        </div>  
+{% endblock %}

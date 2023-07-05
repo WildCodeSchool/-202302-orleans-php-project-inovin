@@ -1,7 +1,7 @@
 <div class="row mb-4">
 	<div class="px-sm-5 px-3 m-auto pt-5 ">
 		<h2 class="text-primary-light fw-light text-uppercase letter-spacing mt-5">
-			{% include 'components/svg/_icon_decoration.svg.twig' %}SÉANCES OUVERTES
+			{% include 'components/svg/_icon_decoration.svg.twig' %}PROCHAINE SÉANCE OUVERTE
 		</h2>
 		<div class="frame_container">
 			{% include "components/svg/_frame_surlignage_main.svg.twig" %}
@@ -9,7 +9,7 @@
 	</div>
 </div>
 
-{% for session in sessionsOpened %}
+{% for session in firstOpenedSession %}
 	<div class="row m-sm-4 p-2">
 		<div class="col m-auto border border-secondary rounded-3 bg-card">
 
@@ -17,7 +17,7 @@
 				<div class="col d-flex justify-content-between align-items-center m-sm-4 border-secondary border-bottom py-2">
 					<span class="text-primary-light fs-4 m-1">
 						Séance du
-						{{ session.openingDate|date("d F Y", "Europe/Paris") }}
+						{{ session.openingDate|date("d/m/Y", "Europe/Paris") }}
 					</span>
 					<span class="badge rounded-pill px-3 fw-bold align-self-end text-end fs-6  text-dark {{ session.closed ? 'bg-danger' : 'bg-success-light' }}">
 						{{ session.closed ? 'FERMÉE' : 'OUVERTE' }}
@@ -29,7 +29,7 @@
 				<div class="col px-4">
 					<a class="nav-link text-primary-light mb-2 fs-5 letter-spacing" data-bs-toggle="collapse" href="#collapseDescription" role="button" aria-expanded="false" aria-controls="collapseDescription">
 						Voir la description
-						<span class="text-light">{% include "components/svg/_icon_eye.svg.twig" %}</span>
+						<span class="text-primary-light">{% include "components/svg/_icon_eye.svg.twig" %}</span>
 					</a>
 					<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"></div>
 					<div class="collapse border border-1 border-sedondary rounded-2" id="collapseDescription">
