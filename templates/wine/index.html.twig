@@ -55,6 +55,9 @@
 								<img class="card-img-top" alt="image du vin" src="{{ wine.picture is not empty ? vich_uploader_asset(wine) : asset('build/images/placeholder_wine.jpg') }}">
 								<div class="price-placeholder"></div>
 								<div class="card-body">
+									{% if app.user %}
+										{{ component('UpdateStateFavoriteWineComponent', { wine : wine }) }}
+									{% endif %}
 									<h5 class="card-title text-capitalize text-primary-light text-center">{{ wine.name|u.truncate(20, '...') }}</h5>
 									<div class="bar_separator"></div>
 									<div class="container-fluid my-4">

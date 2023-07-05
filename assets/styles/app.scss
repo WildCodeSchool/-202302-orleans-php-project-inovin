@@ -76,6 +76,28 @@ h6 {
     transition: 0s;
 }
 
+.custom-btn {
+    border: none;
+    background-color: transparent;
+    color: $light;
+}
+
+.custom-dropdown-divider {
+    height: 0;
+    overflow: hidden;
+    border-top: 1px solid $secondary;
+    opacity: 1;
+}
+
+.custom-width {
+    display: inline-block;
+    width: 25px;
+}
+
+.custom-border {
+    border-bottom: 1px solid $primary;
+}
+
 p {
     font-family: $font-base;
     letter-spacing: 3px;
@@ -218,4 +240,10 @@ body {
 .max-height-select {
     height: clamp(150px, 20vw, 200px);
     overflow: auto;
+}
+
+@media screen and (max-width: 767px) {
+    .custom-border {
+        border-bottom: 1px solid transparent;
+    }
 }
