@@ -19,7 +19,7 @@ class UserQuizController extends AbstractController
 {
     #[IsGranted('ROLE_USER')]
     #[Route('/', name: 'quiz')]
-    public function quizOne(Request $request, UserPreferenceRepository $userPreferenceRepository): Response
+    public function quizOne(Request $request, UserPreferenceRepository $userPrefRepo): Response
     {
 
         /** @var User $user */
@@ -31,7 +31,7 @@ class UserQuizController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userPreferenceRepository->save($userPreference, true);
+            $userPrefRepo->save($userPreference, true);
 
             return $this->redirectToRoute('app_user_quiz_quiz', [], Response::HTTP_SEE_OTHER);
         }
