@@ -66,7 +66,7 @@ class Wine
     #[Assert\Type(type: 'float')]
     private ?float $price = null;
 
-    #[ORM\ManyToMany(targetEntity: Session::class, mappedBy: 'Wines')]
+    #[ORM\ManyToMany(targetEntity: Session::class, mappedBy: 'wines')]
     private Collection $sessions;
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DatetimeInterface $updatedAt = null;
@@ -77,10 +77,14 @@ class Wine
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $protectedOrigin = null;
 
+    #[ORM\OneToMany(mappedBy: 'Wine', targetEntity: TastingSheet::class)]
+    private Collection $tastingSheets;
+
     public function __construct(?bool $enabled = true)
     {
         $this->enabled = $enabled;
         $this->sessions = new ArrayCollection();
+        $this->tastingSheets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -271,5 +275,35 @@ class Wine
     public function getFullLabel(): string
     {
         return $this->getName() . ' - ' .  $this->getYear() .  ' - ' . $this->getGrapeVariety()->getName();
+    }
+
+    /**
+     * @return Collection<int, TastingSheet>
+     */
+    public function getTastingSheets(): Collection
+    {
+        return $this->tastingSheets;
+    }
+
+    public function addTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if (!$this->tastingSheets->contains($tastingSheet)) {
+            $this->tastingSheets->add($tastingSheet);
+            $tastingSheet->setWine($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if ($this->tastingSheets->removeElement($tastingSheet)) {
+            // set the owning side to null (unless already changed)
+            if ($tastingSheet->getWine() === $this) {
+                $tastingSheet->setWine(null);
+            }
+        }
+
+        return $this;
     }
 }

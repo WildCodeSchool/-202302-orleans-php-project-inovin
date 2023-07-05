@@ -10,7 +10,6 @@
 {% endblock %}
 
 {% block body %}
-
 	<main class="container-fluid container-md py-5 mb-5">
 		<h2 class="text-primary-light fw-light mt-5 letter-spacing">
 			{% include 'components/svg/_icon_decoration.svg.twig' %}RÉSULTATS
@@ -20,158 +19,64 @@
 			{% include "components/svg/_frame_surlignage_main.svg.twig" %}
 		</div>
 
-		<div class="text-primary-light fs-4 mt-4">
-			<p class="mb-1">Séance du 07 juin 2023</p>
-			<p class="mb-1">16h - 19h</p>
+		<div class="d-flex gap-3 text-primary-light fs-4 mt-4">
+			<p class="mb-1 d-flex align-items-center gap-2 badge bg-primary text-dark p-2">
+				{% include "components/svg/_icon_date.svg.twig" %}
+				{{ recipe.session.openingDate|date("d/m/Y", "Europe/Paris", "fr") }}
+			</p>
+			<p class="mb-1 d-flex align-items-center gap-2 badge bg-primary text-dark p-2">
+				{% include "components/svg/_icon_clock.svg.twig" %}
+				{{ recipe.session.openingDate|date("H", "Europe/Paris") ~ 'H' ~ ' - ' ~  recipe.session.openingDate|date_modify('+ 3 hours')|date("H", "Europe/Paris") ~ 'H' }}
+			</p>
 		</div>
 
 		<div class="row mx-1 mt-5">
 			<div class="col px-3 border border-secondary d-flex flex-column align-items-center pt-5 bg-card rounded-2">
-				<div class="custom-card">
-					<div class="h-100 d-md-flex align-items-md-center gap-2">
-						<div class="ms-4 custom-height d-none d-md-block">
-							<div class="circle">
-								<p class="custom-text">14</p>
-								<div class="waves"></div>
-							</div>
-						</div>
-						<div class="content col align-self-start">
-							<header class="d-flex">
-								<div class="mini-circle d-md-none">
-									<p>15</p>
-								</div>
-								<div>
-									<h3 class="custom-title-card">Vin 1</h3>
-									<h4 class="custom-title-wine">{{ 'Sauvignon'|u.truncate(11, '...') }}</h4>
-								</div>
-							</header>
-							<div class="rate row text-center text-dark text-uppercase custom-margin">
-								<div class="col custom-padding">
-									<p class="bg-primary mb-1 fw-bolder custom-size">Apparence</p>
-									<p class="text-primary fs-1 fw-normal border border-secondary py-2">4</p>
-								</div>
-								<div class="col custom-padding">
-									<p class="bg-primary mb-1 fw-bolder custom-size">Nez</p>
-									<p class="text-primary fs-1 fw-normal border border-secondary py-2">7</p>
-								</div>
-								<div class="col custom-padding">
-									<p class="bg-primary mb-1 fw-bolder custom-size">Palais</p>
-									<p class="text-primary fs-1 fw-normal border border-secondary py-2">9</p>
+				{% for itemTastingSheet in recipe.tastingSheet %}
+					<div class="custom-card">
+						<div class="h-100 d-md-flex align-items-md-center gap-2">
+							<div class="ms-4 custom-height d-none d-md-block">
+								<div class="circle">
+									<p class="custom-text">
+										{{ (itemTastingSheet.visual + itemTastingSheet.smell + itemTastingSheet.taste) / 3 }}
+									</p>
+									<div class="waves"></div>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-
-				{# TODO boucle twig pour afficher les 4 fiches de dégusttion en attendant que Noemi fini son US #}
-				<div class="custom-card">
-					<div class="h-100 d-md-flex align-items-md-center gap-2">
-						<div class="ms-4 custom-height d-none d-md-block">
-							<div class="circle">
-								<p class="custom-text">14</p>
-								<div class="waves"></div>
-							</div>
-						</div>
-						<div class="content col align-self-start">
-							<header class="d-flex">
-								<div class="mini-circle d-md-none">
-									<p>15</p>
-								</div>
-								<div>
-									<h3 class="custom-title-card">Vin 1</h3>
-									<h4 class="custom-title-wine">{{ 'Sauvignon'|u.truncate(11, '...') }}</h4>
-								</div>
-							</header>
-							<div class="rate row text-center text-dark text-uppercase custom-margin">
-								<div class="col custom-padding">
-									<p class="bg-primary mb-1 fw-bolder custom-size">Apparence</p>
-									<p class="text-primary fs-1 fw-normal border border-secondary py-2">4</p>
-								</div>
-								<div class="col custom-padding">
-									<p class="bg-primary mb-1 fw-bolder custom-size">Nez</p>
-									<p class="text-primary fs-1 fw-normal border border-secondary py-2">7</p>
-								</div>
-								<div class="col custom-padding">
-									<p class="bg-primary mb-1 fw-bolder custom-size">Palais</p>
-									<p class="text-primary fs-1 fw-normal border border-secondary py-2">9</p>
+							<div class="content col align-self-start">
+								<header class="d-flex">
+									<div class="mini-circle d-md-none">
+										<p>
+											{{ (itemTastingSheet.visual + itemTastingSheet.smell + itemTastingSheet.taste) / 3 }}
+										</p>
+									</div>
+									<div>
+										<h3 class="custom-title-card">
+											Vin
+											{{ loop.index }}</h3>
+										<h4 class="custom-title-wine">{{ itemTastingSheet.wine.name|capitalize|u.truncate(11, '...') }}</h4>
+									</div>
+								</header>
+								<div class="rate row text-center text-dark text-uppercase custom-margin">
+									<div class="col custom-padding">
+										<p class="bg-primary mb-1 fw-bolder custom-size">Apparence</p>
+										<p class="text-primary fs-1 fw-normal border border-secondary py-2">{{ itemTastingSheet.visual }}</p>
+									</div>
+									<div class="col custom-padding">
+										<p class="bg-primary mb-1 fw-bolder custom-size">Nez</p>
+										<p class="text-primary fs-1 fw-normal border border-secondary py-2">{{ itemTastingSheet.smell }}</p>
+									</div>
+									<div class="col custom-padding">
+										<p class="bg-primary mb-1 fw-bolder custom-size">Palais</p>
+										<p class="text-primary fs-1 fw-normal border border-secondary py-2">{{ itemTastingSheet.taste }}</p>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="custom-card">
-					<div class="h-100 d-md-flex align-items-md-center gap-2">
-						<div class="ms-4 custom-height d-none d-md-block">
-							<div class="circle">
-								<p class="custom-text">14</p>
-								<div class="waves"></div>
-							</div>
-						</div>
-						<div class="content col align-self-start">
-							<header class="d-flex">
-								<div class="mini-circle d-md-none">
-									<p>15</p>
-								</div>
-								<div>
-									<h3 class="custom-title-card">Vin 1</h3>
-									<h4 class="custom-title-wine">{{ 'Sauvignon'|u.truncate(11, '...') }}</h4>
-								</div>
-							</header>
-							<div class="rate row text-center text-dark text-uppercase custom-margin">
-								<div class="col custom-padding">
-									<p class="bg-primary mb-1 fw-bolder custom-size">Apparence</p>
-									<p class="text-primary fs-1 fw-normal border border-secondary py-2">4</p>
-								</div>
-								<div class="col custom-padding">
-									<p class="bg-primary mb-1 fw-bolder custom-size">Nez</p>
-									<p class="text-primary fs-1 fw-normal border border-secondary py-2">7</p>
-								</div>
-								<div class="col custom-padding">
-									<p class="bg-primary mb-1 fw-bolder custom-size">Palais</p>
-									<p class="text-primary fs-1 fw-normal border border-secondary py-2">9</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="custom-card">
-					<div class="h-100 d-md-flex align-items-md-center gap-2">
-						<div class="ms-4 custom-height d-none d-md-block">
-							<div class="circle">
-								<p class="custom-text">14</p>
-								<div class="waves"></div>
-							</div>
-						</div>
-						<div class="content col align-self-start">
-							<header class="d-flex">
-								<div class="mini-circle d-md-none">
-									<p>15</p>
-								</div>
-								<div>
-									<h3 class="custom-title-card">Vin 1</h3>
-									<h4 class="custom-title-wine">{{ 'Sauvignon'|u.truncate(11, '...') }}</h4>
-								</div>
-							</header>
-							<div class="rate row text-center text-dark text-uppercase custom-margin">
-								<div class="col custom-padding">
-									<p class="bg-primary mb-1 fw-bolder custom-size">Apparence</p>
-									<p class="text-primary fs-1 fw-normal border border-secondary py-2">4</p>
-								</div>
-								<div class="col custom-padding">
-									<p class="bg-primary mb-1 fw-bolder custom-size">Nez</p>
-									<p class="text-primary fs-1 fw-normal border border-secondary py-2">7</p>
-								</div>
-								<div class="col custom-padding">
-									<p class="bg-primary mb-1 fw-bolder custom-size">Palais</p>
-									<p class="text-primary fs-1 fw-normal border border-secondary py-2">9</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				{# TODO Fin de la boucle #}
+				{% endfor %}
 				<div class="align-self-end">
-					<a href="#" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center me-3 mb-5">
+					<a href="#" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center me-3 me-lg-4 mb-5">
 						{{ button_label|default('Voir la recette') }}
 						{{ include('/components/svg/_icon_validate.svg.twig') }}
 					</a>

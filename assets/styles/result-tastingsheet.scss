@@ -11,7 +11,7 @@ main {
     height: 230px;
     width: 95%;
     border: 1px dashed $secondary;
-    outline: 1px solid $secondary;
+    outline: 2px solid $secondary;
     outline-offset: 5px;
     border-radius: 150px 8px 8px 150px;
     margin-bottom: 2rem;
@@ -177,6 +177,7 @@ main {
             outline-offset: 5px;
             margin-left: 1.5rem;
             margin-right: 0.5rem;
+            text-align: center;
 
             > p {
                 color: $dark-light;
@@ -191,7 +192,7 @@ main {
                     position: absolute;
                     top: 0;
                     left: 0;
-                    transform: translateY(-11px);
+                    transform: translate(-20%, -11px);
 
                     font-size: 10px;
                     font-weight: bolder;

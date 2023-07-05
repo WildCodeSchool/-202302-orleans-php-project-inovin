@@ -17,10 +17,15 @@ class SessionController extends AbstractController
     #[Route('/etats/all', name: 'all_states', methods: ['GET'])]
     public function states(SessionRepository $sessionRepository): Response
     {
-        $sessionsOpened = $sessionRepository->findBy(['closed' => '0'], ['openingDate' => 'desc']);
+        $sessionsOpened = $sessionRepository->getNextOpenedSessions();
+        $firstOpenedSession = (count($sessionsOpened) === 0 ? [] :  [$sessionsOpened[0]]);
+        $nextOpenedSessions = count($sessionsOpened) > 1 ? array_splice($sessionsOpened, 1) : [];
+        $closedSessions = $sessionRepository->findBy(['closed' => true], ['openingDate' => 'desc',]);
 
         return $this->render('session/sessions_states_html.twig', [
-            'sessionsOpened' => $sessionsOpened
+            'firstOpenedSession' => $firstOpenedSession,
+            'nextSessions' => $nextOpenedSessions,
+            'closedSessions' => $closedSessions
         ]);
     }
 
@@ -28,6 +33,7 @@ class SessionController extends AbstractController
     #[Route('/start/{session}', requirements: ['session' => '\d+'], methods: ['GET'], name: 'start_new')]
     public function startSession(Session $session, SessionRepository $sessionRepository): Response
     {
+
         return $this->render('tasting_sheet/index.html.twig', [
             'session' => $session,
         ]);
