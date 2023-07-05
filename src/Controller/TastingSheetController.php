@@ -34,7 +34,7 @@ class TastingSheetController extends AbstractController
         ]);
     }
 
-    #[Route('ficheDeDegustation/{session}/result', name: 'app_tasting_sheet_result')]
+    #[Route('degustation/{session}/resultat', name: 'app_tasting_sheet_result')]
     public function result(): Response
     {
         return $this->render('tasting_sheet/resultTastingSheet.html.twig', []);
