@@ -24,7 +24,7 @@ class Recipe
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: TastingSheet::class)]
+    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: TastingSheet::class, cascade: ['persist'])]
     private Collection $tastingSheet;
 
     #[ORM\Column(length: 45)]
