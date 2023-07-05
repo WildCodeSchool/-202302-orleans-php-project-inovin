@@ -1,0 +1,35 @@
+{% extends 'visitor.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block body %}
+<div class="container d-flex justify-content-center align-items-center flex-column">
+    <header class="text-center mt-5 mb-5">
+        <img class="mt-5 w-50 object-fit-cover" src="{{ asset('build/images/error400.png')}}" alt="404">
+        <h1 class="text-danger mt-3">Requete incorrect</h1>
+        {% include "components/svg/_frame_surlignage.svg.twig" %}
+    </header>
+    <main class="d-flex  justify-content-center align-items-center flex-column">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6">
+                <p class="mb-5 w-100 fw-light text-center">
+                    Erreur 400 - Requête incorrecte <br>
+                    Désolé, mais la requête que vous avez effectuée n'a pas pu être traitée en raison d'un problème avec
+                    les
+                    données fournies. Le serveur a renvoyé un message "400 Bad Request", indiquant que la requête est
+                    incorrecte ou malformée.
+                </p>
+            </div>
+        </div>
+        <a class="btn btn-primary mb-5 " href="{{ path('home_index') }}">Retour à l'accueil</a>
+    </main>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

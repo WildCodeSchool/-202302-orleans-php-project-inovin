@@ -5,18 +5,10 @@ header {
     background-position: center;
     background-attachment: fixed;
     height: calc(100vh - 65px);
+
     & p.font-sizepara {
         font-size: clamp(1rem, 1vw, 2.5rem);
     }
-}
-
-.pine-circle {
-    width: 39px;
-    height: 39px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url(../images/pine-circle.png);
 }
 
 .pin span {
