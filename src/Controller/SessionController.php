@@ -2,11 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Recipe;
 use App\Entity\Session;
+use App\Entity\User;
 use App\Form\SessionType;
+use App\Repository\RecipeRepository;
 use App\Repository\SessionRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,11 +36,23 @@ class SessionController extends AbstractController
 
     #[IsGranted('ROLE_USER')]
     #[Route('/start/{session}', requirements: ['session' => '\d+'], methods: ['GET'], name: 'start_new')]
-    public function startSession(Session $session, SessionRepository $sessionRepository): Response
-    {
+    public function startSession(
+        Session $session,
+        RecipeRepository $recipeRepository,
+        Security $security
+    ): RedirectResponse {
+        /** @var User $user */
+        $user = $security->getUser();
+        $recipe = $recipeRepository->findOneBy(['session' => $session->getId(), 'user' => $user->getId()]);
+        if (!isset($recipe)) {
+            $recipe = new Recipe();
+            $recipe->setName('Recette - ' .  $user->getFirstname() . ' - ' . date('Y-m-d-hhii'));
+            $recipe->setSession($session);
+            $recipe->setUser($user);
+            $recipe->setSessionRate(0);
+            $recipeRepository->save($recipe, true);
+        }
 
-        return $this->render('tasting_sheet/index.html.twig', [
-            'session' => $session,
-        ]);
+        return $this->redirectToRoute('app_tasting_sheet', ['recipe' => $recipe->getId()]);
     }
 }
