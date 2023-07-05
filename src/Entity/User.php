@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\JoinTable;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -75,6 +76,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $recipes;
 
     #[ORM\ManyToMany(targetEntity: Wine::class, inversedBy: 'likedUsers')]
+    #[JoinTable(name: 'favorite_wine')]
     private Collection $favoritesWines;
 
     public function __construct()
