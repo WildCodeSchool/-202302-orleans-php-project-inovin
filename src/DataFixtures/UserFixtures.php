@@ -40,7 +40,9 @@ class UserFixtures extends Fixture
         $user->setZipCode('75000');
         $user->setCity('Paris');
         $user->setCountry('France');
+
         $this->addReference('user_' . $userNumber, $user);
+
         $manager->persist($user);
         $userNumber++;
 
@@ -60,6 +62,9 @@ class UserFixtures extends Fixture
         $admin->setZipCode('75000');
         $admin->setCity('Paris');
         $admin->setCountry('France');
+
+        $this->addReference('user_2', $admin);
+
 
         $manager->persist($admin);
 

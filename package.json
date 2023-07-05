@@ -32,6 +32,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@a2lix/symfony-collection": "^0.6.1",
         "nouislider": "^15.7.1"
     }
 }
