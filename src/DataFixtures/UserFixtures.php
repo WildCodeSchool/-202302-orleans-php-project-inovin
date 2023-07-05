@@ -21,7 +21,7 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create();
+        $faker = Factory::create('fr_FR');
         $userNumber = 0;
 
         // Création d'un utilisateur
@@ -83,7 +83,7 @@ class UserFixtures extends Fixture
             $member->setLastname($faker->lastName());
             $member->setDateBirth($faker->dateTime());
             $member->setAddress($faker->address());
-            $member->setZipCode('99999');
+            $member->setZipCode($faker->postcode());
             $member->setCity($faker->city());
             $member->setCountry($faker->country());
 
