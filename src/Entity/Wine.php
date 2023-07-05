@@ -77,6 +77,9 @@ class Wine
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $protectedOrigin = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoritesWines')]
+    private Collection $likedUsers;
+
     #[ORM\OneToMany(mappedBy: 'Wine', targetEntity: TastingSheet::class)]
     private Collection $tastingSheets;
 
@@ -84,6 +87,7 @@ class Wine
     {
         $this->enabled = $enabled;
         $this->sessions = new ArrayCollection();
+        $this->likedUsers = new ArrayCollection();
         $this->tastingSheets = new ArrayCollection();
     }
 
@@ -277,6 +281,7 @@ class Wine
         return $this->getName() . ' - ' .  $this->getYear() .  ' - ' . $this->getGrapeVariety()->getName();
     }
 
+
     /**
      * @return Collection<int, TastingSheet>
      */
@@ -305,5 +310,36 @@ class Wine
         }
 
         return $this;
+    }
+
+
+    public function addLikedUser(User $likedUser): static
+    {
+        if (!$this->likedUsers->contains($likedUser)) {
+            $this->likedUsers->add($likedUser);
+            $likedUser->addFavoritesWine($this);
+        }
+        return $this;
+    }
+
+    public function removeLikedUser(User $likedUser): static
+    {
+        if ($this->likedUsers->removeElement($likedUser)) {
+            $likedUser->removeFavoritesWine($this);
+        }
+        return $this;
+    }
+
+    public function isInLikedUsers(User $user): bool
+    {
+        return $this->likedUsers->contains($user);
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLikedUsers(): Collection
+    {
+        return $this->likedUsers;
     }
 }
