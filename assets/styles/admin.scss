@@ -1,5 +1,9 @@
 @import "_variables.scss";
 
+.letter-spacing {
+    letter-spacing: 3px;
+}
+
 .container-admin {
     margin: 4rem;
     border: 1px solid $secondary-light;
@@ -50,4 +54,14 @@
     right: 0;
     bottom: 0;
     transform: translate(1px, 1px) rotate(180deg);
+}
+
+input[type="checkbox"] {
+    background-color: $secondary;
+}
+
+input[type="checkbox"]:before,
+input[type="checkbox"]:checked:before,
+input[type="checkbox"]:checked:after {
+    background-color: white;
 }

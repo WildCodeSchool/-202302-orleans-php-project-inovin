@@ -9,6 +9,7 @@ use DateTime;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 use phpDocumentor\Reflection\Types\Float_;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -66,7 +67,7 @@ class Wine
     #[Assert\Type(type: 'float')]
     private ?float $price = null;
 
-    #[ORM\ManyToMany(targetEntity: Session::class, mappedBy: 'Wines')]
+    #[ORM\ManyToMany(targetEntity: Session::class, mappedBy: 'wines')]
     private Collection $sessions;
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?DatetimeInterface $updatedAt = null;
@@ -77,10 +78,18 @@ class Wine
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $protectedOrigin = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoritesWines')]
+    private Collection $likedUsers;
+
+    #[ORM\OneToMany(mappedBy: 'Wine', targetEntity: TastingSheet::class)]
+    private Collection $tastingSheets;
+
     public function __construct(?bool $enabled = true)
     {
         $this->enabled = $enabled;
         $this->sessions = new ArrayCollection();
+        $this->likedUsers = new ArrayCollection();
+        $this->tastingSheets = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -271,5 +280,67 @@ class Wine
     public function getFullLabel(): string
     {
         return $this->getName() . ' - ' .  $this->getYear() .  ' - ' . $this->getGrapeVariety()->getName();
+    }
+
+
+    /**
+     * @return Collection<int, TastingSheet>
+     */
+    public function getTastingSheets(): Collection
+    {
+        return $this->tastingSheets;
+    }
+
+    public function addTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if (!$this->tastingSheets->contains($tastingSheet)) {
+            $this->tastingSheets->add($tastingSheet);
+            $tastingSheet->setWine($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTastingSheet(TastingSheet $tastingSheet): static
+    {
+        if ($this->tastingSheets->removeElement($tastingSheet)) {
+            // set the owning side to null (unless already changed)
+            if ($tastingSheet->getWine() === $this) {
+                $tastingSheet->setWine(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    public function addLikedUser(User $likedUser): static
+    {
+        if (!$this->likedUsers->contains($likedUser)) {
+            $this->likedUsers->add($likedUser);
+            $likedUser->addFavoritesWine($this);
+        }
+        return $this;
+    }
+
+    public function removeLikedUser(User $likedUser): static
+    {
+        if ($this->likedUsers->removeElement($likedUser)) {
+            $likedUser->removeFavoritesWine($this);
+        }
+        return $this;
+    }
+
+    public function isInLikedUsers(User $user): bool
+    {
+        return $this->likedUsers->contains($user);
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLikedUsers(): Collection
+    {
+        return $this->likedUsers;
     }
 }

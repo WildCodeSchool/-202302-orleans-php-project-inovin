@@ -8,9 +8,13 @@
 	{{ parent() }}
 	{{ encore_entry_link_tags('wine') }}
 {% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('wine-js') }}
+{% endblock %}
 
 {% block body %}
-	<main class="container">
+	<main class="container-lg container-fluid">
 		<section>
 			<div class="row mb-4">
 				<div class="col px-sm-5 px-3 m-auto pt-5">
@@ -23,18 +27,38 @@
 				</div>
 			</div>
 			<div class="container-fluid">
+
 				<div class="row">
+					<div class="col">
+						<div class="text-end">
+							<a class="link icon-link icon-link-hover icon text-uppercase text-decoration-none me-2 my-3" data-bs-toggle="collapse" href="#collapseSearch" role="button" aria-expanded="false" aria-controls="collapseSearch">
+								Filtrer
+								{% include "components/svg/_icon_eye.svg.twig" %}
+							</a>
+						</div>
+						<div class="collapse" id="collapseSearch">
+							<div class="card card-body">
+								{% include "components/search/_searchWinFormData.html.twig" with {form : form } only %}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row my-4">
 					{% for wine in wines %}
-						<div class="col-sm-6 col-md-4 g-3">
+						<div class="col-sm-6 col-lg-4 g-3">
 							<div class="card">
-								<div class="price-placeholder text-secondary bg-primary d-flex align-items-center justify-content-center fs-3 fw-bold shadow">€
+								<div class="price-placeholder text-secondary bg-primary d-flex align-items-center justify-content-center fs-4 fw-bold shadow">€
 									{{ wine.price }}
 								</div>
-								<div class="alcool-rate-placeholder text-secondary bg-primary d-flex align-items-center justify-content-center fs-6 fw-bold shadow">{{ wine.alcoholPercent ~ '%' }}</div>
+
 								<img class="card-img-top" alt="image du vin" src="{{ wine.picture is not empty ? vich_uploader_asset(wine) : asset('build/images/placeholder_wine.jpg') }}">
 								<div class="price-placeholder"></div>
 								<div class="card-body">
-									<h5 class="card-title text-capitalize text-primary-light text-center">{{ wine.name|u.truncate(22, '...') }}</h5>
+									{% if app.user %}
+										{{ component('UpdateStateFavoriteWineComponent', { wine : wine }) }}
+									{% endif %}
+									<h5 class="card-title text-capitalize text-primary-light text-center">{{ wine.name|u.truncate(20, '...') }}</h5>
 									<div class="bar_separator"></div>
 									<div class="container-fluid my-4">
 										<div class="row row-cols-2 g-3">
@@ -44,11 +68,11 @@
 											</div>
 											<div class="d-flex flex-column justify-content-center">
 												<div class="col col-title">I.G</div>
-												<div class="col">{{ wine.protectedOrigin }}</div>
+												<div class="col">{{ wine.protectedOrigin|u.truncate(20, '...') }}</div>
 											</div>
 											<div class="d-flex flex-column justify-content-center">
 												<div class="col col-title">Cépage</div>
-												<div class="col">{{ wine.grapevariety.name|u.truncate(22, '...') }}</div>
+												<div class="col">{{ wine.grapevariety.name|u.truncate(20, '...') }}</div>
 											</div>
 											<div class="d-flex flex-column justify-content-center">
 												<div class="col col-title">Type</div>
@@ -61,31 +85,21 @@
 												<div class="col">{{ wine.origin }}</div>
 											</div>
 										</div>
-										<div class="row">
+										<div class="row row-cols-2 g-3">
 											<div class="d-flex flex-column justify-content-center">
 												<div class="col col-title">Volume</div>
 												<div class="col">{{ wine.volume ~ ' L' }}</div>
+											</div>
+											<div class="d-flex flex-column justify-content-center">
+												<div class="col col-title">Taux d'Alcool</div>
+												<div class="col">{{ wine.alcoholPercent ~ '%' }}</div>
 											</div>
 										</div>
 									</div>
 								</div>
 
 								<div class="card-footer bg-transparent d-flex justify-content-end align-items-center">
-									{% if not app.user %}
-										<div class="alert alert-warning m-1 p-3 fs-6 ">
-											{{ include('/components/svg/_icon_eye.svg.twig') }}
-											<span class="fst-italic px-1">Veuillez vous connecter pour commander du vin</span>
-											<a role="button" href="{{ path('login') }}" class="link-offset-2 fs-6 px-1 fw-bolder icon-link icon-link-hover icon-light text-uppercase">
-												SE CONNECTER
-												{{ include('/components/svg/_icon_next.svg.twig') }}
-											</a>
-										</div>
-									{% else %}
-										<a href="#" role="button" class="btn fw-bolder icon-link icon-link-hover-left icon-light text-uppercase my-2">
-											{{ include('/components/svg/_icon_cart_check_fill.svg.twig') }}
-											COMMANDER
-										</a>
-									{% endif %}
+									{{ component('SendWineOrderComponent', { 'wine' : wine }) }}
 								</div>
 							</div>
 						</div>

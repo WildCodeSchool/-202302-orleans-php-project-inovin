@@ -34,26 +34,28 @@ h6 {
     box-shadow: $shadow-primary;
     min-width: 9rem;
 }
-.icon-light > svg {
+
+.icon-light>svg {
     color: $primary-light;
 }
 
-.icon-light:hover > svg {
+.icon-light:hover>svg {
     color: $dark-light;
 }
 
-.icon-dark > svg {
+.icon-dark>svg {
     color: $dark-light;
 }
 
-.icon-dark:hover > svg {
+.icon-dark:hover>svg {
     color: $light;
 }
 
 .icon-link-hover-left {
+
     &:hover,
     &:focus-visible {
-        > .bi {
+        >.bi {
             transform: translate3d(-0.35rem, 0, 0);
         }
     }
@@ -74,10 +76,33 @@ h6 {
     transition: 0s;
 }
 
+.custom-btn {
+    border: none;
+    background-color: transparent;
+    color: $light;
+}
+
+.custom-dropdown-divider {
+    height: 0;
+    overflow: hidden;
+    border-top: 1px solid $secondary;
+    opacity: 1;
+}
+
+.custom-width {
+    display: inline-block;
+    width: 25px;
+}
+
+.custom-border {
+    border-bottom: 1px solid $primary;
+}
+
 p {
     font-family: $font-base;
     letter-spacing: 3px;
 }
+
 html {
     height: 100%;
 }
@@ -90,8 +115,7 @@ body {
     box-shadow: 0 0 0 0;
 }
 
-.text-primary-light {
-    color: $primary-light;
+.mini-card h2 {
     font-family: $font-base;
 }
 
@@ -102,6 +126,7 @@ body {
 .font-sizepara {
     font-size: 1.5rem;
 }
+
 .letter-spacing-title {
     letter-spacing: 5px;
 }
@@ -117,8 +142,56 @@ body {
     transform: translate(7px, -2px);
 }
 
+.secondary-light {
+    color: $secondary-light;
+}
+
 .bg-card {
     background: $card-gradient-color;
+}
+
+.mini-card {
+    width: 50%;
+    height: auto;
+    outline: 1px solid $secondary;
+    outline-offset: 2px;
+    border: 2px dotted $secondary;
+}
+
+.frame_container>.frame_separator {
+    width: auto;
+}
+
+.table-spacing {
+    border-collapse: separate;
+    border-spacing: 20px 0;
+}
+
+.table-row {
+    height: 20px;
+    /* Hauteur des lignes */
+}
+
+.line-card {
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: $secondary;
+    top: 100px;
+    left: 0;
+}
+
+.carousel-control-prev {
+    left: -100px;
+}
+
+.carousel-control-next {
+    right: -100px;
+}
+
+.height-location {
+    min-height: 53px;
+    max-height: 53px;
 }
 
 .ornement {
@@ -156,4 +229,21 @@ body {
     background-repeat: no-repeat;
     background-position: center top;
     background-size: 100% 3px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 1rem;
+}
+
+.max-height-select {
+    height: clamp(150px, 20vw, 200px);
+    overflow: auto;
+}
+
+@media screen and (max-width: 767px) {
+    .custom-border {
+        border-bottom: 1px solid transparent;
+    }
 }

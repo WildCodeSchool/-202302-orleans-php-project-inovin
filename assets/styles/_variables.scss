@@ -6,10 +6,10 @@ $dark: #08080b;
 $dark-light: #0e0d12;
 $light: #fbfbfb;
 $tertiary: #474035;
+$success-light: #8cff3e;
 $navbar-height: 65px;
-$navbarTastingSheetBg :#1A1813;
+$navbarTastingSheetBg: #1a1813;
 $footer-height: 90px;
-
 
 $dropdown-link-hover-bg: $primary;
 $dropdown-link-hover-color: $dark-light;
@@ -22,7 +22,7 @@ $font-size-mid: 2rem;
 $body-color: $light;
 $body-bg: $dark-light;
 $font-family-base: $font-base;
-$shadow-primary: 0.5rem 0.5rem 2rem rgba(189, 173, 53, 0.175);
+$shadow-primary: 0.5rem 0.5rem 1rem rgba(189, 173, 53, 0.1);
 
 $card-gradient-color: linear-gradient(
     0deg,
@@ -30,12 +30,7 @@ $card-gradient-color: linear-gradient(
     rgba(126, 109, 50, 0.17) 127.46%,
     rgba(213, 194, 26, 0) 128.23%
 );
-$line-gradient-color: linear-gradient(
-    180deg,
-    rgba(238, 214, 101, 0) 0%,
-    #eed665 50%,
-    rgba(238, 214, 101, 0) 100%
-);
+$line-gradient-color: linear-gradient(180deg, rgba(238, 214, 101, 0) 0%, #eed665 50%, rgba(238, 214, 101, 0) 100%);
 $icon-gradient-color: radial-gradient(
     49.66% 49.66% at 50.34% 50.34%,
     rgba(180, 137, 56, 0.83) 0%,
