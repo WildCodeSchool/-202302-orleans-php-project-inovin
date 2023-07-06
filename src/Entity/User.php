@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cette adresse e-mail.')]
-/** SuppressWarnings(PHPMD.ExcessiveClassComplexity) */
+/** @SuppressWarnings(PHPMD.ExcessiveClassComplexity) */
 class User implements
     UserInterface,
     PasswordAuthenticatedUserInterface
