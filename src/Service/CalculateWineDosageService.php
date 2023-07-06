@@ -21,7 +21,7 @@ class CalculateWineDosageService
      *    [
      *      tastingSheet_id' => 22,
      *      dosage'=> 150,
-     *      average' => 5.33 ,
+     *      average' => 5.3 ,
      *      tasteRating' => 8,
      *      smellRating' => 5,
      *      visualRating' => 3
@@ -29,7 +29,7 @@ class CalculateWineDosageService
      *    [
      *      'tastingSheet_id' => 10,
      *      'dosage'=> 50,
-     *      'average' => 5.33 ,
+     *      'average' => 5.3 ,
      *      'tasteRating' => 8,
      *      'smellRating' => 4,
      *      'visualRating' => 4
@@ -37,7 +37,7 @@ class CalculateWineDosageService
      *    [
      *      'tastingSheet_id' => 50,
      *      'dosage'=> 25,
-     *      'average' => 4.33 ,
+     *      'average' => 4.3 ,
      *      'tasteRating' => 8,
      *      'smellRating' => 3,
      *      'visualRating' => 2
@@ -45,7 +45,7 @@ class CalculateWineDosageService
      *    [
      *      'tastingSheet_id' => 51,
      *      'dosage'=> 0,
-     *      'average' => 2.66 ,
+     *      'average' => 2.6 ,
      *      'tasteRating' => 4,
      *      'smellRating' => 3,
      *      'visualRating' => 1
