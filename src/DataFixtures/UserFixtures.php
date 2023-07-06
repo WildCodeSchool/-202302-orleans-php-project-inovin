@@ -17,10 +17,13 @@ class UserFixtures extends Fixture
         $this->passwordHasher = $passwordHasher;
     }
 
+    public const MEMBERS = 10;
+
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create();
+        $faker = Factory::create('fr_FR');
         $userNumber = 0;
+
         // Création d'un utilisateur
         $user = new User();
         $user->setEmail('user@monsite.com');
@@ -42,6 +45,7 @@ class UserFixtures extends Fixture
 
         $manager->persist($user);
         $userNumber++;
+
         // Création d'un administrateur
         $admin = new User();
         $admin->setEmail('admin@monsite.com');
@@ -65,5 +69,27 @@ class UserFixtures extends Fixture
         $manager->persist($admin);
 
         $manager->flush();
+
+        for ($i = 0; $i <= self::MEMBERS; $i++) {
+            $member = new User();
+            $member->setEmail('member' . $i . '@monsite.com');
+            $member->setRoles(['ROLE_USER']);
+            $hashedPassword = $this->passwordHasher->hashPassword(
+                $member,
+                'memberpassword'
+            );
+            $member->setPassword($hashedPassword);
+            $member->setFirstname($faker->firstName());
+            $member->setLastname($faker->lastName());
+            $member->setDateBirth($faker->dateTime());
+            $member->setAddress($faker->address());
+            $member->setZipCode($faker->postcode());
+            $member->setCity($faker->city());
+            $member->setCountry($faker->country());
+
+            $manager->persist($member);
+
+            $manager->flush();
+        }
     }
 }
