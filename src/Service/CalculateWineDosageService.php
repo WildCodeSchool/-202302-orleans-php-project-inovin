@@ -54,35 +54,39 @@ class CalculateWineDosageService
      */
     public function calculate(Recipe $recipe): array
     {
-        //add averages values
-        $array = $this->calculateAverageValues($recipe);
-
-        //ordered array
-        $orderedArray = $this->orderedElementsByAverage($array);
-
-        //set Dosage based on the ordered items array
-        return $this->setDosage($orderedArray);
-    }
-
-    /**
-     * Calculate the average for each TastingSheet based on
-     * the 3 values taste, smell and visual.
-     */
-    private function calculateAverageValues(Recipe $recipe): array
-    {
         $result = [];
-        //create the array result (not ordered yet)
         foreach ($recipe->getTastingSheet() as $itemTastingSheet) {
             $result[] = [
                 'tastingSheet_id' => $itemTastingSheet->getId(),
-                'average' => $this->setAverage($itemTastingSheet),
+                'average' => 0,
                 'tasteRating' => $itemTastingSheet->getTaste(),
                 'smellRating' => $itemTastingSheet->getSmell(),
                 'visualRating' => $itemTastingSheet->getVisual(),
                 'dosage' => 0
             ];
         }
-        return $result;
+
+        //add averages values
+        $resultWithAverage = $this->calculateAverageValues($result);
+
+        //ordered array
+        $orderedResult = $this->orderedElementsByAverage($resultWithAverage);
+
+        //set Dosage based on the ordered items array
+        return $this->setDosage($orderedResult);
+    }
+
+    /**
+     * Calculate the average for each TastingSheet based on
+     * the 3 values taste, smell and visual.
+     */
+    private function calculateAverageValues(array $arrayItems): array
+    {
+        //create the array result (not ordered yet)
+        foreach ($arrayItems as $key => $item) {
+            $arrayItems[$key]['average'] =  $this->setAverage($item);
+        }
+        return $arrayItems;
     }
 
     /**
@@ -112,11 +116,11 @@ class CalculateWineDosageService
         return $array;
     }
 
-    private function setAverage(TastingSheet $tastingSheet): float
+    private function setAverage(array $item): float
     {
-        return round((($tastingSheet->getSmell() ?? 0) +
-            ($tastingSheet->getTaste() ?? 0) +
-            ($tastingSheet->getVisual() ?? 0)) / 3, 2);
+        return round((($item['tasteRating'] ?? 0) +
+            ($item['smellRating'] ?? 0) +
+            ($item['visualRating'] ?? 0)) / 3, 1);
     }
 
     /**

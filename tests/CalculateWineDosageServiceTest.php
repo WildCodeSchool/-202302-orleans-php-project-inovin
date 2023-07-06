@@ -14,29 +14,57 @@ class CalculateWineDosageServiceTest extends KernelTestCase
     {
         $kernel = self::bootKernel();
         $calculateWineDosageService = static::getContainer()->get(CalculateWineDosageService::class);
-        $recipeRepository = static::getContainer()->get(RecipeRepository::class);
-        $recipe = $recipeRepository->find(2);
+
+        $recipe = new Recipe();
+        $tastingSheet1 = new tastingSheet();
+        $tastingSheet1->setDosage(0);
+        $tastingSheet1->setTaste(4.0);
+        $tastingSheet1->setSmell(2.0);
+        $tastingSheet1->setVisual(2.0);
+        $recipe->addTastingSheet($tastingSheet1);
+
+        $tastingSheet2 = new tastingSheet();
+        $tastingSheet2->setDosage(0);
+        $tastingSheet2->setTaste(4.0);
+        $tastingSheet2->setSmell(10.0);
+        $tastingSheet2->setVisual(8.0);
+        $recipe->addTastingSheet($tastingSheet2);
+
+        $tastingSheet3 = new tastingSheet();
+        $tastingSheet3->setDosage(0);
+        $tastingSheet3->setTaste(6.0);
+        $tastingSheet3->setSmell(6.0);
+        $tastingSheet3->setVisual(0.0);
+        $recipe->addTastingSheet($tastingSheet3);
+
+        $tastingSheet4 = new tastingSheet();
+        $tastingSheet4->setDosage(0);
+        $tastingSheet4->setTaste(1.0);
+        $tastingSheet4->setSmell(5.0);
+        $tastingSheet4->setVisual(8.0);
+        $recipe->addTastingSheet($tastingSheet4);
+
         $result = $calculateWineDosageService->calculate($recipe);
 
         $this->assertSame([
             [
-                "tastingSheet_id" => 2,
-                "average" => 7.33,
+                "tastingSheet_id" => null,
+                "average" => 7.3,
                 "tasteRating" => 4.0,
                 "smellRating" => 10.0,
                 "visualRating" => 8.0,
                 "dosage" => 150,
             ],
             [
-                "tastingSheet_id" => 4,
-                "average" => 4.67,
+                "tastingSheet_id" => null,
+                "average" => 4.7,
                 "tasteRating" => 1.0,
                 "smellRating" => 5.0,
                 "visualRating" => 8.0,
                 "dosage" => 50,
             ],
             [
-                "tastingSheet_id" => 5,
+                "tastingSheet_id" => null,
                 "average" => 4.0,
                 "tasteRating" => 6.0,
                 "smellRating" => 6.0,
@@ -44,8 +72,8 @@ class CalculateWineDosageServiceTest extends KernelTestCase
                 "dosage" => 25,
             ],
             [
-                "tastingSheet_id" => 3,
-                "average" => 2.67,
+                "tastingSheet_id" => null,
+                "average" => 2.7,
                 "tasteRating" => 4.0,
                 "smellRating" => 2.0,
                 "visualRating" => 2.0,
