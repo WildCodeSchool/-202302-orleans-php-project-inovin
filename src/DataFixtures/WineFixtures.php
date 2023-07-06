@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\DataFixtures\UserFixtures;
 use Faker\Factory;
 use App\Entity\Wine;
 use Doctrine\Persistence\ObjectManager;
@@ -37,6 +38,11 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
 
             $wine->setGrapeVariety($this->getReference('grape_variety_' . $faker->numberBetween(1, 16)));
 
+            if ($i % 2 === 0) {
+                $simpleUser1 = $this->getReference('user_0');
+                $wine->addLikedUser($simpleUser1);
+            }
+
             $this->addReference('wine_' . $i, $wine);
 
             $manager->persist($wine);
@@ -50,6 +56,7 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             GrapeVarietyFixtures::class,
+            UserFixtures::class,
         ];
     }
 }
