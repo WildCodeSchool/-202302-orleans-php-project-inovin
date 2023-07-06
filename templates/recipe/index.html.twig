@@ -41,6 +41,11 @@
 					{% include "components/svg/_icon_wine_ticket.svg.twig" %}
 				</div>
 				<div class="content px-2 px-sm-2 ms-sm-2 px-md-4 px-lg-4 px-xl-5">
+					{% if app.user %}
+						<div class="align-self-end w-100 mb-4">
+							{{ component('UpdateStateFavoriteRecipeComponent', { recipe : recipe }) }}
+						</div>
+					{% endif %}
 					<div class="mt-4 mb-2">
 						<p class="text-center text-uppercase fs-3 mb-1 text-primary">Bravo</p>
 						<p class="text-center text-uppercase">Tu as créés ta propre bouteille de vin !</p>
