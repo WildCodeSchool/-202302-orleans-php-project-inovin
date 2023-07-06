@@ -17,7 +17,6 @@ class CalculateWineDosageServiceTest extends KernelTestCase
         $recipeRepository = static::getContainer()->get(RecipeRepository::class);
         $recipe = $recipeRepository->find(2);
         $result = $calculateWineDosageService->calculate($recipe);
-        //dd($result);
 
         $this->assertSame([
             [
