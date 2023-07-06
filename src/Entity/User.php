@@ -103,42 +103,27 @@ class User implements
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
         return array_unique($roles);
     }
 
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
-
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
     public function getPassword(): string
     {
         return $this->password;
@@ -151,9 +136,6 @@ class User implements
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
@@ -203,7 +185,6 @@ class User implements
     public function setZipCode(?string $zipCode): static
     {
         $this->zipCode = $zipCode;
-
         return $this;
     }
 
@@ -215,7 +196,6 @@ class User implements
     public function setCity(?string $city): static
     {
         $this->city = $city;
-
         return $this;
     }
 
@@ -227,7 +207,6 @@ class User implements
     public function setAddress(?string $address): static
     {
         $this->address = $address;
-
         return $this;
     }
 
@@ -239,7 +218,6 @@ class User implements
     public function setCountry(?string $country): static
     {
         $this->country = $country;
-
         return $this;
     }
 
@@ -251,7 +229,6 @@ class User implements
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
-
         return $this;
     }
 
@@ -274,7 +251,6 @@ class User implements
             $this->recipes->add($recipe);
             $recipe->setUser($this);
         }
-
         return $this;
     }
 
@@ -286,7 +262,6 @@ class User implements
                 $recipe->setUser(null);
             }
         }
-
         return $this;
     }
 
@@ -297,18 +272,13 @@ class User implements
 
     public function setUserPreference(?UserPreference $userPreference): static
     {
-        // unset the owning side of the relation if necessary
         if ($userPreference === null && $this->userPreference !== null) {
             $this->userPreference->setUser(null);
         }
-
-        // set the owning side of the relation if necessary
         if ($userPreference !== null && $userPreference->getUser() !== $this) {
             $userPreference->setUser($this);
         }
-
         $this->userPreference = $userPreference;
-
         return $this;
     }
 
@@ -326,7 +296,6 @@ class User implements
             $this->favoritesWines->add($favoritesWine);
             $favoritesWine->addLikedUser($this);
         }
-
         return $this;
     }
 
