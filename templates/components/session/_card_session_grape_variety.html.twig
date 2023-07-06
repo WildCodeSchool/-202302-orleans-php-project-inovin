@@ -1,33 +1,39 @@
-<div class="card card-wine m-2 m-sm-4 rounded-sm">
-	<div class="row g-0 d-flex align-items-center justify-content-center ps-3">
-		<div class="col ps-2 wine-container ">
-			<img src="{{ asset('build/images/img_card_wine.svg') }}" class="img-session-wine" alt="img round card wine">
+<div class="card card-wine m-2 m-sm-3 rounded-sm bg-transparent">
+	<div class="g-0 d-flex align-items-center">
+		<div
+			class="wine-container d-flex justify-content-center ms-2 ms-sm-4 me-sm-4 ps-1">
+			{# <img src="{{ asset('build/images/img_card_wine.svg') }}" class="img-session-wine me-1" alt="img round card wine"> #}
+			<picture>
+				<source media="(max-width:576px)" srcset="{{ asset('build/images/wine.svg') }}">
+				<img src=" {{ asset('build/images/img_card_wine.svg') }} " class="img-session-wine me-1" alt=" img round card wine">
+			</picture>
+			{# <img src="{{ asset('build/images/img_card_wine.svg') }}" class="img-session-wine me-1" alt="img round card wine"> #}
 		</div>
-		<div class="col-8 col-sm-8 col-md-9 col-lg-9 col-xl-8 col-xxl-8 pe-1">
-			<div class="card-body p-1">
-				<h5 class="card-title text-capitalize text-primary-light ">{{ wine.name|u.truncate(22, '...') }}</h5>
+		<div class="w-100 pe-sm-2">
+			<div class="card-body px-2 px-sm-0 py-2">
+				<h5 class="card-title text-capitalize text-primary-light ps-2">{{ wine.name|u.truncate(22, '...') }}</h5>
 				<div class="separator-line"></div>
-				<p class="card-text letter-spacing fs-5 text-end mt-1">
-					<span class="badge rounded-pill bg-primary-light text-dark px-3">{{ wine.year }}</span>
+				<p class="card-text letter-spacing my-2">
+					{{ wine.origin ~ ', '~ wine.year }}
 				</p>
-				<p class="card-text">
-					<div class="row d-flex flex-row">
-						<div class="col-8 pe-1">
-							<div class="bg-primary text-center text-dark letter-spacing ms-auto">
-								CÉPAGE
-							</div>
-							<div class="text-center text-light letter-spacing ms-auto mt-2 text-capitalize fs-6 text-nowrap">
-								{{ wine.grapeVariety.name|u.truncate(20, '...') }}
-							</div>
+
+				<div class="row d-flex flex-row">
+					<div class="col-8 pe-1">
+						<div class="bg-primary text-center text-dark letter-spacing ms-auto custom-text-size fw-bolder">
+							CÉPAGE
 						</div>
-						<div class="col ps-1">
-							<div class="bg-primary text-center text-dark letter-spacing">
-								O.G
-							</div>
-							<div class="text-start text-center text-light letter-spacing mt-2 fs-6"></div>
+						<div class="text-center text-light letter-spacing ms-auto mt-2 text-capitalize fs-6 text-nowrap">
+							{{ wine.grapeVariety.name|u.truncate(20, '...') }}
 						</div>
 					</div>
-				</p>
+					<div class="col ps-1">
+						<div class="bg-primary text-center text-dark letter-spacing custom-text-size fw-bolder">
+							O.G
+						</div>
+						<div class="text-start text-center text-light letter-spacing mt-2 fs-6">{{ wine.protectedOrigin }}</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
