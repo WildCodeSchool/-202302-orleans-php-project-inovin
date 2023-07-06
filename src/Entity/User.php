@@ -16,7 +16,10 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cette adresse e-mail.')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+/** @SuppressWarnings(PHPMD.ExcessiveClassComplexity) */
+class User implements
+    UserInterface,
+    PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -75,8 +78,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Recipe::class)]
     private Collection $recipes;
 
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?UserPreference $userPreference = null;
+
     #[ORM\ManyToMany(targetEntity: Wine::class, inversedBy: 'likedUsers')]
-    #[JoinTable(name: 'favorite_wine')]
+    #[ORM\JoinTable(name: 'favorite_wine')]
     private Collection $favoritesWines;
 
     #[ORM\ManyToMany(targetEntity: Recipe::class, mappedBy: 'likedUsers')]
@@ -102,42 +108,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
-
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
         return array_unique($roles);
     }
 
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
-
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
     public function getPassword(): string
     {
         return $this->password;
@@ -150,9 +141,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
@@ -202,7 +190,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setZipCode(?string $zipCode): static
     {
         $this->zipCode = $zipCode;
-
         return $this;
     }
 
@@ -214,7 +201,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCity(?string $city): static
     {
         $this->city = $city;
-
         return $this;
     }
 
@@ -226,7 +212,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAddress(?string $address): static
     {
         $this->address = $address;
-
         return $this;
     }
 
@@ -238,7 +223,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCountry(?string $country): static
     {
         $this->country = $country;
-
         return $this;
     }
 
@@ -250,7 +234,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
-
         return $this;
     }
 
@@ -273,7 +256,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->recipes->add($recipe);
             $recipe->setUser($this);
         }
-
         return $this;
     }
 
@@ -285,7 +267,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $recipe->setUser(null);
             }
         }
+        return $this;
+    }
 
+    public function getUserPreference(): ?UserPreference
+    {
+        return $this->userPreference;
+    }
+
+    public function setUserPreference(?UserPreference $userPreference): static
+    {
+        if ($userPreference === null && $this->userPreference !== null) {
+            $this->userPreference->setUser(null);
+        }
+        if ($userPreference !== null && $userPreference->getUser() !== $this) {
+            $userPreference->setUser($this);
+        }
+        $this->userPreference = $userPreference;
         return $this;
     }
 
@@ -303,7 +301,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->favoritesWines->add($favoritesWine);
             $favoritesWine->addLikedUser($this);
         }
-
         return $this;
     }
 

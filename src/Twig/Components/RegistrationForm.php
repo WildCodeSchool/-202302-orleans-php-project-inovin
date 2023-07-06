@@ -26,6 +26,6 @@ class RegistrationForm extends AbstractController
 
     public function hasValidationErrors(): bool
     {
-        return $this->getFormInstance()->isSubmitted() && !$this->getFormInstance()->isValid();
+        return $this->getForm()->isSubmitted() && !$this->getForm()->isValid();
     }
 }
