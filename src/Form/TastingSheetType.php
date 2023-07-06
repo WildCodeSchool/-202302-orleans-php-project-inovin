@@ -19,22 +19,34 @@ class TastingSheetType extends AbstractType
                 'attr' => [
                     'min' => 0,
                     'max' => 10,
+                    'class' => 'mt-5 px-5 form-range',
+                    'type' => "range",
+                    'value' => 5,
+                    'oninput' => "this.nextElementSibling.value = this.value",
                 ],
-                'label' => 'Goût',
+                'label' => false,
             ])
             ->add('smell', RangeType::class, [
                 'attr' => [
                     'min' => 0,
                     'max' => 10,
+                    'class' => 'mt-5 px-5 custom-range',
+                    'type' => "range",
+                    'value' => 5,
+                    'oninput' => "this.nextElementSibling.value = this.value",
                 ],
-                'label' => 'Odeur',
+                'label' => false,
             ])
             ->add('visual', RangeType::class, [
                 'attr' => [
                     'min' => 0,
                     'max' => 10,
+                    'class' => 'mt-5 px-5 custom-range',
+                    'type' => "range",
+                    'value' => 5,
+                    'oninput' => "this.nextElementSibling.value = this.value",
                 ],
-                'label' => 'Visuel',
+                'label' => false,
             ]);
     }
 

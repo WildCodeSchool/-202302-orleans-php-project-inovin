@@ -17,15 +17,15 @@ class Recipe
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'recipes')]
+    #[ORM\ManyToOne(inversedBy: 'recipes', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Session $session = null;
 
-    #[ORM\ManyToOne(inversedBy: 'recipes')]
+    #[ORM\ManyToOne(inversedBy: 'recipes', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: TastingSheet::class)]
+    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: TastingSheet::class, cascade: ['persist'], fetch: 'EAGER')]
     private Collection $tastingSheet;
 
     #[ORM\Column(length: 45)]

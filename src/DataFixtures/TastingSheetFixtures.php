@@ -19,9 +19,9 @@ class TastingSheetFixtures extends Fixture implements DependentFixtureInterface
 
         for ($i = 0; $i < self::TASTING_SHEET_COUNT; $i++) {
             $tastingSheet = new TastingSheet();
-            $tastingSheet->setTaste($faker->randomFloat(2, 1.0, 2.0));
-            $tastingSheet->setSmell($faker->randomFloat(2, 1.0, 2.0));
-            $tastingSheet->setVisual($faker->randomFloat(2, 1.0, 2.0));
+            $tastingSheet->setTaste($faker->numberBetween(0, 10));
+            $tastingSheet->setSmell($faker->numberBetween(0, 10));
+            $tastingSheet->setVisual($faker->numberBetween(0, 10));
 
             $tastingSheet->setDate($faker->dateTimeThisYear(new DateTime()));
 

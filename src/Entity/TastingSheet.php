@@ -34,12 +34,15 @@ class TastingSheet
     #[Assert\Range(min: 0, max: 10)]
     private ?float $visual = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tastingSheet')]
+    #[ORM\ManyToOne(inversedBy: 'tastingSheet', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: true)]
     private ?Recipe $recipe = null;
 
-    #[ORM\ManyToOne(inversedBy: 'tastingSheets')]
+    #[ORM\ManyToOne(inversedBy: 'tastingSheets', fetch: 'EAGER')]
     private ?Wine $wine = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $dosage = null;
 
     public function getId(): ?int
     {
@@ -115,6 +118,18 @@ class TastingSheet
     public function setWine(?Wine $wine): static
     {
         $this->wine = $wine;
+
+        return $this;
+    }
+
+    public function getDosage(): ?int
+    {
+        return $this->dosage;
+    }
+
+    public function setDosage(?int $dosage): static
+    {
+        $this->dosage = $dosage;
 
         return $this;
     }
