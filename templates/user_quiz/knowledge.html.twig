@@ -7,7 +7,7 @@
 
 {% block stylesheets %}
 	{{ parent() }}
-	{{ encore_entry_link_tags('registration') }}
+	{{ encore_entry_link_tags('quiz') }}
 {% endblock %}
 
 {% block body %}
@@ -20,81 +20,61 @@
 
 				{{ form_start(form) }}
 				{# FORM LEFT #}
-				<div class="d-flex mt-5 pb-5 w-75">
-					<div class="row px-2 px-sm-5">
-						<div class="d-flex justify-content-between flex-md-row flex-column p-0">
-							<div class="d-flex gap-2 ms-5 mb-0">
-								<div class="d-flex flex-column mt-5">
-									{{ form_label(form.wineKnowledge) }}
-									{{ form_widget(form.wineKnowledge) }}
-								</div>
-							</div>
+				<div class="row px-2 pb-5 mt-5 px-sm-5">
+					<div class="d-flex justify-content-between flex-md-row flex-column p-0">
+						<div class="d-flex flex-column w-100 mt-5">
+							{{ form_label(form.wineKnowledge) }}
+							{{ form_widget(form.wineKnowledge) }}
 						</div>
 					</div>
 				</div>
 
 				{# FORM LEFT #}
-				<img class="mb-5" src="{{ asset('build/images/line.svg') }}">
-				<div class="d-flex my-2 pb-5 w-75">
-					<div class="row px-2 px-sm-5">
-						<div class="d-flex justify-content-between flex-md-row flex-column p-0">
-							<div class="d-flex gap-2 ms-5 mb-0">
-								<div class="d-flex flex-column">
-									{{ form_label(form.wineColour) }}
-									{{ form_widget(form.wineColour) }}
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-
-				{# FORM LEFT #}
-				<img class="mb-5" src="{{ asset('build/images/line.svg') }}">
-				<div class="d-flex my-2 pb-5 w-75">
-					<div class="row px-2 px-sm-5">
-						<div class="d-flex justify-content-between flex-md-row flex-column p-0">
-							<div class="d-flex gap-2 ms-5 mb-0">
-								<div class="d-flex flex-column">
-									{{ form_label(form.wineType) }}
-									{{ form_widget(form.wineType) }}
-								</div>
-							</div>
+				<img src="{{ asset('build/images/line.svg') }}">
+				<div class="row px-2 pb-5 px-sm-5">
+					<div class="d-flex justify-content-between flex-md-row flex-column p-0">
+						<div class="d-flex flex-column w-100 mt-5">
+							{{ form_label(form.wineColour) }}
+							{{ form_widget(form.wineColour) }}
 						</div>
 					</div>
 				</div>
 
 				{# FORM LEFT #}
-				<img class="mb-5" src="{{ asset('build/images/line.svg') }}">
-				<div class="d-flex my-2 pb-5 w-75">
-					<div class="row mb-0 px-2 px-sm-5">
-						<div class="d-flex justify-content-between flex-md-row flex-column p-0">
-							<div class="mb-0">
-								<div class="d-flex gap-2 ms-5 mb-0">
-									<div class="d-flex flex-column">
-										{{ form_label(form.wineRegion) }}
-										{{ form_widget(form.wineRegion) }}
-									</div>
-								</div>
-
-								<div class="w-100 mt-5 p-5">
-									<div class="d-flex gap-5">
-										<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center">
-											{{ button_label|default('Valider') }}
-											{{ include('/components/svg/_icon_validate.svg.twig') }}
-										</button>
-										<button type='reset' class="btn btn-sm fw-bolder icon-link icon-link-hover-left icon-light text-uppercase order-1 d-flex justify-content-center">
-											{{ include('/components/svg/_icon_close.svg.twig') }}
-											{{ button_label|default('Retour') }}
-										</button>
-									</div>
-								</div>
-							</div>
+				<img src="{{ asset('build/images/line.svg') }}">
+				<div class="row px-2 pb-5 px-sm-5">
+					<div class="d-flex justify-content-between flex-md-row flex-column p-0">
+						<div class="d-flex flex-column w-100 mt-5">
+							{{ form_label(form.wineType) }}
+							{{ form_widget(form.wineType) }}
 						</div>
 					</div>
 				</div>
-				{{ form_end(form) }}
+
+				{# FORM LEFT #}
+				<img src="{{ asset('build/images/line.svg') }}">
+				<div class="row px-2 pb-5 px-sm-5">
+					<div class="d-flex justify-content-between flex-md-row flex-column p-0">
+						<div class="d-flex flex-column w-100 mt-5">
+							{{ form_label(form.wineRegion) }}
+							{{ form_widget(form.wineRegion) }}
+						</div>
+					</div>
+					<div class="w-100 mt-5 p-5">
+						<div class="d-flex justify-content-between gap-5">
+							<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center">
+								{{ button_label|default('Valider') }}
+								{{ include('/components/svg/_icon_validate.svg.twig') }}
+							</button>
+							<button type='reset' class="btn btn-sm fw-bolder icon-link icon-link-hover-left icon-light text-uppercase order-1 d-flex justify-content-center">
+								{{ include('/components/svg/_icon_close.svg.twig') }}
+								{{ button_label|default('Retour') }}
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
+			{{ form_end(form) }}
 		</div>
-	</main>
-{% endblock %}
+	</div>
+</main>{% endblock %}

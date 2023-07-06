@@ -19,15 +19,14 @@ class QuizIntroductionType extends AbstractType
                 'wineKnowledge',
                 ChoiceType::class,
                 [
-                    'label' => 'Tu es plutôt :',
-                    'label_attr' =>
-                    [
-                        'class' => 'form-label color-primary text-uppercase letter-spacing mb-3'
-                    ],
+                    'label' => 'TU ES PLUTÔT ?',
                     'choices' => [
                         'Un amateur de vin désireux de découvrir et d’apprendre' => 'Amateur',
                         'Un bon connaisseur pour qui le vin n’a pas de secrets' => 'Connaisseur',
                         'Un véritable oenologue' => 'Oenologue',
+                    ],
+                    'attr' => [
+                        'class' => 'my-custom-radio color-primary letter-spacing mb-3',
                     ],
                     'multiple' => false,
                     'expanded' => true,
@@ -37,15 +36,14 @@ class QuizIntroductionType extends AbstractType
                 'wineColour',
                 ChoiceType::class,
                 [
-                    'label' => 'Tu préfères :',
-                    'label_attr' =>
-                        [
-                            'class' => 'form-label color-primary text-uppercase letter-spacing mb-3'
-                        ],
+                    'label' => 'TU PRÉFÈRES ?',
                     'choices' => [
                         'Le vin rouge' => 'Le vin rouge',
                         'Le vin blanc' => 'Le vin blanc',
                         'Le vin rosé' => 'Le vin rosé',
+                    ],
+                    'attr' => [
+                        'class' => 'my-custom-radio color-primary letter-spacing mb-3',
                     ],
                     'multiple' => false,
                     'expanded' => true,
@@ -55,11 +53,7 @@ class QuizIntroductionType extends AbstractType
                 'wineType',
                 ChoiceType::class,
                 [
-                    'label' => 'Au palais, c\'est plus :',
-                    'label_attr' =>
-                        [
-                            'class' => 'form-label color-primary text-uppercase letter-spacing mb-3'
-                        ],
+                    'label' => 'AU PALAIS? C\'EST PLUS ?',
                     'choices' => [
                         'Sec' => 'Sec',
                         'Demi-sec' => 'Demi-sec',
@@ -67,6 +61,9 @@ class QuizIntroductionType extends AbstractType
                         'Liquoreux' => 'Liquoreux',
                         'Pétillant' => 'Pétillant',
                         'Tranquille' => 'Tranquille,'
+                    ],
+                    'attr' => [
+                        'class' => 'my-custom-radio color-primary letter-spacing mb-3',
                     ],
                     'multiple' => false,
                     'expanded' => true,
@@ -76,11 +73,7 @@ class QuizIntroductionType extends AbstractType
                 'wineRegion',
                 ChoiceType::class,
                 [
-                    'label' => 'Côté terroir :',
-                    'label_attr' =>
-                        [
-                            'class' => 'form-label color-primary text-uppercase letter-spacing mb-3'
-                        ],
+                    'label' => 'CÔTÉ TERROIR ?',
                     'choices' => [
                         'Alsace' => 'Alsace',
                         'Beaujolais' => 'Beaujolais',
@@ -93,6 +86,9 @@ class QuizIntroductionType extends AbstractType
                         'Sud-Ouest' => 'Sud-Ouest',
                         'Vallée de la Loire' => 'Vallée de la Loire',
                         'Vallée du Rhône' => 'Vallée du Rhône',
+                    ],
+                    'attr' => [
+                        'class' => 'my-custom-radio color-primary letter-spacing mb-3',
                     ],
                     'multiple' => false,
                     'expanded' => true,
