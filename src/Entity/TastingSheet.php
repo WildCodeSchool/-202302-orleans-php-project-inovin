@@ -41,6 +41,9 @@ class TastingSheet
     #[ORM\ManyToOne(inversedBy: 'tastingSheets', fetch: 'EAGER')]
     private ?Wine $wine = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $dosage = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -115,6 +118,18 @@ class TastingSheet
     public function setWine(?Wine $wine): static
     {
         $this->wine = $wine;
+
+        return $this;
+    }
+
+    public function getDosage(): ?int
+    {
+        return $this->dosage;
+    }
+
+    public function setDosage(?int $dosage): static
+    {
+        $this->dosage = $dosage;
 
         return $this;
     }

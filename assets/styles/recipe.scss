@@ -1,0 +1,84 @@
+@import "_variables.scss";
+
+main {
+    min-height: calc(100vh - ($navbar-height + $footer-height));
+}
+.frame_separator {
+    width: 100%;
+}
+
+.custom-card {
+    height: auto;
+    width: 95%;
+    border: 1px solid $secondary;
+    outline: 1px dashed $secondary;
+    outline-offset: -5px;
+    border-radius: 8px 8px 0px 0px;
+    margin-bottom: 2rem;
+}
+
+.custom-card-title {
+    font-family: $font-base;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.wine-ticket {
+    position: relative;
+    & .custom-name {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 175px;
+        max-width: 175px;
+        height: 38px;
+        max-height: 38px;
+        overflow: auto;
+
+        color: $light;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        text-align: center;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+
+    & p:nth-child(2) {
+        width: 250px;
+    }
+}
+
+.stats {
+    display: flex;
+
+    > h2 {
+        min-width: 230px;
+    }
+
+    &::after {
+        content: "";
+        height: 1px;
+        width: 100%;
+        background: $secondary;
+        display: inline;
+        align-self: flex-end;
+        transform: translateY(-20px);
+    }
+}
+
+.custom-margin {
+    margin-right: 2.5rem;
+}
