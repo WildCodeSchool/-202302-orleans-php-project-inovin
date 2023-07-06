@@ -26,8 +26,6 @@ class RegistrationForm extends AbstractController
 
     public function hasValidationErrors(): bool
     {
-        /** @var Symfony\UX\LiveComponent\ComponentWithFormTrait */
-        $form = $this;
-        return $form->getForm()->isSubmitted() && !$form->getForm()->isValid();
+        return $this->getForm()->isSubmitted() && !$this->getForm()->isValid();
     }
 }
