@@ -16,9 +16,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cette adresse e-mail.')]
-class User implements
-    UserInterface,
-    PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -34,9 +32,7 @@ class User implements
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
+    /** @var string The hashed password */
     #[ORM\Column]
     private ?string $password = null;
 
@@ -89,162 +85,128 @@ class User implements
         $this->recipes = new ArrayCollection();
         $this->favoritesWines = new ArrayCollection();
     }
-
     public function getId(): ?int
     {
         return $this->id;
     }
-
     public function getEmail(): ?string
     {
         return $this->email;
     }
-
     public function setEmail(string $email): static
     {
         $this->email = $email;
         return $this;
     }
-
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
-
     public function getRoles(): array
     {
         $roles = $this->roles;
         $roles[] = 'ROLE_USER';
         return array_unique($roles);
     }
-
     public function setRoles(array $roles): static
     {
         $this->roles = $roles;
         return $this;
     }
-
     public function getPassword(): string
     {
         return $this->password;
     }
-
     public function setPassword(string $password): static
     {
         $this->password = $password;
-
         return $this;
     }
-
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
     public function getFirstname(): ?string
     {
         return $this->firstname;
     }
-
     public function setFirstname(?string $firstname): static
     {
         $this->firstname = $firstname;
-
         return $this;
     }
-
     public function getLastname(): ?string
     {
         return $this->lastname;
     }
-
     public function setLastname(?string $lastname): static
     {
         $this->lastname = $lastname;
-
         return $this;
     }
-
     public function getDateBirth(): ?DateTimeInterface
     {
         return $this->dateBirth;
     }
-
     public function setDateBirth(?DateTimeInterface $dateBirth): self
     {
         $this->dateBirth = $dateBirth;
         return $this;
     }
-
     public function getZipCode(): ?string
     {
         return $this->zipCode;
     }
-
     public function setZipCode(?string $zipCode): static
     {
         $this->zipCode = $zipCode;
         return $this;
     }
-
     public function getCity(): ?string
     {
         return $this->city;
     }
-
     public function setCity(?string $city): static
     {
         $this->city = $city;
         return $this;
     }
-
     public function getAddress(): ?string
     {
         return $this->address;
     }
-
     public function setAddress(?string $address): static
     {
         $this->address = $address;
         return $this;
     }
-
     public function getCountry(): ?string
     {
         return $this->country;
     }
-
     public function setCountry(?string $country): static
     {
         $this->country = $country;
         return $this;
     }
-
     public function isVerified(): bool
     {
         return $this->isVerified;
     }
-
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
         return $this;
     }
-
     public function isIsVerified(): ?bool
     {
         return $this->isVerified;
     }
-
-    /**
-     * @return Collection<int, Recipe>
-     */
     public function getRecipes(): Collection
     {
         return $this->recipes;
     }
-
     public function addRecipe(Recipe $recipe): static
     {
         if (!$this->recipes->contains($recipe)) {
@@ -253,7 +215,6 @@ class User implements
         }
         return $this;
     }
-
     public function removeRecipe(Recipe $recipe): static
     {
         if ($this->recipes->removeElement($recipe)) {
@@ -264,12 +225,10 @@ class User implements
         }
         return $this;
     }
-
     public function getUserPreference(): ?UserPreference
     {
         return $this->userPreference;
     }
-
     public function setUserPreference(?UserPreference $userPreference): static
     {
         if ($userPreference === null && $this->userPreference !== null) {
@@ -281,15 +240,10 @@ class User implements
         $this->userPreference = $userPreference;
         return $this;
     }
-
-    /**
-     * @return Collection<int, Wine>
-     */
     public function getFavoritesWines(): Collection
     {
         return $this->favoritesWines;
     }
-
     public function addFavoritesWine(Wine $favoritesWine): static
     {
         if (!$this->favoritesWines->contains($favoritesWine)) {
@@ -298,7 +252,6 @@ class User implements
         }
         return $this;
     }
-
     public function removeFavoritesWine(Wine $favoritesWine): static
     {
         if ($this->favoritesWines->removeElement($favoritesWine)) {
@@ -306,7 +259,6 @@ class User implements
         }
         return $this;
     }
-
     public function isInFavoritesWines(Wine $wine): bool
     {
         return $this->favoritesWines->contains($wine);
