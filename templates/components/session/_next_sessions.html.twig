@@ -1,20 +1,17 @@
-<div class="row mb-4">
-	<div class="col-sm-12 col-11 px-sm-5 px-3 m-auto pt-5 ">
-		<h2 class="text-primary-light fw-light text-uppercase letter-spacing mt-5 mb-0">
-			{% include 'components/svg/_icon_decoration.svg.twig' %}SÉANCES A VENIR
-		</h2>
-		<div class="frame_container">
-			{% include "components/svg/_frame_surlignage_main.svg.twig" %}
-		</div>
-	</div>
+<h2 class="text-primary-light fw-light mt-5 letter-spacing text-uppercase">
+	{% include 'components/svg/_icon_decoration.svg.twig' %}Séance à venir
+</h2>
+
+<div class="align-self-start">
+	{% include "components/svg/_frame_surlignage_main.svg.twig" %}
 </div>
 
 <div id="carouselExample" class="carousel slide mb-3 mt-5">
-	<div class="carousel-inner p-3">
+	<div class="carousel-inner">
 		{% set sessionNumber = ((nextSessions|length -1) / 2)|round(0, 'floor') %}
 		{% for i in 0 .. sessionNumber %}
 			<div class="carousel-item {% if loop.first %} active {% endif %}">
-				<div class="d-flex flex-row justify-content-center">
+				<div class="d-flex flex-column flex-sm-row gap-3 justify-content-center custom-width m-auto">
 					{% for session in nextSessions|slice(i * 2, 2) %}
 						{% include "components/session/_card_session.html.twig" %}
 					{% endfor %}
@@ -33,23 +30,20 @@
 	</button>
 </div>
 
-<div class="row mb-4">
-	<div class="col-sm-12 col-11 px-sm-5 px-3 m-auto pt-5 ">
-		<h2 class="text-primary-light fw-light text-uppercase letter-spacing mt-5">
-			{% include 'components/svg/_icon_decoration.svg.twig' %}SÉANCES TERMINÉES
-		</h2>
-		<div class="frame_container">
-			{% include "components/svg/_frame_surlignage_main.svg.twig" %}
-		</div>
-	</div>
+<h2 class="text-primary-light fw-light mt-5 letter-spacing text-uppercase">
+	{% include 'components/svg/_icon_decoration.svg.twig' %}Séances terminées
+</h2>
+
+<div class="align-self-start">
+	{% include "components/svg/_frame_surlignage_main.svg.twig" %}
 </div>
 
 <div id="carouselfinish" class="carousel slide mb-5 mt-5">
-	<div class="carousel-inner p-3">
+	<div class="carousel-inner">
 		{% set sessionNumber = ((closedSessions|length -1) / 2)|round(0, 'floor') %}
 		{% for i in 0 .. sessionNumber %}
 			<div class="carousel-item {% if loop.first %} active {% endif %}">
-				<div class="d-flex flex-row justify-content-center">
+				<div class="d-flex flex-column flex-sm-row gap-3 justify-content-center custom-width m-auto">
 					{% for session in closedSessions|slice(i * 2, 2) %}
 						{% include "components/session/_card_session.html.twig" %}
 					{% endfor %}

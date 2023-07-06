@@ -35,27 +35,26 @@ h6 {
     min-width: 9rem;
 }
 
-.icon-light>svg {
+.icon-light > svg {
     color: $primary-light;
 }
 
-.icon-light:hover>svg {
+.icon-light:hover > svg {
     color: $dark-light;
 }
 
-.icon-dark>svg {
+.icon-dark > svg {
     color: $dark-light;
 }
 
-.icon-dark:hover>svg {
+.icon-dark:hover > svg {
     color: $light;
 }
 
 .icon-link-hover-left {
-
     &:hover,
     &:focus-visible {
-        >.bi {
+        > .bi {
             transform: translate3d(-0.35rem, 0, 0);
         }
     }
@@ -150,15 +149,7 @@ body {
     background: $card-gradient-color;
 }
 
-.mini-card {
-    width: 50%;
-    height: auto;
-    outline: 1px solid $secondary;
-    outline-offset: 2px;
-    border: 2px dotted $secondary;
-}
-
-.frame_container>.frame_separator {
+.frame_container > .frame_separator {
     width: auto;
 }
 
@@ -170,28 +161,6 @@ body {
 .table-row {
     height: 20px;
     /* Hauteur des lignes */
-}
-
-.line-card {
-    position: absolute;
-    height: 1px;
-    width: 100%;
-    background-color: $secondary;
-    top: 100px;
-    left: 0;
-}
-
-.carousel-control-prev {
-    left: -100px;
-}
-
-.carousel-control-next {
-    right: -100px;
-}
-
-.height-location {
-    min-height: 53px;
-    max-height: 53px;
 }
 
 .ornement {
