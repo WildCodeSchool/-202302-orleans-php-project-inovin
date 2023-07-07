@@ -29,10 +29,10 @@
 						<p class="px-5 fs-5">{{ recap.wineRegion }}</p>
 					</div>
 				</div>
-                <div class="w-50 mt-2 p-5">
-						<div class="d-flex justify-content-between gap-5">
+                <div class="w-25 mb-3 p-5">
+						<div class="d-flex flex-column justify-content-between gap-5">
 							<a role="button" href="{{ path('home_index') }}" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center">
-								{{ button_label|default('Valider tes choix') }}
+								{{ button_label|default('Valider') }}
 								{{ include('/components/svg/_icon_validate.svg.twig') }}</a>
 							<a role="button" href="{{ path('app_user_quiz_quiz') }}" class="btn btn-sm fw-bolder icon-link icon-link-hover-left icon-light text-uppercase order-1 d-flex justify-content-center">
 								{{ include('/components/svg/_icon_close.svg.twig') }}
