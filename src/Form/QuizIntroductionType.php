@@ -60,7 +60,7 @@ class QuizIntroductionType extends AbstractType
                         'Moelleux' => 'Moelleux',
                         'Liquoreux' => 'Liquoreux',
                         'Pétillant' => 'Pétillant',
-                        'Tranquille' => 'Tranquille,'
+                        'Tranquille' => 'Tranquille'
                     ],
                     'attr' => [
                         'class' => 'my-custom-radio color-primary letter-spacing mb-3',

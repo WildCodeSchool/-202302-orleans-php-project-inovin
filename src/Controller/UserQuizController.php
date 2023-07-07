@@ -31,12 +31,26 @@ class UserQuizController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userPrefRepo->save($userPreference, true);
 
-            return $this->redirectToRoute('app_user_quiz_quiz', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_user_quiz_recap', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('user_quiz/knowledge.html.twig', [
             'user' => $user,
             'form' => $form,
+        ]);
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/recapitulatif', name: 'recap')]
+    public function quizRecap(UserPreferenceRepository $userPrefRepo): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+        $recap = $user->getUserPreference();
+
+        return $this->render('user_quiz/recap.html.twig', [
+            'user' => $user,
+            'recap' => $recap,
         ]);
     }
 }
