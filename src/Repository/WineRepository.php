@@ -72,7 +72,7 @@ class WineRepository extends ServiceEntityRepository
                 ->setParameter('max', $searchWineData->getMaxPrice());
         }
 
-        if (!empty($searchWineData->getGrapeVarieties())) {
+        if (count($searchWineData->getGrapeVarieties()) > 0) {
             $query = $query
                 ->andWhere('w.grapeVariety IN (:grapevarieties)')
                 ->setParameter('grapevarieties', $searchWineData->getGrapeVarieties());

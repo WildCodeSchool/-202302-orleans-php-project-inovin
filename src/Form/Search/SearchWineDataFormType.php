@@ -2,9 +2,8 @@
 
 namespace App\Form\Search;
 
-use App\Entity\GrapeVariety;
+use App\Form\Search\GrapeVarietiesAutocompleteField;
 use App\Search\SearchWineData;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\ResetType;
@@ -30,19 +29,12 @@ class SearchWineDataFormType extends AbstractType
                     'class' => 'form-control border border-secondary placeholder-style my-3',
                 ]
             ])
-            ->add('grapeVarieties', EntityType::class, [
-                'label' => 'Cépages',
-                'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing mb-2'
-                ],
+            ->add('grapeVarieties', GrapeVarietiesAutocompleteField::class, [
+                'label' => false,
                 'required' => false,
-                'class' => GrapeVariety::class,
-                'choice_label' => 'name',
-                'expanded' => true,
-                'multiple' => true,
                 'attr' => [
-                    'class' => 'form-control grid gap-2 fs-6 border p-2 m-1 
-                    rounded-2 border-secondary max-height-select my-3',
+                    'placeholder' => 'Quel cépage ?',
+                    'class' => 'form-control border border-secondary placeholder-style my-3',
                 ]
             ])
             ->add('maxPrice', NumberType::class, [
