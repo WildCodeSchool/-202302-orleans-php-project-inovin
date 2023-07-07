@@ -48,35 +48,23 @@ class CalculateWineDosageServiceTest extends KernelTestCase
 
         $this->assertSame([
             [
-                "tastingSheet_id" => null,
+                "tastingSheet" => $tastingSheet2,
                 "average" => 7.3,
-                "tasteRating" => 4.0,
-                "smellRating" => 10.0,
-                "visualRating" => 8.0,
                 "dosage" => 150,
             ],
             [
-                "tastingSheet_id" => null,
+                "tastingSheet" => $tastingSheet4,
                 "average" => 4.7,
-                "tasteRating" => 1.0,
-                "smellRating" => 5.0,
-                "visualRating" => 8.0,
                 "dosage" => 50,
             ],
             [
-                "tastingSheet_id" => null,
+                "tastingSheet" => $tastingSheet3,
                 "average" => 4.0,
-                "tasteRating" => 6.0,
-                "smellRating" => 6.0,
-                "visualRating" => 0.0,
                 "dosage" => 25,
             ],
             [
-                "tastingSheet_id" => null,
+                "tastingSheet" => $tastingSheet1,
                 "average" => 2.7,
-                "tasteRating" => 4.0,
-                "smellRating" => 2.0,
-                "visualRating" => 2.0,
                 "dosage" => 0,
             ]
         ], $result);

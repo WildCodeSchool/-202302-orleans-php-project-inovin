@@ -4,68 +4,24 @@ namespace App\Service;
 
 use App\Entity\Recipe;
 use App\Entity\TastingSheet;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bundle\SecurityBundle\Security;
 
-#[IsGranted('ROLE_USER')]
 class CalculateWineDosageService
 {
+    public const DOSAGES = [150, 50, 25, 0];
+
     /**
      * en entrée : l'objet recette
-     * en retour : un tableau ordonné par 'avergae'
-     * puis 'tasteRating'
-     * puis 'smellRating'
-     * puis 'visualRating'
-     * sous la forme suivante :
-     *  [
-     *    [
-     *      tastingSheet_id' => 22,
-     *      dosage'=> 150,
-     *      average' => 5.3 ,
-     *      tasteRating' => 8,
-     *      smellRating' => 5,
-     *      visualRating' => 3
-     *    ],
-     *    [
-     *      'tastingSheet_id' => 10,
-     *      'dosage'=> 50,
-     *      'average' => 5.3 ,
-     *      'tasteRating' => 8,
-     *      'smellRating' => 4,
-     *      'visualRating' => 4
-     *    ],
-     *    [
-     *      'tastingSheet_id' => 50,
-     *      'dosage'=> 25,
-     *      'average' => 4.3 ,
-     *      'tasteRating' => 8,
-     *      'smellRating' => 3,
-     *      'visualRating' => 2
-     *    ],
-     *    [
-     *      'tastingSheet_id' => 51,
-     *      'dosage'=> 0,
-     *      'average' => 2.6 ,
-     *      'tasteRating' => 4,
-     *      'smellRating' => 3,
-     *      'visualRating' => 1
-     *    ],
-     *  ]
      */
     public function calculate(Recipe $recipe): array
     {
         $result = [];
         foreach ($recipe->getTastingSheet() as $itemTastingSheet) {
             $result[] = [
-                'tastingSheet_id' => $itemTastingSheet->getId(),
+                'tastingSheet' => $itemTastingSheet,
                 'average' => 0,
-                'tasteRating' => $itemTastingSheet->getTaste(),
-                'smellRating' => $itemTastingSheet->getSmell(),
-                'visualRating' => $itemTastingSheet->getVisual(),
                 'dosage' => 0
             ];
         }
-
         //add averages values
         $resultWithAverage = $this->calculateAverageValues($result);
 
@@ -95,32 +51,36 @@ class CalculateWineDosageService
      */
     private function orderedElementsByAverage(array $array): array
     {
-        //order items array by column average value.
-        $colAverage = array_column($array, "average");
-        $colTasting = array_column($array, "tasteRating");
-        $colSmell = array_column($array, "smellRating");
-        $colVisual = array_column($array, "visualRating");
+        $averages = $tastings = $smells =  $visuals = [];
 
+        $averages = array_column($array, "average");
+
+        foreach ($array as $item) {
+            $tastings[] = $item['tastingSheet']->getTaste();
+            $smells[] = $item['tastingSheet']->getSmell();
+            $visuals[] = $item['tastingSheet']->getVisual();
+        }
+
+        //order items array by column average value.
         array_multisort(
-            $colAverage,
+            $averages,
             SORT_DESC,
-            $colTasting,
+            $tastings,
             SORT_DESC,
-            $colSmell,
+            $smells,
             SORT_DESC,
-            $colVisual,
+            $visuals,
             SORT_DESC,
             $array
         );
-
         return $array;
     }
 
     private function setAverage(array $item): float
     {
-        return round((($item['tasteRating'] ?? 0) +
-            ($item['smellRating'] ?? 0) +
-            ($item['visualRating'] ?? 0)) / 3, 1);
+        return round((($item['tastingSheet']->getTaste() ?? 0) +
+            ($item['tastingSheet']->getSmell() ?? 0) +
+            ($item['tastingSheet']->getVisual() ?? 0)) / 3, 1);
     }
 
     /**
@@ -132,21 +92,16 @@ class CalculateWineDosageService
      */
     private function setDosage(array $ordonedArray): array
     {
-        foreach (array_keys($ordonedArray) as $key) {
-            switch ($key) {
-                case 0:
-                    $ordonedArray[$key]['dosage'] = 150;
-                    break;
-                case 1:
-                    $ordonedArray[$key]['dosage'] = 50;
-                    break;
-                case 2:
-                    $ordonedArray[$key]['dosage'] = 25;
-                    break;
-                default:
-                    break;
-            }
+        $result = [];
+
+        foreach ($ordonedArray as $key => $value) {
+            $result[] = [
+                "tastingSheet" => $value['tastingSheet'],
+                "average" => $value['average'],
+                "dosage" => self::DOSAGES[$key] ?? 0,
+            ];
         }
-        return $ordonedArray;
+
+        return $result;
     }
 }
