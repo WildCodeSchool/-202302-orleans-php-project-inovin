@@ -44,13 +44,6 @@ class UserQuizController extends AbstractController
     #[Route('/recapitulatif', name: 'recap')]
     public function quizRecap(UserPreferenceRepository $userPrefRepo): Response
     {
-        /** @var User $user */
-        $user = $this->getUser();
-        $recap = $user->getUserPreference();
-
-        return $this->render('user_quiz/recap.html.twig', [
-            'user' => $user,
-            'recap' => $recap,
-        ]);
+        return $this->render('user_quiz/recap.html.twig');
     }
 }
