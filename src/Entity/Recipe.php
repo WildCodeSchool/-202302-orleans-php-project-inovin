@@ -6,6 +6,7 @@ use App\Repository\RecipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
@@ -16,15 +17,15 @@ class Recipe
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'recipes')]
+    #[ORM\ManyToOne(inversedBy: 'recipes', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Session $session = null;
 
-    #[ORM\ManyToOne(inversedBy: 'recipes')]
+    #[ORM\ManyToOne(inversedBy: 'recipes', fetch: 'EAGER')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: TastingSheet::class)]
+    #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: TastingSheet::class, cascade: ['persist'], fetch: 'EAGER')]
     private Collection $tastingSheet;
 
     #[ORM\Column(length: 45)]
@@ -40,9 +41,14 @@ class Recipe
     #[Assert\Type('integer')]
     private ?int $sessionRate = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'favoritesRecipes')]
+    #[JoinTable(name: 'favorite_recipe')]
+    private Collection $likedUsers;
+
     public function __construct()
     {
         $this->tastingSheet = new ArrayCollection();
+        $this->likedUsers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -126,5 +132,37 @@ class Recipe
         $this->sessionRate = $sessionRate;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLikedUsers(): Collection
+    {
+        return $this->likedUsers;
+    }
+
+    public function addLikedUser(User $likedUser): static
+    {
+        if (!$this->likedUsers->contains($likedUser)) {
+            $this->likedUsers->add($likedUser);
+            $likedUser->addFavoritesRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLikedUser(User $likedUser): static
+    {
+        if ($this->likedUsers->removeElement($likedUser)) {
+            $likedUser->removeFavoritesRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function isInLikedUsers(User $user): bool
+    {
+        return $this->likedUsers->contains($user);
     }
 }
