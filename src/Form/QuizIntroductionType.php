@@ -78,6 +78,7 @@ class QuizIntroductionType extends AbstractType
                         'Alsace' => 'Alsace',
                         'Beaujolais' => 'Beaujolais',
                         'Bordeaux' => 'Bordeaux',
+                        'Bourgogne' => 'Bourgogne',
                         'Champagne' => 'Champagne',
                         'Jura' => 'Jura',
                         'Languedoc-Roussillon' => 'Languedoc-Roussillon',

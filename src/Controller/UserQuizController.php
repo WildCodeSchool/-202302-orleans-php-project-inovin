@@ -42,7 +42,7 @@ class UserQuizController extends AbstractController
 
     #[IsGranted('ROLE_USER')]
     #[Route('/recapitulatif', name: 'recap')]
-    public function quizRecap(UserPreferenceRepository $userPrefRepo): Response
+    public function quizRecap(): Response
     {
         return $this->render('user_quiz/recap.html.twig');
     }
