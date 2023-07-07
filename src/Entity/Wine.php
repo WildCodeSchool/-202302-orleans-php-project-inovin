@@ -31,7 +31,7 @@ class Wine
 
     #[ORM\Column()]
     #[Assert\NotBlank]
-    #[Assert\Range(min: 1980, max: 'now')]
+    #[Assert\Range(min: 1900, max: 'now')]
     private ?int $year = null;
 
     #[ORM\Column]
@@ -81,7 +81,7 @@ class Wine
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoritesWines')]
     private Collection $likedUsers;
 
-    #[ORM\OneToMany(mappedBy: 'Wine', targetEntity: TastingSheet::class)]
+    #[ORM\OneToMany(mappedBy: 'wine', targetEntity: TastingSheet::class)]
     private Collection $tastingSheets;
 
     public function __construct(?bool $enabled = true)
