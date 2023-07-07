@@ -16,11 +16,6 @@ class SearchWineDataFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Reset', ResetType::class, [
-                'attr' => [
-                    'class' => 'btn btn-sm text-uppercase text-decoration-none',
-                ]
-            ])
             ->add('name', TextType::class, [
                 'label' => false,
                 'required' => false,
@@ -41,16 +36,14 @@ class SearchWineDataFormType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Prix maximum',
-                    'class' => 'form-control border border-secondary ',
+                    'class' => 'invisible',
                 ]
             ])
             ->add('minPrice', NumberType::class, [
                 'label' => false,
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'Prix minimum',
-                    'class' => 'form-control border border-secondary text-end',
+                    'class' => 'invisible h',
                 ]
             ]);
     }
