@@ -8,10 +8,10 @@
 	</div>
 
 	<div class="row p-2 mt-5">
-		<div class="col m-auto border border-secondary rounded-3 bg-card">
+		<div class="m-auto border border-secondary rounded-3 bg-card">
 
 			<div class="row mb-2">
-				<div class="col d-flex justify-content-between align-items-center border-secondary border-bottom px-3 px-sm-4 py-3">
+				<div class="d-flex justify-content-between align-items-center border-secondary border-bottom px-3 px-sm-4 py-3">
 					<div class="d-flex gap-3 text-primary-light fs-4">
 						<p class="mb-0 d-flex align-items-center gap-2 badge bg-primary text-dark p-2 custom-size">
 							{% include "components/svg/_icon_date.svg.twig" %}
@@ -25,8 +25,8 @@
 				</div>
 			</div>
 
-			<div class="row mb-2">
-				<div class="col px-3 px-sm-4">
+			<div class="row">
+				<div class="px-3 px-sm-4">
 					<a class="nav-link text-primary-light mb-2 fs-5 letter-spacing" data-bs-toggle="collapse" href="#collapseDescription" role="button" aria-expanded="false" aria-controls="collapseDescription">
 						Voir la description
 						<span class="text-primary-light custom-transform">{% include "components/svg/_icon_eye.svg.twig" %}</span>
@@ -41,13 +41,13 @@
 			</div>
 
 			<div class="row d-flex flex-row mx-sm-2 g-2 mb-5">
-				<div class="col-12 col-sm-9 mb-2 mb-sm-0">
-					<div class="bg-primary text-center text-dark letter-spacing me-auto custom-text-size fw-bolder">
+				<div class="col-sm-9">
+					<div class="bg-primary text-center text-dark letter-spacing me-auto custom-text-size fw-bolder mb-2 mb-sm-0">
 						LIEU
 					</div>
 					<div class="text-start text-light letter-spacing me-auto mt-1 fw-lighter">{{ session.location }}</div>
 				</div>
-				<div class="col-12 col-sm">
+				<div class="col-sm">
 					<div class="bg-primary text-center text-dark letter-spacing ms-auto custom-text-size fw-bolder">
 						STATUS
 					</div>
@@ -59,16 +59,16 @@
 				</div>
 			</div>
 
-			<div class="row row-cols-xl-2 row-cols-1 g-2 mb-4">
+			<div class="row row-cols-lg-2 row-cols-1 g-2">
 				{% for wine in session.wines %}
-					<div class="col m-sm-0 p-sm-0">
+					<div class="m-sm-0 p-sm-0 mb-4">
 						{% include '/components/session/_card_session_grape_variety.html.twig' with { 'wine': wine } %}
 					</div>
 				{% endfor %}
 			</div>
 
 			<div class="row mt-4">
-				<div class="col d-flex justify-content-end align-items-center me-3 me-sm-4 me-md-3 px-0 px-sm-1">
+				<div class="d-flex justify-content-end align-items-center me-3 me-sm-4 me-md-3 px-4">
 					<a role="button" href="{{ path( 'app_session_start_new', {'session': session.id }) }}" class="btn bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover icon-dark text-uppercase">
 						PARTICIPER
 						{{ include('/components/svg/_icon_validate.svg.twig') }}
