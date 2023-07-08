@@ -1,0 +1,28 @@
+{% extends 'visitor.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	- Profil utilisateur
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('profile') }}
+{% endblock %}
+
+{% block body %}
+	<main class="container-fluid d-flex justify-content-center align-items-center my-5">
+		<div class="row w-50">
+			<div class="col-11 m-auto border border-secondary d-flex flex-column p-5 bg-card ornement position-relative">
+				<div class="d-flex">
+					<div>
+						{% include "components/svg/_icon_profile_user.svg.twig" %}
+					</div>
+				</div>
+				<div>
+					{{ include('admin/user/_form.html.twig', {'button_label': 'Modifier'}) }}
+				</div>
+			</div>
+		</div>
+	</main>
+{% endblock %}
