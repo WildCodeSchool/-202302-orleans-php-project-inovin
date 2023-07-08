@@ -1,1 +1,43 @@
 @import "variables";
+
+.form-control {
+    border: 0;
+    border-bottom: 1px solid $secondary;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-bottom: 1px solid $primary;
+}
+
+@mixin profil-btn-hover($color) {
+    background-color: $color;
+    color: $dark;
+    border: 1px solid $color;
+}
+
+// template btn
+.custom-profile-btn {
+    color: $light;
+    display: block;
+    text-align: center;
+    border: 1px solid $secondary;
+    border-radius: 8px;
+    padding: 1rem 2rem;
+    width: 100%;
+    transition: 0.1s ease-in;
+}
+
+.btn1 {
+    @extend .custom-profile-btn;
+    &:hover {
+        @include profil-btn-hover($primary);
+    }
+}
+
+.btn2 {
+    @extend .custom-profile-btn;
+    &:hover {
+        @include profil-btn-hover($danger);
+    }
+}

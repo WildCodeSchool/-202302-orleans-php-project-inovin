@@ -22,7 +22,7 @@ class UserController extends AbstractController
         User $user,
         UserRepository $userRepository
     ): Response {
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
