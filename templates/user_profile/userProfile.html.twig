@@ -23,9 +23,11 @@
 						{% include "components/svg/_icon_profile_user.svg.twig" %}
 					</div>
 				</div>
+				{{ form_start(form) }}
 				<div>
 					{{ include('user_profile/_profileForm.html.twig', {'button_label': 'Modifier'}) }}
 				</div>
+
 				<div class="mt-5 w-100 d-flex flex-column gap-2">
 					<a href="{{ path('app_forgot_password_request') }}" class="letter-spacing text-decoration-none btn1">Changer mon mot de passe</a>
 
@@ -34,15 +36,14 @@
 							Supprimer mon compte
 						</span>
 					</button>
-
 				</div>
-
 				<div class="d-flex justify-content-end my-5">
 					<button class="btn btn-sm bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover icon-dark text-uppercase">
 						{{ button_label|default('Valider') }}
 						{% include "components/svg/_icon_validate.svg.twig" %}
 					</button>
 				</div>
+				{{ form_end(form) }}
 			</div>
 		</div>
 

@@ -98,19 +98,11 @@ class UserType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                'always_empty' => false,
+                'label' => false,
+                'required' => false,
                 'mapped' => false,
                 'attr' => [
-                    'autocomplete' => 'new-password',
-                    'class' => 'form-control rounded-0 bg-transparent p-0'
-                ],
-                'label' => 'Mot de passe',
-                'label_attr' => [
-                    'class' => 'form-label text-uppercase letter-spacing text-primary-light'
-                ],
-                'constraints' => [
-                    new NotBlank(),
-                    new Length(['min' => 6, 'max' => 50]),
+                    'style' => 'display: none;',
                 ],
             ]);
     }

@@ -33,8 +33,8 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->save($user, true);
-            $this->addFlash("success", "Vos informations ont été sauvegardées !");
-            return $this->redirectToRoute('app_admin_user_index', [], Response::HTTP_SEE_OTHER);
+            $this->addFlash("success", "Vos informations ont été modifiées !");
+            return $this->redirectToRoute('user_profile_show', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('user_profile/userProfile.html.twig', [
