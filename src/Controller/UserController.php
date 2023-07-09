@@ -13,10 +13,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[IsGranted('ROLE_USER')]
-#[Route('/user', name: 'user_')]
+#[Route('/user', name: 'user_profile_')]
 class UserController extends AbstractController
 {
-    #[Route('/{id}/profil', name: 'profile', methods: ['GET', 'POST'])]
+    #[Route('/profil/{id}', name: 'show', methods: ['GET', 'POST'])]
     public function showProfile(
         Request $request,
         User $user,
@@ -35,5 +35,18 @@ class UserController extends AbstractController
             'user' => $user,
             'form' => $form,
         ]);
+    }
+
+    #[Route('/profil/{id}', name: 'delete', methods: ['POST'])]
+    public function deleteProfile(
+        Request $request,
+        User $user,
+        UserRepository $userRepository
+    ): Response {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+            $userRepository->remove($user, true);
+            dd('coucou');
+        }
+        return $this->redirectToRoute('home_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -41,3 +41,22 @@
         @include profil-btn-hover($danger);
     }
 }
+
+.custom-shadow {
+    box-shadow: $shadow-primary;
+}
+
+.custom-modal {
+    outline: 2px dotted $secondary;
+    outline-offset: -7px;
+    border-radius: 5px;
+}
+
+.modal.show {
+    backdrop-filter: blur(10px);
+    background-color: $dark-opacity;
+}
+
+.modal-footer {
+    border-top: 1px solid $secondary;
+}

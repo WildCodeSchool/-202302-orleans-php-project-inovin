@@ -1,5 +1,5 @@
 <div class="d-flex flex-column gap-4">
-	<div class="row">
+	<div class="row d-flex flex-column flex-sm-row gap-4 gap-sm-0">
 		<div class="col">
 			{{ form_start(form) }}
 			{{ form_label(form.lastname) }}
@@ -12,7 +12,7 @@
 			{{ form_errors(form.firstname) }}
 		</div>
 	</div>
-	<div class="row">
+	<div class="row flex-column flex-sm-row gap-4 gap-sm-0">
 		<div class="col">
 			{{ form_label(form.email) }}
 			{{ form_widget(form.email) }}
@@ -24,7 +24,7 @@
 			{{ form_errors(form.date_birth) }}
 		</div>
 	</div>
-	<div class="row">
+	<div class="row flex-column flex-sm-row gap-4 gap-sm-0">
 		<div class="col">
 			{{ form_label(form.address) }}
 			{{ form_widget(form.address) }}
@@ -36,7 +36,7 @@
 			{{ form_errors(form.zip_code) }}
 		</div>
 	</div>
-	<div class="row">
+	<div class="row flex-column flex-sm-row gap-4 gap-sm-0">
 		<div class="col">
 			{{ form_label(form.city) }}
 			{{ form_widget(form.city) }}
