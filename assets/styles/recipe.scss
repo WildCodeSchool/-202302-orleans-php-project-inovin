@@ -19,13 +19,11 @@ main {
 }
 
 .recipe-card {
-    height: auto;
-    width: 40%;
+
     border: 1px solid $secondary;
     outline: 1px dashed $secondary;
     outline-offset: -5px;
     border-radius: 8px 8px 0px 0px;
-    margin-bottom: 2rem;
 }
 
 .custom-card-title {
@@ -125,4 +123,18 @@ main {
 
 .fs-p {
     font-size: 0.875rem;
+}
+
+.custom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 1.5rem;
+}
+
+.recipe-scroll {
+    scrollbar-width: none;
+}
+
+.progress {
+    height: 0.5rem;
 }
