@@ -20,13 +20,13 @@ class UserPreference
     private ?string $wineKnowledge = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $wineType = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $wineRegion = null;
 
     #[ORM\OneToOne(inversedBy: 'userPreference', cascade: ['persist', 'remove'])]
     private ?User $user = null;
+
+    #[ORM\ManyToOne]
+    private ?WineTaste $wineTaste = null;
 
     public function getId(): ?int
     {
@@ -57,14 +57,14 @@ class UserPreference
         return $this;
     }
 
-    public function getWineType(): ?string
+    public function getWineTaste(): ?WineTaste
     {
-        return $this->wineType;
+        return $this->wineTaste;
     }
 
-    public function setWineType(?string $wineType): static
+    public function setWineTaste(?WineTaste $wineTaste): static
     {
-        $this->wineType = $wineType;
+        $this->wineTaste = $wineTaste;
 
         return $this;
     }
