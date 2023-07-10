@@ -88,8 +88,12 @@ class User implements
     #[ORM\ManyToMany(targetEntity: Recipe::class, mappedBy: 'likedUsers')]
     private Collection $favoritesRecipes;
 
-    public function __construct()
+    #[ORM\Column]
+    private ?bool $enabled = null;
+
+    public function __construct(?bool $enabled = true)
     {
+        $this->enabled = $enabled;
         $this->recipes = new ArrayCollection();
         $this->favoritesWines = new ArrayCollection();
         $this->favoritesRecipes = new ArrayCollection();
@@ -347,5 +351,17 @@ class User implements
     public function isInFavoritesRecipes(Recipe $recipe): bool
     {
         return $this->favoritesRecipes->contains($recipe);
+    }
+
+    public function isEnabled(): ?bool
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled(bool $enabled): static
+    {
+        $this->enabled = $enabled;
+
+        return $this;
     }
 }

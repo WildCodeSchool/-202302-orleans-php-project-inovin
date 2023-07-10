@@ -53,20 +53,29 @@
 				<div class="modal-content bg-card border border-secondary custom-shadow">
 
 					<div class="modal-body text-center custom-modal p-4 p-sm-5">
-						<p class="m-0 py-5">Êtes-vous sûr de vouloir supprimer votre compte ?</p>
+						<p class="m-0 py-5">Êtes-vous sûr de vouloir désactiver votre compte ?</p>
+						<small class="letter-spacing">
+							<span class="custom-position d-inline-block me-1">
+								{% include "components/svg/_icon_info.svg.twig" %}
+							</span>
+							Un mail sera envoyé à un administrateur afin de désactiver votre compte dans un délai de 48 heures.
+						</small>
 					</div>
 					<div class="modal-footer d-flex justify-content-around">
 						<button class="btn btn-sm fw-bolder icon-link icon-link-hover-left icon-light text-uppercase d-flex justify-content-center" data-bs-dismiss="modal">
 							{% include "components/svg/_icon_close.svg.twig" %}
 							Non
 						</button>
-						<button class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase" data-bs-dismiss="modal">
-							<span class="ms-3">Oui</span>
+
+						<a class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase ps-4" href="{{ path('user_profile_desable', {'id' : user.id}) }}">
+							Oui
 							{% include "components/svg/_icon_validate.svg.twig" %}
-						</button>
+						</a>
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</main>
+
 {% endblock %}

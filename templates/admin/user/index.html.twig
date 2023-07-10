@@ -25,6 +25,7 @@
 					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Prénom</th>
 					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Email</th>
 					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Rôle</th>
+					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Actif</th>
 					<th class="w-auto py-3 text-center px-2 bg-secondary text-uppercase letter-spacing" scope="col">Actions</th>
 				</tr>
 			</thead>
@@ -39,6 +40,11 @@
 								{% for role in user.roles %}
 									<span class="badge rounded-pill {{ role !='ROLE_USER' ? " text-bg-primary" : " text-bg-light" }}">{{ role }}</span>
 								{% endfor %}
+							</div>
+						</td>
+						<td class="px-4 align-middle">
+							<div class="d-flex justify-content-center">
+								{{ component('EnableDesableUserComponent', { user : user }) }}
 							</div>
 						</td>
 						<td class="text-center">
