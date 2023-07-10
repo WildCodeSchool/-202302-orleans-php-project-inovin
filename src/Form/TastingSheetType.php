@@ -3,8 +3,6 @@
 namespace App\Form;
 
 use App\Entity\TastingSheet;
-use App\Entity\Wine;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\FormBuilderInterface;

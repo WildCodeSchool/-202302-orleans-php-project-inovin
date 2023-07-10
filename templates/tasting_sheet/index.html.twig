@@ -7,9 +7,12 @@
 	{{ parent() }}
 	{{ encore_entry_link_tags('tastingSheet') }}
 {% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('tastingSheet-js') }}
+{% endblock %}
 
 {% block body %}
-
 	{% set criteriaContents = 
 		{'Apparence': [
 	    	'L’intensité : Comment trouvez-vous l\'intensité ?',
@@ -46,7 +49,7 @@
 				<ul class="firstNavbar nav nav-pills bg-dark" id="pills-tab" role="tablist">
 					{% for wine in recipe.session.getWines %}
 						<li class="nav-item" role="presentation">
-							<button class="nav-link {% if loop.first %} {{ 'show active' }} {% endif %} letter-spacing px-3 px-md-5" id="pills-{{ loop.index }}-tab" data-bs-toggle="pill" data-bs-target="#pills-{{ loop.index }}" type="button" role="tab" aria-controls="pills-{{ loop.index }}" aria-selected="true">Vin
+							<button class="nav-link {% if loop.first %} {{ 'show active' }} {% endif %} letter-spacing px-3 px-md-5" id="pills-tab-{{ loop.index }}" data-bs-toggle="pill" data-bs-target="#pills-{{ loop.index }}" type="button" role="tab" aria-controls="pills-{{ loop.index }}" aria-selected="true">Vin
 								{{ loop.index }}</button>
 						</li>
 					{% endfor %}
@@ -56,7 +59,8 @@
 						{% for tastingSheetForm in form.tastingSheet %}
 							{% set wine = tastingSheetForm.vars.value.wine %}
 							{% set lastWine = form.tastingSheet|last %}
-							<div class="tab-pane fade {% if loop.first %} {{ 'show active' }} {% endif %}" id="pills-{{ loop.index }}" role="tabpanel" aria-labelledby="pills-{{ loop.index }}-tab" tabindex="0">
+							{% set firstWine = form.tastingSheet|first %}
+							<div class="tab-pane fade {% if loop.first %} {{ 'show active' }} {% endif %}" id="pills-{{ loop.index }}" role="tabpanel" aria-labelledby="pills-tab-{{ loop.index }}" tabindex="{{ loop.index0 }}">
 								<div class="firstNavbarBorder">
 									<div class="row">
 										<div class="col-12 col-md-6 col-lg-4 d-flex align-items-center justify-content-center customMinWidth">
@@ -145,16 +149,31 @@
 															<output class="mt-4 text-primary fs-1 fw-bold mb-4">5</output>
 														</div>
 													{% endif %}
-													{% if wine == lastWine.vars.value.wine and key == 'Palais' %}
-														<div class="d-flex justify-content-sm-end justify-content-center mt-4 w-100 buttonNext">
-															<button class="d-flex align-items-center btn btn-outline-primary m-4 letter-spacing px-4">
-																ENREGISTRER
-																<span class="transform">
-																	{% include "components/svg/_icon_next.svg.twig" %}
-																</span>
-															</button>
-														</div>
-													{% endif %}
+													<div class=" d-flex justify-content-end buttonNext" id="pills-tab">
+														{% for Mywine in recipe.session.getWines %}
+															{% if wine == Mywine and wine != lastWine.vars.value.wine and key == 'Palais' %}
+																<div class="w-25">
+																	<a class="d-flex align-items-center btn btn-outline-primary m-4 letter-spacing px-4" id="pills-next-{{ loop.index }}">
+																		SUIVANT
+																		<span class="transform">
+																			{% include "components/svg/_icon_next.svg.twig" %}
+																		</span>
+																	</a>
+																</div>
+															{% endif %}
+														{% endfor %}
+														{% if wine == lastWine.vars.value.wine and key == 'Palais' %}
+															<div>
+																<button class="d-flex align-items-center btn btn-outline-primary m-4 letter-spacing px-5">
+																	ENREGISTRER
+																	<span class="transform">
+																		{% include "components/svg/_icon_next.svg.twig" %}
+																	</span>
+																</button>
+															</div>
+														{% endif %}
+													</div>
+
 												</div>
 											{% endfor %}
 										</div>

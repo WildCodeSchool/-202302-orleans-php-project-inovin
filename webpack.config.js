@@ -34,6 +34,7 @@ Encore
        */
     .addEntry("app", "./assets/app.js")
     .addEntry("wine-js", "./assets/wine.js")
+    .addEntry("tastingSheet-js", "./assets/tastingSheet.js")
     .addStyleEntry("contactForm", "./assets/styles/contactForm.scss")
     .addStyleEntry("admin", "./assets/styles/admin.scss")
     .addStyleEntry("home", "./assets/styles/home.scss")
