@@ -49,7 +49,7 @@ class TastingSheetController extends AbstractController
 
         foreach ($resultDosages as $itemDosage) {
             foreach ($recipe->getTastingSheet() as $itemTastingSheet) {
-                if ($itemTastingSheet->getId() === $itemDosage['tastingSheet_id']) {
+                if ($itemTastingSheet->getId() === $itemDosage['tastingSheet']->getId()) {
                     $itemTastingSheet->setDosage($itemDosage['dosage']);
                     $tastingRepository->save($itemTastingSheet, true);
                     continue;
