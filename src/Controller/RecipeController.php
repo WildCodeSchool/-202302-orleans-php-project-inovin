@@ -20,7 +20,6 @@ class RecipeController extends AbstractController
     public function index(RecipeRepository $recipeRepository): Response
     {
         $recipes = $recipeRepository->findAll();
-        /*  dd($recipes); */
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes, 'containerReference' => self::CONTAINER_REF
         ]);
