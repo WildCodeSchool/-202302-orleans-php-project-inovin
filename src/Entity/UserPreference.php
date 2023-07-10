@@ -14,35 +14,23 @@ class UserPreference
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $wineColour = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $wineKnowledge = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $wineType = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $wineRegion = null;
 
     #[ORM\OneToOne(inversedBy: 'userPreference', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+    #[ORM\ManyToOne]
+    private ?GrapeColor $grapeColor = null;
+
+    #[ORM\ManyToOne]
+    private ?Region $region = null;
+
+    #[ORM\ManyToOne]
+    private ?WineTaste $wineTaste = null;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getWineColour(): ?string
-    {
-        return $this->wineColour;
-    }
-
-    public function setWineColour(?string $wineColour): static
-    {
-        $this->wineColour = $wineColour;
-
-        return $this;
     }
 
     public function getWineKnowledge(): ?string
@@ -57,30 +45,6 @@ class UserPreference
         return $this;
     }
 
-    public function getWineType(): ?string
-    {
-        return $this->wineType;
-    }
-
-    public function setWineType(?string $wineType): static
-    {
-        $this->wineType = $wineType;
-
-        return $this;
-    }
-
-    public function getWineRegion(): ?string
-    {
-        return $this->wineRegion;
-    }
-
-    public function setWineRegion(?string $wineRegion): static
-    {
-        $this->wineRegion = $wineRegion;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -89,6 +53,42 @@ class UserPreference
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getGrapeColor(): ?GrapeColor
+    {
+        return $this->grapeColor;
+    }
+
+    public function setGrapeColor(?GrapeColor $grapeColor): static
+    {
+        $this->grapeColor = $grapeColor;
+
+        return $this;
+    }
+
+    public function getRegion(): ?Region
+    {
+        return $this->region;
+    }
+
+    public function setRegion(?Region $region): static
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    public function getWineTaste(): ?WineTaste
+    {
+        return $this->wineTaste;
+    }
+
+    public function setWineTaste(?WineTaste $wineTaste): static
+    {
+        $this->wineTaste = $wineTaste;
 
         return $this;
     }

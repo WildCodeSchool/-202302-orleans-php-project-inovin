@@ -86,7 +86,7 @@ class UserFixtures extends Fixture
             $member->setZipCode($faker->postcode());
             $member->setCity($faker->city());
             $member->setCountry($faker->country());
-
+            $this->addReference('member_' . $i, $member);
             $manager->persist($member);
 
             $manager->flush();
