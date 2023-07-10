@@ -42,16 +42,4 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
-
-    #[Route('/profil/supprimer/{id}', name: 'delete', methods: ['POST'])]
-    public function deleteProfile(
-        Request $request,
-        User $user,
-        UserRepository $userRepository
-    ): Response {
-        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
-            $userRepository->remove($user, true);
-        }
-        return $this->redirectToRoute('home_index', [], Response::HTTP_SEE_OTHER);
-    }
 }
