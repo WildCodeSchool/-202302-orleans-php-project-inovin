@@ -211,6 +211,11 @@ body {
     overflow: auto;
 }
 
+.custom-position {
+    transform: translateY(-1px);
+    color: $primary;
+}
+
 @media screen and (max-width: 767px) {
     .custom-border {
         border-bottom: 1px solid transparent;
