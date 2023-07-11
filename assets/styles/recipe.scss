@@ -3,6 +3,7 @@
 main {
     min-height: calc(100vh - ($navbar-height + $footer-height));
 }
+
 .frame_separator {
     width: 100%;
 }
@@ -17,6 +18,14 @@ main {
     margin-bottom: 2rem;
 }
 
+.recipe-card {
+
+    border: 1px solid $secondary;
+    outline: 1px dashed $secondary;
+    outline-offset: -5px;
+    border-radius: 8px 8px 0px 0px;
+}
+
 .custom-card-title {
     font-family: $font-base;
     font-weight: 400;
@@ -25,6 +34,7 @@ main {
 
 .wine-ticket {
     position: relative;
+
     & .custom-name {
         display: flex;
         align-items: center;
@@ -64,8 +74,8 @@ main {
 .stats {
     display: flex;
 
-    > h2 {
-        min-width: 230px;
+    >h2 {
+        width: 230px;
     }
 
     &::after {
@@ -79,6 +89,52 @@ main {
     }
 }
 
+.recipe-h2 {
+    display: flex;
+
+    >h2 {
+        width: auto;
+        margin: 0;
+    }
+
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background: $secondary;
+    align-self: end;
+    transform: translateY(-5px);
+}
+
+.recipe-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-transform {
+    transform: translateY(3px);
+}
+
 .custom-margin {
     margin-right: 2.5rem;
+}
+
+.fs-p {
+    font-size: 0.875rem;
+}
+
+.custom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 1.5rem;
+}
+
+.recipe-scroll {
+    scrollbar-width: none;
+}
+
+.progress {
+    height: 0.5rem;
 }

@@ -6,6 +6,7 @@ use App\Entity\Recipe;
 use App\Entity\Session;
 use App\Entity\TastingSheet;
 use App\Form\TastingSheetType;
+use App\Repository\RecipeRepository;
 use App\Repository\TastingSheetRepository;
 use App\Service\CalculateWineDosageService;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,8 +16,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RecipeController extends AbstractController
 {
+    public const CONTAINER_REF = 250;
+    #[Route('/recette', name: 'recipe_index')]
+    public function index(RecipeRepository $recipeRepository): Response
+    {
+        $recipes = $recipeRepository->findAll();
+        return $this->render('recipe/index.html.twig', [
+            'recipes' => $recipes, 'containerReference' => self::CONTAINER_REF
+        ]);
+    }
+
     #[Route('/recette/{id}/resultat', name: 'result_recipe')]
-    public function index(Recipe $recipe, CalculateWineDosageService $calculateWineDosage): Response
+    public function recipeResult(Recipe $recipe, CalculateWineDosageService $calculateWineDosage): Response
     {
         return $this->render('recipe/recipeResult.html.twig', [
             'recipe' => $recipe,
