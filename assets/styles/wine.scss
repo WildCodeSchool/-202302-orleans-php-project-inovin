@@ -106,3 +106,35 @@ main {
     text-align: center;
     white-space: nowrap;
 }
+
+form .ts-control,
+form .ts-wrapper.single.input-active .ts-control {
+    background-color: $dark-light;
+    border: 0px;
+    color: $light;
+}
+
+form .ts-wrapper.multi .ts-control [data-value] {
+    background-color: $primary;
+    background-image: linear-gradient(to bottom, $primary, $primary);
+    border: 1px solid $light;
+    color: $dark;
+}
+
+form .ts-wrapper.plugin-remove_button:not(.rtl) .item .remove {
+    border-left: 1px solid $light;
+    margin-left: 6px;
+}
+form .has-items .ts-control > input {
+    color: $light;
+}
+
+form .ts-control > input {
+    color: $light;
+}
+
+form .ts-dropdown,
+form .ts-control,
+form .ts-control input {
+    font-size: 1rem;
+}

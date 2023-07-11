@@ -34,6 +34,7 @@ Encore
        */
     .addEntry("app", "./assets/app.js")
     .addEntry("wine-js", "./assets/wine.js")
+    .addEntry("tastingSheet-js", "./assets/tastingSheet.js")
     .addStyleEntry("contactForm", "./assets/styles/contactForm.scss")
     .addStyleEntry("admin", "./assets/styles/admin.scss")
     .addStyleEntry("home", "./assets/styles/home.scss")
@@ -44,7 +45,9 @@ Encore
     .addStyleEntry("resetPassword", "./assets/styles/resetPassword.scss")
     .addStyleEntry('resultTastingSheet', './assets/styles/result-tastingsheet.scss')
     .addStyleEntry("wine", "./assets/styles/wine.scss")
+    .addStyleEntry("quiz", "./assets/styles/quiz.scss")
     .addStyleEntry("recipe", "./assets/styles/recipe.scss")
+    .addStyleEntry("profile", "./assets/styles/profile.scss")
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge("./assets/controllers.json")

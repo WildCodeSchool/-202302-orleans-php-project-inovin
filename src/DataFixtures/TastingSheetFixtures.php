@@ -28,7 +28,6 @@ class TastingSheetFixtures extends Fixture implements DependentFixtureInterface
             if (empty($dosages)) {
                 $dosages = [0, 25, 50, 150];
             }
-            /*  var_dump($i, $dosage, $dosages); */
             $tastingSheet->setTaste($faker->numberBetween(0, 10));
             $tastingSheet->setSmell($faker->numberBetween(0, 10));
             $tastingSheet->setVisual($faker->numberBetween(0, 10));

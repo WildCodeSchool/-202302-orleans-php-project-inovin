@@ -3,6 +3,8 @@
 namespace App\Search;
 
 use App\Entity\GrapeVariety;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class SearchWineData
@@ -12,7 +14,9 @@ class SearchWineData
 
     #[Assert\Length(max: 255)]
     private ?string $name = '';
-    private array $grapeVarieties = [];
+
+    /** @var Collection<int, GrapeVariety> */
+    private Collection $grapeVarieties;
 
     #[Assert\PositiveOrZero]
     #[Assert\Range(
@@ -24,6 +28,10 @@ class SearchWineData
     #[Assert\PositiveOrZero]
     private ?int $minPrice = null;
 
+    public function __construct()
+    {
+        $this->grapeVarieties = new ArrayCollection();
+    }
     /**
      * Get the value of name
      */
@@ -49,14 +57,14 @@ class SearchWineData
      *
      * @return  self
      */
-    public function setGrapeVarieties(array $grapeVarieties)
+    public function setGrapeVarieties(Collection $grapeVarieties)
     {
         $this->grapeVarieties = $grapeVarieties;
 
         return $this;
     }
 
-    public function getGrapeVarieties(): array
+    public function getGrapeVarieties(): Collection
     {
         return $this->grapeVarieties;
     }

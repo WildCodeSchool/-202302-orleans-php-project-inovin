@@ -50,11 +50,14 @@
 						</p>
 					</button>
 					<ul class="dropdown-menu dropdown-menu-md-end rounded-bottom-0 custom-border">
+						{% if app.user %}
 						<li class="nav-item">
-							<a class="dropdown-item nav-link text-uppercase letter-spacing px-4" href="#">Mon profil</a>
+							<a class="dropdown-item nav-link text-uppercase letter-spacing px-4"
+								href="{{ path('user_profile_show', {'id' : app.user.id }) }}">Mon profil</a>
 						</li>
+						{% endif %}
 						<li class="nav-item">
-							<hr class="dropdown-item custom-dropdown-divider">
+							<hr class="custom-dropdown-divider">
 						</li>
 						{% if is_granted('ROLE_ADMIN') %}
 						<li class="nav-item">
@@ -83,7 +86,7 @@
 					{% else %}
 					<ul class="navbar-nav mr-auto ms-4 ms-sm-0 mb-4 mb-sm-0">
 						<li class="nav-item d-flex align-items-end align-items-center px-2">
-							<a class="nav-link text-uppercase letter-spacing" href="{{ path('login') }}">
+							<a class="nav-link text-uppercase letter-spacing" href="{{ path('app_login') }}">
 								{% include '/components/svg/_icon_profile.svg.twig' %}
 								Connexion
 							</a>

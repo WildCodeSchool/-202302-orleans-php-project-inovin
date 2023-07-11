@@ -8,6 +8,7 @@ use App\Entity\TastingSheet;
 use App\Form\TastingSheetType;
 use App\Repository\RecipeRepository;
 use App\Repository\TastingSheetRepository;
+use App\Service\CalculateWineDosageService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,12 +26,12 @@ class RecipeController extends AbstractController
         ]);
     }
 
-    #[Route('/recette/resultat/{id}', name: 'recipe_result')]
-    public function recipeResult(Recipe $recipe): Response
+    #[Route('/recette/{id}/resultat', name: 'result_recipe')]
+    public function recipeResult(Recipe $recipe, CalculateWineDosageService $calculateWineDosage): Response
     {
-
-        return $this->render('recipe/resultat.html.twig', [
+        return $this->render('recipe/recipeResult.html.twig', [
             'recipe' => $recipe,
+            'dosage' => $calculateWineDosage,
         ]);
     }
 }

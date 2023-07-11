@@ -1,0 +1,81 @@
+{% extends 'visitor.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	- Profil utilisateur
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('profile') }}
+{% endblock %}
+
+{% block body %}
+	<main class="container-fluid d-flex justify-content-center align-items-center my-5">
+		<div class="row w-100">
+			<div class="col-sm-11 col-md-10 col-lg-8 m-auto border border-secondary d-flex flex-column bg-card ornement position-relative py-5 px-3 px-sm-5">
+				<h2 class="text-center text-uppercase letter-spacing mt-5">Profil utilisateur</h2>
+				<div class="m-auto">
+					{% include "components/svg/_frame_surlignage.svg.twig" %}
+				</div>
+				<div class="d-flex">
+					<div class="m-auto my-5">
+						{% include "components/svg/_icon_profile_user.svg.twig" %}
+					</div>
+				</div>
+				{{ form_start(form) }}
+				<div>
+					{{ include('user_profile/_profileForm.html.twig', {'button_label': 'Modifier'}) }}
+				</div>
+
+				<div class="mt-5 w-100 d-flex flex-column gap-2">
+					<a href="{{ path('app_forgot_password_request') }}" class="letter-spacing text-decoration-none btn1">Changer mon mot de passe</a>
+
+					<button type="button" class="btn2 bg-transparent border-0 p-0 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						<span class="text-decoration-none letter-spacing btn2">
+							Désactiver mon compte
+						</span>
+					</button>
+				</div>
+				<div class="d-flex justify-content-end my-5">
+					<button class="btn btn-sm bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover icon-dark text-uppercase">
+						{{ button_label|default('Valider') }}
+						{% include "components/svg/_icon_validate.svg.twig" %}
+					</button>
+				</div>
+				{{ form_end(form) }}
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content bg-card border border-secondary custom-shadow">
+
+					<div class="modal-body text-center custom-modal p-4 p-sm-5">
+						<p class="m-0 py-5">Êtes-vous sûr de vouloir désactiver votre compte ?</p>
+						<small class="letter-spacing">
+							<span class="custom-position d-inline-block me-1">
+								{% include "components/svg/_icon_info.svg.twig" %}
+							</span>
+							Un mail sera envoyé à un administrateur afin de désactiver votre compte dans un délai de 48 heures.
+						</small>
+					</div>
+					<div class="modal-footer d-flex justify-content-around">
+						<button class="btn btn-sm fw-bolder icon-link icon-link-hover-left icon-light text-uppercase d-flex justify-content-center" data-bs-dismiss="modal">
+							{% include "components/svg/_icon_close.svg.twig" %}
+							Non
+						</button>
+
+						<a class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase ps-4" href="{{ path('user_profile_desable', {'id' : user.id}) }}">
+							Oui
+							{% include "components/svg/_icon_validate.svg.twig" %}
+						</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+{% endblock %}
