@@ -12,6 +12,7 @@ use App\Service\CalculateWineDosageService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RecipeController extends AbstractController
@@ -29,9 +30,22 @@ class RecipeController extends AbstractController
     #[Route('/recette/{id}/resultat', name: 'result_recipe')]
     public function recipeResult(Recipe $recipe, CalculateWineDosageService $calculateWineDosage): Response
     {
-        return $this->render('recipe/recipeResult.html.twig', [
+        return $this->render('recipe/resultat.html.twig', [
             'recipe' => $recipe,
             'dosage' => $calculateWineDosage,
+        ]);
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/recette/{id}/resultat/final', name: 'result_recipe_final')]
+    public function recipeResultFinal(
+        Recipe $recipe,
+        TastingSheet $tastingSheet,
+    ): Response {
+        return $this->render('recipe/finalRecipe.html.twig', [
+            'recipe' => $recipe,
+            'containerReference' => self::CONTAINER_REF,
+            'tastingSheet' => $tastingSheet,
         ]);
     }
 }
