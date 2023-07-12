@@ -98,7 +98,6 @@ class WineType extends AbstractType
                 [
                     'class' => WineTaste::class,
                     'choice_label' => 'tasteName',
-                    'by_reference' => true,
                 ]
             )
 
