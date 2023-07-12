@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Recipe;
 use App\Entity\User;
 use App\Entity\Wine;
 use Exception;
@@ -25,7 +26,7 @@ class SendOrderService
         $this->fromEmailAdress = $this->params->get('mailer_from');
     }
 
-    public function sendOrder(Wine $wine): bool
+    public function sendOrder(object $object): bool
     {
         /** @var User $user */
         $user = $this->security->getUser();
@@ -34,10 +35,13 @@ class SendOrderService
             $email = (new TemplatedEmail())
                 ->from(new Address($this->fromEmailAdress, 'InoVin-Shop'))
                 ->to($user->getEmail())
-                ->subject("Commande de vin")
-                ->htmlTemplate('wine/email/emailWineOrder.html.twig')
-                ->context(['user' => $user, 'wine' => $wine]);
-
+                ->subject(($object instanceof Wine) ? "Commande de vin" : "Commande d\'une recette")
+                ->htmlTemplate(
+                    ($object instanceof Wine) ?
+                        'wine/email/emailWineOrder.html.twig'
+                        : 'recipe/email/emailRecipeOrder.html.twig'
+                )
+                ->context(['user' => $user, 'object' => $object]);
             $this->mailer->send($email);
             return true;
         } catch (Exception $ex) {

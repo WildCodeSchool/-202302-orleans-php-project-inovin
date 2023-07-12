@@ -1,0 +1,21 @@
+{% extends 'emailLayout.html.twig' %}
+
+{% block body %}
+	{% set recipe = object %}
+	<h1 style="border-bottom: 0.1rem solid gray;">COMMANDE D'UNE RECETTE</h1>
+	<p>Date du {{ "now"|date("m/d/Y") }}</p>
+	<p>Client : {{ user.firstname ~ '-' ~ user.lastname }}</p>
+	<p style ="padding: 1em;">
+		<h2>Recette {{ recipe.name|capitalize }}</h2>
+		(Créateur {{ recipe.user.firstname ~ ' - ' ~ recipe.user.lastname }})
+		{% for itemTastingSheet in recipe.tastingSheet %}
+		<p style ="margin: 1em;">
+			<div style="padding: 1em;background-color: rgba(255, 255, 128, .5);border: 0.1rem solid gray;">
+				<h3>Vin n° {{ loop.index }} - {{ itemTastingSheet.wine.name ~ ' (' ~ itemTastingSheet.wine.year ~ ')' }}</h3>
+				<p>Cépage {{ itemTastingSheet.wine.grapeVariety.name }}</p>
+				<p>Dosage {{ itemTastingSheet.dosage ~ ' ml' }}</p>
+			</div>
+		</p>
+		{% endfor %}
+	</p>
+{% endblock %}
