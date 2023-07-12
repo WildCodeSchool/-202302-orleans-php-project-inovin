@@ -26,6 +26,7 @@ class RecipeController extends AbstractController
             'recipes' => $recipes, 'containerReference' => self::CONTAINER_REF
         ]);
     }
+
     #[Route('/recette/show/{id}', name: 'recipe_show')]
     public function show(Recipe $recipe): Response
     {
