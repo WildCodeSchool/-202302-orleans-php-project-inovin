@@ -152,7 +152,7 @@
 													<div class=" d-flex justify-content-end buttonNext">
 														{% for Mywine in recipe.session.getWines %}
 															{% if wine == Mywine and wine != firstWine.vars.value.wine and key == 'Palais' %}
-																<div {# class="w-25" #}>
+																<div>
 																	<a class="d-flex align-items-center btn btn-outline-primary m-4 letter-spacing px-5" id="pills-before-{{ loop.index }}">
 																		PRÉCÉDENT
 																		<span class="transform">
@@ -164,7 +164,7 @@
 														{% endfor %}
 														{% for Mywine in recipe.session.getWines %}
 															{% if wine == Mywine and wine != lastWine.vars.value.wine and key == 'Palais' %}
-																<div {# class="w-25" #}>
+																<div>
 																	<a class="d-flex align-items-center btn btn-outline-primary m-4 letter-spacing px-5" id="pills-next-{{ loop.index }}">
 																		SUIVANT
 																		<span class="transform">
