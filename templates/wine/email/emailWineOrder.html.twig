@@ -1,7 +1,6 @@
 {% extends 'emailLayout.html.twig' %}
 
 {% block body %}
-	{% set wine = object %}
 	<h1 style="border-bottom: 0.1rem solid gray;">COMMANDE D'UN VIN</h1>
 	<p>Date du {{ "now"|date("m/d/Y") }}</p>
 	<p>Client {{ user.firstname ~ '-' ~ user.lastname }}</p>
