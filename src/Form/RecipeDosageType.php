@@ -10,6 +10,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RecipeDosageType extends AbstractType
 {
+    public const DOSAGE_VOLUME_MAX = 150;
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -17,7 +19,7 @@ class RecipeDosageType extends AbstractType
                 'attr' => [
                     'required' => false,
                     'min' => 0,
-                    'max' => 150,
+                    'max' => self::DOSAGE_VOLUME_MAX,
                     'class' => 'form-range',
                     'type' => "range",
                     'oninput' => "this.nextElementSibling.value = this.value",
