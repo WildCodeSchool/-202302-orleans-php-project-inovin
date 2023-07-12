@@ -26,6 +26,14 @@ class RecipeController extends AbstractController
             'recipes' => $recipes, 'containerReference' => self::CONTAINER_REF
         ]);
     }
+    #[Route('/recette/show/{id}', name: 'recipe_show')]
+    public function show(Recipe $recipe): Response
+    {
+        return $this->render('recipe/show.html.twig', [
+            'recipe' => $recipe,
+            'containerReference' => self::CONTAINER_REF
+        ]);
+    }
 
     #[IsGranted('ROLE_USER')]
     #[Route('/recette/user', name: 'recipe_user')]
