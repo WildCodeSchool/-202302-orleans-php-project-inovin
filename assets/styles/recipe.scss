@@ -19,7 +19,6 @@ main {
 }
 
 .recipe-card {
-
     border: 1px solid $secondary;
     outline: 1px dashed $secondary;
     outline-offset: -5px;
@@ -74,7 +73,7 @@ main {
 .stats {
     display: flex;
 
-    >h2 {
+    > h2 {
         width: 230px;
     }
 
@@ -92,11 +91,10 @@ main {
 .recipe-h2 {
     display: flex;
 
-    >h2 {
+    > h2 {
         width: auto;
         margin: 0;
     }
-
 }
 
 .line {
@@ -121,14 +119,11 @@ main {
     margin-right: 2.5rem;
 }
 
+.custom-dosage-width {
+    min-width: 50px;
+}
 .fs-p {
     font-size: 0.875rem;
-}
-
-.custom-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-    gap: 1.5rem;
 }
 
 .recipe-scroll {
