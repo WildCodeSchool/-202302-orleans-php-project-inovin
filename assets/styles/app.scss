@@ -284,9 +284,3 @@ input[type="range"]::-moz-range-thumb {
     margin-top: -6px;
     position: relative;
 }
-
-@media screen and (max-width: 767px) {
-    .custom-border {
-        border-bottom: 1px solid transparent;
-    }
-}
