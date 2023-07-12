@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Wine;
+use App\Entity\WineTaste;
 use App\Entity\GrapeVariety;
+use App\Repository\WineTasteRepository;
 use Symfony\Component\Form\AbstractType;
 use App\Repository\GrapeVarietyRepository;
 use Vich\UploaderBundle\Form\Type\VichFileType;
@@ -87,6 +89,15 @@ class WineType extends AbstractType
                     },
                     'choice_label' => 'name',
                     'by_reference' => true,
+                ]
+            )
+
+            ->add(
+                'wineTaste',
+                EntityType::class,
+                [
+                    'class' => WineTaste::class,
+                    'choice_label' => 'tasteName',
                 ]
             )
 
