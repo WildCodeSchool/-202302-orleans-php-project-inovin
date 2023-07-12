@@ -149,11 +149,23 @@
 															<output class="mt-4 text-primary fs-1 fw-bold mb-4">5</output>
 														</div>
 													{% endif %}
-													<div class=" d-flex justify-content-end buttonNext" id="pills-tab">
+													<div class=" d-flex justify-content-end buttonNext">
+														{% for Mywine in recipe.session.getWines %}
+															{% if wine == Mywine and wine != firstWine.vars.value.wine and key == 'Palais' %}
+																<div>
+																	<a class="d-flex align-items-center btn btn-outline-primary m-4 letter-spacing px-5" id="pills-before-{{ loop.index }}">
+																		PRÉCÉDENT
+																		<span class="transform">
+																			{% include "components/svg/_icon_next.svg.twig" %}
+																		</span>
+																	</a>
+																</div>
+															{% endif %}
+														{% endfor %}
 														{% for Mywine in recipe.session.getWines %}
 															{% if wine == Mywine and wine != lastWine.vars.value.wine and key == 'Palais' %}
-																<div class="w-25">
-																	<a class="d-flex align-items-center btn btn-outline-primary m-4 letter-spacing px-4" id="pills-next-{{ loop.index }}">
+																<div>
+																	<a class="d-flex align-items-center btn btn-outline-primary m-4 letter-spacing px-5" id="pills-next-{{ loop.index }}">
 																		SUIVANT
 																		<span class="transform">
 																			{% include "components/svg/_icon_next.svg.twig" %}
