@@ -6,6 +6,7 @@ use App\Entity\Recipe;
 use App\Entity\Session;
 use App\Entity\TastingSheet;
 use App\Form\TastingSheetType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Repository\RecipeRepository;
 use App\Repository\TastingSheetRepository;
 use App\Service\CalculateWineDosageService;
@@ -23,6 +24,15 @@ class RecipeController extends AbstractController
         $recipes = $recipeRepository->findAll();
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes, 'containerReference' => self::CONTAINER_REF
+        ]);
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/recette/user', name: 'recipe_user')]
+    public function recipeUser(): Response
+    {
+        return $this->render('recipe/recipeUser.html.twig', [
+            'containerReference' => self::CONTAINER_REF
         ]);
     }
 
