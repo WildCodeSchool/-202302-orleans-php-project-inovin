@@ -2,17 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Recipe;
 use App\Entity\Session;
 use App\Entity\TastingSheet;
 use App\Form\TastingSheetType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Repository\RecipeRepository;
 use App\Repository\TastingSheetRepository;
 use App\Service\CalculateWineDosageService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RecipeController extends AbstractController
@@ -40,7 +41,12 @@ class RecipeController extends AbstractController
     #[Route('/recette/user', name: 'recipe_user')]
     public function recipeUser(): Response
     {
-        return $this->render('recipe/recipeUser.html.twig', [
+        /** @var User $user */
+
+        $user = $this->getUser();
+        $recipes = $user->getRecipes();
+        return $this->render('recipe/index.html.twig', [
+            'recipes' => $recipes,
             'containerReference' => self::CONTAINER_REF
         ]);
     }
