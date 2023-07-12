@@ -1,22 +1,22 @@
 {% extends 'visitor.html.twig' %}
 {% block title %}
-{{ parent()}}
-- Liste des Recettes
+	{{ parent()}}
+	- Liste des Recettes
 {% endblock %}
 {% block stylesheets %}
-{{ parent() }}
-{{ encore_entry_link_tags('recipe') }}
+	{{ parent() }}
+	{{ encore_entry_link_tags('recipe') }}
 {% endblock %}
 {% block body %}
-<header class="container-fluid container-md py-5 mb-5">
-	<h2 class="text-primary-light fw-light mt-5 letter-spacing">
-		{% include "components/svg/_icon_decoration.svg.twig" %}RECETTES
-	</h2>
+	<header class="container-fluid container-md py-5 mb-5">
+		<h2 class="text-primary-light fw-light mt-5 letter-spacing">
+			{% include "components/svg/_icon_decoration.svg.twig" %}RECETTES
+		</h2>
 
-	<div>
-		{% include 'components/svg/_frame_surlignage_main.svg.twig' %}
-	</div>
-</header>
+		<div>
+			{% include 'components/svg/_frame_surlignage_main.svg.twig' %}
+		</div>
+	</header>
 
 <main class="container container-sm container-md">
 	<div class="row">
@@ -60,11 +60,12 @@
 				</div>
 				<div class="d-flex w-100  flex-sm-row justify-content-between gap-3 mt-4 pt-2">
 					<a class="btn btn-sm btn-primary" href="{{ path('recipe_show', {'id': recipe.id}) }}">DÉTAILS</a>
-					<a class=" btn btn-sm btn-primary" href="#">COMMANDER</a>
+					<div class="d-flex justify-content-end align-items-center">
+							{{ component('SendRecipeOrderComponent', { recipe : recipe }) }}
+					</div>
 				</div>
 			</div>
 		</div>
 		{% endfor %}
-	</div>
-</main>
+	</main>
 {% endblock %}
