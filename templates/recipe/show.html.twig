@@ -36,8 +36,10 @@
                 {% include "components/svg/_icon_wine_ticket.svg.twig" %}
             </div>
             <div class="content px-2 mx-4">
-
                 <div class="d-flex flex-column gap-3 w-100 mb-4 pb-2">
+                    {% if app.user %}
+                        {{ component('UpdateStateFavoriteRecipeComponent', { recipe : recipe }) }}
+                    {% endif %}
                     <div class="stats">
                         <h2 class="custom-card-title fs-5 flex-fill">Dosage des cépages</h2>
                     </div>

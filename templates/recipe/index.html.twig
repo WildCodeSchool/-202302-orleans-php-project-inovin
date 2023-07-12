@@ -29,6 +29,9 @@
 					</div>
 					<div class="line"></div>
 				</div>
+				{% if app.user %}
+					{{ component('UpdateStateFavoriteRecipeComponent', { recipe : recipe }) }}
+				{% endif %}
 				<div class="d-flex flex-row w-100 justify-content-center mt-2 gap-3">
 					<div class="recipe-img w-25 col-3">
 						<img src="{{ asset('build/images/wine.svg') }}" alt="wine">
