@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Recipe;
 use App\Entity\TastingSheet;
+use App\Form\TastingSheetType;
 use App\Form\FinalRecipeType;
 use App\Repository\RecipeRepository;
 use App\Repository\TastingSheetRepository;
@@ -25,11 +27,25 @@ class RecipeController extends AbstractController
         ]);
     }
 
+    #[Route('/recette/show/{id}', name: 'recipe_show')]
+    public function show(Recipe $recipe): Response
+    {
+        return $this->render('recipe/show.html.twig', [
+            'recipe' => $recipe,
+            'containerReference' => self::CONTAINER_REF
+        ]);
+    }
+
     #[IsGranted('ROLE_USER')]
     #[Route('/recette/user', name: 'recipe_user')]
     public function recipeUser(): Response
     {
-        return $this->render('recipe/recipeUser.html.twig', [
+        /** @var User $user */
+
+        $user = $this->getUser();
+        $recipes = $user->getRecipes();
+        return $this->render('recipe/index.html.twig', [
+            'recipes' => $recipes,
             'containerReference' => self::CONTAINER_REF
         ]);
     }
