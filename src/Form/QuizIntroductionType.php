@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\WineTaste;
 use App\Entity\UserPreference;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -50,23 +52,16 @@ class QuizIntroductionType extends AbstractType
                 ]
             )
             ->add(
-                'wineType',
-                ChoiceType::class,
+                'wineTaste',
+                EntityType::class,
                 [
                     'label' => 'AU PALAIS? C\'EST PLUS ?',
-                    'choices' => [
-                        'Sec' => 'Sec',
-                        'Demi-sec' => 'Demi-sec',
-                        'Moelleux' => 'Moelleux',
-                        'Liquoreux' => 'Liquoreux',
-                        'Pétillant' => 'Pétillant',
-                        'Tranquille' => 'Tranquille'
-                    ],
                     'attr' => [
                         'class' => 'my-custom-radio color-primary letter-spacing mb-3',
                     ],
-                    'multiple' => false,
+                    'class' => WineTaste::class,
                     'expanded' => true,
+                    'choice_label' => 'tasteName',
                 ]
             )
             ->add(
