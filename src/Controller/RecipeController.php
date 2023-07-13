@@ -63,27 +63,11 @@ class RecipeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $tastingSheetRepo->save($tastingSheet, true);
-            $this->addFlash("success", "Vos dosages ont été modifiés !");
-
-            return $this->redirectToRoute('result_recipe', ['id' => $recipe->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('recipe/resultat.html.twig', [
             'recipe' => $recipe,
             'form' => $form,
-        ]);
-    }
-
-    #[IsGranted('ROLE_USER')]
-    #[Route('/recette/{id}/resultat/final', name: 'result_recipe_final')]
-    public function recipeResultFinal(
-        Recipe $recipe,
-        TastingSheet $tastingSheet,
-    ): Response {
-        return $this->render('recipe/finalRecipe.html.twig', [
-            'recipe' => $recipe,
-            'containerReference' => self::CONTAINER_REF,
-            'tastingSheet' => $tastingSheet,
         ]);
     }
 }

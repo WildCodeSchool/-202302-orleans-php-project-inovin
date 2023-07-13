@@ -284,3 +284,28 @@ input[type="range"]::-moz-range-thumb {
     margin-top: -6px;
     position: relative;
 }
+
+.custom-modal {
+    outline: 2px dotted $secondary;
+    outline-offset: -7px;
+    border-radius: 5px;
+}
+
+.modal.show {
+    backdrop-filter: blur(10px);
+    background-color: $dark-opacity;
+}
+
+.modal-footer {
+    border-top: 1px solid $secondary;
+}
+
+.custom-shadow {
+    box-shadow: $shadow-primary;
+}
+
+@media screen and (max-width: 767px) {
+    .custom-border {
+        border-bottom: 1px solid transparent;
+    }
+}

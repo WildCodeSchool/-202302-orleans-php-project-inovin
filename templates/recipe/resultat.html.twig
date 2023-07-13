@@ -1,12 +1,23 @@
 {% extends 'visitor.html.twig' %}
+
 {% block title %}
 	{{ parent()}}
 	- Recette
 {% endblock %}
+
 {% block stylesheets %}
 	{{ parent() }}
 	{{ encore_entry_link_tags('recipe') }}
 {% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('recipeTimer') }}
+	<script>
+		window.redirectUrl = "{{ path('recipe_user') }}";
+	</script>
+{% endblock %}
+
 {% block body %}
 	<main class="container-fluid container-md py-5 mb-5">
 		{{ form_start(form)}}
@@ -24,7 +35,7 @@
 			<p class="mb-1 d-flex align-items-center gap-2 badge bg-primary text-dark p-2">
 				{% include "components/svg/_icon_clock.svg.twig" %}
 				{{ recipe.session.openingDate|date("H", "Europe/Paris") ~ 'H' ~ ' - ' ~
-            recipe.session.openingDate|date_modify('+ 3 hours')|date("H", "Europe/Paris") ~ 'H' }}
+	            recipe.session.openingDate|date_modify('+ 3 hours')|date("H", "Europe/Paris") ~ 'H' }}
 			</p>
 		</div>
 		<div class="row mx-1 mt-5">
@@ -64,11 +75,46 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="d-flex justify-content-end border border-secondary py-3 rounded-bottom px-4 px-md-5 shadow-container bg-dark-light">
-				<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center">
+				<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-timer">
 					{{ button_label|default('Valider') }}
 					{{ include('/components/svg/_icon_validate.svg.twig') }}
 				</button>
+			</div>
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content bg-card border border-secondary custom-shadow">
+
+						<div class="modal-body text-center custom-modal p-4 p-sm-5">
+							<div class="mb-4">
+								<p class="m-0 pt-5 pb-4">Votre recette à été sauvegardé !</p>
+								<small class="letter-spacing pb-4">
+									<span class="custom-position d-inline-block me-1">
+										{% include "components/svg/_icon_info.svg.twig" %}
+									</span>
+									Vous pouvez consulter et
+									<span class="text-primary">
+										{{ include('/components/svg/_icon_cart_check_fill.svg.twig') }}
+									</span>
+									<span class="text-primary">
+										commander
+									</span>
+									votre recette dans votre espace
+									<a href="#" class="text-primary fw-bolder text-decoration-none">Mes Recettes</a>.
+								</small>
+							</div>
+							<p class="m-0 pt-3 pb-3 border border-start-0 border-end-0 border-bottom-0 border-secondary">Vous allez être redigirer automatiquement vers vos Recettes dans
+								<span id="timer" class="text-primary">10</span>
+								secondes</p>
+							<div class="spinner-border" role=" status" data-loading="action(sendOrderByMail)|show">
+								<span class="visually-hidden">Loading...</span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		{{ form_end(form)}}
