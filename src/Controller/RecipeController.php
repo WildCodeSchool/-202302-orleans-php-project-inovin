@@ -41,9 +41,9 @@ class RecipeController extends AbstractController
     public function recipeUser(): Response
     {
         /** @var User $user */
-
         $user = $this->getUser();
         $recipes = $user->getRecipes();
+
         return $this->render('recipe/index.html.twig', [
             'recipes' => $recipes,
             'containerReference' => self::CONTAINER_REF
@@ -56,8 +56,16 @@ class RecipeController extends AbstractController
         Request $request,
         Recipe $recipe,
         TastingSheet $tastingSheet,
-        TastingSheetRepository $tastingSheetRepo
+        TastingSheetRepository $tastingSheetRepo,
+        User $user,
     ): Response {
+        $currentUser = $this->getUser();
+        if ($currentUser !== $user) {
+            throw $this->createAccessDeniedException(
+                "Accès refusé. Vous n'êtes pas autorisé à accéder à cette recette."
+            );
+        }
+
         $form = $this->createForm(FinalRecipeType::class, $recipe);
         $form->handleRequest($request);
 
