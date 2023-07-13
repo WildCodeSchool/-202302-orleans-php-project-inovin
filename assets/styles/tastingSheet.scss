@@ -14,12 +14,6 @@
     transform: rotate(45deg);
 }
 
-/* the background */
-
-.myPage {
-    background: $card-gradient-color;
-}
-
 /* all the border of the page */
 
 .myForm {
@@ -49,10 +43,6 @@
 .firstNavbarBorder {
     border-bottom: 2px dotted $secondary;
     margin-bottom: 4px;
-}
-
-.buttonNext {
-    border-top: 2px dotted $secondary;
 }
 
 /* all the active-link */
@@ -115,6 +105,10 @@
 }
 
 .wineSheetListTitle {
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-weight: bolder;
+    letter-spacing: 3px;
+}
+
+.custom-btn-width {
+    min-width: 170px;
 }
