@@ -50,24 +50,26 @@
 							</div>
 							<div class="col-9 d-flex gap-3 flex-column">
 								{% for itemTastingSheet in recipe.tastingSheet %}
-									<div class="d-flex gap-2">
-										<div class="col-sm-12 col-md-8 col-lg-9 col-xl-10">
-											{% set width = (itemTastingSheet.dosage ?? '0' * 100) / containerReference %}
-											<p class="mb-1 recipe-scroll overflow-x-auto text-nowrap fs-p">{{
+									<div class="row">
+										<div class="d-flex gap-2">
+											<div class="col-11 col-sm-12 col-md-8 col-lg-9 col-xl-10">
+												{% set width = (itemTastingSheet.dosage ?? '0' * 100) / containerReference %}
+												<p class="mb-1 recipe-scroll overflow-x-auto text-nowrap fs-p">{{
 									itemTastingSheet.wine.name|capitalize ~ ', '
 									~ itemTastingSheet.wine.grapeVariety.name|capitalize }}
-											</p>
-											<div class="d-flex flex-row gap-3">
-												<div class="progress w-100" role="progressbar" aria-label="Basic example" aria-valuenow="{{ itemTastingSheet.dosage ?? '0'}}" aria-valuemin="0" aria-valuemax="100">
-													<div class="progress-bar" style="width: {{ width ~ '%'}};"></div>
+												</p>
+												<div class="d-flex flex-row gap-3">
+													<div class="progress w-100" role="progressbar" aria-label="Basic example" aria-valuenow="{{ itemTastingSheet.dosage ?? '0'}}" aria-valuemin="0" aria-valuemax="100">
+														<div class="progress-bar" style="width: {{ width ~ '%'}};"></div>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="col">
-											<div class="d-flex justify-content-end custom-transform">
-												<p class="mb-0 pt-3">
-													{{ itemTastingSheet.dosage ?? '0'}}Ml
-												</p>
+											<div class="col">
+												<div class="d-flex justify-content-end custom-transform">
+													<p class="mb-0 pt-3">
+														{{ itemTastingSheet.dosage ?? '0'}}Ml
+													</p>
+												</div>
 											</div>
 										</div>
 									</div>
