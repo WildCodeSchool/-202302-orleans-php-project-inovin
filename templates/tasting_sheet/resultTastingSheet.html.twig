@@ -38,7 +38,7 @@
 							<div class="ms-4 custom-height d-none d-md-block">
 								<div class="circle">
 									<p class="custom-text">
-										{{ (itemTastingSheet.visual + itemTastingSheet.smell + itemTastingSheet.taste) / 3 }}
+										{{ ((itemTastingSheet.visual + itemTastingSheet.smell + itemTastingSheet.taste) / 3)|round }}
 									</p>
 									<div class="waves"></div>
 								</div>
@@ -47,7 +47,7 @@
 								<header class="d-flex">
 									<div class="mini-circle d-md-none">
 										<p>
-											{{ (itemTastingSheet.visual + itemTastingSheet.smell + itemTastingSheet.taste) / 3 }}
+											{{ ((itemTastingSheet.visual + itemTastingSheet.smell + itemTastingSheet.taste) / 3)|round }}
 										</p>
 									</div>
 									<div>

@@ -2,24 +2,24 @@
 
 namespace App\Twig\Components;
 
+use App\Entity\Recipe;
 use App\Entity\User;
-use App\Entity\Wine;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
-use Symfony\UX\LiveComponent\Attribute\LiveAction;
-use Symfony\UX\LiveComponent\DefaultActionTrait;
-use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
+use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use Symfony\UX\LiveComponent\DefaultActionTrait;
+use Symfony\UX\LiveComponent\Attribute\LiveProp;
 
 #[IsGranted('ROLE_USER')]
 #[AsLiveComponent()]
-class SendWineOrderComponent extends AbstractController
+class SendRecipeOrderComponent extends AbstractController
 {
     use DefaultActionTrait;
 
@@ -27,7 +27,7 @@ class SendWineOrderComponent extends AbstractController
     public int $nbrSendOrder = 0;
 
     #[LiveProp]
-    public ?Wine $wine = null;
+    public ?Recipe $recipe = null;
 
     private string $fromEmailAdress;
 
@@ -47,9 +47,9 @@ class SendWineOrderComponent extends AbstractController
             $email = (new TemplatedEmail())
                 ->from(new Address($this->fromEmailAdress, 'InoVin-Shop'))
                 ->to($user->getEmail())
-                ->subject("Commande de vin")
-                ->htmlTemplate('wine/email/emailWineOrder.html.twig')
-                ->context(['user' => $user, 'wine' => $this->wine]);
+                ->subject("Commande d\'une recette")
+                ->htmlTemplate('recipe/email/emailRecipeOrder.html.twig')
+                ->context(['user' => $user, 'recipe' => $this->recipe]);
             $this->mailer->send($email);
             $this->nbrSendOrder++;
         } catch (TransportExceptionInterface $ex) {

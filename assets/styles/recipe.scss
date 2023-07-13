@@ -107,12 +107,11 @@ main {
 
 .recipe-img {
     display: flex;
-    align-items: center;
     justify-content: center;
 }
 
 .custom-transform {
-    transform: translateY(3px);
+    transform: translateY(2px);
 }
 
 .custom-margin {
@@ -122,6 +121,7 @@ main {
 .custom-dosage-width {
     min-width: 50px;
 }
+
 .fs-p {
     font-size: 0.875rem;
 }

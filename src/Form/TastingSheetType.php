@@ -17,7 +17,7 @@ class TastingSheetType extends AbstractType
                 'attr' => [
                     'min' => 0,
                     'max' => 10,
-                    'class' => 'mt-5 px-5 form-range',
+                    'class' => 'ms-md-5 form-range',
                     'type' => "range",
                     'value' => 5,
                     'oninput' => "this.nextElementSibling.value = this.value",
@@ -28,7 +28,7 @@ class TastingSheetType extends AbstractType
                 'attr' => [
                     'min' => 0,
                     'max' => 10,
-                    'class' => 'mt-5 px-5 custom-range',
+                    'class' => 'ms-md-5 custom-range',
                     'type' => "range",
                     'value' => 5,
                     'oninput' => "this.nextElementSibling.value = this.value",
@@ -39,7 +39,7 @@ class TastingSheetType extends AbstractType
                 'attr' => [
                     'min' => 0,
                     'max' => 10,
-                    'class' => 'mt-5 px-5 custom-range',
+                    'class' => 'ms-md-5 custom-range',
                     'type' => "range",
                     'value' => 5,
                     'oninput' => "this.nextElementSibling.value = this.value",
