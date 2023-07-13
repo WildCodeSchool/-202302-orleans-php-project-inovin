@@ -6,6 +6,8 @@ use App\Entity\Recipe;
 use App\Entity\TastingSheet;
 use App\Form\RecipeTastingSheetType;
 use App\Repository\RecipeRepository;
+use App\Repository\TastingSheetRepository;
+use App\Service\CalculateWineDosageService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +29,7 @@ class TastingSheetController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             $recipeRepository->save($recipe, true);
-            return $this->redirectToRoute('home_index');
+            return $this->redirectToRoute('app_tasting_sheet_result', ['recipe' => $recipe->getId()]);
         }
         return $this->render('tasting_sheet/index.html.twig', [
             'recipe' => $recipe,
@@ -37,8 +39,24 @@ class TastingSheetController extends AbstractController
 
     #[IsGranted('ROLE_USER')]
     #[Route('degustation/{recipe}/resultat', name: 'app_tasting_sheet_result')]
-    public function result(Recipe $recipe): Response
-    {
+    public function result(
+        Recipe $recipe,
+        CalculateWineDosageService $calculWineDosageSrv,
+        TastingSheetRepository $tastingRepository
+    ): Response {
+
+        $resultDosages = $calculWineDosageSrv->calculate($recipe);
+
+        foreach ($resultDosages as $itemDosage) {
+            foreach ($recipe->getTastingSheet() as $itemTastingSheet) {
+                if ($itemTastingSheet->getId() === $itemDosage['tastingSheet']->getId()) {
+                    $itemTastingSheet->setDosage($itemDosage['dosage']);
+                    $tastingRepository->save($itemTastingSheet, true);
+                    continue;
+                }
+            }
+        }
+
         return $this->render('tasting_sheet/resultTastingSheet.html.twig', [
             'recipe' => $recipe,
         ]);

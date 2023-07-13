@@ -1,20 +1,19 @@
 {% extends 'emailLayout.html.twig' %}
 
 {% block body %}
-	<h1>COMMANDE DE VIN</h1>
-	<p>Date du :
-		{{ "now"|date("m/d/Y") }}</p>
-	<p>Client :{{ user.firstname }},
-		{{ user.lastname }}</p>
-	<p>
-		<h4>Vin :{{ wine.name }}</h4>
-		<ul>
-			<li>- Année :
-				{{ wine.year }}</li>
-			<li>- Cépage :
-				{{ wine.grapeVariety.name }}</li>
-			<li>- Origine :
-				{{ wine.origin }}</li>
-		</ul>
+	<h1 style="border-bottom: 0.1rem solid gray;">COMMANDE D'UN VIN</h1>
+	<p>Date du {{ "now"|date("m/d/Y") }}</p>
+	<p>Client {{ user.firstname ~ '-' ~ user.lastname }}</p>
+	<p style ="padding: 1em;">
+		
+		<p style ="margin: 1em;">
+			<div style="padding: 1em;background-color: rgba(255, 255, 128, .5);border: 0.2rem solid gray;">
+				<h2>{{ wine.name|capitalize }}</h2>
+				<p style="border-bottom: 0.1rem solid gray;"></p>
+				<p>Année {{ wine.year }}</p>
+				<p>Cépage {{ wine.grapeVariety.name }}</p>
+				<p>Origine {{ wine.origin }}</p>
+			</div>
+		</p>
 	</p>
 {% endblock %}

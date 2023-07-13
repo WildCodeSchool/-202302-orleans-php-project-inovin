@@ -1,74 +1,89 @@
 {% extends 'visitor.html.twig' %}
-
 {% block title %}
 	{{ parent()}}
-	- Recette
+	- Liste des Recettes
 {% endblock %}
-
 {% block stylesheets %}
 	{{ parent() }}
 	{{ encore_entry_link_tags('recipe') }}
 {% endblock %}
-
 {% block body %}
-	<main class="container-fluid container-md py-5 mb-5">
+	<header class="container-fluid container-md py-5 mb-5">
 		<h2 class="text-primary-light fw-light mt-5 letter-spacing">
-			{% include 'components/svg/_icon_decoration.svg.twig' %}RÉSULTATS
+			{% include "components/svg/_icon_decoration.svg.twig" %}RECETTES
 		</h2>
 
 		<div>
-			{% include "components/svg/_frame_surlignage_main.svg.twig" %}
+			{% include 'components/svg/_frame_surlignage_main.svg.twig' %}
 		</div>
+	</header>
 
-
-		<div class="d-flex gap-3 text-primary-light fs-4 mt-4">
-			<p class="mb-1 d-flex align-items-center gap-2 badge bg-primary text-dark p-2">
-				{% include "components/svg/_icon_date.svg.twig" %}
-				{{ recipe.session.openingDate|date("d/m/Y", "Europe/Paris", "fr") }}
-			</p>
-			<p class="mb-1 d-flex align-items-center gap-2 badge bg-primary text-dark p-2">
-				{% include "components/svg/_icon_clock.svg.twig" %}
-				{{ recipe.session.openingDate|date("H", "Europe/Paris") ~ 'H' ~ ' - ' ~  recipe.session.openingDate|date_modify('+ 3 hours')|date("H", "Europe/Paris") ~ 'H' }}
-			</p>
+	<main class="container container-sm container-md">
+		<div class="row">
+			{% for recipe in recipes %}
+				<div class="col-md-6 mb-4">
+					<div class="recipe-card p-3">
+						<div class="d-flex">
+							<div class="recipe-h2 text-nowrap">
+								<h2 class="custom-card-title fs-3">{{ recipe.name|u.truncate(20, '...') }}
+								</h2>
+							</div>
+							<div class="line"></div>
+						</div>
+						<div class="d-flex justify-content-between mt-2">
+							<a class="nav-link text-primary-light mb-2 letter-spacing fs-p" href="{{ path('recipe_show', {'id': recipe.id} ) }}">
+								Voir la description
+								<span class="text-primary-light custom-transform">
+									<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-eye-fill fs-5" viewbox="0 0 16 16">
+										<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+										<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+									</svg>
+								</span>
+							</a>
+							{% if app.user %}
+								{{ component('UpdateStateFavoriteRecipeComponent', { recipe : recipe }) }}
+							{% endif %}
+						</div>
+						<div class="d-flex mt-2 gap-3">
+							<div class="recipe-img col d-none d-md-flex">
+								<img src="{{ asset('build/images/wine.svg') }}" alt="wine">
+							</div>
+							<div class="col-9 d-flex gap-3 flex-column">
+								{% for itemTastingSheet in recipe.tastingSheet %}
+									<div class="row">
+										<div class="d-flex gap-2">
+											<div class="col-11 col-sm-12 col-md-8 col-lg-9 col-xl-10">
+												{% set width = (itemTastingSheet.dosage ?? '0' * 100) / containerReference %}
+												<p class="mb-1 recipe-scroll overflow-x-auto text-nowrap fs-p">{{
+									itemTastingSheet.wine.name|capitalize ~ ', '
+									~ itemTastingSheet.wine.grapeVariety.name|capitalize }}
+												</p>
+												<div class="d-flex flex-row gap-3">
+													<div class="progress w-100" role="progressbar" aria-label="Basic example" aria-valuenow="{{ itemTastingSheet.dosage ?? '0'}}" aria-valuemin="0" aria-valuemax="100">
+														<div class="progress-bar" style="width: {{ width ~ '%'}};"></div>
+													</div>
+												</div>
+											</div>
+											<div class="col">
+												<div class="d-flex justify-content-end custom-transform">
+													<p class="mb-0 pt-3">
+														{{ itemTastingSheet.dosage ?? '0'}}Ml
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+						<div class="d-flex w-100  flex-sm-row justify-content-end mt-3 pt-2">
+							<div class="d-flex justify-content-end align-items-center">
+								{{ component('SendRecipeOrderComponent', { recipe : recipe }) }}
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
 		</div>
-
-		<div class="row mx-1 mt-5">
-			<div class="col custom-card d-flex flex-column flex-sm-row px-3 border border-secondary d-flex align-items-center pt-3 bg-card m-0">
-				<div class="wine-ticket">
-					<div class="wine-name">
-						<p class="custom-name">jean françois de lune et du soleil</p>
-					</div>
-					{% include "components/svg/_icon_wine_ticket.svg.twig" %}
-				</div>
-				<div class="content px-2 px-sm-2 ms-sm-2 px-md-4 px-lg-4 px-xl-5">
-					{% if app.user %}
-						<div class="align-self-end w-100 mb-4">
-							{{ component('UpdateStateFavoriteRecipeComponent', { recipe : recipe }) }}
-						</div>
-					{% endif %}
-					<div class="mt-4 mb-2">
-						<p class="text-center text-uppercase fs-3 mb-1 text-primary">Bravo</p>
-						<p class="text-center text-uppercase">Tu as créés ta propre bouteille de vin !</p>
-					</div>
-					<div class="align-self-start w-100 mb-4">
-						<div class="stats">
-							<h2 class="custom-card-title fs-5 flex-fill">Dosage des cépages</h2>
-						</div>
-						{% for itemTastingSheet in recipe.tastingSheet %}
-							<p>{{ itemTastingSheet.wine.name|capitalize ~ ', ' ~ itemTastingSheet.wine.grapeVariety.name }}</p>
-							<p>{{ itemTastingSheet.dosage ?? '0mL'}}</p>
-						{% endfor %}
-					</div>
-				</div>
-			</div>
-			<div class="d-flex justify-content-center justify-content-sm-end align-items-center border border-secondary py-3 rounded-bottom">
-				<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center me-sm-2 me-md-4 me-xl-5">
-					{{ button_label|default('Commander') }}
-					{{ include('/components/svg/_icon_validate.svg.twig') }}
-				</button>
-			</div>
-			<h2>
-				{# {{ wine.name }} #}
-			</h2>
-		</main>
-	{% endblock %}
+	</main>
+{% endblock %}

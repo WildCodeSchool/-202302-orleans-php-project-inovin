@@ -6,6 +6,7 @@
 
 .bg-card {
     background: $card-gradient-color;
+    box-shadow: $shadow-primary;
 }
 
 .card-title {
@@ -14,12 +15,16 @@
 }
 
 .card-wine {
-    min-width: 330px;
     outline: 1px solid $primary-light;
     outline-offset: 4px;
     border: 2px dotted $secondary;
-    border-radius: 174px 25px 0px 174px;
-    box-shadow: $shadow-primary;
+    border-radius: 174px 8px 8px 174px;
+}
+
+.card-text {
+    height: 50px;
+    max-height: 50px;
+    overflow: auto;
 }
 
 .img-session-wine {
@@ -37,21 +42,87 @@
 }
 
 .separator-line {
-    height: 2px;
-    background: $icon-gradient-color;
+    height: 1px;
+    background: $secondary;
     width: 100%;
 }
 
-@media screen and (max-width: 768px) {
+.custom-text-size {
+    font-size: 0.75rem;
+}
+
+.custom-size {
+    font-size: 1rem;
+}
+
+.cepage-overflow {
+    height: 25px;
+    max-height: 25px;
+    overflow: auto;
+}
+
+.line-card {
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: $secondary;
+    top: 100px;
+    left: 0;
+}
+
+.height-location {
+    min-height: 50px;
+    max-height: 50px;
+}
+
+.custom-width {
+    width: 90%;
+}
+
+.mini-card {
+    width: 50%;
+    height: auto;
+    outline: 2px dotted $secondary;
+    outline-offset: -7px;
+    border: 2px solid $secondary;
+}
+
+.custom-size-card {
+    font-size: 12px;
+}
+
+.carousel-control-prev {
+    width: auto;
+}
+
+.carousel-control-next {
+    width: auto;
+}
+
+@media screen and (max-width: 576px) {
+    .custom-size {
+        font-size: 0.875rem;
+    }
+
     .card-wine {
-        border-radius: 15px;
+        border-radius: 8px;
     }
 
     .img-session-wine {
-        margin-top: 2rem;
-        height: clamp(30px, 20vw, 120px);
-        width: clamp(30px, 20vw, 120px);
-        padding: 4px;
-        outline-offset: 6px;
+        border-radius: 0;
+        border: 0;
+        outline: 0;
+        outline-offset: 0;
+        background: none;
+        box-shadow: none;
+        margin-block: none;
+        width: 60px;
+        height: 150px;
+        margin-block: 0;
+        padding: 0;
+    }
+
+    .mini-card {
+        width: 100%;
     }
 }

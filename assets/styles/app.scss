@@ -35,27 +35,26 @@ h6 {
     min-width: 9rem;
 }
 
-.icon-light>svg {
+.icon-light > svg {
     color: $primary-light;
 }
 
-.icon-light:hover>svg {
+.icon-light:hover > svg {
     color: $dark-light;
 }
 
-.icon-dark>svg {
+.icon-dark > svg {
     color: $dark-light;
 }
 
-.icon-dark:hover>svg {
+.icon-dark:hover > svg {
     color: $light;
 }
 
 .icon-link-hover-left {
-
     &:hover,
     &:focus-visible {
-        >.bi {
+        > .bi {
             transform: translate3d(-0.35rem, 0, 0);
         }
     }
@@ -150,15 +149,7 @@ body {
     background: $card-gradient-color;
 }
 
-.mini-card {
-    width: 50%;
-    height: auto;
-    outline: 1px solid $secondary;
-    outline-offset: 2px;
-    border: 2px dotted $secondary;
-}
-
-.frame_container>.frame_separator {
+.frame_container > .frame_separator {
     width: auto;
 }
 
@@ -170,28 +161,6 @@ body {
 .table-row {
     height: 20px;
     /* Hauteur des lignes */
-}
-
-.line-card {
-    position: absolute;
-    height: 1px;
-    width: 100%;
-    background-color: $secondary;
-    top: 100px;
-    left: 0;
-}
-
-.carousel-control-prev {
-    left: -100px;
-}
-
-.carousel-control-next {
-    right: -100px;
-}
-
-.height-location {
-    min-height: 53px;
-    max-height: 53px;
 }
 
 .ornement {
@@ -240,6 +209,99 @@ body {
 .max-height-select {
     height: clamp(150px, 20vw, 200px);
     overflow: auto;
+}
+
+.custom-position {
+    transform: translateY(-1px);
+    color: $primary;
+}
+
+.shadow-container {
+    box-shadow: $shadow-primary;
+}
+
+/* range */
+input[type="range"] {
+    height: 34px;
+    width: 100%;
+}
+
+/** CHROME*/
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 20px;
+    cursor: pointer;
+    background: transparent;
+    border-radius: 20px;
+    border: 1px solid $secondary-light;
+}
+
+input[type="range"]::-webkit-progress-value {
+    width: 100%;
+    height: 20px;
+    cursor: pointer;
+    background: $primary;
+    border-radius: 20px;
+    border: 1px solid $secondary-light;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    border: 1px solid #00001e;
+    height: 32px;
+    width: 32px;
+    border-radius: 15px;
+    background: white;
+    cursor: pointer;
+    margin-top: -6px;
+}
+
+/** FF*/
+input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: transparent;
+    border-radius: 20px;
+    border: 1px solid $secondary-light;
+}
+
+input[type="range"]::-moz-range-progress {
+    width: 200%;
+    height: 10px;
+    cursor: pointer;
+    background: $primary;
+    border-radius: 20px;
+    border: 1px solid $secondary-light;
+}
+
+input[type="range"]::-moz-range-thumb {
+    border: 1px solid #00001e;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    margin-top: -6px;
+    position: relative;
+}
+
+.custom-modal {
+    outline: 2px dotted $secondary;
+    outline-offset: -7px;
+    border-radius: 5px;
+}
+
+.modal.show {
+    backdrop-filter: blur(10px);
+    background-color: $dark-opacity;
+}
+
+.modal-footer {
+    border-top: 1px solid $secondary;
+}
+
+.custom-shadow {
+    box-shadow: $shadow-primary;
 }
 
 @media screen and (max-width: 767px) {

@@ -3,8 +3,6 @@
 namespace App\Form;
 
 use App\Entity\TastingSheet;
-use App\Entity\Wine;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,7 +17,7 @@ class TastingSheetType extends AbstractType
                 'attr' => [
                     'min' => 0,
                     'max' => 10,
-                    'class' => 'mt-5 px-5 form-range',
+                    'class' => 'ms-md-5 form-range',
                     'type' => "range",
                     'value' => 5,
                     'oninput' => "this.nextElementSibling.value = this.value",
@@ -30,7 +28,7 @@ class TastingSheetType extends AbstractType
                 'attr' => [
                     'min' => 0,
                     'max' => 10,
-                    'class' => 'mt-5 px-5 custom-range',
+                    'class' => 'ms-md-5 custom-range',
                     'type' => "range",
                     'value' => 5,
                     'oninput' => "this.nextElementSibling.value = this.value",
@@ -41,7 +39,7 @@ class TastingSheetType extends AbstractType
                 'attr' => [
                     'min' => 0,
                     'max' => 10,
-                    'class' => 'mt-5 px-5 custom-range',
+                    'class' => 'ms-md-5 custom-range',
                     'type' => "range",
                     'value' => 5,
                     'oninput' => "this.nextElementSibling.value = this.value",
