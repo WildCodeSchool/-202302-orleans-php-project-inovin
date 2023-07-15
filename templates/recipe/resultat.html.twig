@@ -58,7 +58,8 @@
 					</small>
 					<div class="d-flex flex-column gap-2 w-100 mb-4 pb-2">
 						<div class="stats">
-							<h2 class="custom-card-title fs-5 flex-fill">Dosage des cépages</h2>
+							<h2 class="custom-card-title fs-5 text-nowrap">Dosage des cépages</h2>
+							<div class="header-line"></div>
 						</div>
 						{% for formTastingSheet in form.tastingSheet %}
 							{% set tastingSheet = formTastingSheet.vars.value %}
@@ -72,12 +73,24 @@
 								</div>
 							</div>
 						{% endfor %}
+						<div class="d-flex justify-content-end mt-3 align-items-center gap-2">
+							<p class="text-light text-uppercase fs-4 fw-bolder m-0">Total</p>
+							<span class="badge bg-primary fs-3 text-dark-light">
+								{{ resultDosages }}mL
+							</span>
+						</div>
 					</div>
 				</div>
 			</div>
 
+			{# <div class="d-flex justify-content-end border border-secondary py-3 rounded-bottom px-4 px-md-5 shadow-container bg-dark-light">
+							<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-timer">
+								{{ button_label|default('Valider') }}
+								{{ include('/components/svg/_icon_validate.svg.twig') }}
+							</button>
+						</div> #}
 			<div class="d-flex justify-content-end border border-secondary py-3 rounded-bottom px-4 px-md-5 shadow-container bg-dark-light">
-				<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-timer">
+				<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center">
 					{{ button_label|default('Valider') }}
 					{{ include('/components/svg/_icon_validate.svg.twig') }}
 				</button>

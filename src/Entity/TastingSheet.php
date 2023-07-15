@@ -42,6 +42,7 @@ class TastingSheet
     private ?Wine $wine = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\Range(min: 0, max: 250)]
     private ?int $dosage = null;
 
     public function getId(): ?int

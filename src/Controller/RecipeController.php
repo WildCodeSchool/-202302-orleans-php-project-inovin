@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Recipe;
 use App\Entity\TastingSheet;
-use App\Form\TastingSheetType;
 use App\Form\FinalRecipeType;
+use App\Form\TastingSheetType;
 use App\Repository\RecipeRepository;
 use App\Repository\TastingSheetRepository;
+use App\Service\CalculateFinalDosageService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -58,24 +59,38 @@ class RecipeController extends AbstractController
         TastingSheet $tastingSheet,
         TastingSheetRepository $tastingSheetRepo,
         User $user,
+        CalculateFinalDosageService $calculateFinalDosageSrv
     ): Response {
-        $currentUser = $this->getUser();
-        if ($currentUser !== $user) {
-            throw $this->createAccessDeniedException(
-                "Accès refusé. Vous n'êtes pas autorisé à accéder à cette recette."
-            );
-        }
+        // $currentUser = $this->getUser();
+        // if ($currentUser !== $user) {
+        // throw $this->createAccessDeniedException(
+        //         "Accès refusé. Vous n'êtes pas autorisé à accéder à cette recette."
+        //     );
+        // }
+
+        $resultDosages = $calculateFinalDosageSrv->calculate($recipe);
 
         $form = $this->createForm(FinalRecipeType::class, $recipe);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $tastingSheetRepo->save($tastingSheet, true);
+            if ($resultDosages > self::CONTAINER_REF) {
+                $this->addFlash('danger', 'Le dosage ne peut pas être supérieur à 250ml !');
+                return $this->redirectToRoute('result_recipe', ['id' => $recipe->getId()]);
+            } elseif ($resultDosages != self::CONTAINER_REF) {
+                $this->addFlash('danger', 'Le dosage doit être égal à 250ml !');
+                return $this->redirectToRoute('result_recipe', ['id' => $recipe->getId()]);
+            } else {
+                $tastingSheetRepo->save($tastingSheet, true);
+                $this->addFlash('success', 'Votre recette a été enregistrée !');
+                return $this->redirectToRoute('result_recipe', ['id' => $recipe->getId()]);
+            }
         }
 
         return $this->render('recipe/resultat.html.twig', [
             'recipe' => $recipe,
             'form' => $form,
+            'resultDosages' => $resultDosages,
         ]);
     }
 }
