@@ -59,7 +59,7 @@ class RecipeController extends AbstractController
         TastingSheet $tastingSheet,
         TastingSheetRepository $tastingSheetRepo,
         User $user,
-        CalculateFinalDosageService $calculateFinalDosageSrv
+        CalculateFinalDosageService $calcFinalDosageSrv
     ): Response {
         // $currentUser = $this->getUser();
         // if ($currentUser !== $user) {
@@ -68,7 +68,7 @@ class RecipeController extends AbstractController
         //     );
         // }
 
-        $resultDosages = $calculateFinalDosageSrv->calculate($recipe);
+        $resultDosages = $calcFinalDosageSrv->calculate($recipe);
 
         $form = $this->createForm(FinalRecipeType::class, $recipe);
         $form->handleRequest($request);
