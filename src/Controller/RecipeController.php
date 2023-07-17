@@ -52,6 +52,21 @@ class RecipeController extends AbstractController
     }
 
     #[IsGranted('ROLE_USER')]
+    #[Route('/recette/user/favorites', name: 'favorites_recipe_user')]
+    public function favoritesRecipeUser(): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+        $recipes = $user->getFavoritesRecipes();
+
+        return $this->render('recipe/favoritesRecipes.html.twig', [
+            'recipes' => $recipes,
+            'containerReference' => self::CONTAINER_REF
+        ]);
+    }
+
+
+    #[IsGranted('ROLE_USER')]
     #[Route('/recette/{id}/resultat', name: 'result_recipe')]
     public function editRecipe(
         Request $request,
