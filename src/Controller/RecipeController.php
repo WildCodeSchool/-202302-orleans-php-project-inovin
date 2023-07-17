@@ -74,10 +74,7 @@ class RecipeController extends AbstractController
         $resultDosages = $calcFinalDosageSrv->calculate($recipe);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($resultDosages > self::CONTAINER_REF) {
-                $this->addFlash('danger', 'Le dosage ne peut pas être supérieur à 250ml !');
-                return $this->redirectToRoute('result_recipe', ['id' => $recipe->getId()]);
-            } elseif ($resultDosages != self::CONTAINER_REF) {
+            if ($resultDosages != self::CONTAINER_REF) {
                 $this->addFlash('danger', 'Le dosage doit être égal à 250ml !');
                 return $this->redirectToRoute('result_recipe', ['id' => $recipe->getId()]);
             } else {
