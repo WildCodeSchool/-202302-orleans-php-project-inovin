@@ -61,17 +61,17 @@ class RecipeController extends AbstractController
         User $user,
         CalculateFinalDosageService $calcFinalDosageSrv
     ): Response {
-        // $currentUser = $this->getUser();
-        // if ($currentUser !== $user) {
-        // throw $this->createAccessDeniedException(
-        //         "Accès refusé. Vous n'êtes pas autorisé à accéder à cette recette."
-        //     );
-        // }
-
-        $resultDosages = $calcFinalDosageSrv->calculate($recipe);
+        $currentUser = $this->getUser();
+        if ($currentUser !== $user) {
+            throw $this->createAccessDeniedException(
+                "Accès refusé. Vous n'êtes pas autorisé à accéder à cette recette."
+            );
+        }
 
         $form = $this->createForm(FinalRecipeType::class, $recipe);
         $form->handleRequest($request);
+
+        $resultDosages = $calcFinalDosageSrv->calculate($recipe);
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($resultDosages > self::CONTAINER_REF) {
