@@ -1,25 +1,14 @@
-# Project 3 - Starter Kit - Symfony
+# Project INOVIN
 
 ## Presentation
 
-This starter kit is here to easily start a repository for Wild Code School students.
+The web site, allow visitor to create an account which give us access to opened sessions (created before by the winemaker) of wine degustation of four single varietal.
+When the user is registered to a session, he can give his preferences on each wine. This preferences are given by a note for the taste, the smell and the visual appearance of the wine. After, his notes will générate a personnel recipe based on the preferences given by the user. The user can modify this recipe to adjust it finely with the winemaker and leave the session with a bottle composed of three single varietal wine based on the dosages of his recipe.
+You can add some recipe as your favorite recipe and you can also order by email wine or recipe.
 
-It's symfony website-skeleton project with some additional library (webpack, fixtures) and tools to validate code standards.
+![session.png](.tours/home.png)
 
-* GrumPHP, as pre-commit hook, will run 2 tools when `git commit` is run :
-
-    * PHP_CodeSniffer to check PSR12
-    * PHPStan focuses on finding errors in your code (without actually running it)
-    * PHPmd will check if you follow PHP best practices
-
-  If tests fail, the commit is canceled and a warning message is displayed to developper.
-
-* Github Action as Continuous Integration will be run when a branch with active pull request is updated on github. It will run :
-
-    * Tasks to check if vendor, .idea, env.local are not versionned,
-    * PHP_CodeSniffer, PHPStan and PHPmd with same configuration as GrumPHP.
-
-## Getting Started for Students
+## Getting Started
 
 ### Prerequisites
 
@@ -32,6 +21,15 @@ It's symfony website-skeleton project with some additional library (webpack, fix
 2. Run `composer install`
 3. Run `yarn install`
 4. Run `yarn encore dev` to build assets
+5. Run `php bin/console doctrine:database:drop --force` to delete database
+6. Run `php bin/console doctrine:database:create` to create database
+7. Run `php bin/console doctrine:migrations:migrate -n` to execute script database
+8. Run `php bin/console doctrine:fixtures:load -n` to load fixtures
+9. Add file `env.local` which must contain both constante `MAILER_DSN` & `MAILER_FROM_ADDRESS` & `DATABASE_URL`
+   exemple :
+   MAILER_DSN=smtp://xxxxxxxxx:xxxxxxxxx@sandbox.smtp.mailtrap.io:2525?encryption=tls&auth_mode=login
+   MAILER_FROM_ADDRESS=inovin@atelierinovin.fr
+   DATABASE_URL="mysql://xxxxx:xxxxxxx@127.0.0.1:3306/inovin?serverVersion=8.0.32&charset=utf8mb4"
 
 ### Working
 
@@ -56,42 +54,39 @@ The `.editorconfig` file in root directory do this for you. You probably need `E
 ### Run locally with Docker
 
 1. Fill DATABASE_URL variable in .env.local file with
-`DATABASE_URL="mysql://root:password@database:3306/<choose_a_db_name>"`
+   `DATABASE_URL="mysql://root:password@database:3306/<choose_a_db_name>"`
 2. Install Docker Desktop an run the command:
+
 ```bash
 docker-compose up -d
 ```
-3. Wait a moment and visit http://localhost:8000
 
+3. Wait a moment and visit http://localhost:8000
 
 ## Deployment
 
 Some files are used to manage automatic deployments (using tools as Caprover, Docker and Github Action). Please do not modify them.
 
-* [Dockerfile](/Dockerfile) Web app configuration for Docker container
-* [docker-entry.sh](/docker-entry.sh) shell instruction to execute when docker image is built
-* [nginx.conf](/ginx.conf) Nginx server configuration
-* [php.ini](/php.ini) Php configuration
-
+-   [Dockerfile](/Dockerfile) Web app configuration for Docker container
+-   [docker-entry.sh](/docker-entry.sh) shell instruction to execute when docker image is built
+-   [nginx.conf](/ginx.conf) Nginx server configuration
+-   [php.ini](/php.ini) Php configuration
 
 ## Built With
 
-* [Symfony](https://github.com/symfony/symfony)
-* [GrumPHP](https://github.com/phpro/grumphp)
-* [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
-* [PHPStan](https://github.com/phpstan/phpstan)
-* [PHPMD](http://phpmd.org)
-* [ESLint](https://eslint.org/)
-* [Sass-Lint](https://github.com/sasstools/sass-lint)
-
-
+-   [Symfony](https://github.com/symfony/symfony)
+-   [GrumPHP](https://github.com/phpro/grumphp)
+-   [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
+-   [PHPStan](https://github.com/phpstan/phpstan)
+-   [PHPMD](http://phpmd.org)
+-   [ESLint](https://eslint.org/)
+-   [Sass-Lint](https://github.com/sasstools/sass-lint)
 
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
-
 
 ## Authors
 
@@ -122,4 +117,3 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## Acknowledgments
-
