@@ -25,19 +25,25 @@ class UserQuizController extends AbstractController
 
         $userPreference = $user->getUserPreference() ?? (new UserPreference())->setUser($user);
 
-        $form = $this->createForm(QuizIntroductionType::class, $userPreference);
-        $form->handleRequest($request);
+        if ($user->isQuizAnswered() === false) {
+            $form = $this->createForm(QuizIntroductionType::class, $userPreference);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userPrefRepo->save($userPreference, true);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $user->setQuizAnswered(true);
+                $userPrefRepo->save($userPreference, true);
 
-            return $this->redirectToRoute('app_user_quiz_recap', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_user_quiz_recap', [], Response::HTTP_SEE_OTHER);
+            }
+
+            return $this->render('user_quiz/knowledge.html.twig', [
+                'user' => $user,
+                'form' => $form,
+            ]);
+        } else {
+            $this->addFlash('danger', 'Vous avez déja répondu au quiz lors de votre inscription.');
+            return $this->redirectToRoute('home_index', [], Response::HTTP_SEE_OTHER);
         }
-
-        return $this->render('user_quiz/knowledge.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
     }
 
     #[IsGranted('ROLE_USER')]

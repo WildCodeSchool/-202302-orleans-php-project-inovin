@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Wine;
 use App\Entity\WineTaste;
+use App\Entity\WineRegion;
 use App\Entity\GrapeVariety;
 use App\Repository\WineTasteRepository;
 use Symfony\Component\Form\AbstractType;
@@ -32,7 +33,6 @@ class WineType extends AbstractType
                     ],
                 ]
             )
-
             ->add(
                 'year',
                 IntegerType::class,
@@ -53,7 +53,6 @@ class WineType extends AbstractType
                     ]
                 ]
             )
-
             ->add(
                 'alcoholPercent',
                 NumberType::class,
@@ -65,7 +64,6 @@ class WineType extends AbstractType
                     ]
                 ]
             )
-
             ->add(
                 'price',
                 numberType::class,
@@ -77,11 +75,11 @@ class WineType extends AbstractType
                     ]
                 ]
             )
-
             ->add(
                 'grapeVariety',
                 EntityType::class,
                 [
+                    'label' => 'Cépage',
                     'class' => GrapeVariety::class,
                     'query_builder' => function (GrapeVarietyRepository $er) {
                         return $er->createQueryBuilder('g')
@@ -91,16 +89,24 @@ class WineType extends AbstractType
                     'by_reference' => true,
                 ]
             )
-
             ->add(
                 'wineTaste',
                 EntityType::class,
                 [
+                    'label' => 'Type de vin',
                     'class' => WineTaste::class,
                     'choice_label' => 'tasteName',
                 ]
             )
-
+            ->add(
+                'wineRegion',
+                EntityType::class,
+                [
+                    'label' => 'Région d\'origine',
+                    'class' => WineRegion::class,
+                    'choice_label' => 'regionName',
+                ]
+            )
             ->add('wineFile', VichFileType::class, [
 
                 'required'      => false,

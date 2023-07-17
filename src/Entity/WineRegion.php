@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\WineTasteRepository;
+use App\Repository\WineRegionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: WineTasteRepository::class)]
-class WineTaste
+#[ORM\Entity(repositoryClass: WineRegionRepository::class)]
+class WineRegion
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,9 +16,9 @@ class WineTaste
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $tasteName = null;
+    private ?string $regionName = null;
 
-    #[ORM\OneToMany(mappedBy: 'wineTaste', targetEntity: Wine::class)]
+    #[ORM\OneToMany(mappedBy: 'wineRegion', targetEntity: Wine::class)]
     private Collection $wines;
 
     public function __construct()
@@ -31,14 +31,14 @@ class WineTaste
         return $this->id;
     }
 
-    public function getTasteName(): ?string
+    public function getRegionName(): ?string
     {
-        return $this->tasteName;
+        return $this->regionName;
     }
 
-    public function setTasteName(string $tasteName): static
+    public function setRegionName(string $regionName): static
     {
-        $this->tasteName = $tasteName;
+        $this->regionName = $regionName;
 
         return $this;
     }
@@ -55,7 +55,7 @@ class WineTaste
     {
         if (!$this->wines->contains($wine)) {
             $this->wines->add($wine);
-            $wine->setWineTaste($this);
+            $wine->setWineRegion($this);
         }
 
         return $this;
@@ -65,8 +65,8 @@ class WineTaste
     {
         if ($this->wines->removeElement($wine)) {
             // set the owning side to null (unless already changed)
-            if ($wine->getWineTaste() === $this) {
-                $wine->setWineTaste(null);
+            if ($wine->getWineRegion() === $this) {
+                $wine->setWineRegion(null);
             }
         }
 

@@ -91,6 +91,9 @@ class User implements
     #[ORM\Column]
     private ?bool $enabled = null;
 
+    #[ORM\Column]
+    private ?bool $quizAnswered = false;
+
     public function __construct(?bool $enabled = true)
     {
         $this->enabled = $enabled;
@@ -361,6 +364,18 @@ class User implements
     public function setEnabled(bool $enabled): static
     {
         $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    public function isQuizAnswered(): ?bool
+    {
+        return $this->quizAnswered;
+    }
+
+    public function setQuizAnswered(bool $quizAnswered): static
+    {
+        $this->quizAnswered = $quizAnswered;
 
         return $this;
     }

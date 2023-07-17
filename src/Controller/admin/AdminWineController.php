@@ -35,7 +35,7 @@ class AdminWineController extends AbstractController
                 'success',
                 'Le Vin a été ajouté'
             );
-            return $this->redirectToRoute('app_admin_Wine_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin_wine_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/wine/new.html.twig', [
