@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Wine;
 use App\Entity\WineTaste;
+use App\Entity\WineRegion;
 use App\Entity\GrapeVariety;
 use App\Repository\WineTasteRepository;
 use Symfony\Component\Form\AbstractType;
@@ -98,6 +99,15 @@ class WineType extends AbstractType
                 [
                     'class' => WineTaste::class,
                     'choice_label' => 'tasteName',
+                ]
+            )
+
+            ->add(
+                'wineRegion',
+                EntityType::class,
+                [
+                    'class' => WineRegion::class,
+                    'choice_label' => 'regionName',
                 ]
             )
 
