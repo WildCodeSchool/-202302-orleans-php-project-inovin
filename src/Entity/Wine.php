@@ -84,6 +84,12 @@ class Wine
     #[ORM\OneToMany(mappedBy: 'wine', targetEntity: TastingSheet::class)]
     private Collection $tastingSheets;
 
+    #[ORM\ManyToOne(inversedBy: 'wines')]
+    private ?WineRegion $wineRegion = null;
+
+    #[ORM\ManyToOne(inversedBy: 'wines')]
+    private ?WineTaste $wineTaste = null;
+
     public function __construct(?bool $enabled = true)
     {
         $this->enabled = $enabled;
@@ -342,5 +348,29 @@ class Wine
     public function getLikedUsers(): Collection
     {
         return $this->likedUsers;
+    }
+
+    public function getWineRegion(): ?WineRegion
+    {
+        return $this->wineRegion;
+    }
+
+    public function setWineRegion(?WineRegion $wineRegion): static
+    {
+        $this->wineRegion = $wineRegion;
+
+        return $this;
+    }
+
+    public function getWineTaste(): ?WineTaste
+    {
+        return $this->wineTaste;
+    }
+
+    public function setWineTaste(?WineTaste $wineTaste): static
+    {
+        $this->wineTaste = $wineTaste;
+
+        return $this;
     }
 }
