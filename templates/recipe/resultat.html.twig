@@ -10,14 +10,6 @@
 	{{ encore_entry_link_tags('recipe') }}
 {% endblock %}
 
-{% block javascripts %}
-	{{ parent() }}
-	{{ encore_entry_script_tags('recipeTimer') }}
-	<script>
-		window.redirectUrl = "{{ path('recipe_user') }}";
-	</script>
-{% endblock %}
-
 {% block body %}
 	<main class="container-fluid container-md py-5 mb-5">
 		{{ form_start(form)}}
