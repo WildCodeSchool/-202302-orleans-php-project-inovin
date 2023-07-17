@@ -57,10 +57,9 @@ class RecipeController extends AbstractController
         Recipe $recipe,
         TastingSheet $tastingSheet,
         TastingSheetRepository $tastingSheetRepo,
-        User $user,
     ): Response {
         $currentUser = $this->getUser();
-        if ($currentUser !== $user) {
+        if ($currentUser !== $recipe->getUser()) {
             throw $this->createAccessDeniedException(
                 "Accès refusé. Vous n'êtes pas autorisé à accéder à cette recette."
             );
