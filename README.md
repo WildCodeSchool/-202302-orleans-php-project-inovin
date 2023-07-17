@@ -90,7 +90,11 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Authors
 
-Wild Code School trainers team
+-   Noémie Barré
+-   Amaury Becker
+-   Melvin Rossignoles
+-   Mike Xiong
+-   Benjamin Saussaye
 
 ## License
 
