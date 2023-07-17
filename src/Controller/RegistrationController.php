@@ -61,7 +61,7 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // Faites tout ce dont vous avez besoin ici, comme envoyer un e-mail
-            return $this->redirectToRoute('home_index');
+            return $this->redirectToRoute('app_register_confirmation');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -92,7 +92,7 @@ class RegistrationController extends AbstractController
         return $this->redirectToRoute('home_index');
     }
 
-    #[Route('/inscription/confirmation', name: 'app_register', methods: ['GET', 'POST'])]
+    #[Route('/inscription/confirmation', name: 'app_register_confirmation', methods: ['GET', 'POST'])]
     public function confirmationRegistration(): Response
     {
         return $this->render('registration/confirmation_registration.html.twig', []);
