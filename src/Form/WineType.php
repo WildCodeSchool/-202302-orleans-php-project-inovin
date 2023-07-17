@@ -92,6 +92,7 @@ class WineType extends AbstractType
                 'wineTaste',
                 EntityType::class,
                 [
+                    'mapped' => false,
                     'class' => WineTaste::class,
                     'choice_label' => 'tasteName',
                 ]
@@ -100,6 +101,7 @@ class WineType extends AbstractType
                 'wineRegion',
                 EntityType::class,
                 [
+                    'mapped' => false,
                     'class' => WineRegion::class,
                     'choice_label' => 'regionName',
                 ]
