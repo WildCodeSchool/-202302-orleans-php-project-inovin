@@ -7,7 +7,7 @@ use App\Entity\TastingSheet;
 
 class CalculateWineDosageService
 {
-    public const DOSAGES = [150, 50, 25, 0];
+    public const DOSAGES = [150, 75, 25, 0];
 
     /**
      * en entrée : l'objet recette

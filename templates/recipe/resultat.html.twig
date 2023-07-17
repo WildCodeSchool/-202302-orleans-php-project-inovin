@@ -10,14 +10,6 @@
 	{{ encore_entry_link_tags('recipe') }}
 {% endblock %}
 
-{% block javascripts %}
-	{{ parent() }}
-	{{ encore_entry_script_tags('recipeTimer') }}
-	<script>
-		window.redirectUrl = "{{ path('recipe_user') }}";
-	</script>
-{% endblock %}
-
 {% block body %}
 	<main class="container-fluid container-md py-5 mb-5">
 		{{ form_start(form)}}
@@ -40,7 +32,7 @@
 			<div class="col custom-card shadow-container d-flex flex-column flex-md-row px-3 border border-secondary d-flex align-items-center pt-3 bg-card m-0">
 				<div class="wine-ticket ms-4 px-2">
 					<div class="wine-name">
-						<p class="custom-name">jean françois de lune et du soleil</p>
+						<p class="custom-name">{{ recipe.name }}</p>
 					</div>
 					{% include "components/svg/_icon_wine_ticket.svg.twig" %}
 				</div>
@@ -48,16 +40,40 @@
 					<div class="mt-4 mb-2">
 						<p class="text-center text-uppercase">Tu as créés ta propre bouteille de vin !</p>
 					</div>
-					<small class="d-flex align-items-start letter-spacing text-start w-100 mb-4">
-						<div class="custom-position me-2">
-							{% include "components/svg/_icon_info.svg.twig" %}
+
+					<div class="w-100 mb-5">
+						<div class="stats">
+							<h2 class="custom-card-title fs-5 text-nowrap">Nom de la recette</h2>
+							<div class="header-line"></div>
 						</div>
-						Vous pouvez modifier votre recette générée selon vos notes avant de valider la version finale.
-					</small>
+
+						<small class="d-flex align-items-start letter-spacing text-start w-100 mb-4">
+							<div class="custom-position me-2">
+								{% include "components/svg/_icon_info.svg.twig" %}
+							</div>
+							Vous pouvez ajouter un nom à votre recette.
+						</small>
+
+						<div class="w-100">
+							{{ form_label(form.name)}}
+							{{ form_widget(form.name)}}
+							{{ form_errors(form.name) }}
+						</div>
+					</div>
+
 					<div class="d-flex flex-column gap-2 w-100 mb-4 pb-2">
 						<div class="stats">
-							<h2 class="custom-card-title fs-5 flex-fill">Dosage des cépages</h2>
+							<h2 class="custom-card-title fs-5 text-nowrap">Dosage des cépages</h2>
+							<div class="header-line"></div>
 						</div>
+
+						<small class="d-flex align-items-start letter-spacing text-start w-100 mb-4">
+							<div class="custom-position me-2">
+								{% include "components/svg/_icon_info.svg.twig" %}
+							</div>
+							Vous pouvez modifier votre recette générée selon vos notes avant de valider la version finale.
+						</small>
+
 						{% for formTastingSheet in form.tastingSheet %}
 							{% set tastingSheet = formTastingSheet.vars.value %}
 							<div>
@@ -70,49 +86,25 @@
 								</div>
 							</div>
 						{% endfor %}
-					</div>
-				</div>
-			</div>
-
-			<div class="d-flex justify-content-end border border-secondary py-3 rounded-bottom px-4 px-md-5 shadow-container bg-dark-light">
-				<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-timer">
-					{{ button_label|default('Valider') }}
-					{{ include('/components/svg/_icon_validate.svg.twig') }}
-				</button>
-			</div>
-
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content bg-card border border-secondary custom-shadow">
-
-						<div class="modal-body text-center custom-modal p-4 p-sm-5">
-							<div class="mb-4">
-								<p class="m-0 pt-5 pb-4">Votre recette à été sauvegardé !</p>
-								<small class="letter-spacing pb-4">
-									<span class="custom-position d-inline-block me-1">
-										{% include "components/svg/_icon_info.svg.twig" %}
-									</span>
-									Vous pouvez consulter et
-									<span class="text-primary">
-										{{ include('/components/svg/_icon_cart_check_fill.svg.twig') }}
-									</span>
-									<span class="text-primary">
-										commander
-									</span>
-									votre recette dans votre espace
-									<a href="#" class="text-primary fw-bolder text-decoration-none">Mes Recettes</a>.
-								</small>
-							</div>
-							<p class="m-0 pt-3 pb-3 border border-start-0 border-end-0 border-bottom-0 border-secondary">Vous allez être redigirer automatiquement vers vos Recettes dans
-								<span id="timer" class="text-primary">10</span>
-								secondes</p>
-							<div class="spinner-border" role=" status" data-loading="action(sendOrderByMail)|show">
-								<span class="visually-hidden">Loading...</span>
-							</div>
+						<div class="d-flex justify-content-end mt-3 align-items-center gap-2">
+							<p class="text-light text-uppercase fs-4 fw-bolder m-0">Total</p>
+							<span class="badge bg-primary fs-3 text-dark-light">
+								{{ resultDosages }}mL
+							</span>
 						</div>
 					</div>
 				</div>
+			</div>
+
+			<div class="d-flex flex-column justify-content-between flex-sm-row gap-4 border border-secondary py-3 rounded-bottom px-4 px-md-5 shadow-container bg-dark-light">
+				<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase d-flex justify-content-center order-sm-2">
+					{{ button_label|default('Valider') }}
+					{{ include('/components/svg/_icon_validate.svg.twig') }}
+				</button>
+				<a class="btn btn-sm custom-btn-width fw-bolder icon-link icon-link-hover-left icon-light text-uppercase order-sm-1" href="{{ path('recipe_show', { 'id' : recipe.id }) }}">
+					{% include "components/svg/_icon_backlink.svg.twig" %}
+					Voir ma recette
+				</a>
 			</div>
 		</div>
 		{{ form_end(form)}}
