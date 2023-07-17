@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-	<main class="container d-flex flex-column justify-content-center align-items-center">
+	<main class="container d-flex flex-column justify-content-center align-items-center mt-4">
 		{% if error %}
 			<div class="my-3 bg-danger p-3 rounded">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 		{% endif %}
