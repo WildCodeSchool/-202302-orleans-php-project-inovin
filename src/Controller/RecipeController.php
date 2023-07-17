@@ -79,7 +79,7 @@ class RecipeController extends AbstractController
                 return $this->redirectToRoute('result_recipe', ['id' => $recipe->getId()]);
             } else {
                 $tastingSheetRepo->save($tastingSheet, true);
-                $this->addFlash('success', 'Les informations de votre recette ont étés enregistrée !');
+                $this->addFlash('success', 'Les informations de votre recette ont été enregistrées !');
                 return $this->redirectToRoute('result_recipe', ['id' => $recipe->getId()]);
             }
         }
