@@ -16,7 +16,7 @@ class TastingSheetFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-        $dosages = [0, 25, 50, 150];
+        $dosages = [0, 25, 75, 150];
 
         for ($i = 0; $i <= self::TASTING_SHEET_COUNT; $i++) {
             $tastingSheet = new TastingSheet();
@@ -26,7 +26,7 @@ class TastingSheetFixtures extends Fixture implements DependentFixtureInterface
             $key = array_Keys($dosages, $dosage)[0];
             unset($dosages[$key]);
             if (empty($dosages)) {
-                $dosages = [0, 25, 50, 150];
+                $dosages = [0, 25, 75, 150];
             }
             $tastingSheet->setTaste($faker->numberBetween(0, 10));
             $tastingSheet->setSmell($faker->numberBetween(0, 10));

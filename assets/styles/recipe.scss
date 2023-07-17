@@ -72,17 +72,12 @@ main {
 
 .stats {
     display: flex;
+    gap: 0.5rem;
 
-    > h2 {
-        width: 230px;
-    }
-
-    &::after {
-        content: "";
+    & .header-line {
         height: 1px;
         width: 100%;
         background: $secondary;
-        display: inline;
         align-self: flex-end;
         transform: translateY(-20px);
     }

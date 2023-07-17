@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Recipe;
 use App\Entity\TastingSheet;
-use App\Form\TastingSheetType;
 use App\Form\FinalRecipeType;
+use App\Form\TastingSheetType;
 use App\Repository\RecipeRepository;
 use App\Repository\TastingSheetRepository;
+use App\Service\CalculateFinalDosageService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -57,10 +58,10 @@ class RecipeController extends AbstractController
         Recipe $recipe,
         TastingSheet $tastingSheet,
         TastingSheetRepository $tastingSheetRepo,
-        User $user,
+        CalculateFinalDosageService $calcFinalDosageSrv
     ): Response {
         $currentUser = $this->getUser();
-        if ($currentUser !== $user) {
+        if ($currentUser !== $recipe->getUser()) {
             throw $this->createAccessDeniedException(
                 "Accès refusé. Vous n'êtes pas autorisé à accéder à cette recette."
             );
@@ -69,13 +70,23 @@ class RecipeController extends AbstractController
         $form = $this->createForm(FinalRecipeType::class, $recipe);
         $form->handleRequest($request);
 
+        $resultDosages = $calcFinalDosageSrv->calculate($recipe);
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $tastingSheetRepo->save($tastingSheet, true);
+            if ($resultDosages != self::CONTAINER_REF) {
+                $this->addFlash('danger', 'Le dosage doit être égal à 250ml !');
+                return $this->redirectToRoute('result_recipe', ['id' => $recipe->getId()]);
+            } else {
+                $tastingSheetRepo->save($tastingSheet, true);
+                $this->addFlash('success', 'Les informations de votre recette ont été enregistrées !');
+                return $this->redirectToRoute('result_recipe', ['id' => $recipe->getId()]);
+            }
         }
 
         return $this->render('recipe/resultat.html.twig', [
             'recipe' => $recipe,
             'form' => $form,
+            'resultDosages' => $resultDosages,
         ]);
     }
 }
