@@ -79,6 +79,7 @@ class WineType extends AbstractType
                 'grapeVariety',
                 EntityType::class,
                 [
+                    'label' => 'Cépage',
                     'class' => GrapeVariety::class,
                     'query_builder' => function (GrapeVarietyRepository $er) {
                         return $er->createQueryBuilder('g')
@@ -92,7 +93,7 @@ class WineType extends AbstractType
                 'wineTaste',
                 EntityType::class,
                 [
-                    'mapped' => false,
+                    'label' => 'Type de vin',
                     'class' => WineTaste::class,
                     'choice_label' => 'tasteName',
                 ]
@@ -101,7 +102,7 @@ class WineType extends AbstractType
                 'wineRegion',
                 EntityType::class,
                 [
-                    'mapped' => false,
+                    'label' => 'Région d\'origine',
                     'class' => WineRegion::class,
                     'choice_label' => 'regionName',
                 ]
