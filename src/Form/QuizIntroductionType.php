@@ -3,7 +3,10 @@
 namespace App\Form;
 
 use App\Entity\WineTaste;
+use App\Entity\WineRegion;
 use App\Entity\UserPreference;
+use App\DataFixtures\WineTasteFixtures;
+use App\DataFixtures\WineRegionFixtures;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -66,27 +69,15 @@ class QuizIntroductionType extends AbstractType
             )
             ->add(
                 'wineRegion',
-                ChoiceType::class,
+                EntityType::class,
                 [
                     'label' => 'CÔTÉ TERROIR ?',
-                    'choices' => [
-                        'Alsace' => 'Alsace',
-                        'Beaujolais' => 'Beaujolais',
-                        'Bordeaux' => 'Bordeaux',
-                        'Champagne' => 'Champagne',
-                        'Jura' => 'Jura',
-                        'Languedoc-Roussillon' => 'Languedoc-Roussillon',
-                        'Provence' => 'Provence',
-                        'Savoie' => 'Savoie',
-                        'Sud-Ouest' => 'Sud-Ouest',
-                        'Vallée de la Loire' => 'Vallée de la Loire',
-                        'Vallée du Rhône' => 'Vallée du Rhône',
-                    ],
                     'attr' => [
                         'class' => 'my-custom-radio color-primary letter-spacing mb-3',
                     ],
-                    'multiple' => false,
+                    'class' => WineRegion::class,
                     'expanded' => true,
+                    'choice_label' => 'regionName',
                 ]
             );
     }
