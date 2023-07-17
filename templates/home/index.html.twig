@@ -12,7 +12,7 @@
 
 {% block body %}
 	<div class="container-fluid">
-		<header class="row d-flex justify-content-around">
+		<header class="row d-flex justify-content-around py-5">
 			<div class="col-lg-6 d-flex justify-content-center align-items-center">
 				<img class="object-fit-cover img-fluid size-vine" src="{{ asset('build/images/vine.webp') }}" alt="vin">
 			</div>
@@ -23,7 +23,7 @@
 				{% include "components/svg/_frame_surlignage.svg.twig" %}
 				<p class="mt-4 w-75 font-sizepara">
 					Découvrez l'application Innovin, une plateforme innovante qui vous invite à rejoindre des ateliers de dégustation de vins variés lors de différents événements en France.
-					Avec Innovin, vous pouvez également laisser libre cours à votre créativité en créant votre propre recette de vin, que nous nous ferons un plaisir de fabriquer pour vous.
+																									Avec Innovin, vous pouvez également laisser libre cours à votre créativité en créant votre propre recette de vin, que nous nous ferons un plaisir de fabriquer pour vous.
 				</p>
 
 				<p class="mt-3 w-75 font-sizepara">
@@ -42,10 +42,7 @@
 		<h2 class="text-primary-light fw-light mt-5 letter-spacing">
 			{% include 'components/svg/_icon_decoration.svg.twig' %}DÉCOUVREZ TOUTES LES ÉTAPES
 		</h2>
-
-		<div>
-			{% include "components/svg/_frame_surlignage_main.svg.twig" %}
-		</div>
+		<div class="line-gradient"></div>
 		<ul class="d-flex flex-column align-self-center">
 			<li class="list-group-item d-flex justify-content-between align-items-start mt-5">
 				{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':'1'} %}

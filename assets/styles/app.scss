@@ -163,6 +163,13 @@ body {
     /* Hauteur des lignes */
 }
 
+.line-gradient {
+    height: 1px;
+    width: 100%;
+    background: $line-gradient-color;
+    margin-top: 1rem;
+}
+
 .ornement {
     border-radius: 0 8px 0 8px;
 }
