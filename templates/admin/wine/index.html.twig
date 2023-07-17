@@ -25,8 +25,9 @@
 			<thead class="sticky-top">
 				<tr class="py-4">
 					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Nom</th>
-					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">CépageE</th>
+					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Cépage</th>
 					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Origine</th>
+                    <th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Type</th>
 					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Année</th>
 					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Prix</th>
 					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Actif</th>
@@ -38,7 +39,8 @@
 					<tr>
 						<td class="px-4 align-middle">{{ wine.name }}</td>
 						<td class="px-4 align-middle">{{ wine.grapeVariety.name }}</td>
-						<td class="px-4 align-middle">{{ wine.origin }}</td>
+						<td class="px-4 align-middle">{{ wine.wineRegion.regionName }}</td>
+                        <td class="px-4 align-middle">{{ wine.wineTaste.tasteName }}</td>
 						<td class="px-4 align-middle">{{ wine.year }}</td>
 						<td class="px-4 align-middle">{{ wine.price }}</td>
 						<td class="px-4 align-middle">

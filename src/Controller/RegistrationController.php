@@ -61,7 +61,6 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // Faites tout ce dont vous avez besoin ici, comme envoyer un e-mail
-
             return $this->redirectToRoute('app_user_quiz_quiz');
         }
 

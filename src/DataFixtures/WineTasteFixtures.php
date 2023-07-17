@@ -12,10 +12,10 @@ class WineTasteFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         foreach (self::WINE_TASTES as $key => $value) {
-            $wineTate = new WineTaste();
-            $wineTate->setTasteName($value);
-            $manager->persist($wineTate);
-            $this->addReference('winetaste_' . $key, $wineTate);
+            $wineTaste = new WineTaste();
+            $wineTaste->setTasteName($value);
+            $manager->persist($wineTaste);
+            $this->addReference('wineTaste_' . $key, $wineTaste);
         }
         $manager->flush();
     }
