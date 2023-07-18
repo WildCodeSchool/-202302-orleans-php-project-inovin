@@ -321,6 +321,12 @@ input[type="file"]::file-selector-button {
     color: $dark;
 }
 
+.heart-position {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+}
+
 @media screen and (max-width: 767px) {
     .custom-border {
         border-bottom: 1px solid transparent;
