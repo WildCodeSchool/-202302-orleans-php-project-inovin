@@ -1,8 +1,12 @@
 {% for session in firstOpenedSession %}
-	<h2 class="text-primary-light fw-light mt-5 letter-spacing text-uppercase">
-		{% include 'components/svg/_icon_decoration.svg.twig' %}Prochaine séance
-	</h2>
-
+	<div class="d-flex align-items-end">
+		<span class="decoration-title">
+			{% include 'components/svg/_icon_decoration.svg.twig' %}
+		</span>
+		<h2 class="text-primary-light fw-light mt-5 letter-spacing m-0 text-uppercase">
+			Séance ouverte
+		</h2>
+	</div>
 	<div class="line-gradient"></div>
 
 	<div class="row p-2 mt-5">
