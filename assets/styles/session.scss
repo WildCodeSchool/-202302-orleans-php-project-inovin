@@ -27,6 +27,12 @@
     overflow: auto;
 }
 
+.badge-position {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
 .img-session-wine {
     outline-offset: 16px;
     outline: 1px solid $secondary;
@@ -51,6 +57,10 @@
     font-size: 0.75rem;
 }
 
+.custom-size-session-name {
+    max-width: 70%;
+}
+
 .custom-size {
     font-size: 1rem;
 }
@@ -66,7 +76,7 @@
     height: 1px;
     width: 100%;
     background-color: $secondary;
-    top: 100px;
+    top: 125px;
     left: 0;
 }
 
@@ -89,6 +99,11 @@
 
 .custom-size-card {
     font-size: 12px;
+}
+
+.custom-size-mini-card {
+    min-height: 75px;
+    max-height: 75px;
 }
 
 .carousel-control-prev {

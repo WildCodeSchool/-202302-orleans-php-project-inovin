@@ -1,82 +1,75 @@
-{% for session in firstOpenedSession %}
-	<div class="d-flex align-items-end">
-		<span class="decoration-title">
-			{% include 'components/svg/_icon_decoration.svg.twig' %}
-		</span>
-		<h2 class="text-primary-light fw-light mt-5 letter-spacing m-0 text-uppercase">
-			Séance ouverte
-		</h2>
-	</div>
-	<div class="line-gradient"></div>
+<div class="d-flex align-items-end">
+	<span class="decoration-title">
+		{% include 'components/svg/_icon_decoration.svg.twig' %}
+	</span>
+	<h2 class="text-primary-light fw-light mt-5 letter-spacing m-0 text-uppercase">
+		Séance ouverte
+	</h2>
+</div>
+<div class="line-gradient"></div>
 
-	<div class="row p-2 mt-5">
-		<div class="m-auto border border-secondary rounded-3 bg-card">
 
-			<div class="row mb-2">
-				<div class="d-flex justify-content-between align-items-center border-secondary border-bottom px-3 px-sm-4 py-3">
-					<div class="d-flex gap-3 text-primary-light fs-4">
-						<p class="mb-0 d-flex align-items-center gap-2 badge bg-primary text-dark p-2 custom-size">
-							{% include "components/svg/_icon_date.svg.twig" %}
-							{{ session.openingDate|date("d/m/Y", "Europe/Paris", "fr") }}
-						</p>
-						<p class="mb-0 d-flex align-items-center gap-2 badge bg-primary text-dark p-2 custom-size">
-							{% include "components/svg/_icon_clock.svg.twig" %}
-							{{ session.openingDate|date("H", "Europe/Paris") ~ 'H' ~ ' - ' ~  session.openingDate|date_modify('+ 3 hours')|date("H", "Europe/Paris") ~ 'H' }}
-						</p>
-					</div>
+<div class="row p-2 mt-5">
+	{% if firstOpenedSession is empty %}
+		<p>Aucune séance ouverte.</p>
+	{% else %}
+		{% for session in firstOpenedSession %}
+			<div class="m-auto border border-secondary rounded-3 bg-card position-relative">
+				<div class="badge rounded-pill px-3 fw-bold text-end text-dark badge-position {{ session.closed ? 'bg-danger' : 'bg-success-light' }}">
+					{{ session.closed ? 'FERMÉE' : 'OUVERTE' }}
 				</div>
-			</div>
-
-			<div class="row">
-				<div class="px-3 px-sm-4">
-					<a class="nav-link text-primary-light mb-2 fs-5 letter-spacing" data-bs-toggle="collapse" href="#collapseDescription" role="button" aria-expanded="false" aria-controls="collapseDescription">
-						Voir la description
-						<span class="text-primary-light custom-transform">{% include "components/svg/_icon_eye.svg.twig" %}</span>
-					</a>
-					<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"></div>
-					<div class="collapse rounded-2" id="collapseDescription">
-						<div class="card card-body border border-secondary bg-transparent p-5 mx-5 my-2 mb-4 letter-spacing fw-lighter">
-							{{ session.description }}
+				<div class="row mb-2">
+					<div class="d-flex flex-column justify-content-between border-secondary border-bottom px-3 px-sm-4 py-3">
+						<p class="letter-spacing text-uppercase fs-4 mb-4 text-primary-light custom-size-session-name">{{ session.name }}</p>
+						<div class="d-flex flex-wrap gap-3 text-primary-light fs-4">
+							<p class="mb-0 d-flex align-items-center gap-2 badge bg-primary text-dark p-2 custom-size">
+								{% include "components/svg/_icon_date.svg.twig" %}
+								{{ session.openingDate|date("d/m/Y", "Europe/Paris", "fr") }}
+							</p>
+							<p class="mb-0 d-flex align-items-center gap-2 badge bg-primary text-dark p-2 custom-size">
+								{% include "components/svg/_icon_clock.svg.twig" %}
+								{{ session.openingDate|date("H", "Europe/Paris") ~ 'H' ~ ' - ' ~  session.openingDate|date_modify('+ 3 hours')|date("H", "Europe/Paris") ~ 'H' }}
+							</p>
+							<p class="mb-0 d-flex align-items-center gap-2 badge bg-primary text-dark p-2 custom-size text-wrap text-start lh-sm">
+								{% include "components/svg/_icon_location.svg.twig" %}
+								{{ session.location }}
+							</p>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="row d-flex flex-row mx-sm-2 g-2 mb-5">
-				<div class="col-sm-9">
-					<div class="bg-primary text-center text-dark letter-spacing me-auto custom-text-size fw-bolder mb-2 mb-sm-0">
-						LIEU
-					</div>
-					<div class="text-start text-light letter-spacing me-auto mt-1 fw-lighter">{{ session.location }}</div>
-				</div>
-				<div class="col-sm">
-					<div class="bg-primary text-center text-dark letter-spacing ms-auto custom-text-size fw-bolder">
-						STATUS
-					</div>
-					<div class='d-flex justify-content-center align-items-center mt-1'>
-						<div class="badge rounded-pill px-3 fw-bold text-end text-dark {{ session.closed ? 'bg-danger' : 'bg-success-light' }}">
-							{{ session.closed ? 'FERMÉE' : 'OUVERTE' }}
+				<div class="row">
+					<div class="px-3 px-sm-4">
+						<a class="nav-link text-primary-light mb-4 fs-5 letter-spacing" data-bs-toggle="collapse" href="#collapseDescription" role="button" aria-expanded="false" aria-controls="collapseDescription">
+							Voir la description
+							<span class="text-primary-light custom-transform">{% include "components/svg/_icon_eye.svg.twig" %}</span>
+						</a>
+						<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"></div>
+						<div class="collapse rounded-2" id="collapseDescription">
+							<div class="card card-body border border-secondary bg-transparent p-5 mx-5 my-2 mb-4 letter-spacing fw-lighter">
+								{{ session.description|nl2br }}
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="row row-cols-lg-2 row-cols-1 g-2">
-				{% for wine in session.wines %}
-					<div class="m-sm-0 p-sm-0 mb-4">
-						{% include '/components/session/_card_session_grape_variety.html.twig' with { 'wine': wine } %}
+				<div class="row row-cols-lg-2 row-cols-1 g-2">
+					{% for wine in session.wines %}
+						<div class="m-sm-0 p-sm-0 mb-4">
+							{% include '/components/session/_card_session_grape_variety.html.twig' with { 'wine': wine } %}
+						</div>
+					{% endfor %}
+				</div>
+
+				<div class="row mt-4">
+					<div class="d-flex justify-content-end align-items-center me-3 me-sm-4 me-md-3 px-4">
+						<a role="button" href="{{ path( 'app_session_start_new', {'session': session.id }) }}" class="btn bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover icon-dark text-uppercase">
+							PARTICIPER
+							{{ include('/components/svg/_icon_validate.svg.twig') }}
+						</a>
 					</div>
-				{% endfor %}
-			</div>
-
-			<div class="row mt-4">
-				<div class="d-flex justify-content-end align-items-center me-3 me-sm-4 me-md-3 px-4">
-					<a role="button" href="{{ path( 'app_session_start_new', {'session': session.id }) }}" class="btn bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover icon-dark text-uppercase">
-						PARTICIPER
-						{{ include('/components/svg/_icon_validate.svg.twig') }}
-					</a>
 				</div>
 			</div>
-		</div>
-	</div>
-{% endfor %}
+		{% endfor %}
+	{% endif %}
+</div>

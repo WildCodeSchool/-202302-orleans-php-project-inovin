@@ -11,11 +11,11 @@
 				<h5 class="card-title text-capitalize text-primary-light ps-2">{{ wine.name|u.truncate(22, '...') }}</h5>
 				<div class="separator-line"></div>
 				<p class="card-text letter-spacing my-2 fw-lighter">
-					{{ wine.origin ~ ', '~ wine.year }}
+					{{ wine.wineRegion.regionName ~ ', '~ wine.year }}
 				</p>
 
-				<div class="row d-flex flex-row">
-					<div class="col-8 pe-1">
+				<div class="row d-flex flex-column flex-sm-row me-1 me-sm-0">
+					<div class="col col-sm-7 pe-1 pe-sm-0">
 						<div class="bg-primary text-center text-dark letter-spacing ms-auto custom-text-size fw-bolder">
 							CÉPAGE
 						</div>
@@ -23,11 +23,11 @@
 							{{ wine.grapeVariety.name|u.truncate(20, '...') }}
 						</div>
 					</div>
-					<div class="col ps-1">
+					<div class="col pe-1 pe-sm-1">
 						<div class="bg-primary text-center text-dark letter-spacing custom-text-size fw-bolder">
-							O.G
+							COULEUR
 						</div>
-						<div class="text-start text-center text-light letter-spacing mt-2 fs-6 fw-lighter">{{ wine.protectedOrigin }}</div>
+						<div class="text-start text-center text-light letter-spacing mt-2 fs-6 fw-lighter">{{ wine.grapeVariety.color.color }}</div>
 					</div>
 				</div>
 			</div>
