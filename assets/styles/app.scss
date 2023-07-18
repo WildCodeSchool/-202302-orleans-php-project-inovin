@@ -311,11 +311,15 @@ input[type="range"]::-moz-range-thumb {
     box-shadow: $shadow-primary;
 }
 
-input[type=file]::file-selector-button {
+.decoration-title {
+    transform: translate(6px, -6px);
+}
+
+input[type="file"]::file-selector-button {
     border: white;
     background-color: $primary;
     color: $dark;
-  }
+}
 
 @media screen and (max-width: 767px) {
     .custom-border {
