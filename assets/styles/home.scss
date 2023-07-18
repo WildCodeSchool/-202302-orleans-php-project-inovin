@@ -1,14 +1,20 @@
+@import "_variables";
+
 header {
     background-image: url(../images/background-header.webp);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    height: auto;
+    height: calc(100vh - $navbar-height);
 
     & p.font-sizepara {
         font-size: clamp(1rem, 1vw, 2.5rem);
     }
+}
+
+body {
+    background-color: white;
 }
 
 .pin span {
@@ -16,12 +22,12 @@ header {
 }
 
 .size-inovin {
-    font-size: clamp(30px, 5vw, 60px);
+    font-size: clamp(45px, 5vw, 60px);
     letter-spacing: 10px;
 }
 
 .size-vine {
-    width: clamp(280px, 45vw, 800px);
+    width: clamp(280px, 40vw, 800px);
 }
 
 .pine-circle {
@@ -31,4 +37,10 @@ header {
     justify-content: center;
     align-items: center;
     background-image: url(../images/pine-circle.png);
+}
+
+@media screen and (max-width: 768px) {
+    .custom-header-height {
+        max-height: 196px;
+    }
 }

@@ -18,6 +18,7 @@
 			</h2>
 		</div>
 		<div class="line-gradient"></div>
+
 		<div class="d-flex gap-3 text-primary-light fs-4 mt-4">
 			<p class="mb-1 d-flex align-items-center gap-2 badge bg-primary text-dark p-2">
 				{% include "components/svg/_icon_date.svg.twig" %}
@@ -30,7 +31,12 @@
 			</p>
 		</div>
 		<div class="row mx-1 mt-5">
-			<div class="col custom-card shadow-container d-flex flex-column flex-md-row px-3 border border-secondary d-flex align-items-center pt-3 bg-card m-0">
+			<div class="col custom-card shadow-container d-flex flex-column flex-md-row px-3 border border-secondary d-flex align-items-center pt-3 bg-card m-0 position-relative">
+				<div class="heart-position">
+					{% if app.user %}
+						{{ component('UpdateStateFavoriteRecipeComponent', { recipe : recipe }) }}
+					{% endif %}
+				</div>
 				<div class="wine-ticket ms-4 px-2">
 					<div class="wine-name">
 						<p class="custom-name">{{recipe.name}}</p>
@@ -38,16 +44,24 @@
 					{% include "components/svg/_icon_wine_ticket.svg.twig" %}
 				</div>
 				<div class="content px-2 mx-4">
-					<div class="d-flex flex-column gap-3 w-100 mb-4 pb-2">
-						{% if app.user %}
-							{{ component('UpdateStateFavoriteRecipeComponent', { recipe : recipe }) }}
-						{% endif %}
+					<div class="d-flex flex-column gap-3 w-100 my-4 pb-2">
 						<div class="stats">
-							<h2 class="custom-card-title fs-5 flex-fill">Dosage des cépages</h2>
+							<h2 class="custom-card-title fs-5 text-nowrap">Créateur de la recette</h2>
+							<div class="header-line"></div>
+						</div>
+						<div>
+							<p class="w-100 fs-p">Créateur :
+								{{ recipe.user.lastname ~ ' ' ~ recipe.user.firstname }}</p>
+							<p class="w-100 fs-p">Nom de la recette :
+								{{ recipe.name }}</p>
+						</div>
+						<div class="stats">
+							<h2 class="custom-card-title fs-5 text-nowrap">Dosage des cépages</h2>
+							<div class="header-line"></div>
 						</div>
 						{% for itemTastingSheet in recipe.tastingSheet %}
 							{% set width = (itemTastingSheet.dosage ?? '0' * 100) / containerReference %}
-							<div>
+							<div class="w-100">
 								<p class="m-0 recipe-scroll overflow-x-auto text-nowrap fs-p">{{
 							itemTastingSheet.wine.name|capitalize ~ ', '
 							~ itemTastingSheet.wine.grapeVariety.name|capitalize }}
@@ -56,17 +70,19 @@
 									<div class="progress w-100" role="progressbar" aria-label="Basic example" aria-valuenow="{{ itemTastingSheet.dosage ?? '0'}}" aria-valuemin="0" aria-valuemax="100">
 										<div class="progress-bar" style="width: {{ width ~ '%'}};"></div>
 									</div>
-									<p class="m-0 custom-dosage-width">{{ itemTastingSheet.dosage ~ 'mL'}}</p>
+									<span class="m-0 custom-dosage-show-width text-end">
+										<span class="text-primary fw-bold fs-5">{{ itemTastingSheet.dosage}}</span>
+										mL</span>
 								</div>
 							</div>
 						{% endfor %}
 					</div>
 				</div>
 			</div>
-			<div class="d-flex justify-content-end border border-secondary py-3 rounded-bottom px-4 px-md-5 shadow-container bg-dark-light">
-				<a class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center" href="{{path('home_index')}}">
-					accueil
-					{{ include('/components/svg/_icon_validate.svg.twig') }}
+			<div class="d-flex border border-secondary py-3 rounded-bottom px-4 px-md-5 shadow-container bg-dark-light z-1">
+				<a class="btn btn-sm fw-bolder icon-link icon-link-hover-left icon-light text-uppercase order-3 order-sm-1" href="{{ path('app_admin_recipe_index') }}">
+					{% include "components/svg/_icon_backlink.svg.twig" %}
+					Retour
 				</a>
 			</button>
 		</div>
