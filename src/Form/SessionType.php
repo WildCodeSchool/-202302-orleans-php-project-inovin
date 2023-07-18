@@ -28,13 +28,27 @@ class SessionType extends AbstractType
                     'label' => 'Intitulé',
                     'attr' => [
                         'placeholder' => 'Intitulé de la séance...',
+                        'class' => 'form-control border border-secondary placeholder-style',
                     ],
                     'label_attr' => [
                         'class' => 'form-label text-uppercase letter-spacing mb-2'
                     ],
                 ]
             )
-
+            ->add(
+                'location',
+                TextType::class,
+                [
+                    'label' => 'Lieu',
+                    'attr' => [
+                        'placeholder' => 'Lieu de la séance...',
+                        'class' => 'form-control border border-secondary placeholder-style',
+                    ],
+                    'label_attr' => [
+                        'class' => 'form-label text-uppercase letter-spacing mb-2'
+                    ],
+                ]
+            )
             ->add(
                 'openingDate',
                 DateTimeType::class,
@@ -42,7 +56,7 @@ class SessionType extends AbstractType
                     'widget' => 'single_text',
                     'label' => 'Date d\'ouverture',
                     'attr' => [
-                        'class' => 'form-control border border-secondary',
+                        'class' => 'form-control border border-secondary placeholder-style',
                     ],
                     'label_attr' => [
                         'class' => 'form-label text-uppercase letter-spacing mb-2'
@@ -56,6 +70,7 @@ class SessionType extends AbstractType
                     'label' => 'Description',
                     'attr' => [
                         'placeholder' => 'Descriptif de la séance...',
+                        'class' => 'form-control border border-secondary placeholder-style no-resize',
                     ],
                     'label_attr' => [
                         'class' => 'form-label text-uppercase letter-spacing mb-2'
@@ -72,7 +87,7 @@ class SessionType extends AbstractType
                         'class' => 'form-check-label text-uppercase letter-spacing mb-2'
                     ],
                     'attr' => [
-                        'class' => 'form-check-input fs-5',
+                        'class' => 'form-check-input fs-5 border border-secondary',
                         'role' => "switch"
                     ],
                     'row_attr' => ['class' => "form-check form-switch"],

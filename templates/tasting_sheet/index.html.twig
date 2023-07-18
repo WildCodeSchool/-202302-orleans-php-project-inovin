@@ -32,12 +32,15 @@
 		}%}
 
 	<main class="container-fluid container-md py-5 mb-5">
-		<div class="d-flex flex-column align-items-start mb-4">
-			<h2 class="text-primary-light fw-light mt-5 letter-spacing text-uppercase">
-				{% include 'components/svg/_icon_decoration.svg.twig' %}Fiche de dégustation
+		<div class="d-flex align-items-end">
+			<span class="decoration-title">
+				{% include 'components/svg/_icon_decoration.svg.twig' %}
+			</span>
+			<h2 class="text-primary-light fw-light mt-5 letter-spacing m-0 text-uppercase">
+				Fiche de dégustation
 			</h2>
-			<div class="line-gradient"></div>
 		</div>
+		<div class="line-gradient"></div>
 
 		<div class="d-flex gap-3 text-primary-light fs-4 mt-4">
 			<p class="mb-1 d-flex align-items-center gap-2 badge bg-primary text-dark p-2">
@@ -63,7 +66,7 @@
 					{% endfor %}
 				</ul>
 
-				<div class="myForm bg-card">
+				<div class="myForm bg-card shadow-container">
 					<div class="tab-content myFormBorder" id="pills-tabContent">
 						{% for tastingSheetForm in form.tastingSheet %}
 							{% set wine = tastingSheetForm.vars.value.wine %}

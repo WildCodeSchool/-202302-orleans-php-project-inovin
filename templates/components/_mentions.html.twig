@@ -1,0 +1,63 @@
+{% extends 'visitor.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	- Home
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<main class="container-fluid d-flex justify-content-center align-items-center my-5 my-md-0">
+		<div class="row my-5">
+			<div class="col-11 m-auto px-3 border border-secondary d-flex flex-column align-items-center pt-5 bg-card ornement position-relative shadow-container">
+				<h2 class="text-center text-uppercase letter-spacing mt-5">Mentions légales</h2>
+				{% include "components/svg/_frame_surlignage.svg.twig" %}
+				<div class="d-flex flex-column gap-4 px-2 my-5 pb-5">
+					<div>
+						<h2 class="fs-4 text-uppercase">Informations générales</h2>
+						<p>Raison sociale : Inovin</p>
+						<p>Adresse : 123 Rue des Vignes, 75000 Paris</p>
+						<p>Téléphone : +33 1 23 45 67 89</p>
+						<p>Email : contact@inovin.com</p>
+					</div>
+					<div>
+						<h2 class="fs-4 text-uppercase">Responsable de publication</h2>
+						<p>Nom : John Doe</p>
+						<p>Adresse : 456 Avenue des Grappes, 75000 Paris</p>
+						<p>Téléphone : +33 1 98 76 54 32</p>
+						<p>Email : john.doe@inovin.com</p>
+					</div>
+					<div>
+						<h2 class="fs-4 text-uppercase">Hébergement</h2>
+						<p>Nom de l'hébergeur : MyHostingCompany</p>
+						<p>Adresse : 789 Boulevard du Vin, 75000 Paris</p>
+						<p>Téléphone : +33 1 11 22 33 44</p>
+						<p>Email : contact@myhostingcompany.com</p>
+					</div>
+					<div>
+						<h2 class="fs-4 text-uppercase">Propriété intellectuelle</h2>
+						<p>Tous les droits de propriété intellectuelle sont réservés à Inovin.</p>
+					</div>
+					<div>
+						<h2 class="fs-4 text-uppercase">Protection des données personnelles</h2>
+						<p>Nous traitons les données personnelles conformément aux lois en vigueur et nous nous engageons à les protéger.</p>
+					</div>
+					<div>
+						<h2 class="fs-4 text-uppercase">Liens externes</h2>
+						<p>Ce site peut contenir des liens vers des sites externes. Nous déclinons toute responsabilité quant aux contenus de ces sites externes.</p>
+					</div>
+					<div>
+						<h2 class="fs-4 text-uppercase">Modification des mentions légales</h2>
+						<p>Nous nous réservons le droit de modifier les présentes mentions légales à tout moment. Veuillez consulter cette page régulièrement pour vous tenir informé(e) des éventuelles mises à jour.</p>
+					</div>
+					<div>
+						<p>Date de dernière mise à jour : 15 juillet 2023</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+{% endblock %}

@@ -14,7 +14,7 @@
 	<main class="container">
 		<div class="custom-height d-flex justify-content-center align-items-center">
 			<div class="row">
-				<div class="col-11 col-md-12 border border-secondary rounded m-auto px-2 px-md-5 py-4 my-5 bg-card-gradient-color ornement position-relative">
+				<div class="col-11 col-md-12 border border-secondary rounded px-2 px-md-5 my-5 bg-card-gradient-color ornement position-relative shadow-container">
 					<div class="d-flex flex-column align-items-center mb-4">
 						<h2 class="text-center text-uppercase letter-spacing mt-5">Contactez nous</h2>
 						{% include "components/svg/_frame_surlignage.svg.twig" %}
@@ -38,7 +38,7 @@
 					</div>
 					{{ form_row(form.subject) }}
 					{{ form_row(form.content) }}
-					<div class="d-flex flex-column-reverse flex-md-row justify-content-between flex-lg-row align-items-center gap-3 mt-4 mb-5 pb-3">
+					<div class="d-flex flex-column-reverse flex-md-row justify-content-between flex-lg-row align-items-center gap-3 mt-3 mb-4 pb-3">
 						<button type="submit" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center">
 							{{ button_label|default('Valider') }}
 							{{ include('/components/svg/_icon_validate.svg.twig') }}

@@ -198,6 +198,7 @@ body {
     bottom: 0;
     right: 0;
     transform: translate(1px, 1px) rotate(180deg);
+    z-index: 1;
 }
 
 .bg-footer {
@@ -309,6 +310,22 @@ input[type="range"]::-moz-range-thumb {
 
 .custom-shadow {
     box-shadow: $shadow-primary;
+}
+
+.decoration-title {
+    transform: translate(6px, -6px);
+}
+
+input[type="file"]::file-selector-button {
+    border: white;
+    background-color: $primary;
+    color: $dark;
+}
+
+.heart-position {
+    position: absolute;
+    top: 20px;
+    right: 40px;
 }
 
 @media screen and (max-width: 767px) {

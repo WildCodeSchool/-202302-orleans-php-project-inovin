@@ -25,3 +25,8 @@ textarea.form-control {
     min-height: 150px;
     resize: none;
 }
+
+.btn{
+    position: relative;
+    z-index: 3;
+}

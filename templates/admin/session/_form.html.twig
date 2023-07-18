@@ -1,34 +1,28 @@
 {{ form_start(form) }}
-<div class="d-flex justify-content-center">
-	<div class="form-control w-75 p-4 m-5 border-secondary" style="background-color: var(--dark-light);">
-		<div class="container-fluid">
-
-			{{ form_row(form.name) }}
-			{{ form_row(form.description) }}
-			<div class="row">
-				<div class="col">
-					<div class="col-md-6 col-xl-4">
-						{{ form_row(form.openingDate) }}
-					</div>
-					<div class="col">
-						{{ form_row(form.closed) }}
-					</div>
-				</div>
+<div class="d-flex flex-column gap-3">
+	{{ form_row(form.name) }}
+	{{ form_row(form.location) }}
+	{{ form_row(form.description) }}
+	<div class="row">
+		<div class="col">
+			<div class="col-md-6 col-xl-4">
+				{{ form_row(form.openingDate) }}
 			</div>
-			{{ form_row(form.wines) }}
+			<div class="col">
+				{{ form_row(form.closed) }}
+			</div>
 		</div>
 	</div>
+	{{ form_row(form.wines) }}
 </div>
-<div class="d-flex justify-content-center">
-	<div class="d-flex flex-sm-row flex-column justify-content-between my-4 w-75">
-		<button class="order-2 bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover-left icon-dark text-uppercase order-2 btn">
-			{% include "components/svg/_icon_validate.svg.twig" %}
-			{{ button_label|default('Valider') }}
-		</button>
-		<a class="btn fw-bolder mb-4 icon-link icon-link-hover-left icon-light text-uppercase order-3 order-sm-1" href="{{ path('admin_session_index') }}">
-			{% include "components/svg/_icon_backlink.svg.twig" %}
-			Retour
-		</a>
-	</div>
+<div class="d-flex flex-sm-row flex-column justify-content-between mt-5">
+	<button class="order-2 bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover icon-dark text-uppercase order-2 btn">
+		{{ button_label|default('Valider') }}
+		{% include "components/svg/_icon_validate.svg.twig" %}
+	</button>
+	<a class="btn fw-bolder mb-4 icon-link icon-link-hover-left icon-light text-uppercase order-3 order-sm-1" href="{{ path('admin_session_index') }}">
+		{% include "components/svg/_icon_backlink.svg.twig" %}
+		Retour
+	</a>
 </div>
 {{ form_end(form) }}
