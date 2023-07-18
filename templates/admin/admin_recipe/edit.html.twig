@@ -4,11 +4,12 @@
 	| Recette - Édition
 {% endblock %}
 {% block admin_content_title %}
-    ÉDITION DE LA RECETTE
+	ÉDITION DE LA RECETTE
 {% endblock %}
 {% block admin_content %}
 	<div class="row d-flex justify-content-center">
 		<div class="col">
-            {{ include('admin_recipe/_form.html.twig', {'button_label': 'Modifier'}) }}
-        </div>  
+			{{ include('admin/admin_recipe/_form.html.twig', {'button_label': 'Modifier'}) }}
+		</div>
+	</div>
 {% endblock %}
