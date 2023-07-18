@@ -311,11 +311,17 @@ input[type="range"]::-moz-range-thumb {
     box-shadow: $shadow-primary;
 }
 
-input[type=file]::file-selector-button {
+input[type="file"]::file-selector-button {
     border: white;
     background-color: $primary;
     color: $dark;
-  }
+}
+
+.heart-position {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+}
 
 @media screen and (max-width: 767px) {
     .custom-border {
