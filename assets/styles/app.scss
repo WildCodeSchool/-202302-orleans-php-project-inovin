@@ -228,6 +228,14 @@ body {
     box-shadow: $shadow-primary;
 }
 
+.line {
+    height: 1px;
+    width: 100%;
+    background: $secondary;
+    align-self: end;
+    transform: translateY(-5px);
+}
+
 /* range */
 input[type="range"] {
     height: 34px;

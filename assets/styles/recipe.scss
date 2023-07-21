@@ -92,14 +92,6 @@ main {
     }
 }
 
-.line {
-    height: 1px;
-    width: 100%;
-    background: $secondary;
-    align-self: end;
-    transform: translateY(-5px);
-}
-
 .recipe-img {
     display: flex;
     justify-content: center;
