@@ -36,6 +36,7 @@ class Wine
 
     #[ORM\Column]
     #[Assert\NotBlank]
+    #[Assert\Positive()]
     private ?float $volume = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -58,6 +59,10 @@ class Wine
     #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 1)]
     #[Assert\NotBlank]
     #[Assert\Positive()]
+    #[Assert\Range(
+        min: 0,
+        max: 100,
+    )]
     #[Assert\Type(type: 'float')]
     private ?float $alcoholPercent = null;
 
