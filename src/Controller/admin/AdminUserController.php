@@ -88,6 +88,7 @@ class AdminUserController extends AbstractController
     ): Response {
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user, true);
+            $this->addFlash('success', 'L\'utilisateur a bien été supprimé.');
         }
         return $this->redirectToRoute('app_admin_user_index', [], Response::HTTP_SEE_OTHER);
     }
