@@ -43,17 +43,21 @@
 							</div>
 						</td>
 						<td class="px-4 align-middle">
+							{% if app.user.id != user.id %}
 							<div class="d-flex justify-content-center">
 								{{ component('EnableDesableUserComponent', { user : user }) }}
 							</div>
+							{% endif %}
 						</td>
 						<td class="text-center">
 							<div class="d-flex justify-content-md-center flex-nowrap gap-3">
-								<a class="icon-link icon-link-hover-left link-light mx-2 text-decoration-none" href="{{ path('app_admin_user_edit', {'id': user.id}) }}">
-									{{ include('/components/svg/_icon_edit.svg.twig') }}
-									Éditer
+								<a class="icon-link icon-link-hover-left link-light mx-2 text-decoration-none" href="{{ path('app_admin_user_show', {'id': user.id}) }}">
+									{{ include('/components/svg/_icon_eye.svg.twig') }}
+									Visualiser
 								</a>
+								{% if app.user.id != user.id %}
 								{{ include('./admin/user/_delete_form.html.twig') }}
+								{% endif %}
 							</div>
 						</td>
 					</tr>
