@@ -34,8 +34,10 @@ class Session
     #[ORM\ManyToMany(targetEntity: Wine::class, inversedBy: 'sessions')]
     private Collection $wines;
 
-    #[ORM\OneToMany(mappedBy: 'session', targetEntity: Recipe::class)]
+    #[ORM\OneToMany(mappedBy: 'session', targetEntity: Recipe::class, orphanRemoval: true)]
     private Collection $recipes;
+
+    private bool $delatable = false;
 
     public function __construct()
     {
@@ -157,5 +159,11 @@ class Session
         }
 
         return $this;
+    }
+
+    public function isDelatable(): bool
+    {
+        $this->delatable = ($this->getRecipes()->count() === 0) ? true : false;
+        return $this->delatable;
     }
 }
