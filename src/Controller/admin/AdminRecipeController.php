@@ -48,4 +48,13 @@ class AdminRecipeController extends AbstractController
 
         return $this->redirectToRoute('app_admin_recipe_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{id}', name: 'show', methods: ['GET'])]
+    public function show(Recipe $recipe): Response
+    {
+        return $this->render('admin/recipe/show.html.twig', [
+            'recipe' => $recipe,
+            'containerReference' => \App\Controller\RecipeController::CONTAINER_REF
+        ]);
+    }
 }
