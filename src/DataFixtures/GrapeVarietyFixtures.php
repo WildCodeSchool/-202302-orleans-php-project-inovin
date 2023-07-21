@@ -4,7 +4,6 @@ namespace App\DataFixtures;
 
 use App\DataFixtures\GrapeColorFixtures;
 use App\Entity\GrapeVariety;
-use Faker\Factory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -33,14 +32,11 @@ class GrapeVarietyFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create('fr_FR');
-
         foreach (self::GRAPE_VARIETIES as $key => $grapeVarietyName) {
             $grapeVariety = new GrapeVariety();
             $grapeVariety->setName($grapeVarietyName['cepage']);
             $grapeColor = $this->getReference('grape_color_' . strtolower($grapeVarietyName['color']));
             $grapeVariety->setColor($grapeColor);
-            $grapeVariety->setDescriptif($faker->paragraph());
             $manager->persist($grapeVariety);
             $this->addReference('grape_variety_' . $key, $grapeVariety);
         }
