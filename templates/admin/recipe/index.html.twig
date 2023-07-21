@@ -33,13 +33,13 @@
 							<span class="fw-bold text-light">{{ recipe.sessionRate }}</span>
 							/ 10
 						</td>
+
 						<td class="text-center p-2 w-25">
 							<div class="d-flex justify-content-md-center flex-nowrap gap-3">
-								<a class="icon-link icon-link-hover-left link-light mx-2 text-decoration-none" href="{{ path('app_admin_recipe_edit', {'id': recipe.id}) }}">
-									{{ include('/components/svg/_icon_edit.svg.twig') }}
-									Éditer
+								<a class="icon-link icon-link-hover-left link-light mx-2 text-decoration-none" href="{{ path('app_admin_recipe_show', {'id': recipe.id}) }}">
+									{{ include('/components/svg/_icon_eye.svg.twig') }}
+									Visualiser
 								</a>
-								{% include "admin/recipe/_delete_form.html.twig" %}
 							</div>
 						</td>
 
