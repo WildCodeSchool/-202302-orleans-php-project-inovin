@@ -24,17 +24,17 @@
 				</div>
 			{% endfor %}
 		</div>
-	{% endif %}
 
-	<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-		{% include('components/svg/arrow_left.svg') %}
-		<span class="visually-hidden">Previous</span>
-	</button>
-	<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-		{% include('components/svg/arrow_right.svg') %}
-		<span class="visually-hidden">Next</span>
-	</button>
-</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+			{% include('components/svg/arrow_left.svg') %}
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+			{% include('components/svg/arrow_right.svg') %}
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+{% endif %}
 
 <div class="d-flex align-items-end">
 	<span class="decoration-title">
