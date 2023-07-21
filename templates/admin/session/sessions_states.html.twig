@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-	<main class="container-fluid container-lg mb-5">
+	<main class="container-fluid container-lg pb-5">
 		{% include '/components/session/_opened_sessions.html.twig' with {'firstOpenedSession' : firstOpenedSession}  %}
 		{% include '/components/session/_next_sessions.html.twig' with {'nextSessions' : nextSessions, 'closedSessions' : closedSessions}  %}
 	</main>
