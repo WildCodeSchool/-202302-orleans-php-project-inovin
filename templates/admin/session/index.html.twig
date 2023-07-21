@@ -47,13 +47,15 @@ Gestion des Séances
 					</div>
 				</td>
 				<td class="text-center">
-					<div class="d-flex justify-content-md-center flex-nowrap gap-3">
+					<div class="d-flex justify-content-md-start flex-nowrap gap-3">
 						<a class="icon-link icon-link-hover-left link-light mx-2 text-decoration-none"
 							href="{{ path('admin_session_edit', {'id': session.id}) }}">
 							{{ include('/components/svg/_icon_edit.svg.twig') }}
 							Éditer
 						</a>
-						{{ include('admin/session/_delete_form.html.twig') }}
+						{% if session.isDelatable() %}
+							{{ include('admin/session/_delete_form.html.twig') }}
+						{% endif %}
 					</div>
 				</td>
 			</tr>
