@@ -10,13 +10,6 @@
 {% endblock %}
 
 {% block admin_content %}
-	<div class="d-flex justify-content-end align-self-end me-1">
-		<a role="button" class="bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover-left icon-dark text-uppercase order-2 btn" href="{{ path('app_admin_user_new') }}">
-			{{ include('/components/svg/_icon_add.svg.twig') }}
-			AJOUTER
-		</a>
-	</div>
-
 	<div class=" table-responsive">
 		<table class="table table-dark table-striped table-hover table-bordered border-secondary">
 			<thead class="sticky-top">
