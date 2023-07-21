@@ -16,7 +16,10 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cette adresse e-mail.')]
-/** @SuppressWarnings(PHPMD.ExcessiveClassComplexity) */
+/**
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
+ */
 class User implements
     UserInterface,
     PasswordAuthenticatedUserInterface
@@ -85,12 +88,12 @@ class User implements
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?UserPreference $userPreference = null;
 
-    #[ORM\ManyToMany(targetEntity: Wine::class, inversedBy: 'likedUsers')]
+    #[ORM\ManyToMany(targetEntity: Wine::class, inversedBy: 'favoriteUsers')]
     #[ORM\JoinTable(name: 'favorite_wine')]
-    private Collection $favoritesWines;
+    private Collection $favoriteWines;
 
-    #[ORM\ManyToMany(targetEntity: Recipe::class, mappedBy: 'likedUsers')]
-    private Collection $favoritesRecipes;
+    #[ORM\ManyToMany(targetEntity: Recipe::class, mappedBy: 'favoriteUsers')]
+    private Collection $favoriteRecipes;
 
     #[ORM\Column]
     private ?bool $enabled = null;
@@ -98,12 +101,16 @@ class User implements
     #[ORM\Column]
     private ?bool $quizAnswered = false;
 
+    #[ORM\ManyToMany(targetEntity: Recipe::class, mappedBy: 'likedUsers')]
+    private Collection $likedRecipes;
+
     public function __construct(?bool $enabled = true)
     {
         $this->enabled = $enabled;
         $this->recipes = new ArrayCollection();
-        $this->favoritesWines = new ArrayCollection();
-        $this->favoritesRecipes = new ArrayCollection();
+        $this->favoriteWines = new ArrayCollection();
+        $this->favoriteRecipes = new ArrayCollection();
+        $this->likedRecipes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -301,63 +308,63 @@ class User implements
     /**
      * @return Collection<int, Wine>
      */
-    public function getFavoritesWines(): Collection
+    public function getFavoriteWines(): Collection
     {
-        return $this->favoritesWines;
+        return $this->favoriteWines;
     }
 
-    public function addFavoritesWine(Wine $favoritesWine): static
+    public function addFavoriteWines(Wine $wine): static
     {
-        if (!$this->favoritesWines->contains($favoritesWine)) {
-            $this->favoritesWines->add($favoritesWine);
-            $favoritesWine->addLikedUser($this);
+        if (!$this->favoriteWines->contains($wine)) {
+            $this->favoriteWines->add($wine);
+            $wine->addFavoriteUsers($this);
         }
         return $this;
     }
 
-    public function removeFavoritesWine(Wine $favoritesWine): static
+    public function removeFavoriteWines(Wine $wine): static
     {
-        if ($this->favoritesWines->removeElement($favoritesWine)) {
-            $favoritesWine->removeLikedUser($this);
+        if ($this->favoriteWines->removeElement($wine)) {
+            $wine->removeFavoriteUsers($this);
         }
         return $this;
     }
 
-    public function isInFavoritesWines(Wine $wine): bool
+    public function isInFavoriteWines(Wine $wine): bool
     {
-        return $this->favoritesWines->contains($wine);
+        return $this->favoriteWines->contains($wine);
     }
 
     /**
      * @return Collection<int, Recipe>
      */
-    public function getFavoritesRecipes(): Collection
+    public function getFavoriteRecipes(): Collection
     {
-        return $this->favoritesRecipes;
+        return $this->favoriteRecipes;
     }
 
-    public function addFavoritesRecipe(Recipe $favoritesRecipe): static
+    public function addFavoriteRecipes(Recipe $recipe): static
     {
-        if (!$this->favoritesRecipes->contains($favoritesRecipe)) {
-            $this->favoritesRecipes->add($favoritesRecipe);
-            $favoritesRecipe->addLikedUser($this);
+        if (!$this->favoriteRecipes->contains($recipe)) {
+            $this->favoriteRecipes->add($recipe);
+            $recipe->addFavoriteUsers($this);
         }
 
         return $this;
     }
 
-    public function removeFavoritesRecipe(Recipe $favoritesRecipe): static
+    public function removeFavoriteRecipes(Recipe $recipe): static
     {
-        if ($this->favoritesRecipes->removeElement($favoritesRecipe)) {
-            $favoritesRecipe->removeLikedUser($this);
+        if ($this->favoriteRecipes->removeElement($recipe)) {
+            $recipe->removeFavoriteUsers($this);
         }
 
         return $this;
     }
 
-    public function isInFavoritesRecipes(Recipe $recipe): bool
+    public function isInFavoriteRecipes(Recipe $recipe): bool
     {
-        return $this->favoritesRecipes->contains($recipe);
+        return $this->favoriteRecipes->contains($recipe);
     }
 
     public function isEnabled(): ?bool
@@ -382,5 +389,37 @@ class User implements
         $this->quizAnswered = $quizAnswered;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Recipe>
+     */
+    public function getLikedRecipes(): Collection
+    {
+        return $this->likedRecipes;
+    }
+
+    public function addLikedRecipes(Recipe $recipe): static
+    {
+        if (!$this->likedRecipes->contains($recipe)) {
+            $this->likedRecipes->add($recipe);
+            $recipe->addLikedUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLikedRecipes(Recipe $recipe): static
+    {
+        if ($this->likedRecipes->removeElement($recipe)) {
+            $recipe->removeLikedUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function isInLikedRecipes(Recipe $recipe): bool
+    {
+        return $this->likedRecipes->contains($recipe);
     }
 }
