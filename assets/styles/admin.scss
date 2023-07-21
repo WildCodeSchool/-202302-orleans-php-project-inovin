@@ -1,5 +1,9 @@
 @import "_variables.scss";
 
+body {
+    padding-bottom: 0;
+}
+
 .letter-spacing {
     letter-spacing: 3px;
 }

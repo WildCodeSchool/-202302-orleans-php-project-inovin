@@ -5,6 +5,9 @@
 
 body {
     background-color: $dark-light;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: $footer-height;
 }
 
 h1,
