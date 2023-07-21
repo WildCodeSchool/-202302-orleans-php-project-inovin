@@ -1,4 +1,7 @@
-for (let i = 1; i <= 3; i++) {
+const totalWineId = document.getElementById('js-total-wine');
+const totalWine = totalWineId.dataset.set;
+
+for (let i = 1; i <= totalWine; i++) {
     
     const nextButton = document.getElementById('pills-next-'+i);
     const beforeButton = document.getElementById('pills-before-'+(i+1));

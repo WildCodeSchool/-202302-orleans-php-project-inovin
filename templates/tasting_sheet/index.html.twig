@@ -72,6 +72,9 @@
 							{% set wine = tastingSheetForm.vars.value.wine %}
 							{% set lastWine = form.tastingSheet|last %}
 							{% set firstWine = form.tastingSheet|first %}
+							{% set totalWine = form.tastingSheet|length %}
+							<div id="js-total-wine" data-set="{{ totalWine }}"></div>
+
 							<div class="tab-pane fade {% if loop.first %} {{ 'show active' }} {% endif %}" id="pills-{{ loop.index }}" role="tabpanel" aria-labelledby="pills-tab-{{ loop.index }}" tabindex="{{ loop.index0 }}">
 								<div class="firstNavbarBorder">
 									<div class="d-flex flex-column flex-md-row gap-md-5">
