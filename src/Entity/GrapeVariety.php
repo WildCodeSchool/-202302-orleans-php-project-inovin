@@ -35,9 +35,6 @@ class GrapeVariety
     #[ORM\ManyToOne(inversedBy: 'grapeVarieties')]
     private ?GrapeColor $color = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descriptif = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -93,18 +90,6 @@ class GrapeVariety
     public function setColor(?GrapeColor $color): static
     {
         $this->color = $color;
-
-        return $this;
-    }
-
-    public function getDescriptif(): ?string
-    {
-        return $this->descriptif;
-    }
-
-    public function setDescriptif(?string $descriptif): static
-    {
-        $this->descriptif = $descriptif;
 
         return $this;
     }

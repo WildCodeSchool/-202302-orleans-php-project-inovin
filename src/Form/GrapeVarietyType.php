@@ -34,14 +34,6 @@ class GrapeVarietyType extends AbstractType
                     'class' => GrapeColor::class,
                     'choice_label' => 'color',
                 ],
-            )
-            ->add(
-                'descriptif',
-                TextareaType::class,
-                [
-                    'label' => 'Description',
-                    'attr' => ['rows' => 5],
-                ]
             );
     }
 
