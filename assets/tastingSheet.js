@@ -1,13 +1,16 @@
-for (let i = 1; i <= 3; i++) {
-    
-    const nextButton = document.getElementById('pills-next-'+i);
-    const beforeButton = document.getElementById('pills-before-'+(i+1));
+const totalWineId = document.getElementById('js-total-wine');
+const totalWine = totalWineId.dataset.set;
 
-    const navbarPillCurrent = document.getElementById('pills-tab-'+i);
-    const tabContentCurrent = document.getElementById('pills-'+ i);
+for (let i = 1; i <= totalWine; i++) {
 
-    const navbarPillNext = document.getElementById('pills-tab-'+(i+1));
-    const tabContentNext = document.getElementById('pills-'+(i+1));
+    const nextButton = document.getElementById('pills-next-' + i);
+    const beforeButton = document.getElementById('pills-before-' + (i + 1));
+
+    const navbarPillCurrent = document.getElementById('pills-tab-' + i);
+    const tabContentCurrent = document.getElementById('pills-' + i);
+
+    const navbarPillNext = document.getElementById('pills-tab-' + (i + 1));
+    const tabContentNext = document.getElementById('pills-' + (i + 1));
 
     nextButton.addEventListener('click', event => {
         event.preventDefault();
@@ -15,7 +18,7 @@ for (let i = 1; i <= 3; i++) {
         navbarPillNext.classList.add('active');
         tabContentCurrent.classList.remove('active', 'show');
         tabContentNext.classList.add('active', 'show');
-        window.top.window.scrollTo(0,0);
+        window.top.window.scrollTo(0, 0);
     })
 
     beforeButton.addEventListener('click', event => {
@@ -24,6 +27,6 @@ for (let i = 1; i <= 3; i++) {
         navbarPillCurrent.classList.add('active');
         tabContentNext.classList.remove('active', 'show');
         tabContentCurrent.classList.add('active', 'show');
-        window.top.window.scrollTo(0,0);
+        window.top.window.scrollTo(0, 0);
     })
 }
