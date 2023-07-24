@@ -41,13 +41,17 @@ class Recipe
     #[Assert\Type('integer')]
     private ?int $sessionRate = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'favoritesRecipes')]
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'favoriteRecipes')]
     #[JoinTable(name: 'favorite_recipe')]
+    private Collection $favoriteUsers;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'likedRecipes')]
     private Collection $likedUsers;
 
     public function __construct()
     {
         $this->tastingSheet = new ArrayCollection();
+        $this->favoriteUsers = new ArrayCollection();
         $this->likedUsers = new ArrayCollection();
     }
 
@@ -137,32 +141,56 @@ class Recipe
     /**
      * @return Collection<int, User>
      */
+    public function getFavoriteUsers(): Collection
+    {
+        return $this->favoriteUsers;
+    }
+
+    public function addFavoriteUsers(User $user): static
+    {
+        if (!$this->favoriteUsers->contains($user)) {
+            $this->favoriteUsers->add($user);
+            $user->addFavoriteRecipes($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavoriteUsers(User $user): static
+    {
+        if ($this->favoriteUsers->removeElement($user)) {
+            $user->removeFavoriteRecipes($this);
+        }
+
+        return $this;
+    }
+
+    public function isInFavoriteUsers(User $user): bool
+    {
+        return $this->favoriteUsers->contains($user);
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
     public function getLikedUsers(): Collection
     {
         return $this->likedUsers;
     }
 
-    public function addLikedUser(User $likedUser): static
+    public function addLikedUsers(User $likedUser): static
     {
         if (!$this->likedUsers->contains($likedUser)) {
             $this->likedUsers->add($likedUser);
-            $likedUser->addFavoritesRecipe($this);
         }
 
         return $this;
     }
 
-    public function removeLikedUser(User $likedUser): static
+    public function removeLikedUsers(User $likedUser): static
     {
-        if ($this->likedUsers->removeElement($likedUser)) {
-            $likedUser->removeFavoritesRecipe($this);
-        }
+        $this->likedUsers->removeElement($likedUser);
 
         return $this;
-    }
-
-    public function isInLikedUsers(User $user): bool
-    {
-        return $this->likedUsers->contains($user);
     }
 }

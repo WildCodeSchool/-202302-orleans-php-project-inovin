@@ -43,7 +43,7 @@ class WineFixtures extends Fixture implements DependentFixtureInterface
 
             if ($i % 2 === 0) {
                 $simpleUser1 = $this->getReference('user_0');
-                $wine->addLikedUser($simpleUser1);
+                $wine->addFavoriteUsers($simpleUser1);
             }
 
             $this->addReference('wine_' . $i, $wine);
