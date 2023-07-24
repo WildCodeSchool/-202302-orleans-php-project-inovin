@@ -138,3 +138,42 @@ form .ts-control,
 form .ts-control input {
     font-size: 1rem;
 }
+
+.custom-card-wine {
+    height: auto;
+    outline: 1px dashed $secondary;
+    outline-offset: -5px;
+    margin-bottom: 2rem;
+}
+
+.custom-wine-border {
+    border: 1px solid $secondary;
+    border-radius: 5% 8px 8px 8px;
+}
+
+.wine-size-img {
+    width: 500px;
+    height: auto;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bloc-price {
+    background: $primary;
+    color: $dark-light;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+.custom-min-width {
+    min-width: 180px;
+    min-height: 40px;
+}
+
+@media screen and (max-width: 768px) {
+    .wine-size-img {
+        width: 100%;
+    }
+}
