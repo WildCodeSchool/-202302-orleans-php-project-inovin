@@ -8,5 +8,7 @@
 			{% endif %}
 		</button>
 	{% endif %}
-	<span class="px-2">{{ this.countVotes ~ ' Vote' ~ (this.countVotes > 1 ? 's ') }}</span>
+	{% if this.countVotes > 0 %}
+		<span class="px-2">{{ this.countVotes ~ ' Vote' ~ (this.countVotes > 1 ? 's ') }}</span>
+	{% endif %}
 </div>
