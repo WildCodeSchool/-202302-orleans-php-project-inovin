@@ -14,7 +14,7 @@
 				{% include 'components/svg/_icon_decoration.svg.twig' %}
 			</span>
 			<h2 class="text-primary-light fw-light mt-5 letter-spacing m-0 text-uppercase">
-				Ma recette
+				{{ recipe.name }} <span class="fs-4 mx-1">créé par</span> {{ recipe.user.firstName }} {{ recipe.user.lastName }}
 			</h2>
 		</div>
 		<div class="line-gradient"></div>
