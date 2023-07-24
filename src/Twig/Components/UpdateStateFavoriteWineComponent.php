@@ -22,7 +22,7 @@ class UpdateStateFavoriteWineComponent extends AbstractController
     use DefaultActionTrait;
 
     #[LiveProp]
-    public bool $isVaforite = false;
+    public bool $isFavorite = false;
 
     #[LiveProp]
     public ?Wine $wine = null;
@@ -36,11 +36,11 @@ class UpdateStateFavoriteWineComponent extends AbstractController
     {
         /** @var User $user */
         $user = $this->security->getUser();
-        $this->isVaforite = false;
+        $this->isFavorite = false;
 
         if (!$user->isInFavoriteWines($this->wine)) {
             $user->addFavoriteWines($this->wine);
-            $this->isVaforite = true;
+            $this->isFavorite = true;
         } else {
             $user->removeFavoriteWines($this->wine);
         }
@@ -51,6 +51,6 @@ class UpdateStateFavoriteWineComponent extends AbstractController
     {
         /** @var User $user */
         $user = $this->security->getUser();
-        $this->isVaforite =  $user->isInFavoriteWines($this->wine);
+        $this->isFavorite =  $user->isInFavoriteWines($this->wine);
     }
 }
