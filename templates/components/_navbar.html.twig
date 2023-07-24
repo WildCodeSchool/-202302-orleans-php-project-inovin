@@ -9,11 +9,11 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav d-flex justify-content-between w-100 align-lg-items-center gap-lg-4 pt-4 pt-md-0 pb-2 pb-md-0">
 				<div class="d-flex flex-column flex-md-row">
-					<li class="nav-item px-2">
+					<li class="nav-item px-1">
 						<a class="nav-link letter-spacing" href="{{ path('app_session_all_states') }}">SÉANCES</a>
 					</li>
 					{% if app.user %}
-						<li class="nav-item dropdown px-2">
+						<li class="nav-item dropdown px-1">
 							<a class="nav-link dropdown-toggle letter-spacing" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								VINS
 							</a>
@@ -24,36 +24,36 @@
 								</li>
 								<li class="nav-item">
 									<a class="dropdown-item nav-link letter-spacing px-4" href="{{ path('app_wine_favorites') }}">MES
-																			VINS FAVORIS</a>
+																																																											VINS FAVORIS</a>
+								</li>
+							</ul>
+						</li>
+					{% else %}
+						<li class="nav-item px-1">
+							<a class="nav-link letter-spacing" href="{{ path('app_wine_index') }}">NOS VINS</a>
+						</li>
+					{% endif %}
+					{% if app.user %}
+						<li class="nav-item dropdown px-1">
+							<a class="nav-link dropdown-toggle letter-spacing" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								RECETTES
+							</a>
+							<ul class="dropdown-menu dropdown-menu-start border-md-primary rounded-bottom-0 custom-border">
+								<li class="nav-item">
+									<a class="dropdown-item nav-link letter-spacing px-4" href="{{path('recipe_user')}}">MES
+																																																										RECETTES</a>
+								</li>
+								<li class="nav-item">
+									<a class="dropdown-item nav-link letter-spacing px-4" href="{{path('favorites_recipe_user')}}">MES
+																																																										RECETTES FAVORITES</a>
+								</li>
+								<li class="nav-item">
+									<a class="dropdown-item nav-link letter-spacing px-4" href="{{ path('recipe_index')}}">TOUTES LES RECETTES</a>
 								</li>
 							</ul>
 						</li>
 					{% else %}
 						<li class="nav-item px-2">
-							<a class="nav-link letter-spacing" href="{{ path('app_wine_index') }}">NOS VINS</a>
-						</li>
-					{% endif %}
-					{% if app.user %}
-					<li class="nav-item dropdown px-2">
-						<a class="nav-link dropdown-toggle letter-spacing" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							RECETTES
-						</a>
-						<ul class="dropdown-menu dropdown-menu-start border-md-primary rounded-bottom-0 custom-border">
-							<li class="nav-item">
-								<a class="dropdown-item nav-link letter-spacing px-4" href="{{path('recipe_user')}}">MES
-																		RECETTES</a>
-							</li>
-							<li class="nav-item">
-								<a class="dropdown-item nav-link letter-spacing px-4" href="{{path('favorites_recipe_user')}}">MES
-																		RECETTES FAVORITES</a>
-							</li>
-							<li class="nav-item">
-								<a class="dropdown-item nav-link letter-spacing px-4" href="{{ path('recipe_index')}}">TOUTES LES RECETTES</a>
-							</li>
-						</ul>
-					</li>
-					{% else %}
-					<li class="nav-item px-2">
 							<a class="nav-link letter-spacing" href="{{ path('recipe_index')}}">LES RECETTES</a>
 						</li>
 					{% endif %}
