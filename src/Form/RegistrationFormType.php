@@ -18,14 +18,13 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 
+/** @SuppressWarnings(PHPMD.ExcessiveMethodLength) */
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $today = date('d-M-y');
-
         $limitAge = date('d-M-y', strtotime($today . " - 18 years"));
-
         $builder
             ->add('firstname', TextType::class, [
                 'attr' => [
@@ -49,8 +48,7 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'required' => false,
                     'placeholder' => 'JJ-MM-YYYY',
-                    'class' => 'form-control border border-secondary placeholder-style w-100',
-                ],
+                    'class' => 'form-control border border-secondary placeholder-style w-100',],
                 'label' => 'Date de naissance',
                 'label_attr' => [
                     'class' => 'form-label text-uppercase letter-spacing'
@@ -119,9 +117,7 @@ class RegistrationFormType extends AbstractType
                 'label_attr' => [
                     'class' => 'form-label text-uppercase letter-spacing'
                 ],
-                'constraints' => [
-                    new NotBlank(),
-                    new Length(['min' => 6, 'max' => 50]),
+                'constraints' => [new NotBlank(), new Length(['min' => 6, 'max' => 50]),
                 ],
             ]);
     }
