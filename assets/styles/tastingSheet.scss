@@ -15,7 +15,6 @@
 }
 
 /* all the border of the page */
-
 .myForm {
     border: 1px solid $secondary;
     border-bottom-left-radius: 8px;
@@ -35,20 +34,13 @@
     border-top: 1px solid $secondary;
     padding-top: 4px;
 }
-/*
-.mySecondNavbar {
-    border-top: 2px dotted $secondary;
-}
-*/
+
 .firstNavbarBorder {
-    //border-bottom: 2px dotted $secondary;
     margin-bottom: 4px;
 }
 
 /* all the active-link */
-
 .firstNavbar .nav-link.active {
-    // background: $navbarTastingSheetBg;
     border-top: 1px solid $secondary;
     border-left: 1px solid $secondary;
     border-right: 1px solid $secondary;
@@ -57,7 +49,6 @@
     z-index: 10;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
-    // color: $primary-light;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     background-color: $primary-light;
