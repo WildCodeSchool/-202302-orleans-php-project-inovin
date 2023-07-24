@@ -15,11 +15,17 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
+use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $today = date('d-M-y');
+
+        $limitAge = date('d-M-y', strtotime($today . " - 18 years"));
+
         $builder
             ->add('firstname', TextType::class, [
                 'attr' => [
@@ -51,7 +57,11 @@ class RegistrationFormType extends AbstractType
                 ],
                 'widget' => 'single_text',
                 'html5' => false,
-                'format' => 'dd-MM-yyyy',
+                'format' => 'd-M-y',
+                'constraints' => new LessThanOrEqual([
+                    'value' => $limitAge,
+                    'message' => 'Vous devez être majeur pour vous inscrire'
+                ])
             ])
             ->add('address', TextType::class, [
                 'attr' => [
