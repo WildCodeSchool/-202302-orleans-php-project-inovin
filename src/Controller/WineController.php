@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 #[Route('/vin', name: 'app_wine_')]
 class WineController extends AbstractController
@@ -28,6 +29,14 @@ class WineController extends AbstractController
         return $this->render('wine/index.html.twig', [
             'wines' => $wines,
             'form' =>  $form
+        ]);
+    }
+
+    #[Route('/{id}', name: 'show')]
+    public function show(Wine $wine): Response
+    {
+        return $this->render('wine/show.html.twig', [
+            'wine' => $wine,
         ]);
     }
 

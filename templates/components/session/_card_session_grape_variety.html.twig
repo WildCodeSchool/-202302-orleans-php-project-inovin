@@ -1,36 +1,39 @@
 <div class="card card-wine m-2 m-sm-3 rounded-sm bg-transparent">
-	<div class="g-0 d-flex align-items-center">
-		<div class="wine-container d-flex justify-content-center ms-2 ms-sm-4 me-sm-4 ps-1">
-			<picture>
-				<source media="(max-width:576px)" srcset="{{ asset('build/images/wine.svg') }}">
-				<img src=" {{ asset('build/images/img_card_wine.svg') }} " class="img-session-wine me-1" alt=" img round card wine">
-			</picture>
-		</div>
-		<div class="w-100 pe-sm-2">
-			<div class="card-body px-2 px-sm-0 py-2">
-				<h5 class="card-title text-capitalize text-primary-light ps-2">{{ wine.name|u.truncate(22, '...') }}</h5>
-				<div class="separator-line"></div>
-				<p class="card-text letter-spacing my-2 fw-lighter">
-					{{ wine.wineRegion.regionName ~ ', '~ wine.year }}
-				</p>
+	<a href="{{ path('app_wine_show', { id : wine.id }) }}" class="text-decoration-none text-light">
+		<div class="g-0 d-flex align-items-center">
+			<div class="wine-container d-flex justify-content-center ms-2 ms-sm-4 me-sm-4 ps-1">
+				<picture>
+					<source media="(max-width:576px)" srcset="{{ asset('build/images/wine.svg') }}">
+					<img src=" {{ asset('build/images/img_card_wine.svg') }} " class="img-session-wine me-1" alt=" img round card wine">
+				</picture>
+			</div>
 
-				<div class="row d-flex flex-column flex-sm-row me-1 me-sm-0">
-					<div class="col col-sm-7 pe-1 pe-sm-0">
-						<div class="bg-primary text-center text-dark letter-spacing ms-auto custom-text-size fw-bolder">
-							CÉPAGE
+			<div class="w-100 pe-sm-2">
+				<div class="card-body px-2 px-sm-0 py-2">
+					<h5 class="card-title text-capitalize text-primary-light ps-2">{{ wine.name|u.truncate(22, '...') }}</h5>
+					<div class="separator-line"></div>
+					<p class="card-text letter-spacing my-2 fw-lighter">
+						{{ wine.wineRegion.regionName ~ ', '~ wine.year }}
+					</p>
+
+					<div class="row d-flex flex-column flex-sm-row me-1 me-sm-0">
+						<div class="col col-sm-7 pe-1 pe-sm-0">
+							<div class="bg-primary text-center text-dark letter-spacing ms-auto custom-text-size fw-bolder">
+								CÉPAGE
+							</div>
+							<div class="text-center text-light letter-spacing ms-auto mt-2 text-capitalize fs-6 fw-lighter cepage-overflow">
+								{{ wine.grapeVariety.name|u.truncate(20, '...') }}
+							</div>
 						</div>
-						<div class="text-center text-light letter-spacing ms-auto mt-2 text-capitalize fs-6 fw-lighter cepage-overflow">
-							{{ wine.grapeVariety.name|u.truncate(20, '...') }}
+						<div class="col pe-1 pe-sm-1">
+							<div class="bg-primary text-center text-dark letter-spacing custom-text-size fw-bolder">
+								COULEUR
+							</div>
+							<div class="text-start text-center text-light letter-spacing mt-2 fs-6 fw-lighter">{{ wine.grapeVariety.color.color }}</div>
 						</div>
-					</div>
-					<div class="col pe-1 pe-sm-1">
-						<div class="bg-primary text-center text-dark letter-spacing custom-text-size fw-bolder">
-							COULEUR
-						</div>
-						<div class="text-start text-center text-light letter-spacing mt-2 fs-6 fw-lighter">{{ wine.grapeVariety.color.color }}</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</a>
 </div>

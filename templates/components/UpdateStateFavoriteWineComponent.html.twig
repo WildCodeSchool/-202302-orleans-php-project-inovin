@@ -1,5 +1,5 @@
 <div {{ attributes }} {{ this.state(wine) }} class="d-flex justify-content-end">
-	<button data-action="live#action" data-model='wine' data-action-name="updateState" type="button" class="bg-transparent border-0">
+	<button data-action="live#action" data-model='wine' data-action-name="updateState" type="button" class="bg-transparent border-0 position-absolute">
 		{% if this.isLiked %}
 			<span class="link icon-link icon-link-hover icon text-danger">{{ include('/components/svg/_icon_heart_fill.svg.twig') }}</span>
 		{% else %}
