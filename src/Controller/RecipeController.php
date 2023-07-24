@@ -75,8 +75,7 @@ class RecipeController extends AbstractController
         TastingSheetRepository $tastingSheetRepo,
         CalculateFinalDosageService $calcFinalDosageSrv
     ): Response {
-        $currentUser = $this->getUser();
-        if ($currentUser !== $recipe->getUser()) {
+        if ($this->getUser() !== $recipe->getUser()) {
             throw $this->createAccessDeniedException(
                 "Accès refusé. Vous n'êtes pas autorisé à accéder à cette recette."
             );
