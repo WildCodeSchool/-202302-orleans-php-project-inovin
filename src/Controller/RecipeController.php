@@ -57,7 +57,7 @@ class RecipeController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-        $recipes = $user->getFavoritesRecipes();
+        $recipes = $user->getFavoriteRecipes();
 
         return $this->render('recipe/favoritesRecipes.html.twig', [
             'recipes' => $recipes,
