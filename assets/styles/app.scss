@@ -5,6 +5,7 @@
 
 body {
     background-color: $dark-light;
+    min-height: calc(100vh - $footer-height);
 }
 
 h1,
