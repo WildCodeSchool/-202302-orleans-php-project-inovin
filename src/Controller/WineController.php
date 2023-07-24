@@ -37,7 +37,7 @@ class WineController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-        $wines = $user->getFavoritesWines();
+        $wines = $user->getFavoriteWines();
 
         return $this->render('wine/favoritesWines.html.twig', [
             'wines' => $wines,

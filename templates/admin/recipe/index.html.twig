@@ -17,7 +17,7 @@
 					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Créateur</th>
 					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Nom de la recette</th>
 					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Séance</th>
-					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Note</th>
+					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Like</th>
 					<th class="w-auto py-3 text-center px-2 bg-secondary text-uppercase letter-spacing" scope="col">Actions</th>
 				</tr>
 			</thead>
@@ -30,8 +30,7 @@
 							{{ recipe.session.openingDate|date('d/m/Y') }}
 						</td>
 						<td class="px-4 align-middle text-secondary-light">
-							<span class="fw-bold text-light">{{ recipe.sessionRate }}</span>
-							/ 10
+							<span class="fw-bold text-light">{{ recipe.getLikedUsers()|length }}</span>
 						</td>
 
 						<td class="text-center p-2 w-25">
