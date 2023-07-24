@@ -35,20 +35,20 @@
     border-top: 1px solid $secondary;
     padding-top: 4px;
 }
-
+/*
 .mySecondNavbar {
     border-top: 2px dotted $secondary;
 }
-
+*/
 .firstNavbarBorder {
-    border-bottom: 2px dotted $secondary;
+    //border-bottom: 2px dotted $secondary;
     margin-bottom: 4px;
 }
 
 /* all the active-link */
 
 .firstNavbar .nav-link.active {
-    background: $navbarTastingSheetBg;
+    // background: $navbarTastingSheetBg;
     border-top: 1px solid $secondary;
     border-left: 1px solid $secondary;
     border-right: 1px solid $secondary;
@@ -57,9 +57,12 @@
     z-index: 10;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
-    color: $primary-light;
+    // color: $primary-light;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    background-color: $primary-light;
+    color: $dark;
+    font-weight: 700;
 }
 
 .mySecondNavbar .nav-link.active {
@@ -71,8 +74,8 @@
 /* the image */
 .row .rounded-circle {
     object-fit: cover;
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     outline: 2px dotted $secondary;
     outline-offset: 4px;
     border: 1px solid $secondary;
@@ -111,4 +114,8 @@
 
 .custom-btn-width {
     min-width: 170px;
+}
+
+.btn-container {
+    min-height: 60px;
 }
