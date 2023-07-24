@@ -22,7 +22,7 @@ class UpdateStateFavoriteRecipeComponent extends AbstractController
     use DefaultActionTrait;
 
     #[LiveProp]
-    public bool $isVaforite = false;
+    public bool $isFavorite = false;
 
     #[LiveProp]
     public ?Recipe $recipe = null;
@@ -36,11 +36,11 @@ class UpdateStateFavoriteRecipeComponent extends AbstractController
     {
         /** @var User $user */
         $user = $this->security->getUser();
-        $this->isVaforite = false;
+        $this->isFavorite = false;
 
         if (!$user->isInFavoriteRecipes($this->recipe)) {
             $user->addFavoriteRecipes($this->recipe);
-            $this->isVaforite = true;
+            $this->isFavorite = true;
         } else {
             $user->removeFavoriteRecipes($this->recipe);
         }
@@ -51,6 +51,6 @@ class UpdateStateFavoriteRecipeComponent extends AbstractController
     {
         /** @var User $user */
         $user = $this->security->getUser();
-        $this->isVaforite =  $user->isInFavoriteRecipes($this->recipe);
+        $this->isFavorite =  $user->isInFavoriteRecipes($this->recipe);
     }
 }

@@ -58,16 +58,21 @@
 										{{ component('UpdateStateFavoriteWineComponent', { wine : wine }) }}
 									{% endif %}
 									<h5 class="card-title text-capitalize text-primary-light text-center">{{ wine.name|u.truncate(20, '...') }}</h5>
+									<a class="nav-link text-primary-light mb-2 letter-spacing fs-p" href="{{ path('app_wine_show', {'id': wine.id} ) }}">
+										En savoir plus
+										<span class="text-primary-light custom-transform">
+											<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-eye-fill fs-5" viewbox="0 0 16 16">
+												<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+												<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+											</svg>
+										</span>
+									</a>
 									<div class="bar_separator"></div>
 									<div class="container-fluid my-4">
 										<div class="row row-cols-2 g-3">
 											<div class="d-flex flex-column justify-content-center">
 												<div class="col col-title">Millésime</div>
 												<div class="col">{{ wine.year }}</div>
-											</div>
-											<div class="d-flex flex-column justify-content-center">
-												<div class="col col-title">I.G</div>
-												<div class="col">{{ wine.protectedOrigin|u.truncate(20, '...') }}</div>
 											</div>
 											<div class="d-flex flex-column justify-content-center">
 												<div class="col col-title">Cépage</div>
@@ -77,8 +82,6 @@
 												<div class="col col-title">Type</div>
 												<div class="col">{{ wine.grapevariety.color.color }}</div>
 											</div>
-										</div>
-										<div class="row">
 											<div class="d-flex flex-column justify-content-center">
 												<div class="col col-title">Origine</div>
 												<div class="col">{{ wine.wineRegion.regionName }}</div>
@@ -102,7 +105,7 @@
 								</div>
 							</div>
 						</div>
-						{% else %}
+					{% else %}
 						<p class="text-light">Aucun vin n'a été enregistré pour le moment.</p>
 					{% endfor %}
 				</div>
