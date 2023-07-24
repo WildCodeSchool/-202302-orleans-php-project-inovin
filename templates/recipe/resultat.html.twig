@@ -9,9 +9,12 @@
 	{{ parent() }}
 	{{ encore_entry_link_tags('recipe') }}
 {% endblock %}
-
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('range_animation') }}
+{% endblock %}
 {% block body %}
-	<main class="container-fluid container-md py-5 mb-5">
+	<main class="container-fluid container-md py-5 mb-5" data-turbo="false">
 		{{ form_start(form)}}
 		<div class="d-flex align-items-end">
 			<span class="decoration-title">
@@ -93,8 +96,11 @@
 						{% endfor %}
 						<div class="d-flex justify-content-end mt-3 align-items-center gap-2">
 							<p class="text-light text-uppercase fs-4 fw-bolder m-0">Total</p>
-							<span class="badge bg-primary fs-3 text-dark-light">
-								{{ resultDosages }}mL
+							<span class="badge bg-primary fs-3 text-dark-light totalDosage" id="totalDosage">
+								{{ resultDosages }}
+							</span>
+							<span>
+								mL
 							</span>
 						</div>
 					</div>
