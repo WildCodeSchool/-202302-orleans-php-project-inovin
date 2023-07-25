@@ -47,11 +47,13 @@ class User implements
 
     #[ORM\Column(length: 150)]
     #[Assert\NotBlank]
+    #[Assert\Regex(pattern:'/^[a-zA-Z]+$/')]
     #[Assert\Length(max: 150)]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 150)]
     #[Assert\NotBlank]
+    #[Assert\Regex(pattern:'/^[a-zA-Z]+$/')]
     #[Assert\Length(max: 150)]
     private ?string $lastname = null;
 
@@ -61,23 +63,26 @@ class User implements
     private ?\DateTimeInterface $dateBirth = null;
 
     #[ORM\Column(length: 9)]
-    #[Assert\Length(max: 9)]
-    #[Assert\Regex(pattern: '/^\d+$/')]
+    #[Assert\Length(max: 5)]
+    #[Assert\Regex(pattern:'/^[0-9]+$/')]
     #[Assert\NotBlank]
     private ?string $zipCode = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(max: 255)]
+    #[Assert\Regex(pattern:'/^[a-zA-Z]+$/')]
     #[Assert\NotBlank]
     private ?string $city = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(max: 255)]
+    #[Assert\Regex(pattern:"/^(?=.*[a-zA-Z])(?=.*\d)/")]
     #[Assert\NotBlank]
     private ?string $address = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(max: 255)]
+    #[Assert\Regex(pattern:'/^[a-zA-Z]+$/')]
     #[Assert\NotBlank]
     private ?string $country = null;
 
