@@ -3,28 +3,28 @@
 namespace App\Form;
 
 use App\Entity\User;
+use DateTime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
-use Symfony\Component\Validator\Constraints\GreaterThanOrEqual;
 
 /** @SuppressWarnings(PHPMD.ExcessiveMethodLength) */
 class RegistrationFormType extends AbstractType
 {
+    public const AGE_LIMIT = " - 18 years";
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $today = date('d-M-y');
-        $limitAge = date('d-M-y', strtotime($today . " - 18 years"));
+        $limitAge = date('d-M-y', strtotime($today . self::AGE_LIMIT));
+
         $builder
             ->add('firstname', TextType::class, [
                 'attr' => [
@@ -48,7 +48,8 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'required' => false,
                     'placeholder' => 'JJ-MM-YYYY',
-                    'class' => 'form-control border border-secondary placeholder-style w-100',],
+                    'class' => 'form-control border border-secondary placeholder-style w-100',
+                ],
                 'label' => 'Date de naissance',
                 'label_attr' => [
                     'class' => 'form-label text-uppercase letter-spacing'
@@ -56,10 +57,16 @@ class RegistrationFormType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => false,
                 'format' => 'd-M-y',
-                'constraints' => new LessThanOrEqual([
-                    'value' => $limitAge,
-                    'message' => 'Vous devez être majeur pour vous inscrire'
-                ])
+                'constraints' => [
+                    new LessThanOrEqual([
+                        'value' => $limitAge,
+                        'message' => 'Vous devez être majeur pour vous inscrire'
+                    ]),
+                    new LessThanOrEqual([
+                        'value' => $today,
+                        'message' => 'Veuillez selectionner une date valide'
+                    ])
+                ]
             ])
             ->add('address', TextType::class, [
                 'attr' => [
@@ -117,7 +124,8 @@ class RegistrationFormType extends AbstractType
                 'label_attr' => [
                     'class' => 'form-label text-uppercase letter-spacing'
                 ],
-                'constraints' => [new NotBlank(), new Length(['min' => 6, 'max' => 50]),
+                'constraints' => [
+                    new NotBlank(), new Length(['min' => 6, 'max' => 50]),
                 ],
             ]);
     }
