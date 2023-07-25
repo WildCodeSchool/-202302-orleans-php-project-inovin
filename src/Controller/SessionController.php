@@ -46,7 +46,7 @@ class SessionController extends AbstractController
         $recipe = $recipeRepository->findOneBy(['session' => $session->getId(), 'user' => $user->getId()]);
         if (!isset($recipe)) {
             $recipe = new Recipe();
-            $recipe->setName('Recette - ' .  $user->getFirstname() . ' - ' . date('Y-m-d-hhii'));
+            $recipe->setName('Recette - ' . $user->getFirstname());
             $recipe->setSession($session);
             $recipe->setUser($user);
             $recipe->setSessionRate(0);

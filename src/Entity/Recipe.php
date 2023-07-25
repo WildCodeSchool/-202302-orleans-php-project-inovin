@@ -28,10 +28,10 @@ class Recipe
     #[ORM\OneToMany(mappedBy: 'recipe', targetEntity: TastingSheet::class, cascade: ['persist'], fetch: 'EAGER')]
     private Collection $tastingSheet;
 
-    #[ORM\Column(length: 45)]
+    #[ORM\Column(length: 35)]
     #[Assert\NotBlank]
     #[Assert\Type('string')]
-    #[Assert\Length(max: 45)]
+    #[Assert\Length(max: 35)]
     private ?string $name = null;
 
     #[ORM\Column]
