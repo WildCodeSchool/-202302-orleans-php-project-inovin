@@ -11,7 +11,7 @@ main {
 .card {
     background: $card-gradient-color;
     box-shadow: $shadow-primary;
-    border: 2px solid $secondary;
+    border: 1px solid $secondary;
     border-radius: 45px 10px 10px 10px;
     position: relative;
 }
@@ -170,6 +170,25 @@ form .ts-control input {
 .custom-min-width {
     min-width: 180px;
     min-height: 40px;
+}
+
+.bloc-value {
+    min-height: 50px;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    overflow-y: auto;
+}
+
+.wine-search {
+    min-height: 47px;
+}
+
+form .ts-wrapper.multi .ts-control [data-value] {
+    border: 1px solid $secondary;
+}
+
+form .ts-wrapper.plugin-remove_button:not(.rtl) .item .remove {
+    border-left: 1px solid $secondary;
 }
 
 @media screen and (max-width: 768px) {
