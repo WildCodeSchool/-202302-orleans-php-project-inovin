@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use DateTime;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
@@ -17,10 +18,12 @@ use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 /** @SuppressWarnings(PHPMD.ExcessiveMethodLength) */
 class RegistrationFormType extends AbstractType
 {
+    public const AGE_LIMIT = " - 18 years";
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $today = date('d-M-y');
-        $limitAge = date('d-M-y', strtotime($today . " - 18 years"));
+        $limitAge = date('d-M-y', strtotime($today . self::AGE_LIMIT));
         $builder
             ->add('firstname', TextType::class, [
                 'attr' => [
