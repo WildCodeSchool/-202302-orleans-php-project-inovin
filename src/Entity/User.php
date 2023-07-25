@@ -67,7 +67,6 @@ class User implements
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(max: 255)]
-    #[Assert\Country]
     #[Assert\NotBlank]
     private ?string $city = null;
 
@@ -78,6 +77,7 @@ class User implements
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(max: 255)]
+    #[Assert\Country]
     #[Assert\NotBlank]
     private ?string $country = null;
 
