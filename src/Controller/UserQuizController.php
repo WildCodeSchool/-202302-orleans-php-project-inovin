@@ -41,7 +41,6 @@ class UserQuizController extends AbstractController
                 'form' => $form,
             ]);
         } else {
-            $this->addFlash('danger', 'Vous avez déja répondu au quiz lors de votre inscription.');
             return $this->redirectToRoute('home_index', [], Response::HTTP_SEE_OTHER);
         }
     }
