@@ -28,7 +28,8 @@ class WineController extends AbstractController
 
         return $this->render('wine/index.html.twig', [
             'wines' => $wines,
-            'form' =>  $form
+            'form' =>  $form,
+            'title' => 'Nos vins',
         ]);
     }
 
@@ -42,14 +43,20 @@ class WineController extends AbstractController
 
     #[IsGranted('ROLE_USER')]
     #[Route('/recette/user/favorites', name: 'favorites')]
-    public function favoritesRecipeUser(): Response
+    public function favoritesRecipeUser(Request $request): Response
     {
+        $searchWineData = new SearchWineData();
+        $form = $this->createForm(SearchWineDataFormType::class, $searchWineData);
+        $form->handleRequest($request);
+
         /** @var User $user */
         $user = $this->getUser();
         $wines = $user->getFavoriteWines();
 
-        return $this->render('wine/favoritesWines.html.twig', [
+        return $this->render('wine/index.html.twig', [
             'wines' => $wines,
+            'form' => $form,
+            'title' => 'Mes vins favoris',
         ]);
     }
 }

@@ -21,7 +21,7 @@
 					{% include 'components/svg/_icon_decoration.svg.twig' %}
 				</span>
 				<h2 class="text-primary-light fw-light mt-5 letter-spacing m-0 text-uppercase">
-					Liste de nos vins
+					{{ title }}
 				</h2>
 			</div>
 			<div class="line-gradient"></div>
@@ -68,33 +68,31 @@
 										</span>
 									</a>
 									<div class="bar_separator"></div>
-									<div class="container-fluid my-4">
-										<div class="row row-cols-2 g-3">
-											<div class="d-flex flex-column justify-content-center">
-												<div class="col col-title">Millésime</div>
-												<div class="col">{{ wine.year }}</div>
+									<div class="container-fluid mt-4 mb-0">
+										<div class="row row-cols-2 g-3 row-gap-2">
+											<div class="col d-flex flex-column justify-content-center mt-0">
+												<div class="col-title letter-spacing">Millésime</div>
+												<p class="bloc-value">{{ wine.year }}</p>
 											</div>
-											<div class="d-flex flex-column justify-content-center">
-												<div class="col col-title">Cépage</div>
-												<div class="col">{{ wine.grapevariety.name|u.truncate(20, '...') }}</div>
+											<div class="col d-flex flex-column justify-content-center mt-0">
+												<div class="col-title letter-spacing">Cépage</div>
+												<p class="bloc-value">{{ wine.grapevariety.name|u.truncate(15, '...') }}</p>
 											</div>
-											<div class="d-flex flex-column justify-content-center">
-												<div class="col col-title">Type</div>
-												<div class="col">{{ wine.grapevariety.color.color }}</div>
+											<div class="col d-flex flex-column justify-content-center mt-0">
+												<div class="col-title letter-spacing">Type</div>
+												<p class="bloc-value">{{ wine.grapevariety.color.color }}</p>
 											</div>
-											<div class="d-flex flex-column justify-content-center">
-												<div class="col col-title">Origine</div>
-												<div class="col">{{ wine.wineRegion.regionName }}</div>
+											<div class="col d-flex flex-column justify-content-center mt-0">
+												<div class="col-title letter-spacing">Origine</div>
+												<p class="bloc-value">{{ wine.wineRegion.regionName|u.truncate(20, '...') }}</p>
 											</div>
-										</div>
-										<div class="row row-cols-2 g-3">
-											<div class="d-flex flex-column justify-content-center">
-												<div class="col col-title">Volume</div>
-												<div class="col">{{ wine.volume ~ ' L' }}</div>
+											<div class="col d-flex flex-column justify-content-center mt-0">
+												<div class="col-title letter-spacing">Volume</div>
+												<p class="bloc-value">{{ wine.volume ~ ' L' }}</p>
 											</div>
-											<div class="d-flex flex-column justify-content-center">
-												<div class="col col-title">Taux d'Alcool</div>
-												<div class="col">{{ wine.alcoholPercent ~ '%' }}</div>
+											<div class="col d-flex flex-column justify-content-center mt-0">
+												<div class="col-title letter-spacing">Taux Alcool</div>
+												<p class="bloc-value">{{ wine.alcoholPercent ~ '%' }}</p>
 											</div>
 										</div>
 									</div>

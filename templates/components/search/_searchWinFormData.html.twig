@@ -1,17 +1,16 @@
 {{ form_start(form) }}
 <div class="container px-4" data-turbo="false">
 
-	<div class="row">
-		<div class="col-sm-6">
-			{{ form_row(form.name) }}
+	<div class="row d-flex align-items-center">
+		<div class="col-4">
+			{{ form_label(form.name) }}
+			{{ form_widget(form.name) }}
+			{{ form_errors(form.name) }}
 		</div>
-	</div>
-
-	<div class="row">
-		<div class="mb-3 py-3">
-			<div class="col">
-				{{ form_row(form.grapeVarieties) }}
-			</div>
+		<div class="cepage-search col p-0">
+			{{ form_label(form.grapeVarieties) }}
+			{{ form_widget(form.grapeVarieties) }}
+			{{ form_errors(form.grapeVarieties) }}
 		</div>
 	</div>
 

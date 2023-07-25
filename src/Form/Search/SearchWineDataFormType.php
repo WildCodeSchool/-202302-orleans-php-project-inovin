@@ -21,7 +21,7 @@ class SearchWineDataFormType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Rechercher un vin',
-                    'class' => 'form-control border border-secondary placeholder-style my-3',
+                    'class' => 'form-control border border-secondary placeholder-style wine-search',
                 ]
             ])
             ->add('grapeVarieties', GrapeVarietiesAutocompleteField::class, [
@@ -29,7 +29,7 @@ class SearchWineDataFormType extends AbstractType
                 'required' => false,
                 'attr' => [
                     'placeholder' => 'Quel cépage ?',
-                    'class' => 'form-control border border-secondary placeholder-style my-3',
+                    'class' => 'form-control border border-secondary placeholder-style',
                 ]
             ])
             ->add('maxPrice', NumberType::class, [
