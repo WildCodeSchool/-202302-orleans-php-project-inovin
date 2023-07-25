@@ -61,8 +61,7 @@ class User implements
     private ?\DateTimeInterface $dateBirth = null;
 
     #[ORM\Column(length: 9)]
-    #[Assert\Length(max: 9)]
-    #[Assert\Regex(pattern: '/^\d+$/')]
+    #[Assert\Length(max: 5)]
     #[Assert\NotBlank]
     private ?string $zipCode = null;
 
@@ -78,6 +77,7 @@ class User implements
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(max: 255)]
+    #[Assert\Country]
     #[Assert\NotBlank]
     private ?string $country = null;
 

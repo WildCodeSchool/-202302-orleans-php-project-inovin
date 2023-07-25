@@ -44,7 +44,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-label text-uppercase letter-spacing'
                 ],
             ])
-            ->add('date_birth', BirthdayType::class, [
+            ->add('dateBirth', BirthdayType::class, [
                 'attr' => [
                     'required' => false,
                     'placeholder' => 'JJ-MM-YYYY',
@@ -71,7 +71,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-label text-uppercase letter-spacing'
                 ],
             ])
-            ->add('zip_code', TextType::class, [
+            ->add('zipCode', TextType::class, [
                 'attr' => [
                     'class' => 'form-control border border-secondary placeholder-style',
                 ],
@@ -106,7 +106,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-label text-uppercase letter-spacing'
                 ],
             ])
-            ->add('plainPassword', PasswordType::class, [
+            ->add('password', PasswordType::class, [
                 'always_empty' => false,
                 'mapped' => false,
                 'attr' => [
