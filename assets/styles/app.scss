@@ -5,6 +5,7 @@
 
 body {
     background-color: $dark-light;
+    min-height: calc(100vh - $footer-height);
 }
 
 h1,
@@ -226,6 +227,14 @@ body {
 
 .shadow-container {
     box-shadow: $shadow-primary;
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background: $secondary;
+    align-self: end;
+    transform: translateY(-5px);
 }
 
 /* range */

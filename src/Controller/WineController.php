@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Wine;
 use App\Form\Search\SearchWineDataFormType;
 use App\Repository\WineRepository;
@@ -10,6 +11,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 #[Route('/vin', name: 'app_wine_')]
 class WineController extends AbstractController
@@ -25,7 +28,35 @@ class WineController extends AbstractController
 
         return $this->render('wine/index.html.twig', [
             'wines' => $wines,
-            'form' =>  $form
+            'form' =>  $form,
+            'title' => 'Nos vins',
+        ]);
+    }
+
+    #[Route('/{id}', name: 'show')]
+    public function show(Wine $wine): Response
+    {
+        return $this->render('wine/show.html.twig', [
+            'wine' => $wine,
+        ]);
+    }
+
+    #[IsGranted('ROLE_USER')]
+    #[Route('/recette/user/favorites', name: 'favorites')]
+    public function favoritesRecipeUser(Request $request): Response
+    {
+        $searchWineData = new SearchWineData();
+        $form = $this->createForm(SearchWineDataFormType::class, $searchWineData);
+        $form->handleRequest($request);
+
+        /** @var User $user */
+        $user = $this->getUser();
+        $wines = $user->getFavoriteWines();
+
+        return $this->render('wine/index.html.twig', [
+            'wines' => $wines,
+            'form' => $form,
+            'title' => 'Mes vins favoris',
         ]);
     }
 }

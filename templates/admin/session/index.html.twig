@@ -1,68 +1,101 @@
 {% extends 'admin.html.twig' %}
 
 {% block title %}
-{{ parent() }}
-| Seance - Index
+	{{ parent() }}
+	| Seance - Index
 {% endblock %}
 
 {% block admin_content_title %}
-Gestion des Séances
+	Gestion des Séances
 {% endblock %}
 
 {% block admin_content %}
-<div class="d-flex justify-content-end align-self-end me-1">
-	<a role="button"
-		class="bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover-left icon-dark text-uppercase order-2 btn"
-		href="{{ path('admin_session_new') }}">
-		{{ include('/components/svg/_icon_add.svg.twig') }}
-		AJOUTER
-	</a>
-</div>
+	<div class="d-flex justify-content-end align-self-end me-1">
+		<a role="button" class="bg-primary-light text-dark fw-bolder mb-4 icon-link icon-link-hover-left icon-dark text-uppercase order-2 btn" href="{{ path('admin_session_new') }}">
+			{{ include('/components/svg/_icon_add.svg.twig') }}
+			AJOUTER
+		</a>
+	</div>
 
-<div class=" table-responsive">
-	<table class="table table-dark table-striped table-hover table-bordered border-secondary">
-		<thead class="sticky-top">
-			<tr class="py-4">
-				<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Date
-					d'ouverture</th>
-				<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Intitulé</th>
-				<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Status</th>
-				<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Actions</th>
-			</tr>
-		</thead>
-		<tbody class="table-group-divider">
-			{% for session in sessions %}
-			<tr>
-				<td class="px-4 align-middle">
-					{{ session.openingDate ? session.openingDate|date('d/m/Y H:i') : '' }}
-				</td>
-				<td class="px-4 align-middle">{{ session.name }}</td>
-				<td class="px-4 align-middle">
-					<div class="d-flex justify-content-center">
-						{% if session.closed is same as(false) %}
-						<span class="badge custom-w p-2 rounded-pill text-bg-success">Ouverte</span>
-						{% else %}
-						<span class="badge custom-w p-2 rounded-pill text-bg-danger">Terminée</span>
-						{% endif %}
-					</div>
-				</td>
-				<td class="text-center">
-					<div class="d-flex justify-content-md-center flex-nowrap gap-3">
-						<a class="icon-link icon-link-hover-left link-light mx-2 text-decoration-none"
-							href="{{ path('admin_session_edit', {'id': session.id}) }}">
-							{{ include('/components/svg/_icon_edit.svg.twig') }}
-							Éditer
-						</a>
-						{{ include('admin/session/_delete_form.html.twig') }}
-					</div>
-				</td>
-			</tr>
-			{% else %}
-			<tr>
-				<td colspan="5">Aucun enregistrement trouvé</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-</div>
+	<div class=" table-responsive">
+		<table class="table table-dark table-striped table-hover table-bordered border-secondary">
+			<thead class="sticky-top">
+				<tr class="py-4">
+					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Date
+																													d'ouverture</th>
+					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Intitulé</th>
+					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Participants</th>
+					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Statut</th>
+					<th class="w-auto th-lg py-3 px-4 bg-secondary text-uppercase letter-spacing" scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody class="table-group-divider">
+				{% for session in sessions %}
+					<tr>
+						<td class="px-4 align-middle">
+							{{ session.openingDate ? session.openingDate|date('d/m/Y H:i') : '' }}
+						</td>
+						<td class="px-4 align-middle">{{ session.name }}</td>
+						<td class="px-4 align-middle text-center">
+							<a role="button" data-bs-toggle="modal" data-bs-target="#exampleModal{{ loop.index }}"><span class="me-1">{{ include('/components/svg/_icon_eye.svg.twig') }}</span> Voir la liste</a>
+						</td>
+
+
+
+							<div class="modal fade" id="exampleModal{{ loop.index }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content bg-card border border-secondary custom-shadow">
+
+										<div class="modal-body text-center custom-modal p-4 p-sm-5">
+											<h4 class="m-0 pt-1 pb-5">Liste des participants de la séance</h4>
+											<small class="letter-spacing text-center">
+													{% for recipe in session.recipes %}
+														<p class="list-unstyled"><span class="me-2">{{ include('/components/svg/_icon_profile.svg.twig') }}</span>{{ recipe.user.firstName ~ ' ' ~ recipe.user.lastName }}</p>
+													{% endfor %}
+											</small>
+										</div>
+										<div class="modal-footer d-flex justify-content-around">
+											<button class="btn btn-sm fw-bolder icon-link icon-link-hover-left icon-light text-uppercase d-flex justify-content-center" data-bs-dismiss="modal">
+												{% include "components/svg/_icon_close.svg.twig" %}
+												Fermer
+											</button>
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+						<td class="px-4 align-middle">
+							<div class="d-flex justify-content-center">
+								{% if session.closed is same as(false) %}
+									<span class="badge custom-w p-2 rounded-pill text-bg-success">Ouverte</span>
+								{% else %}
+									<span class="badge custom-w p-2 rounded-pill text-bg-danger">Terminée</span>
+								{% endif %}
+							</div>
+						</td>
+						<td class="text-center">
+							<div class="d-flex justify-content-md-start flex-nowrap gap-3">
+								<a class="icon-link icon-link-hover-left link-light mx-2 text-decoration-none" href="{{ path('admin_session_edit', {'id': session.id}) }}">
+									{{ include('/components/svg/_icon_edit.svg.twig') }}
+									Éditer
+								</a>
+								{% if session.isDelatable() %}
+									{{ include('admin/session/_delete_form.html.twig') }}
+								{% endif %}
+							</div>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">Aucun enregistrement trouvé</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+
+	</div>
 {% endblock %}

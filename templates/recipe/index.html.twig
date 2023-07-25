@@ -75,13 +75,15 @@
 								{% endfor %}
 							</div>
 						</div>
-						<div class="d-flex w-100  flex-sm-row justify-content-end mt-3 pt-2">
-							<div class="d-flex justify-content-end align-items-center">
+						<div class="d-flex w-100 flex-sm-row justify-content-between mt-3 pt-2 px-2">
+								{{ component('UpdateStateLikeRecipeComponent', { recipe : recipe }) }}
 								{{ component('SendRecipeOrderComponent', { recipe : recipe }) }}
-							</div>
 						</div>
 					</div>
 				</div>
+			{% else %}
+				<p class="text-light">Aucune recette créée pour le moment.</p>
+
 			{% endfor %}
 		</div>
 	</main>

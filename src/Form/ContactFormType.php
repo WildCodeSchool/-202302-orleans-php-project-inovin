@@ -19,21 +19,21 @@ class ContactFormType extends AbstractType
         $builder
             ->add('lastname', TextType::class, [
                 'label' => 'Nom',
-                'attr' => ['placeholder' => 'Veuillez écrire votre nom'],
+                'attr' => ['placeholder' => 'BORIAT'],
                 'label_attr' => [
                     'class' => 'form-label text-uppercase letter-spacing mb-2'
                 ],
             ])
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
-                'attr' => ['placeholder' => 'Veuillez écrire votre prénom'],
+                'attr' => ['placeholder' => 'Cédric'],
                 'label_attr' => [
                     'class' => 'form-label text-uppercase letter-spacing mb-2'
                 ],
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
-                'attr' => ['placeholder' => 'Veuillez écrire votre email'],
+                'attr' => ['placeholder' => 'example@gmail.com'],
                 'label_attr' => [
                     'class' => 'form-label text-uppercase letter-spacing mb-2'
                 ],
@@ -41,14 +41,14 @@ class ContactFormType extends AbstractType
             ->add('phone', TelType::class, [
                 'required' => false,
                 'label' => 'Téléphone',
-                'attr' => ['placeholder' => 'Veuillez écrire votre numéro'],
+                'attr' => ['placeholder' => 'XX-XX-XX-XX-XX'],
                 'label_attr' => [
                     'class' => 'form-label text-uppercase letter-spacing mb-2'
                 ],
             ])
             ->add('subject', TextType::class, [
                 'label' => 'Sujet',
-                'attr' => ['placeholder' => 'Veuillez renseigner un sujet'],
+                'attr' => ['placeholder' => 'Commander ma recette'],
                 'label_attr' => [
                     'class' => 'form-label text-uppercase letter-spacing mb-2'
                 ],
@@ -56,7 +56,7 @@ class ContactFormType extends AbstractType
             ->add('content', TextareaType::class, [
                 'label' => 'Message',
                 'attr' => [
-                    'placeholder' => 'Veuillez écrire votre message',
+                    'placeholder' => 'Mon message',
                     'class' => 'message'
                 ],
                 'label_attr' => [

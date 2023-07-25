@@ -1,63 +1,80 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block title %}User
+{% block title %}
+	{{ parent() }}
+	| User - Visualiser
 {% endblock %}
 
-{% block body %}
-	<h1>User</h1>
-
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ user.id }}</td>
-			</tr>
-			<tr>
-				<th>Email</th>
-				<td>{{ user.email }}</td>
-			</tr>
-			<tr>
-				<th>Roles</th>
-				<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-			</tr>
-			<tr>
-				<th>Prénom</th>
-				<td>{{ user.firstname }}</td>
-			</tr>
-			<tr>
-				<th>Nom</th>
-				<td>{{ user.lastname }}</td>
-			</tr>
-			<tr>
-				<th>Date de naissance</th>
-				<td>{{ user.dateBirth ? user.dateBirth|date('Y-m-d') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Code postal</th>
-				<td>{{ user.zipCode }}</td>
-			</tr>
-			<tr>
-				<th>Ville</th>
-				<td>{{ user.city }}</td>
-			</tr>
-			<tr>
-				<th>Adresse</th>
-				<td>{{ user.address }}</td>
-			</tr>
-			<tr>
-				<th>Pays</th>
-				<td>{{ user.country }}</td>
-			</tr>
-			<tr>
-				<th>Confirmation email</th>
-				<td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
-			</tr>
-		</tbody>
-	</table>
-
-	<a href="{{ path('app_admin_user_index') }}">back to list</a>
-
-	<a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit</a>
-
-	{{ include('admin/user/_delete_form.html.twig') }}
+{% block admin_content_title %}
+	Gestion des Utilisateurs
 {% endblock %}
+
+{% block admin_content %}
+	<main class="container">
+		<div class="row">
+			<div class="col">
+				<div class="table-responsive rounde-2 overflow-hidden">
+					<table class="table table-dark">
+						<tbody calss="table-striped">
+							<tr>
+								<th>Id</th>
+								<td>{{ user.id }}</td>
+							</tr>
+							<tr>
+								<th>Email</th>
+								<td>{{ user.email }}</td>
+							</tr>
+							<tr>
+								<th>Roles</th>
+								<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+							</tr>
+							<tr>
+								<th>Prénom</th>
+								<td>{{ user.firstname }}</td>
+							</tr>
+							<tr>
+								<th>Nom</th>
+								<td>{{ user.lastname }}</td>
+							</tr>
+							<tr>
+								<th>Date de naissance</th>
+								<td>{{ user.dateBirth ? user.dateBirth|date('Y-m-d') : '' }}</td>
+							</tr>
+							<tr>
+								<th>Code postal</th>
+								<td>{{ user.zipCode }}</td>
+							</tr>
+							<tr>
+								<th>Ville</th>
+								<td>{{ user.city }}</td>
+							</tr>
+							<tr>
+								<th>Adresse</th>
+								<td>{{ user.address }}</td>
+							</tr>
+							<tr>
+								<th>Pays</th>
+								<td>{{ user.country }}</td>
+							</tr>
+							<tr>
+								<th>Confirmation email</th>
+								<td>{{ user.isVerified ? 'Yes' : 'No' }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col">
+				<div class="d-flex flex-column justify-content-center align-items-end m-auto my-5">
+					<a class="btn fw-bolder mb-4 icon-link icon-link-hover-left icon-light text-uppercase " href="{{ path('app_admin_user_index') }}">
+						{% include "components/svg/_icon_backlink.svg.twig" %}
+						Retour
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>{% endblock %}

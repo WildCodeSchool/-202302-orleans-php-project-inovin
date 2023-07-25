@@ -14,7 +14,7 @@
 				{% include 'components/svg/_icon_decoration.svg.twig' %}
 			</span>
 			<h2 class="text-primary-light fw-light mt-5 letter-spacing m-0 text-uppercase">
-				Ma recette
+				{{ recipe.name }} <span class="fs-4 mx-1">créé par</span> {{ recipe.user.firstName }} {{ recipe.user.lastName }}
 			</h2>
 		</div>
 		<div class="line-gradient"></div>
@@ -80,11 +80,11 @@
 				</div>
 			</div>
 			<div class="d-flex border border-secondary py-3 rounded-bottom px-4 px-md-5 shadow-container bg-dark-light z-1">
-				<a class="btn btn-sm fw-bolder icon-link icon-link-hover-left icon-light text-uppercase order-3 order-sm-1" href="{{ path('app_admin_recipe_index') }}">
+				<a class="btn btn-sm fw-bolder icon-link icon-link-hover-left icon-light text-uppercase order-3 order-sm-1" href="{{ path('recipe_index') }}">
 					{% include "components/svg/_icon_backlink.svg.twig" %}
 					Retour
 				</a>
-			</button>
+			</div>
 		</div>
-	</div>
-</main>{% endblock %}
+	</main>
+{% endblock %}

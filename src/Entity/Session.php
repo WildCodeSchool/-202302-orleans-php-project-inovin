@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\SessionRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\SessionRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SessionRepository::class)]
 class Session
@@ -20,6 +21,7 @@ class Session
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Assert\GreaterThanOrEqual(value: 'today')]
     private ?\DateTimeInterface $openingDate = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -34,8 +36,10 @@ class Session
     #[ORM\ManyToMany(targetEntity: Wine::class, inversedBy: 'sessions')]
     private Collection $wines;
 
-    #[ORM\OneToMany(mappedBy: 'session', targetEntity: Recipe::class)]
+    #[ORM\OneToMany(mappedBy: 'session', targetEntity: Recipe::class, orphanRemoval: true)]
     private Collection $recipes;
+
+    private bool $delatable = false;
 
     public function __construct()
     {
@@ -157,5 +161,11 @@ class Session
         }
 
         return $this;
+    }
+
+    public function isDelatable(): bool
+    {
+        $this->delatable = ($this->getRecipes()->count() === 0) ? true : false;
+        return $this->delatable;
     }
 }

@@ -87,6 +87,8 @@ class UserFixtures extends Fixture
             $member->setCity($faker->city());
             $member->setCountry($faker->country());
 
+            $this->addReference('user_' . ($i + 3), $member);
+
             $manager->persist($member);
 
             $manager->flush();

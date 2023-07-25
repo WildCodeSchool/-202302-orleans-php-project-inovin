@@ -31,7 +31,7 @@
 		],
 		}%}
 
-	<main class="container-fluid container-md py-5 mb-5">
+	<main class="container-fluid container-md mb-5">
 		<div class="d-flex align-items-end">
 			<span class="decoration-title">
 				{% include 'components/svg/_icon_decoration.svg.twig' %}
@@ -59,7 +59,7 @@
 			<div class="col-11 col-md-12 m-auto mb-4 px-0 mt-5">
 				<ul class="firstNavbar nav nav-pills bg-transparent" id="pills-tab" role="tablist">
 					{% for wine in recipe.session.getWines %}
-						<li class="nav-item" role="presentation">
+						<li class="nav-item border border-1 border-bottom-0 rounded-top-1 border-secondary border-opacity-75" role="presentation">
 							<button class="nav-link {% if loop.first %} {{ 'show active' }} {% endif %} letter-spacing px-3 px-md-5" id="pills-tab-{{ loop.index }}" data-bs-toggle="pill" data-bs-target="#pills-{{ loop.index }}" type="button" role="tab" aria-controls="pills-{{ loop.index }}" aria-selected="true">Vin
 								{{ loop.index }}</button>
 						</li>
@@ -73,52 +73,43 @@
 							{% set lastWine = form.tastingSheet|last %}
 							{% set firstWine = form.tastingSheet|first %}
 							<div class="tab-pane fade {% if loop.first %} {{ 'show active' }} {% endif %}" id="pills-{{ loop.index }}" role="tabpanel" aria-labelledby="pills-tab-{{ loop.index }}" tabindex="{{ loop.index0 }}">
+
 								<div class="firstNavbarBorder">
-									<div class="d-flex flex-column flex-md-row gap-md-5">
-										<div class="d-flex align-items-center justify-content-center customMinWidth mt-5 mt-md-0 ms-md-5">
+
+									<div class="px-2 px-md-0 mb-2 mx-5 my-3">
+										<h4 class="mx-2 mx-md-0 border border-start-0 border-end-0 border-top-0 border-secondary">{{ 'Vin ' ~ wine.grapeVariety.color.color}}
+											,
+											{{ wine.name }}</h4>
+									</div>
+
+									<div class="d-flex flex-column flex-md-row gap-md-1">
+
+										<div class="col-3 d-flex flex-column justify-content-start align-items-start mt-5 mt-md-4 ms-md-5">
+
 											<img class="p-1 rounded-circle" src="{{ wine.picture is not empty ? vich_uploader_asset(wine) : asset('build/images/placeholder_wine.jpg') }}" alt="{{ wine.name ?? 'Default' }} image">
-										</div>
-										<div class="mt-4 d-flex flex-column align-items-md-start align-items-center justify-content-around w-100 me-5">
-											<div class="px-2 px-md-0 mb-4 w-100">
-												<h4 class="mx-2 mx-md-0 border border-start-0 border-end-0 border-top-0 border-secondary">{{ wine.name }}</h4>
-											</div>
-											<div class="d-flex w-100 px-2 px-md-0">
-												<ul class="mb-4 ms-2 ms-md-0">
+
+											<div class="d-flex flex-column px-2 px-md-0 mt-4">
+
+												<ul class="ms-2 ms-md-0">
 													<li>
-														<span class="wineSheetListTitle text-primary-light">
-															Millésium :
+														<span class="wineSheetListTitle text-primary-light text-uppercase">
+															Millésime :
 														</span>
 														<span class="letter-spacing">
 															{{ wine.year }}
 														</span>
 													</li>
 													<li>
-														<span class="wineSheetListTitle text-primary-light">
-															Provenance :
+														<span class="wineSheetListTitle text-primary-light text-uppercase">
+															Région :
 														</span>
 														<span class="letter-spacing">
-															{{ wine.origin}}
+															{{ wine.wineRegion.regionName}}
 														</span>
 													</li>
+
 													<li>
-														<span class="wineSheetListTitle text-primary-light">
-															Type :
-														</span>
-														<span class="letter-spacing">
-															Vin
-															{{ wine.grapeVariety.color.color}}
-														</span>
-													</li>
-													<li>
-														<span class="wineSheetListTitle text-primary-light">
-															Indication géographique:
-														</span>
-														<span class="letter-spacing">
-															{{ wine.protectedOrigin}}
-														</span>
-													</li>
-													<li>
-														<span class="wineSheetListTitle text-primary-light">
+														<span class="wineSheetListTitle text-primary-light text-uppercase">
 															Cépage :
 														</span>
 														<span class="letter-spacing">
@@ -126,14 +117,7 @@
 														</span>
 													</li>
 													<li>
-														<span class="wineSheetListTitle text-primary-light">Volume :
-														</span>
-														<span class="letter-spacing">
-															{{ wine.volume }}L
-														</span>
-													</li>
-													<li>
-														<span class="wineSheetListTitle text-primary-light">
+														<span class="wineSheetListTitle text-primary-light text-uppercase">
 															Taux d'alcool :
 														</span>
 														<span class="letter-spacing">
@@ -143,97 +127,107 @@
 												</ul>
 											</div>
 										</div>
-									</div>
-								</div>
-								<div class="secondNavBarBorder">
-									<div class="mySecondNavbar pt-3">
-										<div class="mx-2 px-2 mx-md-0 px-md-0">
-											<ul class="nav nav-pills mb-3 d-flex flex-column flex-sm-row align-items-sm-center gap-sm-4 ps-md-5 ps-0 ms-md-3 ms-0" id="pills-tab" role="tablist">
-												{% for key, criteriaContent in criteriaContents %}
-													<li class="nav-item" role="presentation">
-														<button class="nav-link {% if loop.first %} {{ 'show active' }} {% endif %} align-self-center pt-3 pb-3 pe-0 ps-0 pe-md-4 letter-spacing" id="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}-tab" data-bs-toggle="pill" data-bs-target="#pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}" type="button" role="tab" aria-controls="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}" aria-selected="true">{{ key }}</button>
-													</li>
-												{% endfor %}
-											</ul>
-										</div>
-										<div class="mx-2 mx-md-0">
-											<p class="px-md-5 ps-0 ms-md-3 mx-2 spacingCiteriaTitle">Choississez une note de
-												<span class="text-primary fw-bold fs-5">0</span>
-												à
-												<span class="text-primary fw-bold fs-5">10</span>
-												en fonction des ces critères
-											</p>
-											<div class="tab-content" id="pills-tabContent">
-												{% for key, criteriaContent in criteriaContents %}
-													<div class="tab-pane fade show {% if loop.first %} {{ 'active' }} {% endif %}" id="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}" role="tabpanel" aria-labelledby="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}-tab" tabindex="0">
-														<ul class="d-flex flex-column align-self-center ps-md-5 ps-1 ms-md-5 ms-2 gap-3">
-															{% for criteria in criteriaContent %}
-																<li class="list-group-item d-flex justify-content-between align-items-center">
-																	{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':loop.index} %}
-																	<div class="ms-2 me-auto">
-																		<p class="mx-2 fw-light mb-0">{{ criteria }}</p>
-																	</div>
-																</li>
 
-															{% endfor %}
-														</ul>
-														{% if key == 'Apparence' %}
-															<div class="d-flex align-items-center gap-2 mx-3 mx-md-5 my-5">
-																{{ form_widget(tastingSheetForm.visual)}}
-																<output class="text-primary fs-3 fw-bold custom-dosage-width text-end">5</output>
-																<span class="letter-spacing me-md-5">/10</span>
-															</div>
-														{% endif %}
-														{% if key == 'Nez' %}
-															<div class="d-flex align-items-center gap-2 mx-3 mx-md-5 my-5">
-																{{ form_widget(tastingSheetForm.smell) }}
-																<output class="text-primary fs-3 fw-bold custom-dosage-width text-end">5</output>
-																<span class="letter-spacing me-md-5">/10</span>
-															</div>
-														{% endif %}
-														{% if key == 'Palais' %}
-															<div class="d-flex align-items-center gap-2 mx-3 mx-md-5 my-5">
-																{{ form_widget(tastingSheetForm.taste) }}
-																<output class="text-primary fs-3 fw-bold custom-dosage-width text-end">5</output>
-																<span class="letter-spacing me-md-5">/10</span>
-															</div>
-														{% endif %}
-														<div class="d-flex flex-column flex-md-row justify-content-md-between align-items-center gap-4 mx-3 mx-md-5 mb-4 pb-4">
-															{% for Mywine in recipe.session.getWines %}
-																{% if wine == Mywine and wine != firstWine.vars.value.wine and key == 'Palais' %}
-																	<div class="order-2 order-md-1">
-																		<a class="btn btn-sm custom-btn-width fw-bolder icon-link icon-link-hover-left icon-light text-uppercase" id="pills-before-{{ loop.index }}">
-																			{% include "components/svg/_icon_backlink.svg.twig" %}
-																			PRÉCÉDENT
-																		</a>
+										<div class="d-flex flex-column justify-content-center align-items-center">
+
+											<div class="mySecondNavbar row pt-3">
+
+												<div class="mx-2 px-2 mx-md-0 px-md-0">
+													<ul class="nav nav-pills mb-3 d-flex flex-column flex-sm-row align-items-sm-center gap-sm-4 ps-md-5 ps-0 ms-md-3 ms-0" id="pills-tab" role="tablist">
+														{% for key, criteriaContent in criteriaContents %}
+															<li class="nav-item" role="presentation">
+																<button class="nav-link {% if loop.first %} {{ 'show active' }} {% endif %} align-self-center pt-3 pb-3 pe-0 ps-0 pe-md-4 letter-spacing" id="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}-tab" data-bs-toggle="pill" data-bs-target="#pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}" type="button" role="tab" aria-controls="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}" aria-selected="true">{{ key }}</button>
+															</li>
+														{% endfor %}
+													</ul>
+												</div>
+
+												<div class="mx-2 mx-md-0">
+													<p class="px-md-5 ps-0 ms-md-3 mx-2 spacingCiteriaTitle">Choississez une note de
+														<span class="text-primary fw-bold fs-5">0</span>
+														à
+														<span class="text-primary fw-bold fs-5">10</span>
+														en fonction des ces critères
+													</p>
+													<div class="tab-content" id="pills-tabContent">
+														{% for key, criteriaContent in criteriaContents %}
+															<div class="tab-pane fade show {% if loop.first %} {{ 'active' }} {% endif %}" id="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}" role="tabpanel" aria-labelledby="pills-{{ key }}{{ loop.index }}-{{ loop.parent.loop.index }}-tab" tabindex="0">
+																<ul class="d-flex flex-column align-self-center ps-md-5 ps-1 ms-md-5 ms-2 gap-3">
+																	{% for criteria in criteriaContent %}
+																		<li class="list-group-item d-flex justify-content-between align-items-center">
+																			{% include 'components/svg/_icon_pine-circle.html.twig' with {'pine_number':loop.index} %}
+																			<div class="ms-2 me-auto">
+																				<p class="mx-2 fw-light mb-0">{{ criteria }}</p>
+																			</div>
+																		</li>
+
+																	{% endfor %}
+																</ul>
+																{% if key == 'Apparence' %}
+																	<div class="d-flex align-items-center gap-2 mx-3 mt-3">
+																		{{ form_widget(tastingSheetForm.visual)}}
+																		<output class="text-primary fs-3 fw-bold custom-dosage-width text-end">5</output>
+																		<span class="letter-spacing me-md-5">/10</span>
 																	</div>
 																{% endif %}
-															{% endfor %}
-															{% for Mywine in recipe.session.getWines %}
-																{% if wine == Mywine and wine != lastWine.vars.value.wine and key == 'Palais' %}
-																	<div class="order 1 order-md-2">
-																		<a class="btn btn-sm custom-btn-width bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase" id="pills-next-{{ loop.index }}">
-																			SUIVANT
-																			{% include "components/svg/_icon_next.svg.twig" %}
-																		</a>
+																{% if key == 'Nez' %}
+																	<div class="d-flex align-items-center gap-2 mx-3 mt-3">
+																		{{ form_widget(tastingSheetForm.smell) }}
+																		<output class="text-primary fs-3 fw-bold custom-dosage-width text-end">5</output>
+																		<span class="letter-spacing me-md-5">/10</span>
 																	</div>
 																{% endif %}
-															{% endfor %}
-															{% if wine == lastWine.vars.value.wine and key == 'Palais' %}
-																<div class="order-1 order-md-2">
-																	<button class="btn btn-sm custom-btn-width bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase">
-																		ENREGISTRER
-																		{% include "components/svg/_icon_next.svg.twig" %}
-																	</button>
+																{% if key == 'Palais' %}
+																	<div class="d-flex align-items-center gap-2 mx-3 mt-3">
+																		{{ form_widget(tastingSheetForm.taste) }}
+																		<output class="text-primary fs-3 fw-bold custom-dosage-width text-end">5</output>
+																		<span class="letter-spacing me-md-5">/10</span>
+																	</div>
+																{% endif %}
+
+																<div class="d-flex flex-column flex-md-row justify-content-md-end align-items-center gap-4 mx-3 mx-md-5 mt-4 btn-container">
+
+																	{% for Mywine in recipe.session.getWines %}
+
+																		{% if wine == Mywine and wine != firstWine.vars.value.wine and key == 'Palais' %}
+																			<div class="order-2 order-md-1">
+																				<a class="btn btn-sm custom-btn-width fw-bolder icon-link icon-link-hover-left icon-light text-uppercase" id="pills-before-{{ loop.index }}">
+																					{% include "components/svg/_icon_backlink.svg.twig" %}
+																					PRÉCÉDENT
+																				</a>
+																			</div>
+
+																		{% endif %}
+
+																		{% if wine == Mywine and wine != lastWine.vars.value.wine and key == 'Palais' %}
+																			<div class="order 1 order-md-2">
+																				<a class="btn btn-sm custom-btn-width bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase" id="pills-next-{{ loop.index }}">
+																					SUIVANT
+																					{% include "components/svg/_icon_next.svg.twig" %}
+																				</a>
+																			</div>
+																		{% endif %}
+
+																	{% endfor %}
+																	{% if wine == lastWine.vars.value.wine and key == 'Palais' %}
+																		<div class="order-1 order-md-2">
+																			<button class="btn btn-sm custom-btn-width bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase">
+																				ENREGISTRER
+																				{% include "components/svg/_icon_next.svg.twig" %}
+																			</button>
+																		</div>
+																	{% endif %}
 																</div>
-															{% endif %}
-														</div>
+															</div>
+														{% endfor %}
 													</div>
-												{% endfor %}
+												</div>
 											</div>
+
 										</div>
 									</div>
 								</div>
+
 							</div>
 						{% endfor %}
 					</div>

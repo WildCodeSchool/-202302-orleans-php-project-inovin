@@ -16,8 +16,20 @@ class AdminWineController extends AbstractController
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(WineRepository $wineRepository): Response
     {
+        $activeWines = $wineRepository->findBy(
+            ['enabled' => true],
+            ['name' => 'ASC']
+        );
+
+        $inactiveWines = $wineRepository->findBy(
+            ['enabled' => false],
+            ['name' => 'ASC']
+        );
+
+        $wines = array_merge($activeWines, $inactiveWines);
+
         return $this->render('admin/wine/index.html.twig', [
-            'wines' => $wineRepository->findBy([], ['name' => 'ASC']),
+            'wines' => $wines,
         ]);
     }
 

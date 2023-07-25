@@ -18,10 +18,41 @@
 				<div class="m-auto">
 					{% include "components/svg/_frame_surlignage.svg.twig" %}
 				</div>
-				<div class="d-flex">
-					<div class="m-auto my-5">
+				<div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-3 gap-md-5 my-5">
+					<div class="my-md-5">
 						{% include "components/svg/_icon_profile_user.svg.twig" %}
 					</div>
+
+					{% if user.userPreference is empty %}
+						<div class="d-flex flex-column justify-content-center align-items-center">
+							<p>Vous avez aucune préférence.</p>
+							<a href="{{ path('app_user_quiz_quiz') }}" class="btn1 text-decoration-none letter-spacing text-uppercase">Répondre au quizz</a>
+						</div>
+					{% else %}
+						<div class="d-flex flex-column justify-content-center border border-secondary rounded-3">
+							<h3 class="text-uppercase fs-5 text-primary-light px-4 my-3">Mes préférérences</h3>
+							<div class="line mb-2"></div>
+							<ul class="list-unstyled d-flex flex-column gap-3 px-4">
+								<li class="letter-spacing">
+									<span class="text-primary-light">Couleur favorite :</span>
+									{{ user.userPreference.wineColour }}
+								</li>
+								<li class="letter-spacing">
+									<span class="text-primary-light">Connaissance du vin :</span>
+									{{ user.userPreference.wineKnowledge }}
+								</li>
+								<li class="letter-spacing">
+									<span class="text-primary-light">Région préféré :</span>
+									{{ user.userPreference.wineRegion.regionName }}
+								</li>
+								<li class="letter-spacing">
+									<span class="text-primary-light">Type de vin préféré :</span>
+									{{ user.userPreference.wineTaste.tasteName }}
+								</li>
+							</ul>
+						</div>
+					{% endif %}
+
 				</div>
 				{{ form_start(form) }}
 				<div>
@@ -29,10 +60,10 @@
 				</div>
 
 				<div class="mt-5 w-100 d-flex flex-column gap-2">
-					<a href="{{ path('app_forgot_password_request') }}" class="letter-spacing text-decoration-none btn1">Changer mon mot de passe</a>
+					<a href="{{ path('app_forgot_password_request') }}" class="letter-spacing text-decoration-none btn1 text-uppercase">Changer mon mot de passe</a>
 
 					<button type="button" class="btn2 bg-transparent border-0 p-0 w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
-						<span class="text-decoration-none letter-spacing btn2">
+						<span class="text-decoration-none letter-spacing btn2 text-uppercase">
 							Désactiver mon compte
 						</span>
 					</button>

@@ -36,6 +36,7 @@ class Wine
 
     #[ORM\Column]
     #[Assert\NotBlank]
+    #[Assert\Positive()]
     private ?float $volume = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -58,6 +59,10 @@ class Wine
     #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 1)]
     #[Assert\NotBlank]
     #[Assert\Positive()]
+    #[Assert\Range(
+        min: 0,
+        max: 100,
+    )]
     #[Assert\Type(type: 'float')]
     private ?float $alcoholPercent = null;
 
@@ -78,8 +83,8 @@ class Wine
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $protectedOrigin = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoritesWines')]
-    private Collection $likedUsers;
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoriteWines')]
+    private Collection $favoriteUsers;
 
     #[ORM\OneToMany(mappedBy: 'wine', targetEntity: TastingSheet::class)]
     private Collection $tastingSheets;
@@ -94,7 +99,7 @@ class Wine
     {
         $this->enabled = $enabled;
         $this->sessions = new ArrayCollection();
-        $this->likedUsers = new ArrayCollection();
+        $this->favoriteUsers = new ArrayCollection();
         $this->tastingSheets = new ArrayCollection();
     }
 
@@ -320,34 +325,34 @@ class Wine
     }
 
 
-    public function addLikedUser(User $likedUser): static
+    public function addFavoriteUsers(User $user): static
     {
-        if (!$this->likedUsers->contains($likedUser)) {
-            $this->likedUsers->add($likedUser);
-            $likedUser->addFavoritesWine($this);
+        if (!$this->favoriteUsers->contains($user)) {
+            $this->favoriteUsers->add($user);
+            $user->addFavoriteWines($this);
         }
         return $this;
     }
 
-    public function removeLikedUser(User $likedUser): static
+    public function removeFavoriteUsers(User $user): static
     {
-        if ($this->likedUsers->removeElement($likedUser)) {
-            $likedUser->removeFavoritesWine($this);
+        if ($this->favoriteUsers->removeElement($user)) {
+            $user->removeFavoriteWines($this);
         }
         return $this;
     }
 
-    public function isInLikedUsers(User $user): bool
+    public function isInFavoriteUsers(User $user): bool
     {
-        return $this->likedUsers->contains($user);
+        return $this->favoriteUsers->contains($user);
     }
 
     /**
      * @return Collection<int, User>
      */
-    public function getLikedUsers(): Collection
+    public function getFavoriteUsers(): Collection
     {
-        return $this->likedUsers;
+        return $this->favoriteUsers;
     }
 
     public function getWineRegion(): ?WineRegion
