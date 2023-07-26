@@ -114,7 +114,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-label text-uppercase letter-spacing'
                 ],
             ])
-            ->add('password', PasswordType::class, [
+            ->add('plainPassword', PasswordType::class, [
                 'always_empty' => false,
                 'mapped' => false,
                 'attr' => [
