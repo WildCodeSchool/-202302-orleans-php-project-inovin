@@ -1,5 +1,9 @@
 @import "variables";
 
+body {
+    padding-bottom: $footer-height;
+}
+
 main {
     min-height: calc(100vh - ($navbar-height + $footer-height));
 }
@@ -194,5 +198,9 @@ form .ts-wrapper.plugin-remove_button:not(.rtl) .item .remove {
 @media screen and (max-width: 768px) {
     .wine-size-img {
         width: 100%;
+    }
+
+    body {
+        padding-bottom: $footer-height-md;
     }
 }

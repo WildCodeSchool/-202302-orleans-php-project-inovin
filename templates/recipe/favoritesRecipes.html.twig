@@ -24,27 +24,29 @@
 			{% else %}
 				{% for recipe in recipes %}
 					<div class="col-md-6 mb-4">
-						<div class="recipe-card bg-card shadow-container p-3">
-							<div class="d-flex">
-								<div class="recipe-h2 text-nowrap">
-									<h2 class="custom-card-title fs-3">{{ recipe.name|u.truncate(20, '...') }}
-									</h2>
+						<div class="recipe-card bg-card shadow-container p-3 d-flex flex-column justify-content-between">
+							<div>
+								<div class="d-flex">
+									<div class="recipe-h2 text-nowrap">
+										<h2 class="custom-card-title fs-3">{{ recipe.name|u.truncate(20, '...') }}
+										</h2>
+									</div>
+									<div class="line"></div>
 								</div>
-								<div class="line"></div>
-							</div>
-							<div class="d-flex justify-content-between mt-2">
-								<a class="nav-link text-primary-light mb-2 letter-spacing fs-p" href="{{ path('recipe_show', {'id': recipe.id} ) }}">
-									Voir la description
-									<span class="text-primary-light custom-transform">
-										<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-eye-fill fs-5" viewbox="0 0 16 16">
-											<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-											<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-										</svg>
-									</span>
-								</a>
-								{% if app.user %}
-									{{ component('UpdateStateFavoriteRecipeComponent', { recipe : recipe }) }}
-								{% endif %}
+								<div class="d-flex justify-content-between mt-2">
+									<a class="nav-link text-primary-light mb-2 letter-spacing fs-p" href="{{ path('recipe_show', {'id': recipe.id} ) }}">
+										Voir la description
+										<span class="text-primary-light custom-transform">
+											<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-eye-fill fs-5" viewbox="0 0 16 16">
+												<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+												<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+											</svg>
+										</span>
+									</a>
+									{% if app.user %}
+										{{ component('UpdateStateFavoriteRecipeComponent', { recipe : recipe }) }}
+									{% endif %}
+								</div>
 							</div>
 							<div class="d-flex mt-2 gap-3">
 								<div class="recipe-img col d-none d-md-flex">

@@ -11,8 +11,8 @@
 	{% include 'admin/components/_admin-navbar.html.twig' %}
 {% endblock %}
 {% block body %}
-	<main class="container-fluid">
-		<div class="container-admin ornement position-relative border border-secondary py-sm-5 px-2 mx-md-5 mx-1 px-2 px-lg-5 py-4">
+	<main class="container-fluid my-5">
+		<div class="container-admin ornement position-relative border border-secondary px-2 mx-md-5 mx-1 px-2 px-lg-5 py-5 m-0">
 			<section>
 				<div class="row">
 					<div class="col">
@@ -24,7 +24,7 @@
 						<div class="d-flex justify-content-center">
 							{% include "components/svg/_frame_surlignage.svg.twig" %}
 						</div>
-						<div class="mt-4 py-5">
+						<div class="mt-4 pt-5">
 							{% block admin_content %}{% endblock %}
 						</div>
 					</div>

@@ -1,5 +1,9 @@
 @import "_variables.scss";
 
+body {
+    padding-bottom: $footer-height;
+}
+
 main {
     min-height: calc(100vh - ($navbar-height + $footer-height));
 }
@@ -23,6 +27,7 @@ main {
     outline: 1px dashed $secondary;
     outline-offset: -5px;
     border-radius: 8px 8px 0px 0px;
+    min-height: 405px;
 }
 
 .custom-card-title {
@@ -123,4 +128,10 @@ main {
 
 .progress {
     height: 0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding-bottom: $footer-height-md;
+    }
 }

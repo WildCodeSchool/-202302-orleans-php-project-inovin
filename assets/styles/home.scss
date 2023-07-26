@@ -1,5 +1,9 @@
 @import "_variables";
 
+body {
+    padding-bottom: $footer-height;
+}
+
 header {
     background-image: url(../images/background-header.webp);
     background-repeat: no-repeat;
@@ -11,10 +15,6 @@ header {
     & p.font-sizepara {
         font-size: clamp(1rem, 1vw, 2.5rem);
     }
-}
-
-body {
-    background-color: $dark-light;
 }
 
 .pin span {
@@ -42,5 +42,9 @@ body {
 @media screen and (max-width: 768px) {
     .custom-header-height {
         max-height: 196px;
+    }
+
+    body {
+        padding-bottom: $footer-height-md;
     }
 }

@@ -1,5 +1,9 @@
 @import "variables";
 
+body {
+    padding-bottom: $footer-height;
+}
+
 .form-control {
     border: 0;
     border-bottom: 1px solid $secondary;
@@ -39,5 +43,11 @@
     @extend .custom-profile-btn;
     &:hover {
         @include profil-btn-hover($danger);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        padding-bottom: $footer-height-md;
     }
 }

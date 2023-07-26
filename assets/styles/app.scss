@@ -5,7 +5,9 @@
 
 body {
     background-color: $dark-light;
-    min-height: calc(100vh - $footer-height);
+    min-height: 100vh;
+    position: relative;
+    padding-top: $navbar-height;
 }
 
 h1,
@@ -105,10 +107,6 @@ p {
 
 html {
     height: 100%;
-}
-
-body {
-    padding-block-start: $navbar-height;
 }
 
 .navbar-toggler:focus {

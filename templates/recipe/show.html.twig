@@ -8,13 +8,16 @@
 	{{ encore_entry_link_tags('recipe') }}
 {% endblock %}
 {% block body %}
-	<main class="container-fluid container-md py-5 mb-5">
+	<main class="container-fluid container-md my-5">
 		<div class="d-flex align-items-end">
 			<span class="decoration-title">
 				{% include 'components/svg/_icon_decoration.svg.twig' %}
 			</span>
-			<h2 class="text-primary-light fw-light mt-5 letter-spacing m-0 text-uppercase">
-				{{ recipe.name }} <span class="fs-4 mx-1">créé par</span> {{ recipe.user.firstName }} {{ recipe.user.lastName }}
+			<h2 class="text-primary-light fw-light letter-spacing m-0 text-uppercase">
+				{{ recipe.name }}
+				<span class="fs-4 mx-1">créé par</span>
+				{{ recipe.user.firstName }}
+				{{ recipe.user.lastName }}
 			</h2>
 		</div>
 		<div class="line-gradient"></div>
