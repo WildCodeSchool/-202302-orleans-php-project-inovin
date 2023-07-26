@@ -12,9 +12,9 @@
 
 {% block body %}
 
-	<main class="container-fluid d-flex justify-content-center align-items-center my-5 my-md-0">
+	<main class="container-fluid d-flex justify-content-center align-items-center my-5">
 		<div class="row w-75">
-			<div class="m-auto px-3 border border-secondary d-flex flex-column align-items-center pt-5 bg-card ornement position-relative">
+			<div class="m-auto px-3 border border-secondary d-flex flex-column align-items-center pt-5 bg-card ornement position-relative shadow-container">
 				<h2 class="text-center text-uppercase letter-spacing mt-5">Récapitulatif de ton profil gustatif</h2>
 				{% include "components/svg/_frame_surlignage.svg.twig" %}
 				<div class="container d-flex justify-content-center py-5">
@@ -29,7 +29,7 @@
 						<p class="px-5 fs-5">{{ recap.wineRegion.regionName }}</p>
 					</div>
 				</div>
-				<div class="mb-3 p-5">
+				<div class="mt-3 mb-5 pb-5">
 					<div class="d-flex flex-column justify-content-between gap-5">
 						<a role="button" href="{{ path('home_index') }}" class="btn btn-sm bg-primary-light text-dark fw-bolder icon-link icon-link-hover icon-dark text-uppercase order-2 d-flex justify-content-center">
 							{{ button_label|default('Valider') }}
