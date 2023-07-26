@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UserType extends AbstractType
@@ -80,7 +81,7 @@ class UserType extends AbstractType
                     'class' => 'form-label text-uppercase letter-spacing text-primary-light'
                 ],
             ])
-            ->add('country', TextType::class, [
+            ->add('country', CountryType::class, [
                 'attr' => [
                     'class' => 'form-control rounded-0 bg-transparent p-0',
                 ],

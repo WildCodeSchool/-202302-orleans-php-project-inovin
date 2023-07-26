@@ -39,7 +39,7 @@ class UserFixtures extends Fixture
         $user->setAddress('1 rue du machin truc');
         $user->setZipCode('75000');
         $user->setCity('Paris');
-        $user->setCountry('France');
+        $user->setCountry('FR');
 
         $this->addReference('user_' . $userNumber, $user);
 
@@ -61,7 +61,7 @@ class UserFixtures extends Fixture
         $admin->setAddress('1 rue du machin truc');
         $admin->setZipCode('75000');
         $admin->setCity('Paris');
-        $admin->setCountry('France');
+        $admin->setCountry('FR');
 
         $this->addReference('user_2', $admin);
 
@@ -85,7 +85,7 @@ class UserFixtures extends Fixture
             $member->setAddress($faker->address());
             $member->setZipCode($faker->postcode());
             $member->setCity($faker->city());
-            $member->setCountry($faker->country());
+            $member->setCountry("FR");
 
             $this->addReference('user_' . ($i + 3), $member);
 

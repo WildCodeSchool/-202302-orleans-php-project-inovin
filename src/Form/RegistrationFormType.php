@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 
@@ -96,7 +97,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-label text-uppercase letter-spacing'
                 ],
             ])
-            ->add('country', TextType::class, [
+            ->add('country', CountryType::class, [
                 'attr' => [
                     'class' => 'form-control border border-secondary placeholder-style',
                 ],
@@ -113,7 +114,7 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-label text-uppercase letter-spacing'
                 ],
             ])
-            ->add('password', PasswordType::class, [
+            ->add('plainPassword', PasswordType::class, [
                 'always_empty' => false,
                 'mapped' => false,
                 'attr' => [
