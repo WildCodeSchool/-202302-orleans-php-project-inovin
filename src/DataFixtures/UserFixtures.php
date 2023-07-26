@@ -35,11 +35,11 @@ class UserFixtures extends Fixture
         $user->setPassword($hashedPassword);
         $user->setFirstname('Simple');
         $user->setLastname('User');
-        $user->setDateBirth($faker->dateTime());
+        $user->setDateBirth($faker->dateTimeBetween('01-01-1975', '01-01-2005'));
         $user->setAddress('1 rue du machin truc');
         $user->setZipCode('75000');
         $user->setCity('Paris');
-        $user->setCountry('France');
+        $user->setCountry('FR');
 
         $this->addReference('user_' . $userNumber, $user);
 
@@ -57,11 +57,11 @@ class UserFixtures extends Fixture
         $admin->setPassword($hashedPassword);
         $admin->setFirstname('Mike');
         $admin->setLastname('Xiong');
-        $admin->setDateBirth($faker->dateTime());
+        $admin->setDateBirth($faker->dateTimeBetween('01-01-1975', '01-01-2005'));
         $admin->setAddress('1 rue du machin truc');
         $admin->setZipCode('75000');
         $admin->setCity('Paris');
-        $admin->setCountry('France');
+        $admin->setCountry('FR');
 
         $this->addReference('user_2', $admin);
 
@@ -81,11 +81,11 @@ class UserFixtures extends Fixture
             $member->setPassword($hashedPassword);
             $member->setFirstname($faker->firstName());
             $member->setLastname($faker->lastName());
-            $member->setDateBirth($faker->dateTime());
+            $member->setDateBirth($faker->dateTimeBetween('01-01-1975', '01-01-2005'));
             $member->setAddress($faker->address());
             $member->setZipCode($faker->postcode());
             $member->setCity($faker->city());
-            $member->setCountry($faker->country());
+            $member->setCountry("FR");
 
             $this->addReference('user_' . ($i + 3), $member);
 

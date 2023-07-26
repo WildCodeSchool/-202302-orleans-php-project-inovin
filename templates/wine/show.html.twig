@@ -27,7 +27,7 @@
 			<div class="wine-size-img">
 				<img class="object-fit-cover h-100 w-100" src="{{ asset('build/images/placeholder_wine.jpg') }}" alt="{{ 'photo du vin ' ~ wine.name|capitalize }}">
 			</div>
-			<div class="custom-card-wine d-flex flex-column py-4 px-3 d-flexpt-3 bg-card m-0 p-3 position-relative">
+			<div class="custom-card-wine d-flex flex-column py-4 px-3 d-flexpt-3 bg-card m-0 p-3 position-relative w-100">
 				{% if app.user %}
 					{{ component('UpdateStateFavoriteWineComponent', { wine : wine }) }}
 				{% endif %}
